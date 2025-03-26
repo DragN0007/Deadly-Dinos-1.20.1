@@ -6,6 +6,9 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static ForgeConfigSpec SPEC;
 
+    public static final ForgeConfigSpec.BooleanValue LARGE_DINOS_DESTROY_BLOCKS;
+    public static final ForgeConfigSpec.BooleanValue MEDIUM_DINOS_DESTROY_BLOCKS;
+    public static final ForgeConfigSpec.BooleanValue SMALL_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_TIME;
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_AMOUNT;
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BIPRODUCTS;
@@ -13,6 +16,15 @@ public class DeadlyDinosCommonConfig {
 
     static {
         BUILDER.push("Deadly Dinos");
+
+        LARGE_DINOS_DESTROY_BLOCKS = BUILDER.comment("Should large dinos be able to destroy blocks like cobblestone, wood and glass?")
+                .define("Large Dinos Break Blocks", true);
+
+        MEDIUM_DINOS_DESTROY_BLOCKS = BUILDER.comment("Should medium dinos be able to destroy blocks like wood and glass?")
+                .define("Medium Dinos Break Blocks", true);
+
+        SMALL_DINOS_DESTROY_BLOCKS = BUILDER.comment("Should small dinos be able to destroy blocks like glass?")
+                .define("Small Dinos Break Blocks", true);
 
         DINO_EGG_LAY_TIME = BUILDER.comment("Minimum amount of time, in ticks, that a dino can lay an unfertilized egg. Default is 24000 ticks, or 20 minutes.")
                 .define("Dino Egg Lay Cooldown", 24000);

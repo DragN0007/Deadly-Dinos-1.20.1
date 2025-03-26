@@ -157,7 +157,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 			for(BlockPos blockpos : BlockPos.betweenClosed(Mth.floor(aabb.minX), Mth.floor(aabb.minY), Mth.floor(aabb.minZ), Mth.floor(aabb.maxX), Mth.floor(aabb.maxY), Mth.floor(aabb.maxZ))) {
 				BlockState blockstate = this.level().getBlockState(blockpos);
-				if (blockstate.is(DDDTags.Blocks.LARGE_DINO_DESTROYS)) {
+				if (blockstate.is(DDDTags.Blocks.LARGE_DINO_DESTROYS) && DeadlyDinosCommonConfig.LARGE_DINOS_DESTROY_BLOCKS.get()) {
 					griefEvent = this.level().destroyBlock(blockpos, true, this) || griefEvent;
 				}
 			}
