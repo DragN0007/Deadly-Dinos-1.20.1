@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:doors",
+    "#minecraft:terracotta",
+    "#minecraft:stone_bricks",
+    "#minecraft:stairs",
+    "#minecraft:slabs",
+    "#minecraft:walls",
+    "#forge:cobblestone",
+
+    {
+      "id": "#forge:medium_dino_destroys",
+      "required": false
+    }
+  ]
+}

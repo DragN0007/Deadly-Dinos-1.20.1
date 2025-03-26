@@ -811,7 +811,6 @@
 			}
 		},
 		"attack": {
-			"loop": true,
 			"animation_length": 1.25,
 			"bones": {
 				"neck": {
@@ -938,51 +937,6 @@
 						"1.75": {
 							"vector": [0, 0, 0]
 						}
-					}
-				}
-			}
-		},
-		"animation.model.new": {
-			"loop": true,
-			"bones": {
-				"neck": {
-					"rotation": {
-						"vector": [0, 0, 5]
-					}
-				},
-				"head": {
-					"rotation": {
-						"vector": [17.77075, 4.96771, -3.23927]
-					}
-				},
-				"jaw": {
-					"rotation": {
-						"vector": [57.5, 0, 0]
-					}
-				},
-				"left_leg": {
-					"position": {
-						"vector": [0, 0, -8]
-					}
-				},
-				"right_leg": {
-					"position": {
-						"vector": [0, 0, 6]
-					}
-				},
-				"tail": {
-					"rotation": {
-						"vector": [-7.5, 0, 0]
-					}
-				},
-				"tail2": {
-					"rotation": {
-						"vector": [7.5, 0, 0]
-					}
-				},
-				"tail3": {
-					"rotation": {
-						"vector": [22.5, 0, 0]
 					}
 				}
 			}

@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos;
 
 import com.dragn0007.deadlydinos.entities.EntityTypes;
+import com.dragn0007.deadlydinos.gui.DDDMenuTypes;
 import com.dragn0007.deadlydinos.items.DDDItemGroup;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
@@ -23,6 +24,7 @@ public class DeadlyDinos
 
         DDDItems.register(eventBus);
         DDDItemGroup.register(eventBus);
+        DDDMenuTypes.register(eventBus);
         EntityTypes.ENTITY_TYPES.register(eventBus);
 
         GeckoLib.initialize();

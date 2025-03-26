@@ -18,11 +18,9 @@ public class BiomeHitter {
 
     public static final ResourceKey<BiomeModifier> SPAWN_ACROCANTHOSAURUS_PLAINS = registerKey("spawn_acrocanthosaurus_plains");
 
-
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
-
 
         context.register(SPAWN_ACROCANTHOSAURUS_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),

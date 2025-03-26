@@ -18,6 +18,10 @@ public class DDDItemGroup {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(DDDItems.DDD_ENTITIES.get())).title(Component.translatable("itemGroup.ddd_entities"))
                     .displayItems((displayParameters, output) -> {
 
+                        output.accept(DDDItems.ACROCANTHOSAURUS_SPAWN_EGG.get());
+                        output.accept(DDDItems.ACROCANTHOSAURUS_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get());
+
                     }).build());
 
     public static void register(IEventBus eventBus) {

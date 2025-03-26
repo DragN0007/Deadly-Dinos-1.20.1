@@ -12,6 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class DDDMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, DeadlyDinos.MODID);
+
     public static final RegistryObject<MenuType<MountMenu>> MOUNT_MENU = registerMenuType("mount_menu", MountMenu::new);
 
     public static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

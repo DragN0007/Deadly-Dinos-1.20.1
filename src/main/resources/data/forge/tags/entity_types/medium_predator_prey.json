@@ -13,11 +13,6 @@
     "minecraft:panda",
 
     {
-      "id": "#forge:medium_predator_prey",
-      "required": false
-    },
-
-    {
       "id": "#forge:small_predator_prey",
       "required": false
     }
