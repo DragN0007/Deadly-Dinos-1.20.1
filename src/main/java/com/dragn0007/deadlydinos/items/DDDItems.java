@@ -2,7 +2,11 @@ package com.dragn0007.deadlydinos.items;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
+import com.dragn0007.deadlydinos.items.custom.TrophyItem;
 import com.dragn0007.deadlydinos.items.eggs.FertilizedAcrocanthosaurusEggItem;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -146,18 +150,18 @@ public class DDDItems {
 //
 //
 //    //FOOD ITEMS
-//    public static final RegistryObject<Item> RAWSMALLMEAT = ITEMS.register("rawsmallmeat",
-//            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 250, 4) ,0.75F).build())));
-//    public static final RegistryObject<Item> COOKEDSMALLMEAT = ITEMS.register("cookedsmallmeat",
-//            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(1).meat().build())));
-//    public static final RegistryObject<Item> RAWMEDIUMMEAT = ITEMS.register("rawmediummeat",
-//            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 300, 5) ,0.85F).build())));
-//    public static final RegistryObject<Item> COOKEDMEDIUMMEAT = ITEMS.register("cookedmediummeat",
-//            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
-//    public static final RegistryObject<Item> RAWLARGEMEAT = ITEMS.register("rawlargemeat",
-//            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 300, 5) ,0.85F).build())));
-//    public static final RegistryObject<Item> COOKEDLARGEMEAT = ITEMS.register("cookedlargemeat",
-//            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).meat().build())));
+    public static final RegistryObject<Item> RAW_SMALL_MEAT = ITEMS.register("raw_small_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 250, 4) ,0.75F).build())));
+    public static final RegistryObject<Item> COOKED_SMALL_MEAT = ITEMS.register("cooked_small_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(1).meat().build())));
+    public static final RegistryObject<Item> RAW_MEDIUM_MEAT = ITEMS.register("raw_medium_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 300, 5) ,0.85F).build())));
+    public static final RegistryObject<Item> COOKED_MEDIUM_MEAT = ITEMS.register("cooked_medium_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
+    public static final RegistryObject<Item> RAW_LARGE_MEAT = ITEMS.register("raw_large_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 300, 5) ,0.85F).build())));
+    public static final RegistryObject<Item> COOKED_LARGE_MEAT = ITEMS.register("cooked_large_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).meat().build())));
 //    public static final RegistryObject<Item> CRACKER = ITEMS.register("cracker",
 //            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
 //    public static final RegistryObject<Item> DINOSANDWICH = ITEMS.register("dinosandwich",
@@ -274,22 +278,75 @@ public class DDDItems {
 //            () -> new Item(new Item.Properties()));
 //    public static final RegistryObject<Item> MEDIUM_CARNIVORE_LEG = ITEMS.register("medium_carnivore_leg",
 //            () -> new Item(new Item.Properties()));
+
+
+    //LARGE CARNI BONES
+    public static final RegistryObject<Item> LARGE_CARNIVORE_TOOTH = ITEMS.register("large_carnivore_tooth",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LARGE_CARNIVORE_SKULL = ITEMS.register("large_carnivore_skull",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LARGE_CARNIVORE_RIBS= ITEMS.register("large_carnivore_ribs",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LARGE_CARNIVORE_CLAW = ITEMS.register("large_carnivore_claw",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LARGE_CARNIVORE_TAIL = ITEMS.register("large_carnivore_tail",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LARGE_CARNIVORE_SPINE = ITEMS.register("large_carnivore_spine",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LARGE_CARNIVORE_LEG = ITEMS.register("large_carnivore_leg",
+            () -> new Item(new Item.Properties()));
+
+
+//    //SMALL HERBI BONES
+//    public static final RegistryObject<Item> SMALL_HERBIVORE_TOOTH = ITEMS.register("small_herbivore_tooth",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> SMALL_HERBIVORE_SKULL = ITEMS.register("small_herbivore_skull",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> SMALL_HERBIVORE_RIBS = ITEMS.register("small_herbivore_ribs",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> SMALL_HERBIVORE_CLAW = ITEMS.register("small_herbivore_claw",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> SMALL_HERBIVORE_TAIL = ITEMS.register("small_herbivore_tail",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> SMALL_HERBIVORE_SPINE = ITEMS.register("small_herbivore_spine",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> SMALL_HERBIVORE_LEG = ITEMS.register("small_herbivore_leg",
+//            () -> new Item(new Item.Properties()));
 //
 //
-//    //LARGE CARNI BONES
-//    public static final RegistryObject<Item> LARGE_CARNIVORE_TOOTH = ITEMS.register("large_carnivore_tooth",
+//
+////MEDIUM HERBI BONES
+//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_TOOTH = ITEMS.register("medium_herbivore_tooth",
 //            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_CARNIVORE_SKULL = ITEMS.register("large_carnivore_skull",
+//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_SKULL = ITEMS.register("medium_herbivore_skull",
 //            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_CARNIVORE_RIBS= ITEMS.register("large_carnivore_ribs",
+//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_RIBS= ITEMS.register("medium_herbivore_ribs",
 //            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_CARNIVORE_CLAW = ITEMS.register("large_carnivore_claw",
+//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_CLAW = ITEMS.register("medium_herbivore_claw",
 //            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_CARNIVORE_TAIL = ITEMS.register("large_carnivore_tail",
+//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_TAIL = ITEMS.register("medium_herbivore_tail",
 //            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_CARNIVORE_SPINE = ITEMS.register("large_carnivore_spine",
+//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_SPINE = ITEMS.register("medium_herbivore_spine",
 //            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_CARNIVORE_LEG = ITEMS.register("large_carnivore_leg",
+//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_LEG = ITEMS.register("medium_herbivore_leg",
+//            () -> new Item(new Item.Properties()));
+//
+//
+//
+////LARGE HERBI BONES
+//    public static final RegistryObject<Item> LARGE_HERBIVORE_TOOTH = ITEMS.register("large_herbivore_tooth",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> LARGE_HERBIVORE_SKULL = ITEMS.register("large_herbivore_skull",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> LARGE_HERBIVORE_RIBS= ITEMS.register("large_herbivore_ribs",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> LARGE_HERBIVORE_CLAW = ITEMS.register("large_herbivore_claw",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> LARGE_HERBIVORE_TAIL = ITEMS.register("large_herbivore_tail",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> LARGE_HERBIVORE_SPINE = ITEMS.register("large_herbivore_spine",
+//            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> LARGE_HERBIVORE_LEG = ITEMS.register("large_herbivore_leg",
 //            () -> new Item(new Item.Properties()));
 //
 //
@@ -430,57 +487,6 @@ public class DDDItems {
 //
 //
 //
-//    //SMALL HERBI BONES
-//    public static final RegistryObject<Item> SMALL_HERBIVORE_TOOTH = ITEMS.register("small_herbivore_tooth",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> SMALL_HERBIVORE_SKULL = ITEMS.register("small_herbivore_skull",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> SMALL_HERBIVORE_RIBS = ITEMS.register("small_herbivore_ribs",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> SMALL_HERBIVORE_CLAW = ITEMS.register("small_herbivore_claw",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> SMALL_HERBIVORE_TAIL = ITEMS.register("small_herbivore_tail",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> SMALL_HERBIVORE_SPINE = ITEMS.register("small_herbivore_spine",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> SMALL_HERBIVORE_LEG = ITEMS.register("small_herbivore_leg",
-//            () -> new Item(new Item.Properties()));
-//
-//
-//
-////MEDIUM HERBI BONES
-//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_TOOTH = ITEMS.register("medium_herbivore_tooth",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_SKULL = ITEMS.register("medium_herbivore_skull",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_RIBS= ITEMS.register("medium_herbivore_ribs",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_CLAW = ITEMS.register("medium_herbivore_claw",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_TAIL = ITEMS.register("medium_herbivore_tail",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_SPINE = ITEMS.register("medium_herbivore_spine",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> MEDIUM_HERBIVORE_LEG = ITEMS.register("medium_herbivore_leg",
-//            () -> new Item(new Item.Properties()));
-//
-//
-//
-////LARGE HERBI BONES
-//    public static final RegistryObject<Item> LARGE_HERBIVORE_TOOTH = ITEMS.register("large_herbivore_tooth",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_HERBIVORE_SKULL = ITEMS.register("large_herbivore_skull",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_HERBIVORE_RIBS= ITEMS.register("large_herbivore_ribs",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_HERBIVORE_CLAW = ITEMS.register("large_herbivore_claw",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_HERBIVORE_TAIL = ITEMS.register("large_herbivore_tail",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_HERBIVORE_SPINE = ITEMS.register("large_herbivore_spine",
-//            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> LARGE_HERBIVORE_LEG = ITEMS.register("large_herbivore_leg",
-//            () -> new Item(new Item.Properties()));
 //
 //
 //    //TODO;
@@ -493,11 +499,12 @@ public class DDDItems {
 //
 //
 //    //TROPHIES
-//    public static final RegistryObject<TrophyItem> ACROCANTHOSAURUS_TROPHY = ITEMS.register("acrocanthosaurus_trophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 3,true, false),
-//                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
-//            ));
+    public static final RegistryObject<TrophyItem> ACROCANTHOSAURUS_TROPHY = ITEMS.register("acrocanthosaurus_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 3,true, false),
+                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
+            ));
+
 //    public static final RegistryObject<TrophyItem> ALBERTOTROPHY = ITEMS.register("albertotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 3,true, false),

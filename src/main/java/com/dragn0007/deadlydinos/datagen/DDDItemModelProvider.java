@@ -22,6 +22,21 @@ public class DDDItemModelProvider extends ItemModelProvider {
         advancedItem(DDDItems.ACROCANTHOSAURUS_SPAWN_EGG, "acrocanthosaurus_egg");
         advancedItem(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG, "acrocanthosaurus_egg");
         simpleItem(DDDItems.ACROCANTHOSAURUS_EGG);
+
+        simpleItem(DDDItems.RAW_SMALL_MEAT);
+        simpleItem(DDDItems.COOKED_SMALL_MEAT);
+        simpleItem(DDDItems.RAW_MEDIUM_MEAT);
+        simpleItem(DDDItems.COOKED_MEDIUM_MEAT);
+        simpleItem(DDDItems.RAW_LARGE_MEAT);
+        simpleItem(DDDItems.COOKED_LARGE_MEAT);
+
+        simpleItem(DDDItems.LARGE_CARNIVORE_CLAW);
+        simpleItem(DDDItems.LARGE_CARNIVORE_LEG);
+        simpleItem(DDDItems.LARGE_CARNIVORE_RIBS);
+        simpleItem(DDDItems.LARGE_CARNIVORE_SKULL);
+        simpleItem(DDDItems.LARGE_CARNIVORE_SPINE);
+        simpleItem(DDDItems.LARGE_CARNIVORE_TAIL);
+        simpleItem(DDDItems.LARGE_CARNIVORE_TOOTH);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

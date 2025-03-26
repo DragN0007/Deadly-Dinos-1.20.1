@@ -22,6 +22,21 @@ public class DDDItemGroup {
                         output.accept(DDDItems.ACROCANTHOSAURUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get());
 
+                        output.accept(DDDItems.RAW_SMALL_MEAT.get());
+                        output.accept(DDDItems.COOKED_SMALL_MEAT.get());
+                        output.accept(DDDItems.RAW_MEDIUM_MEAT.get());
+                        output.accept(DDDItems.COOKED_MEDIUM_MEAT.get());
+                        output.accept(DDDItems.RAW_LARGE_MEAT.get());
+                        output.accept(DDDItems.COOKED_LARGE_MEAT.get());
+
+                        output.accept(DDDItems.LARGE_CARNIVORE_CLAW.get());
+                        output.accept(DDDItems.LARGE_CARNIVORE_LEG.get());
+                        output.accept(DDDItems.LARGE_CARNIVORE_RIBS.get());
+                        output.accept(DDDItems.LARGE_CARNIVORE_SKULL.get());
+                        output.accept(DDDItems.LARGE_CARNIVORE_SPINE.get());
+                        output.accept(DDDItems.LARGE_CARNIVORE_TAIL.get());
+                        output.accept(DDDItems.LARGE_CARNIVORE_TOOTH.get());
+
                     }).build());
 
     public static void register(IEventBus eventBus) {
