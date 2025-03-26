@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:cow",
+    "minecraft:sheep",
+    "minecraft:horse",
+    "minecraft:mule",
+    "minecraft:donkey",
+    "minecraft:camel",
+    "minecraft:llama",
+    "minecraft:goat",
+    "minecraft:villager",
+    "minecraft:panda",
+
+    {
+      "id": "#forge:medium_predator_prey",
+      "required": false
+    },
+
+    {
+      "id": "#forge:small_predator_prey",
+      "required": false
+    }
+  ]
+}
