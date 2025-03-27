@@ -17,7 +17,7 @@ public class AcrocanthosaurusRender extends GeoEntityRenderer<Acrocanthosaurus> 
     public void preRender(PoseStack poseStack, Acrocanthosaurus entity, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 
         if(entity.isBaby()) {
-            poseStack.scale(0.5F, 0.5F, 0.5F);
+            poseStack.scale(0.3F, 0.3F, 0.3F);
         } else {
             poseStack.scale(1.0F, 1.0F, 1.0F);
         }

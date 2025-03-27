@@ -1,6 +1,9 @@
 {
   "itemGroup.ddd_entities": "Deadly Dinos: Entities",
 
+  "tooltip.deadlydinos.tamable.tooltip": "This baby is tamable!",
+  "tooltip.deadlydinos.not_tamable.tooltip": "This baby is not tamable.",
+
   "item.deadlydinos.acrocanthosaurus_spawn_egg": "Acrocanthosaurus Spawn Egg",
   "item.deadlydinos.acrocanthosaurus_egg": "Acrocanthosaurus Egg",
   "item.deadlydinos.fertilized_acrocanthosaurus_egg": "Fertilized Acrocanthosaurus Egg",
@@ -62,5 +65,8 @@
   "item.deadlydinos.large_herbivore_claw": "Large Herbivore Claw",
   "item.deadlydinos.large_herbivore_tail": "Large Herbivore Tail",
   "item.deadlydinos.large_herbivore_spine": "Large Herbivore Spine",
-  "item.deadlydinos.large_herbivore_leg": "Large Herbivore Leg"
+  "item.deadlydinos.large_herbivore_leg": "Large Herbivore Leg",
+
+
+  "sounds.deadlydinos.large_carnivore_ambient": "Large Carnivore Rumbles"
 }

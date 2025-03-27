@@ -1,0 +1,8 @@
+{
+  "large_carnivore_ambient": {
+    "subtitle": "sounds.deadlydinos.large_carnivore_ambient",
+    "sounds": [
+      "deadlydinos:large_carnivore_ambient"
+    ]
+  }
+}

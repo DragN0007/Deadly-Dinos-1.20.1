@@ -18,7 +18,7 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<Acrocanthosaurus>> ACROCANTHOSAURUS_ENTITY = ENTITY_TYPES.register("acrocanthosaurus",
             () -> EntityType.Builder.of(Acrocanthosaurus::new,
                     MobCategory.CREATURE)
-                    .sized(3f,4f)
+                    .sized(3f,3f)
                     .build(new ResourceLocation(MODID,"acrocanthosaurus").toString()));
 
 //    public static final RegistryObject<EntityType<Utahraptor>> UTAH_ENTITY = ENTITY_TYPES.register("utah",

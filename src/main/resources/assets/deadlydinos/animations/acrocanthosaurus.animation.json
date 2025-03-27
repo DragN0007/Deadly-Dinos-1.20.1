@@ -882,7 +882,6 @@
 			}
 		},
 		"roar": {
-			"loop": true,
 			"animation_length": 1.75,
 			"bones": {
 				"neck": {

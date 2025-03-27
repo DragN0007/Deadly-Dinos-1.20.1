@@ -4,6 +4,7 @@ import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.gui.DDDMenuTypes;
 import com.dragn0007.deadlydinos.items.DDDItemGroup;
 import com.dragn0007.deadlydinos.items.DDDItems;
+import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,6 +26,7 @@ public class DeadlyDinos
         DDDItems.register(eventBus);
         DDDItemGroup.register(eventBus);
         DDDMenuTypes.register(eventBus);
+        DDDSoundEvents.register(eventBus);
         EntityTypes.ENTITY_TYPES.register(eventBus);
 
         GeckoLib.initialize();

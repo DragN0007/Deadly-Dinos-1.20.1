@@ -3,6 +3,7 @@ package com.dragn0007.deadlydinos.entities.acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.base.AbstractDino;
 import com.dragn0007.deadlydinos.items.DDDItems;
+import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.core.BlockPos;
@@ -34,9 +35,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.AABB;
@@ -57,7 +55,6 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	public Acrocanthosaurus(EntityType<? extends Acrocanthosaurus> type, Level level) {
 		super(type, level);
-		this.setPathfindingMalus(BlockPathTypes.BLOCKED, 0.0F);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -71,6 +68,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 	}
 
 	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.CARNIVORE_EATS);
+
 	public boolean isFood(ItemStack itemStack) {
 		return FOOD_ITEMS.test(itemStack);
 	}
@@ -155,7 +153,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 			boolean griefEvent = false;
 			AABB aabb = this.getBoundingBox().inflate(0.3D);
 
-			for(BlockPos blockpos : BlockPos.betweenClosed(Mth.floor(aabb.minX), Mth.floor(aabb.minY), Mth.floor(aabb.minZ), Mth.floor(aabb.maxX), Mth.floor(aabb.maxY), Mth.floor(aabb.maxZ))) {
+			for (BlockPos blockpos : BlockPos.betweenClosed(Mth.floor(aabb.minX), Mth.floor(aabb.minY), Mth.floor(aabb.minZ), Mth.floor(aabb.maxX), Mth.floor(aabb.maxY), Mth.floor(aabb.maxZ))) {
 				BlockState blockstate = this.level().getBlockState(blockpos);
 				if (blockstate.is(DDDTags.Blocks.LARGE_DINO_DESTROYS) && DeadlyDinosCommonConfig.LARGE_DINOS_DESTROY_BLOCKS.get()) {
 					griefEvent = this.level().destroyBlock(blockpos, true, this) || griefEvent;
@@ -249,21 +247,21 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	public SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return SoundEvents.WOLF_AMBIENT;
+		return DDDSoundEvents.LARGE_CARNIVORE_AMBIENT.get();
 	}
 
 	public SoundEvent getDeathSound() {
 		super.getDeathSound();
-		return SoundEvents.WOLF_DEATH;
+		return SoundEvents.PHANTOM_DEATH;
 	}
 
 	public SoundEvent getHurtSound(DamageSource p_30720_) {
 		super.getHurtSound(p_30720_);
-		return SoundEvents.WOLF_GROWL;
+		return SoundEvents.POLAR_BEAR_WARNING;
 	}
 
 	public void playStepSound(BlockPos p_28254_, BlockState p_28255_) {
-		this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
+		this.playSound(SoundEvents.POLAR_BEAR_STEP, 0.15F, 1.0F);
 	}
 
 	// Generates the base texture
@@ -324,8 +322,6 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 			setVariant(random.nextInt(AcrocanthosaurusModel.FemaleVariant.values().length));
 		} else if (this.isMale()) {
 			setVariant(random.nextInt(AcrocanthosaurusModel.MaleVariant.values().length));
-		} else {
-			setVariant(0);
 		}
 
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
@@ -394,6 +390,16 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		super.defineSynchedData();
 		this.entityData.define(VARIANT, 0);
 		this.entityData.define(GENDER, 0);
+	}
+
+	@Override
+	protected void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
+		super.dropCustomDeathLoot(p_33574_, p_33575_, p_33576_);
+		Random random = new Random();
+		int i = random.nextInt(100);
+		if (this.isFemale() && i <= 8) {
+			this.spawnAtLocation(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get());
+		}
 	}
 
 }
