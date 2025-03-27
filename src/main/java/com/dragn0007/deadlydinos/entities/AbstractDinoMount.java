@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.entities.base;
+package com.dragn0007.deadlydinos.entities;
 
 import com.dragn0007.deadlydinos.gui.MountMenu;
 import net.minecraft.core.particles.ParticleTypes;

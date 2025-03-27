@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.entities.base;
+package com.dragn0007.deadlydinos.entities;
 
 import com.dragn0007.deadlydinos.util.DDDTags;
 import net.minecraft.core.BlockPos;
@@ -7,9 +7,9 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -23,9 +23,9 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class AbstractTamableDino extends TamableAnimal {
+public abstract class AbstractDino extends Animal {
 
-    protected AbstractTamableDino(EntityType<? extends TamableAnimal> p_27557_, Level p_27558_) {
+    protected AbstractDino(EntityType<? extends Animal> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
     }
 
@@ -42,7 +42,7 @@ public abstract class AbstractTamableDino extends TamableAnimal {
         return this.getGender() == 1;
     }
 
-    public static final EntityDataAccessor<Integer> GENDER = SynchedEntityData.defineId(AbstractTamableDino.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> GENDER = SynchedEntityData.defineId(AbstractDino.class, EntityDataSerializers.INT);
 
     public int getGender() {
         return this.entityData.get(GENDER);
@@ -65,34 +65,33 @@ public abstract class AbstractTamableDino extends TamableAnimal {
     public void tick() {
         super.tick();
 
-        if (eatingTick >= 20) {
-            eatingTick = 0;
-            setEating(false);
-        }
+       if (eatingTick >= 20) {
+           eatingTick = 0;
+           setEating(false);
+       }
 
         if (isEating()) {
             eatingTick++;
             navigation.stop();
             setEating(false);
         }
+
     }
 
     int moreCropsTicks;
 
     static class PickCropsGoal extends MoveToBlockGoal {
-        public final AbstractTamableDino dino;
+        public final AbstractDino dino;
         public boolean wantsToPick;
         public boolean canPick;
 
-        public PickCropsGoal(AbstractTamableDino dino) {
+        public PickCropsGoal(AbstractDino dino) {
             super(dino, 0.7F, 16);
             this.dino = dino;
         }
 
         public boolean canUse() {
-        if (this.dino.isTame()) {
-            return false;
-            } else if (this.nextStartTick <= 0) {
+            if (this.nextStartTick <= 0) {
                 if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.dino.level(), this.dino)) {
                     return false;
                 }
@@ -167,31 +166,19 @@ public abstract class AbstractTamableDino extends TamableAnimal {
         }
 
         public boolean canUse() {
-            if (isTame()) {
-                return false;
-            } else if (isInPowderSnow) {
-                return false;
-            } else if (AbstractTamableDino.this.getTarget() == null && AbstractTamableDino.this.getLastHurtByMob() == null) {
-                if (AbstractTamableDino.this.getRandom().nextInt(reducedTickDelay(10)) != 0) {
-                    return false;
-                } else {
-                    List<ItemEntity> list = AbstractTamableDino.this.level().getEntitiesOfClass(ItemEntity.class, AbstractTamableDino.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractTamableDino.DESIRABLE_CARNIVORE_LOOT);
-                    return !list.isEmpty();
-                }
-            } else {
-                return false;
-            }
+            List<ItemEntity> list = AbstractDino.this.level().getEntitiesOfClass(ItemEntity.class, AbstractDino.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_CARNIVORE_LOOT);
+            return !list.isEmpty();
         }
 
         @Override
         public void tick() {
-            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractTamableDino.DESIRABLE_CARNIVORE_LOOT);
+            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_CARNIVORE_LOOT);
 
             if (!itemEntities.isEmpty()) {
                 ItemEntity itemEntity = itemEntities.get(0);
                 getNavigation().moveTo(itemEntity, 1.0D);
 
-                if (distanceToSqr(itemEntity) < 10.0D && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS)) {
+                if (distanceToSqr(itemEntity) < 20.0D && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS)) {
                     pickUpItem(itemEntity);
                 }
             }
@@ -199,7 +186,7 @@ public abstract class AbstractTamableDino extends TamableAnimal {
 
         @Override
         public void start() {
-            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractTamableDino.DESIRABLE_CARNIVORE_LOOT);
+            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_CARNIVORE_LOOT);
             if (!itemEntities.isEmpty()) {
                 getNavigation().moveTo(itemEntities.get(0), 1.0D);
             }
@@ -207,6 +194,56 @@ public abstract class AbstractTamableDino extends TamableAnimal {
 
         private void pickUpItem(ItemEntity itemEntity) {
             if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS) && this.canUse()) {
+                ItemStack itemStack = itemEntity.getItem();
+                itemStack.shrink(1);
+
+                if (itemStack.isEmpty()) {
+                    itemEntity.discard();
+                }
+            }
+        }
+    }
+
+
+    static final Predicate<ItemEntity> DESIRABLE_HERBIVORE_LOOT = (itemEntity) -> {
+        return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS);
+    };
+
+    public class SearchForHerbivoreFoodGoal extends Goal {
+
+        public SearchForHerbivoreFoodGoal() {
+            this.setFlags(EnumSet.of(Flag.MOVE));
+        }
+
+        public boolean canUse() {
+            List<ItemEntity> list = AbstractDino.this.level().getEntitiesOfClass(ItemEntity.class, AbstractDino.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_HERBIVORE_LOOT);
+            return !list.isEmpty();
+        }
+
+        @Override
+        public void tick() {
+            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_HERBIVORE_LOOT);
+
+            if (!itemEntities.isEmpty()) {
+                ItemEntity itemEntity = itemEntities.get(0);
+                getNavigation().moveTo(itemEntity, 1.0D);
+
+                if (distanceToSqr(itemEntity) < 20.0D && itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS)) {
+                    pickUpItem(itemEntity);
+                }
+            }
+        }
+
+        @Override
+        public void start() {
+            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_HERBIVORE_LOOT);
+            if (!itemEntities.isEmpty()) {
+                getNavigation().moveTo(itemEntities.get(0), 1.0D);
+            }
+        }
+
+        private void pickUpItem(ItemEntity itemEntity) {
+            if (itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);
 

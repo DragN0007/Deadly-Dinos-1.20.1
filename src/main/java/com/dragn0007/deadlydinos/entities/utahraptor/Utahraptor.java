@@ -1,9 +1,8 @@
 package com.dragn0007.deadlydinos.entities.utahraptor;
 
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
-import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.UtahraptorFollowPackLeaderGoal;
-import com.dragn0007.deadlydinos.entities.base.AbstractDino;
+import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
