@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_medium_meat": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "deadlydinos:raw_medium_meat"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "deadlydinos:cooked_medium_meat_campfire_cooking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_medium_meat",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "deadlydinos:cooked_medium_meat_campfire_cooking"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -17,6 +17,7 @@ import java.util.List;
 public class BiomeHitter {
 
     public static final ResourceKey<BiomeModifier> SPAWN_ACROCANTHOSAURUS_PLAINS = registerKey("spawn_acrocanthosaurus_plains");
+    public static final ResourceKey<BiomeModifier> SPAWN_UTAHRAPTOR_HOT = registerKey("spawn_utahraptor_hot");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -25,9 +26,17 @@ public class BiomeHitter {
         context.register(SPAWN_ACROCANTHOSAURUS_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(),
-                        5,
+                        4,
                         1,
                         1
+                ))));
+
+        context.register(SPAWN_UTAHRAPTOR_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.UTAHRAPTOR_ENTITY.get(),
+                        6,
+                        1,
+                        4
                 ))));
 
     }

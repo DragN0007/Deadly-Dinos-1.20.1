@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.entities;
 
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
+import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -21,11 +22,11 @@ public class EntityTypes {
                     .sized(3f,3f)
                     .build(new ResourceLocation(MODID,"acrocanthosaurus").toString()));
 
-//    public static final RegistryObject<EntityType<Utahraptor>> UTAH_ENTITY = ENTITY_TYPES.register("utah",
-//            () -> EntityType.Builder.of(Utahraptor::new,
-//                            MobCategory.CREATURE)
-//                    .sized(0.8f,1.8f)
-//                    .build(new ResourceLocation(MODID,"utah").toString()));
+    public static final RegistryObject<EntityType<Utahraptor>> UTAHRAPTOR_ENTITY = ENTITY_TYPES.register("utahraptor",
+            () -> EntityType.Builder.of(Utahraptor::new,
+                            MobCategory.CREATURE)
+                    .sized(0.8f,1.8f)
+                    .build(new ResourceLocation(MODID,"utahraptor").toString()));
 //
 //    public static final RegistryObject<EntityType<Carno>> CARNO_ENTITY = ENTITY_TYPES.register("carno",
 //            () -> EntityType.Builder.of(Carno::new,

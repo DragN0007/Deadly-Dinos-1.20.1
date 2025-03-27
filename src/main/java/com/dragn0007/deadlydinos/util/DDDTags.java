@@ -34,6 +34,16 @@ public class DDDTags {
         public static final TagKey<EntityType<?>> MEDIUM_DINOS_RUN_FROM = forgeTag("medium_dinos_run_from");
         public static final TagKey<EntityType<?>> SMALL_DINOS_RUN_FROM = forgeTag("small_dinos_run_from");
 
+        public static final TagKey<EntityType<?>> RAPTORS = forgeTag("raptors");
+        public static final TagKey<EntityType<?>> LARGE_PREDATORS = forgeTag("large_predators");
+        public static final TagKey<EntityType<?>> MEDIUM_PREDATORS = forgeTag("medium_predators");
+        public static final TagKey<EntityType<?>> SMALL_PREDATORS = forgeTag("small_predators");
+        public static final TagKey<EntityType<?>> PREDATORS = forgeTag("predators");
+        public static final TagKey<EntityType<?>> LARGE_HERBIVORES = forgeTag("large_herbivores");
+        public static final TagKey<EntityType<?>> MEDIUM_HERBIVORES = forgeTag("medium_herbivores");
+        public static final TagKey<EntityType<?>> SMALL_HERBIVORES = forgeTag("small_herbivores");
+        public static final TagKey<EntityType<?>> HERBIVORES = forgeTag("herbivores");
+
         public static TagKey<EntityType<?>> forgeTag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge", name));
         }

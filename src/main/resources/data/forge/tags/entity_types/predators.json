@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:large_predators",
+    "#forge:medium_predators",
+    "#forge:small_predators"
+  ]
+}

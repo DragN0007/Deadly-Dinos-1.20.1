@@ -4,6 +4,8 @@ import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.AcrocanthosaurusRender;
+import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
+import com.dragn0007.deadlydinos.entities.utahraptor.UtahraptorRender;
 import com.dragn0007.deadlydinos.gui.DDDMenuTypes;
 import com.dragn0007.deadlydinos.gui.MountScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -24,11 +26,13 @@ public class DDDEvent {
     @SubscribeEvent
     public static void entityAttrbiuteCreationEvent(EntityAttributeCreationEvent event) {
         event.put(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(), Acrocanthosaurus.createAttributes().build());
+        event.put(EntityTypes.UTAHRAPTOR_ENTITY.get(), Utahraptor.createAttributes().build());
     }
 
     @SubscribeEvent
     public static void clientSetupEvent(FMLClientSetupEvent event) {
         EntityRenderers.register(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(), AcrocanthosaurusRender::new);
+        EntityRenderers.register(EntityTypes.UTAHRAPTOR_ENTITY.get(), UtahraptorRender::new);
 
         MenuScreens.register(DDDMenuTypes.MOUNT_MENU.get(), MountScreen::new);
     }
@@ -36,5 +40,6 @@ public class DDDEvent {
     @SubscribeEvent
     public static void spawnPlacementRegisterEvent(SpawnPlacementRegisterEvent event) {
         event.register(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.UTAHRAPTOR_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 }

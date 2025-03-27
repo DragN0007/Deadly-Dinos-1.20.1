@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -31,6 +32,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
@@ -95,6 +97,12 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATOR_PREY) && !this.isBaby()));
+
+		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
+				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !this.isBaby() && !entity.is(this)));
+
+		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
+				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby()));
 	}
 
 	public int regenHealthCounter = 0;
@@ -187,6 +195,15 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	public void removeSpeedEffect() {
 		this.removeEffect(MobEffects.MOVEMENT_SPEED);
+	}
+
+	public boolean hurt(DamageSource source, float v) {
+		super.hurt(source, v);
+		Entity entity = source.getDirectEntity();
+		if (entity instanceof AbstractArrow) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override

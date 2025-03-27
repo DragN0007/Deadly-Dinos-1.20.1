@@ -1,13 +1,22 @@
 {
   "itemGroup.ddd_entities": "Deadly Dinos: Entities",
+  "itemGroup.ddd_items": "Deadly Dinos: Items",
+  "itemGroup.ddd_food": "Deadly Dinos: Food",
+  "itemGroup.ddd_blocks": "Deadly Dinos: Blocks",
 
   "tooltip.deadlydinos.tamable.tooltip": "This baby is tamable!",
   "tooltip.deadlydinos.not_tamable.tooltip": "This baby is not tamable.",
+
 
   "item.deadlydinos.acrocanthosaurus_spawn_egg": "Acrocanthosaurus Spawn Egg",
   "item.deadlydinos.acrocanthosaurus_egg": "Acrocanthosaurus Egg",
   "item.deadlydinos.fertilized_acrocanthosaurus_egg": "Fertilized Acrocanthosaurus Egg",
   "entity.deadlydinos.acrocanthosaurus": "Acrocanthosaurus",
+
+  "item.deadlydinos.utahraptor_spawn_egg": "Utahraptor Spawn Egg",
+  "item.deadlydinos.utahraptor_egg": "Utahraptor Egg",
+  "item.deadlydinos.fertilized_utahraptor_egg": "Fertilized Utahraptor Egg",
+  "entity.deadlydinos.utahraptor": "Utahraptor",
 
 
   "item.deadlydinos.raw_small_meat": "Small Dino Meat",
@@ -16,6 +25,34 @@
   "item.deadlydinos.cooked_medium_meat": "Cooked Medium Dino Meat",
   "item.deadlydinos.raw_large_meat": "Large Dino Meat",
   "item.deadlydinos.cooked_large_meat": "Cooked Large Dino Meat",
+
+  "item.deadlydinos.cracker": "Cracker",
+  "item.deadlydinos.canned_veggies": "Canned Veggies",
+  "item.deadlydinos.canned_meat": "Canned Meat",
+  "item.deadlydinos.canned_stew": "Canned Stew",
+  "item.deadlydinos.dino_sandwich": "Dino Meat Sandwich",
+  "item.deadlydinos.mre": "Military MRE",
+  "item.deadlydinos.soda": "Soda",
+  "item.deadlydinos.alcohol": "Alcohol",
+  "item.deadlydinos.tiger_nuts": "Tiger Nuts",
+  "item.deadlydinos.yew_plum": "Yew Plum",
+  "item.deadlydinos.pbj": "Prehistoric PB&J",
+  "item.deadlydinos.tiger_nut_butter": "Tiger Nut Butter",
+  "item.deadlydinos.yew_plum_jam": "Yew Plum Jam",
+  "item.deadlydinos.glazed_ribs": "Plum Glazed Dino Ribs",
+  "item.deadlydinos.raw_escargot": "Giant Escargot",
+  "item.deadlydinos.cooked_escargot": "Cooked Giant Escargot",
+  "item.deadlydinos.dino_nugget_1": "Stegosaurus Dino Nugget",
+  "item.deadlydinos.dino_nugget_2": "Sauroposeidon Dino Nugget",
+  "item.deadlydinos.dino_nugget_3": "T-Rex Dino Nugget",
+  "item.deadlydinos.smoothie": "Prehistoric Smoothie",
+  "item.deadlydinos.dino_dumpling": "Big Dino Dumpling",
+  "item.deadlydinos.dino_roast": "Dino Meat Roast",
+  "item.deadlydinos.bone_marrow": "Bone Marrow",
+  "item.deadlydinos.dough": "Primitive Wheat Dough",
+  "item.deadlydinos.broth": "Bone Marrow Broth",
+  "item.deadlydinos.chicken_noodle_soup": "Chicken Noodle Soup",
+  "item.deadlydinos.hearty_salad": "Leafy Salad",
   
   "item.deadlydinos.small_carnivore_tooth": "Small Carnivore Tooth",
   "item.deadlydinos.small_carnivore_skull": "Small Carnivore Skull",

@@ -13,6 +13,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_AMOUNT;
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BIPRODUCTS;
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BREEDING;
+    public static final ForgeConfigSpec.ConfigValue<Integer> UTAHRAPTOR_MAX_PACK_COUNT;
 
     static {
         BUILDER.push("Deadly Dinos");
@@ -37,6 +38,9 @@ public class DeadlyDinosCommonConfig {
 
         GENDERS_AFFECT_BREEDING = BUILDER.comment("Should a dino's gender affect how it breeds?")
                 .define("Genders Affect Breeding", true);
+
+        UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once.")
+                .define("Max Utahraptor Pack Count", 4);
 
         BUILDER.pop();
 
