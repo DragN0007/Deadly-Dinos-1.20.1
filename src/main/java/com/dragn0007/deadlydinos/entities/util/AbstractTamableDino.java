@@ -217,5 +217,58 @@ public abstract class AbstractTamableDino extends TamableAnimal {
         }
     }
 
+    static final Predicate<ItemEntity> DESIRABLE_HERBIVORE_LOOT = (itemEntity) -> {
+        return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS);
+    };
+
+    public class SearchForHerbivoreFoodGoal extends Goal {
+
+        public SearchForHerbivoreFoodGoal() {
+            this.setFlags(EnumSet.of(Flag.MOVE));
+        }
+
+        public boolean canUse() {
+            if (isTame()) {
+                return false;
+            }
+            List<ItemEntity> list = AbstractTamableDino.this.level().getEntitiesOfClass(ItemEntity.class, AbstractTamableDino.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_HERBIVORE_LOOT);
+            return !list.isEmpty();
+        }
+
+        @Override
+        public void tick() {
+            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_HERBIVORE_LOOT);
+
+            if (!itemEntities.isEmpty()) {
+                ItemEntity itemEntity = itemEntities.get(0);
+                getNavigation().moveTo(itemEntity, 1.0D);
+
+                if (distanceToSqr(itemEntity) < 20.0D && itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS)) {
+                    pickUpItem(itemEntity);
+                }
+            }
+        }
+
+        @Override
+        public void start() {
+            List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), AbstractDino.DESIRABLE_HERBIVORE_LOOT);
+            if (!itemEntities.isEmpty()) {
+                getNavigation().moveTo(itemEntities.get(0), 1.0D);
+            }
+        }
+
+        private void pickUpItem(ItemEntity itemEntity) {
+            if (itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS) && this.canUse()) {
+                ItemStack itemStack = itemEntity.getItem();
+                itemStack.shrink(1);
+
+                if (itemStack.isEmpty()) {
+                    itemEntity.discard();
+                }
+            }
+        }
+    }
+
+
 
 }

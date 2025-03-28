@@ -411,9 +411,15 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 	protected void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
 		super.dropCustomDeathLoot(p_33574_, p_33575_, p_33576_);
 		Random random = new Random();
-		int i = random.nextInt(100);
-		if (this.isFemale() && i <= 8) {
+
+		int eggChance = random.nextInt(100);
+		if (this.isFemale() && eggChance <= 5) {
 			this.spawnAtLocation(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get());
+		}
+
+		int trophyChance = random.nextInt(100);
+		if (trophyChance <= 8) {
+			this.spawnAtLocation(DDDItems.ACROCANTHOSAURUS_TROPHY.get());
 		}
 	}
 

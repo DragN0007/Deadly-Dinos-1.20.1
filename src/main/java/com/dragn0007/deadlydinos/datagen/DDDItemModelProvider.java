@@ -21,13 +21,17 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.DDD_ITEMS);
         simpleItem(DDDItems.DDD_FOOD);
         simpleItem(DDDItems.DDD_BLOCKS);
+        simpleItem(DDDItems.DDD);
 
         advancedItem(DDDItems.ACROCANTHOSAURUS_SPAWN_EGG, "acrocanthosaurus_egg");
         advancedItem(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG, "acrocanthosaurus_egg");
         simpleItem(DDDItems.ACROCANTHOSAURUS_EGG);
+        simpleItem(DDDItems.ACROCANTHOSAURUS_TROPHY);
+
         advancedItem(DDDItems.UTAHRAPTOR_SPAWN_EGG, "utahraptor_egg");
         advancedItem(DDDItems.FERTILIZED_UTAHRAPTOR_EGG, "utahraptor_egg");
         simpleItem(DDDItems.UTAHRAPTOR_EGG);
+        simpleItem(DDDItems.UTAHRAPTOR_TROPHY);
 
         simpleItem(DDDItems.RAW_SMALL_MEAT);
         simpleItem(DDDItems.COOKED_SMALL_MEAT);

@@ -8,11 +8,13 @@
   "tooltip.deadlydinos.not_tamable.tooltip": "This baby is not tamable.",
 
 
+  "item.deadlydinos.acrocanthosaurus_trophy": "Acrocanthosaurus Trophy",
   "item.deadlydinos.acrocanthosaurus_spawn_egg": "Acrocanthosaurus Spawn Egg",
   "item.deadlydinos.acrocanthosaurus_egg": "Acrocanthosaurus Egg",
   "item.deadlydinos.fertilized_acrocanthosaurus_egg": "Fertilized Acrocanthosaurus Egg",
   "entity.deadlydinos.acrocanthosaurus": "Acrocanthosaurus",
 
+  "item.deadlydinos.utahraptor_trophy": "Utahraptor Trophy",
   "item.deadlydinos.utahraptor_spawn_egg": "Utahraptor Spawn Egg",
   "item.deadlydinos.utahraptor_egg": "Utahraptor Egg",
   "item.deadlydinos.fertilized_utahraptor_egg": "Fertilized Utahraptor Egg",

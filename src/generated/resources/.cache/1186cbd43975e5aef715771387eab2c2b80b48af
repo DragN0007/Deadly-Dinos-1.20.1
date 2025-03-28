@@ -1,6 +1,7 @@
-// 1.20.1	2025-03-27T05:02:58.7216052	Item Models: deadlydinos
+// 1.20.1	2025-03-28T04:10:44.9888792	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
+23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
 3afd5cfab546c8a560ff37d3ad551973569597d2 assets/deadlydinos/models/item/bone_marrow.json
 35483280a3a68edd2611d2686b954bd9f9dcc3c2 assets/deadlydinos/models/item/broth.json
 370d40d8fda269bba44e097fb06307c319ceaed6 assets/deadlydinos/models/item/canned_meat.json
@@ -12,6 +13,7 @@ de5d2a77e041f6fc452319d96ad138cfc92b8ba3 assets/deadlydinos/models/item/cooked_e
 28ee251df054d5001624e6c0b394bfd0f3d1a770 assets/deadlydinos/models/item/cooked_medium_meat.json
 da2d063ecd2493d915e9f8bbedb547283ef6a938 assets/deadlydinos/models/item/cooked_small_meat.json
 c9e65515b561cb227fca1ec7a5db744b170b074d assets/deadlydinos/models/item/cracker.json
+021d379ea1a97089f63cfcdff3cecb7562fcfd5b assets/deadlydinos/models/item/ddd.json
 3d5c16b2e2b6635d1b6f31a2229b5f0dad90312b assets/deadlydinos/models/item/ddd_blocks.json
 b98b6fedecc6626c29f6e618c76b51b6d11a22fd assets/deadlydinos/models/item/ddd_entities.json
 9e25b9e540dc755452b31986397cfdd61c6210cd assets/deadlydinos/models/item/ddd_food.json
@@ -83,5 +85,6 @@ a7d59381bd1671eae23507386e2a5c5df5f25681 assets/deadlydinos/models/item/smoothie
 17be8fecf995f7eb203fd6ee69d3e130794041d0 assets/deadlydinos/models/item/tiger_nut_butter.json
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/utahraptor_egg.json
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/utahraptor_spawn_egg.json
+924a563146b132a85612e162092f46690ba0162b assets/deadlydinos/models/item/utahraptor_trophy.json
 64df846e51d215c801bb7cf840e66b9829b3d214 assets/deadlydinos/models/item/yew_plum.json
 73efd3a353c2de29482d1c82a1105bd9254f918a assets/deadlydinos/models/item/yew_plum_jam.json

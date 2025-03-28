@@ -31,6 +31,9 @@ public class DDDItemGroup {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(DDDItems.DDD_ITEMS.get())).title(Component.translatable("itemGroup.ddd_items"))
                     .displayItems((displayParameters, output) -> {
 
+                        output.accept(DDDItems.ACROCANTHOSAURUS_TROPHY.get());
+                        output.accept(DDDItems.UTAHRAPTOR_TROPHY.get());
+
                         output.accept(DDDItems.SMALL_CARNIVORE_CLAW.get());
                         output.accept(DDDItems.SMALL_CARNIVORE_LEG.get());
                         output.accept(DDDItems.SMALL_CARNIVORE_RIBS.get());

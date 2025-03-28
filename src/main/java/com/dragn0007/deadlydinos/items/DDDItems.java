@@ -504,285 +504,285 @@ public class DDDItems {
 //
 //
 //    //TROPHIES
-    public static final RegistryObject<TrophyItem> ACROCANTHOSAURUS_TROPHY = ITEMS.register("acrocanthosaurus_trophy",
+    public static final RegistryObject<Item> ACROCANTHOSAURUS_TROPHY = ITEMS.register("acrocanthosaurus_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 3,true, false),
                     new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
             ));
 
-//    public static final RegistryObject<TrophyItem> ALBERTOTROPHY = ITEMS.register("albertotrophy",
+//    public static final RegistryObject<Item> ALBERTOTROPHY = ITEMS.register("albertotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 3,true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 5, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> ALLOTROPHY = ITEMS.register("allotrophy",
+//    public static final RegistryObject<Item> ALLOTROPHY = ITEMS.register("allotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> ANDALTROPHY = ITEMS.register("andaltrophy",
+//    public static final RegistryObject<Item> ANDALTROPHY = ITEMS.register("andaltrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 1,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> ARCHAETROPHY = ITEMS.register("archaetrophy",
+//    public static final RegistryObject<Item> ARCHAETROPHY = ITEMS.register("archaetrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.JUMP, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> ATROCITROPHY = ITEMS.register("atrocitrophy",
+//    public static final RegistryObject<Item> ATROCITROPHY = ITEMS.register("atrocitrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.JUMP, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> AUSTRALOTROPHY = ITEMS.register("australotrophy",
+//    public static final RegistryObject<Item> AUSTRALOTROPHY = ITEMS.register("australotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> AUSTROTROPHY = ITEMS.register("austrotrophy",
+//    public static final RegistryObject<Item> AUSTROTROPHY = ITEMS.register("austrotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.LUCK, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.JUMP, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> BARYTROPHY = ITEMS.register("barytrophy",
+//    public static final RegistryObject<Item> BARYTROPHY = ITEMS.register("barytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 1,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> CARCHARTROPHY = ITEMS.register("carchartrophy",
+//    public static final RegistryObject<Item> CARCHARTROPHY = ITEMS.register("carchartrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> CARNOTROPHY = ITEMS.register("carnotrophy",
+//    public static final RegistryObject<Item> CARNOTROPHY = ITEMS.register("carnotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> CERATOTROPHY = ITEMS.register("ceratotrophy",
+//    public static final RegistryObject<Item> CERATOTROPHY = ITEMS.register("ceratotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> COMPYTROPHY = ITEMS.register("compytrophy",
+//    public static final RegistryObject<Item> COMPYTROPHY = ITEMS.register("compytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.SATURATION, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> CRYOTROPHY = ITEMS.register("cryotrophy",
+//    public static final RegistryObject<Item> CRYOTROPHY = ITEMS.register("cryotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.LUCK, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> DEINONTROPHY = ITEMS.register("deinontrophy",
+//    public static final RegistryObject<Item> DEINONTROPHY = ITEMS.register("deinontrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> DILOTROPHY = ITEMS.register("dilotrophy",
+//    public static final RegistryObject<Item> DILOTROPHY = ITEMS.register("dilotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.INVISIBILITY, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.LUCK, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> EOCARCHARTROPHY = ITEMS.register("eocarchartrophy",
+//    public static final RegistryObject<Item> EOCARCHARTROPHY = ITEMS.register("eocarchartrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> GIGATROPHY = ITEMS.register("gigatrophy",
+//    public static final RegistryObject<Item> GIGATROPHY = ITEMS.register("gigatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 3, true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> ICHTHYTROPHY = ITEMS.register("ichthytrophy",
+//    public static final RegistryObject<Item> ICHTHYTROPHY = ITEMS.register("ichthytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 1,true, false),
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> IGUATROPHY = ITEMS.register("iguatrophy",
+//    public static final RegistryObject<Item> IGUATROPHY = ITEMS.register("iguatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 1,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> MAHAKALATROPHY = ITEMS.register("mahakalatrophy",
+//    public static final RegistryObject<Item> MAHAKALATROPHY = ITEMS.register("mahakalatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.LUCK, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.JUMP, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> MAJUNGATROPHY = ITEMS.register("majungatrophy",
+//    public static final RegistryObject<Item> MAJUNGATROPHY = ITEMS.register("majungatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> MEGARAPTROPHY = ITEMS.register("megaraptrophy",
+//    public static final RegistryObject<Item> MEGARAPTROPHY = ITEMS.register("megaraptrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.INVISIBILITY, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.NIGHT_VISION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> REXTROPHY = ITEMS.register("rextrophy",
+//    public static final RegistryObject<Item> REXTROPHY = ITEMS.register("rextrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 5, true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> SPINOTROPHY = ITEMS.register("spinotrophy",
+//    public static final RegistryObject<Item> SPINOTROPHY = ITEMS.register("spinotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 1,true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> TARBOTROPHY = ITEMS.register("tarbotrophy",
+//    public static final RegistryObject<Item> TARBOTROPHY = ITEMS.register("tarbotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 1,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> TROODONTROPHY = ITEMS.register("troodontrophy",
+//    public static final RegistryObject<Item> TROODONTROPHY = ITEMS.register("troodontrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.LUCK, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
 //            ));
-    public static final RegistryObject<TrophyItem> UTAHRAPTOR_TROPHY = ITEMS.register("utahraptor_trophy",
+    public static final RegistryObject<Item> UTAHRAPTOR_TROPHY = ITEMS.register("utahraptor_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.JUMP, 2880, 2,true, false),
                     new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
             ));
-//    public static final RegistryObject<TrophyItem> YUTYTROPHY = ITEMS.register("yutytrophy",
+//    public static final RegistryObject<Item> YUTYTROPHY = ITEMS.register("yutytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> AMARGATROPHY = ITEMS.register("amargatrophy",
+//    public static final RegistryObject<Item> AMARGATROPHY = ITEMS.register("amargatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.SATURATION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> AMPELOTROPHY = ITEMS.register("ampelotrophy",
+//    public static final RegistryObject<Item> AMPELOTROPHY = ITEMS.register("ampelotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.HEAL, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> ANKYTROPHY = ITEMS.register("ankytrophy",
+//    public static final RegistryObject<Item> ANKYTROPHY = ITEMS.register("ankytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> AVATROPHY = ITEMS.register("avatrophy",
+//    public static final RegistryObject<Item> AVATROPHY = ITEMS.register("avatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.HEALTH_BOOST, 2880, 2,true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> DEINOCHTROPHY = ITEMS.register("deinochtrophy",
+//    public static final RegistryObject<Item> DEINOCHTROPHY = ITEMS.register("deinochtrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> EDMONTOTROPHY = ITEMS.register("edmontotrophy",
+//    public static final RegistryObject<Item> EDMONTOTROPHY = ITEMS.register("edmontotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> GALLITROPHY = ITEMS.register("gallitrophy",
+//    public static final RegistryObject<Item> GALLITROPHY = ITEMS.register("gallitrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.JUMP, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> GRYPOTROPHY = ITEMS.register("grypotrophy",
+//    public static final RegistryObject<Item> GRYPOTROPHY = ITEMS.register("grypotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.SATURATION, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.HEAL, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> PACHYRTROPHY = ITEMS.register("pachyrtrophy",
+//    public static final RegistryObject<Item> PACHYRTROPHY = ITEMS.register("pachyrtrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.HEAL, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> PARATROPHY = ITEMS.register("paratrophy",
+//    public static final RegistryObject<Item> PARATROPHY = ITEMS.register("paratrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> SAUROTROPHY = ITEMS.register("saurotrophy",
+//    public static final RegistryObject<Item> SAUROTROPHY = ITEMS.register("saurotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false),
 //                    new MobEffectInstance(MobEffects.SATURATION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> SHANTTROPHY = ITEMS.register("shanttrophy",
+//    public static final RegistryObject<Item> SHANTTROPHY = ITEMS.register("shanttrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.HEALTH_BOOST, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> STEGOTROPHY = ITEMS.register("stegotrophy",
+//    public static final RegistryObject<Item> STEGOTROPHY = ITEMS.register("stegotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> THERITROPHY = ITEMS.register("theritrophy",
+//    public static final RegistryObject<Item> THERITROPHY = ITEMS.register("theritrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> TRIKETROPHY = ITEMS.register("triketrophy",
+//    public static final RegistryObject<Item> TRIKETROPHY = ITEMS.register("triketrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> PACHYTROPHY = ITEMS.register("pachytrophy",
+//    public static final RegistryObject<Item> PACHYTROPHY = ITEMS.register("pachytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 3, true, false)
 //            ));
 //
 //
-//    public static final RegistryObject<TrophyItem> MOSATROPHY = ITEMS.register("mosatrophy",
+//    public static final RegistryObject<Item> MOSATROPHY = ITEMS.register("mosatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 3, true, false),
 //                    new MobEffectInstance(MobEffects.CONDUIT_POWER, 2880, 2,true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> HELITROPHY = ITEMS.register("helitrophy",
+//    public static final RegistryObject<Item> HELITROPHY = ITEMS.register("helitrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<TrophyItem> DUNKLEOTROPHY = ITEMS.register("dunkleotrophy",
+//    public static final RegistryObject<Item> DUNKLEOTROPHY = ITEMS.register("dunkleotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 2, true, false)
 //            ));
 //
-//    public static final RegistryObject<TrophyItem> ICHTHYOTROPHY = ITEMS.register("ichthyotrophy",
+//    public static final RegistryObject<Item> ICHTHYOTROPHY = ITEMS.register("ichthyotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 2, true, false)
 //            ));
 //
-//    public static final RegistryObject<TrophyItem> LEEDTROPHY = ITEMS.register("leedtrophy",
+//    public static final RegistryObject<Item> LEEDTROPHY = ITEMS.register("leedtrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.CONDUIT_POWER, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 3, true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false)
 //            ));
 //
-//    public static final RegistryObject<TrophyItem> BASILOTROPHY = ITEMS.register("basilotrophy",
+//    public static final RegistryObject<Item> BASILOTROPHY = ITEMS.register("basilotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.CONDUIT_POWER, 2880, 3, true, false)
 //            ));
 //
-//    public static final RegistryObject<TrophyItem> MEGTROPHY = ITEMS.register("megtrophy",
+//    public static final RegistryObject<Item> MEGTROPHY = ITEMS.register("megtrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 3, true, false)
 //            ));
 //
-//    public static final RegistryObject<TrophyItem> LIVYTROPHY = ITEMS.register("livytrophy",
+//    public static final RegistryObject<Item> LIVYTROPHY = ITEMS.register("livytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 3, true, false),
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false)
 //            ));
 //
-//    public static final RegistryObject<TrophyItem> STETHTROPHY = ITEMS.register("stethtrophy",
+//    public static final RegistryObject<Item> STETHTROPHY = ITEMS.register("stethtrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 3, true, false)
@@ -799,6 +799,8 @@ public class DDDItems {
     public static final RegistryObject<Item> DDD_FOOD = ITEMS.register("ddd_food",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DDD_BLOCKS = ITEMS.register("ddd_blocks",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DDD = ITEMS.register("ddd",
             () -> new Item(new Item.Properties()));
 
 
