@@ -1,7 +1,6 @@
 package com.dragn0007.deadlydinos.datagen;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
-import com.dragn0007.deadlydinos.blocks.DDDBlocks;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import net.minecraft.advancements.critereon.ItemPredicate;

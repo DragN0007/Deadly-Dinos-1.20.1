@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.entities;
+package com.dragn0007.deadlydinos.entities.util;
 
 import net.minecraft.world.entity.LivingEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;

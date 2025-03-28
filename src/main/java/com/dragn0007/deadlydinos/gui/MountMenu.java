@@ -1,6 +1,6 @@
 package com.dragn0007.deadlydinos.gui;
 
-import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
+import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;

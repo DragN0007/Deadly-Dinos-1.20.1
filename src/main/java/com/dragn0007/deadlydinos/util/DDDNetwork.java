@@ -1,7 +1,7 @@
 package com.dragn0007.deadlydinos.util;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
-import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
+import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;

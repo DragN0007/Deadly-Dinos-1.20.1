@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.entities;
+package com.dragn0007.deadlydinos.entities.ai;
 
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
 import com.mojang.datafixers.DataFixUtils;

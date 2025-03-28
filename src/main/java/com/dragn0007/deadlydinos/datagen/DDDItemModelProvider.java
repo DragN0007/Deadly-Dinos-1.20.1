@@ -2,12 +2,8 @@ package com.dragn0007.deadlydinos.datagen;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.items.DDDItems;
-import com.dragn0007.deadlydinos.items.custom.SodaItem;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;

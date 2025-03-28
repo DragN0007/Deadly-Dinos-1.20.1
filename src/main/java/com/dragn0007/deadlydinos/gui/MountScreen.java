@@ -1,7 +1,7 @@
 package com.dragn0007.deadlydinos.gui;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
-import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
+import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

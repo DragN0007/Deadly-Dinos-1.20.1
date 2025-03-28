@@ -1,7 +1,10 @@
-package com.dragn0007.deadlydinos.entities;
+package com.dragn0007.deadlydinos.entities.util;
 
+import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
 import com.dragn0007.deadlydinos.util.DDDTags;
+import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -27,6 +30,14 @@ public abstract class AbstractDino extends Animal {
 
     protected AbstractDino(EntityType<? extends Animal> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
+    }
+
+    private boolean doneStalking = false;
+    public boolean isDoneStalking() {
+        return this.doneStalking;
+    }
+    public void setDoneStalking(boolean doneStalking) {
+        this.doneStalking = doneStalking;
     }
 
     public enum Gender {
@@ -61,6 +72,7 @@ public abstract class AbstractDino extends Animal {
     }
 
     int eatingTick = 0;
+    int doneStalkingTick = 0;
 
     public void tick() {
         super.tick();
@@ -74,6 +86,14 @@ public abstract class AbstractDino extends Animal {
             eatingTick++;
             navigation.stop();
             setEating(false);
+        }
+
+        if (this.isDoneStalking()) {
+            doneStalkingTick++;
+        }
+
+        if (doneStalkingTick >= 60) {
+            setDoneStalking(false);
         }
 
     }
