@@ -60,7 +60,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 70.0D)
-				.add(Attributes.ATTACK_DAMAGE, 5D)
+				.add(Attributes.ATTACK_DAMAGE, 6D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1F)
 				.add(Attributes.ARMOR_TOUGHNESS, 4D)
 				.add(Attributes.ARMOR, 4D)
@@ -90,7 +90,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby()));
 
-		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
+		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 4, true, false,
 				entity -> entity instanceof Player && !this.isBaby()));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
