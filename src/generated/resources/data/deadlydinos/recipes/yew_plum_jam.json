@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:wheat"
+      "item": "deadlydinos:yew_plum"
     },
     {
-      "tag": "forge:water"
+      "item": "deadlydinos:yew_plum"
     }
   ],
   "result": {
-    "item": "deadlydinos:dough"
+    "item": "deadlydinos:yew_plum_jam"
   }
 }

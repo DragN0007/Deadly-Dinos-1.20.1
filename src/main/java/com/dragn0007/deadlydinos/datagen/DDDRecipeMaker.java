@@ -71,6 +71,13 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(DDDItems.RAW_LARGE_MEAT.get()), RecipeCategory.MISC, DDDItems.COOKED_LARGE_MEAT.get(), 0.35F, 600)
                 .unlockedBy("has_large_meat", has(DDDItems.RAW_LARGE_MEAT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_large_meat_campfire_cooking"));
 
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(DDDItems.RAW_ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 100)
+                .unlockedBy("has_escargot", has(DDDItems.RAW_ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_smoking"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(DDDItems.RAW_ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 200)
+                .unlockedBy("has_escargot", has(DDDItems.RAW_ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_smelting"));
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(DDDItems.RAW_ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 600)
+                .unlockedBy("has_escargot", has(DDDItems.RAW_ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_campfire_cooking"));
+
 
 //        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.WIRE_FENCE_1.get())
 //                .define('A', Items.IRON_NUGGET)
@@ -154,9 +161,19 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                         .build()))
                 .save(pFinishedRecipeConsumer);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.PBJ.get())
+                .requires(Items.BREAD)
+                .requires(DDDItems.YEW_PLUM_JAM.get())
+                .requires(DDDItems.TIGER_NUT_BUTTER.get())
+                .requires(Items.BREAD)
+                .unlockedBy("has_bread", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.BREAD)
+                        .build()))
+                .save(pFinishedRecipeConsumer);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.DOUGH.get())
                 .requires(Items.WHEAT)
-                .requires(Items.POTION)
+                .requires(DDDTags.Items.WATER)
                 .unlockedBy("has_wheat", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(Items.WHEAT)
                         .build()))
@@ -185,6 +202,22 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                         .build()))
                 .save(pFinishedRecipeConsumer);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.YEW_PLUM_JAM.get())
+                .requires(DDDItems.YEW_PLUM.get())
+                .requires(DDDItems.YEW_PLUM.get())
+                .unlockedBy("has_plum", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(DDDItems.YEW_PLUM.get())
+                        .build()))
+                .save(pFinishedRecipeConsumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.TIGER_NUT_BUTTER.get())
+                .requires(DDDItems.TIGER_NUTS.get())
+                .requires(DDDItems.TIGER_NUTS.get())
+                .unlockedBy("has_tiger_nuts", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(DDDItems.TIGER_NUTS.get())
+                        .build()))
+                .save(pFinishedRecipeConsumer);
+
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(DDDTags.Items.BONES), RecipeCategory.MISC, DDDItems.BONE_MARROW.get(), 0.35F, 200)
                 .unlockedBy("has_bone", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(DDDTags.Items.BONES).build()))
@@ -209,7 +242,7 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.SODA.get())
                 .define('A', Items.SUGAR)
                 .define('B', Items.IRON_NUGGET)
-                .define('C', Items.POTION)
+                .define('C', DDDTags.Items.WATER)
                 .pattern(" B ")
                 .pattern(" AC")
                 .pattern(" B ")

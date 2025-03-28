@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "deadlydinos:yew_plum_jam"
+    },
+    {
+      "item": "deadlydinos:tiger_nut_butter"
+    },
+    {
+      "item": "minecraft:bread"
+    }
+  ],
+  "result": {
+    "item": "deadlydinos:pbj"
+  }
+}

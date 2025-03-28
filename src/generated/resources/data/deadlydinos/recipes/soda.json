@@ -9,7 +9,7 @@
       "item": "minecraft:iron_nugget"
     },
     "C": {
-      "item": "minecraft:potion"
+      "tag": "forge:water"
     }
   },
   "pattern": [

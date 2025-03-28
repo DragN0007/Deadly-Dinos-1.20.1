@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:wheat"
+      "item": "deadlydinos:tiger_nuts"
     },
     {
-      "tag": "forge:water"
+      "item": "deadlydinos:tiger_nuts"
     }
   ],
   "result": {
-    "item": "deadlydinos:dough"
+    "item": "deadlydinos:tiger_nut_butter"
   }
 }

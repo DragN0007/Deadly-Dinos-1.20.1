@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:wheat"
+      "tag": "forge:wheat"
     },
     {
-      "tag": "forge:water"
+      "tag": "forge:wheat"
     }
   ],
   "result": {
-    "item": "deadlydinos:dough"
+    "item": "deadlydinos:cracker"
   }
 }

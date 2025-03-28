@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:wheat"
+      "item": "deadlydinos:cooked_medium_meat"
     },
     {
-      "tag": "forge:water"
+      "item": "deadlydinos:yew_plum_jam"
     }
   ],
   "result": {
-    "item": "deadlydinos:dough"
+    "item": "deadlydinos:glazed_ribs"
   }
 }

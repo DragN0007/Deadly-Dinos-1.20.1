@@ -95,7 +95,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
-		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.8F));
+		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
 
 		this.goalSelector.addGoal(3, new UtahraptorFollowPackLeaderGoal(this));
 
@@ -292,7 +292,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 			controller.setAnimation(RawAnimation.begin().then("jump", Animation.LoopType.LOOP));
 			controller.setAnimationSpeed(1.5);
 		} else if (tAnimationState.isMoving()) {
-			if (currentSpeed > speedThreshold) {
+			if (currentSpeed > speedThreshold && this.onGround()) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(2.2);
 			} else if (currentSpeed < stalkSpeedThreshold) {
