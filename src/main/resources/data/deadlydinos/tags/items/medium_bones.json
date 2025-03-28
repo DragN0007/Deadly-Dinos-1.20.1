@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "deadlydinos:medium_carnivore_claw",
+    "deadlydinos:medium_carnivore_leg",
+    "deadlydinos:medium_carnivore_ribs",
+    "deadlydinos:medium_carnivore_skull",
+    "deadlydinos:medium_carnivore_spine",
+    "deadlydinos:medium_carnivore_tail",
+    "deadlydinos:medium_carnivore_tooth",
+    "deadlydinos:medium_raptor_claw"
+  ]
+}

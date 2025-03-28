@@ -4,5 +4,11 @@
     "sounds": [
       "deadlydinos:large_carnivore_ambient"
     ]
+  },
+  "raptor_ambient": {
+    "subtitle": "sounds.deadlydinos.raptor_ambient",
+    "sounds": [
+      "deadlydinos:raptor_ambient"
+    ]
   }
 }

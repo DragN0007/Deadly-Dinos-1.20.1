@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "deadlydinos:cooked_small_meat",
+    "deadlydinos:cooked_medium_meat",
+    "deadlydinos:cooked_large_meat"
+  ]
+}

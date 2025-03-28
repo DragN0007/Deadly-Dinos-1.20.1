@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bone",
+    "#deadlydinos:small_bones",
+    "#deadlydinos:medium_bones",
+    "#deadlydinos:large_bones",
+    "#deadlydinos:anomaly_bones"
+  ]
+}

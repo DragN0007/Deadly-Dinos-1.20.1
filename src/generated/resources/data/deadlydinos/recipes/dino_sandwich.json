@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "deadlydinos:cooked_medium_meat"
+    },
+    "B": {
+      "item": "minecraft:bread"
+    },
+    "C": {
+      "tag": "forge:vegetables"
+    }
+  },
+  "pattern": [
+    " B ",
+    " AC",
+    " B "
+  ],
+  "result": {
+    "item": "deadlydinos:dino_sandwich"
+  },
+  "show_notification": true
+}

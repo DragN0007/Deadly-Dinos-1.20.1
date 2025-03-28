@@ -155,7 +155,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
 
-		if (this.horizontalCollision && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this)) {
+		if (this.horizontalCollision && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this) && this.isAggressive()) {
 			boolean griefEvent = false;
 			AABB aabb = this.getBoundingBox().inflate(0.3D);
 

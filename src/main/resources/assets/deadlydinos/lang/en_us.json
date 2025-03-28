@@ -105,5 +105,6 @@
   "item.deadlydinos.large_herbivore_leg": "Large Herbivore Leg",
 
 
-  "sounds.deadlydinos.large_carnivore_ambient": "Large Carnivore Rumbles"
+  "sounds.deadlydinos.large_carnivore_ambient": "Large Carnivore Rumbles",
+  "sounds.deadlydinos.raptor_ambient": "Raptor Cackles"
 }

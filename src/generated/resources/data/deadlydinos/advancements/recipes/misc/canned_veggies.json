@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "deadlydinos:canned_veggies"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_veggies": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:vegetables"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_veggies",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "deadlydinos:canned_veggies"
+    ]
+  },
+  "sends_telemetry_event": false
+}

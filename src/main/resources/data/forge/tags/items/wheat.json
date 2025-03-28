@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:wheat",
+
+    {
+      "id": "dffeasts:rye",
+      "required": false
+    },
+
+    {
+      "id": "dffeasts:flour",
+      "required": false
+    }
+  ]
+}

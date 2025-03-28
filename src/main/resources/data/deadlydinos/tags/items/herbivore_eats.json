@@ -11,6 +11,11 @@
     "minecraft:melon_slice",
 
     {
+      "id": "#deadlydinos:prehistoric_plants",
+      "required": false
+    },
+
+    {
       "id": "#forge:vegetables",
       "required": false
     },

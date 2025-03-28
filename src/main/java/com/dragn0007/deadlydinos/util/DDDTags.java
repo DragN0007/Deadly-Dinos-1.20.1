@@ -14,8 +14,25 @@ public class DDDTags {
 
     public static class Items {
 
+        public static final TagKey<Item> PREHISTORIC_PLANTS = tag("prehistoric_plants");
+        public static final TagKey<Item> RAW_DINO_MEATS = tag("raw_dino_meats");
+        public static final TagKey<Item> COOKED_DINO_MEATS = tag("cooked_dino_meats");
         public static final TagKey<Item> CARNIVORE_EATS = tag("carnivore_eats");
         public static final TagKey<Item> HERBIVORE_EATS = tag("herbivore_eats");
+        public static final TagKey<Item> ANOMALY_BONES = tag("anomaly_bones");
+        public static final TagKey<Item> LARGE_BONES = tag("large_bones");
+        public static final TagKey<Item> MEDIUM_BONES = tag("medium_bones");
+        public static final TagKey<Item> SMALL_BONES = tag("small_bones");
+        public static final TagKey<Item> BONES = forgeTag("bones");
+        public static final TagKey<Item> DOUGH = forgeTag("dough");
+        public static final TagKey<Item> MEATS = forgeTag("meats");
+        public static final TagKey<Item> WHEAT = forgeTag("wheat");
+        public static final TagKey<Item> VEGETABLES = forgeTag("vegetables");
+        public static final TagKey<Item> FISH = forgeTag("fish");
+        public static final TagKey<Item> RAW_MEATS = forgeTag("raw_meats");
+        public static final TagKey<Item> COOKED_MEATS = forgeTag("cooked_meats");
+        public static final TagKey<Item> RAW_CHICKEN = forgeTag("raw_chicken");
+        public static final TagKey<Item> BEDROLL_BEDS = forgeTag("bedroll_beds");
 
         public static TagKey<Item> forgeTag (String name) {
             return ItemTags.create(new ResourceLocation("forge", name));
@@ -50,7 +67,7 @@ public class DDDTags {
     }
 
     public static class Blocks {
-
+        public static final TagKey<Block> PREHISTORIC_PLANTS = tag("prehistoric_plants");
         public static final TagKey<Block> TROODON_SEEKS = forgeTag("troodon_seeks");
         public static final TagKey<Block> LARGE_DINO_DESTROYS = forgeTag("large_dino_destroys");
         public static final TagKey<Block> MEDIUM_DINO_DESTROYS = forgeTag("medium_dino_destroys");
@@ -58,6 +75,10 @@ public class DDDTags {
 
         public static TagKey<net.minecraft.world.level.block.Block> forgeTag (String name) {
             return BlockTags.create(new ResourceLocation("forge", name));
+        }
+
+        public static TagKey<net.minecraft.world.level.block.Block> tag (String name) {
+            return BlockTags.create(new ResourceLocation(DeadlyDinos.MODID, name));
         }
     }
 

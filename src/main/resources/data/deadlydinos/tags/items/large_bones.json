@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "deadlydinos:large_carnivore_claw",
+    "deadlydinos:large_carnivore_leg",
+    "deadlydinos:large_carnivore_ribs",
+    "deadlydinos:large_carnivore_skull",
+    "deadlydinos:large_carnivore_spine",
+    "deadlydinos:large_carnivore_tail",
+    "deadlydinos:large_carnivore_tooth"
+  ]
+}

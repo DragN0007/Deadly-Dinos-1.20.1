@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "#deadlydinos:raw_dino_meats",
+
     "minecraft:beef",
     "minecraft:chicken",
     "minecraft:mutton",

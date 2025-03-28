@@ -7,6 +7,10 @@ import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -19,6 +23,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -31,9 +36,12 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Parrot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -51,7 +59,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Utahraptor extends AbstractDino implements GeoEntity {
@@ -207,7 +218,6 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 	}
 
 	public int regenHealthCounter = 0;
-	public int stalkTick = 0;
 
 	public void tick() {
 		super.tick();
@@ -240,13 +250,17 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 	public void aiStep() {
 		super.aiStep();
 
+		if (this.level().random.nextInt(400) == 0) {
+			imitateNearbyMobs(this.level(), this);
+		}
+
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
 			this.spawnAtLocation(DDDItems.UTAHRAPTOR_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
 
-		if (this.horizontalCollision && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this)) {
+		if (this.horizontalCollision && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this) && this.isAggressive()) {
 			boolean griefEvent = false;
 			AABB aabb = this.getBoundingBox().inflate(0.3D);
 
@@ -320,9 +334,102 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		return this.geoCache;
 	}
 
+	private static final Predicate<Mob> NOT_RAPTOR_PREDICATE = mob -> mob != null && Utahraptor.MOB_SOUND_MAP.containsKey(mob.getType());
+
+	static final Map<EntityType<?>, SoundEvent> MOB_SOUND_MAP = Util.make(Maps.newHashMap(), (map) -> {
+		map.put(EntityType.COW, SoundEvents.COW_AMBIENT);
+		map.put(EntityType.SHEEP, SoundEvents.SHEEP_AMBIENT);
+		map.put(EntityType.PIG, SoundEvents.PIG_AMBIENT);
+		map.put(EntityType.CHICKEN, SoundEvents.CHICKEN_AMBIENT);
+		map.put(EntityType.GOAT, SoundEvents.GOAT_AMBIENT);
+		map.put(EntityType.PARROT, SoundEvents.PARROT_AMBIENT);
+		map.put(EntityType.POLAR_BEAR, SoundEvents.POLAR_BEAR_AMBIENT);
+		map.put(EntityType.HORSE, SoundEvents.HORSE_AMBIENT);
+		map.put(EntityType.DONKEY, SoundEvents.DONKEY_AMBIENT);
+		map.put(EntityType.MULE, SoundEvents.MULE_AMBIENT);
+		map.put(EntityType.LLAMA, SoundEvents.LLAMA_AMBIENT);
+		map.put(EntityType.WOLF, SoundEvents.WOLF_AMBIENT);
+		map.put(EntityType.CAT, SoundEvents.CAT_AMBIENT);
+		map.put(EntityType.OCELOT, SoundEvents.OCELOT_AMBIENT);
+
+		map.put(EntityType.BLAZE, SoundEvents.PARROT_IMITATE_BLAZE);
+		map.put(EntityType.CAVE_SPIDER, SoundEvents.PARROT_IMITATE_SPIDER);
+		map.put(EntityType.CREEPER, SoundEvents.PARROT_IMITATE_CREEPER);
+		map.put(EntityType.DROWNED, SoundEvents.PARROT_IMITATE_DROWNED);
+		map.put(EntityType.ELDER_GUARDIAN, SoundEvents.PARROT_IMITATE_ELDER_GUARDIAN);
+		map.put(EntityType.ENDER_DRAGON, SoundEvents.PARROT_IMITATE_ENDER_DRAGON);
+		map.put(EntityType.ENDERMITE, SoundEvents.PARROT_IMITATE_ENDERMITE);
+		map.put(EntityType.EVOKER, SoundEvents.PARROT_IMITATE_EVOKER);
+		map.put(EntityType.GHAST, SoundEvents.PARROT_IMITATE_GHAST);
+		map.put(EntityType.GUARDIAN, SoundEvents.PARROT_IMITATE_GUARDIAN);
+		map.put(EntityType.HOGLIN, SoundEvents.PARROT_IMITATE_HOGLIN);
+		map.put(EntityType.HUSK, SoundEvents.PARROT_IMITATE_HUSK);
+		map.put(EntityType.ILLUSIONER, SoundEvents.PARROT_IMITATE_ILLUSIONER);
+		map.put(EntityType.MAGMA_CUBE, SoundEvents.PARROT_IMITATE_MAGMA_CUBE);
+		map.put(EntityType.PHANTOM, SoundEvents.PARROT_IMITATE_PHANTOM);
+		map.put(EntityType.PIGLIN, SoundEvents.PARROT_IMITATE_PIGLIN);
+		map.put(EntityType.PIGLIN_BRUTE, SoundEvents.PARROT_IMITATE_PIGLIN_BRUTE);
+		map.put(EntityType.PILLAGER, SoundEvents.PARROT_IMITATE_PILLAGER);
+		map.put(EntityType.RAVAGER, SoundEvents.PARROT_IMITATE_RAVAGER);
+		map.put(EntityType.SHULKER, SoundEvents.PARROT_IMITATE_SHULKER);
+		map.put(EntityType.SILVERFISH, SoundEvents.PARROT_IMITATE_SILVERFISH);
+		map.put(EntityType.SKELETON, SoundEvents.PARROT_IMITATE_SKELETON);
+		map.put(EntityType.SLIME, SoundEvents.PARROT_IMITATE_SLIME);
+		map.put(EntityType.SPIDER, SoundEvents.PARROT_IMITATE_SPIDER);
+		map.put(EntityType.STRAY, SoundEvents.PARROT_IMITATE_STRAY);
+		map.put(EntityType.VEX, SoundEvents.PARROT_IMITATE_VEX);
+		map.put(EntityType.VINDICATOR, SoundEvents.PARROT_IMITATE_VINDICATOR);
+		map.put(EntityType.WARDEN, SoundEvents.PARROT_IMITATE_WARDEN);
+		map.put(EntityType.WITCH, SoundEvents.PARROT_IMITATE_WITCH);
+		map.put(EntityType.WITHER, SoundEvents.PARROT_IMITATE_WITHER);
+		map.put(EntityType.WITHER_SKELETON, SoundEvents.PARROT_IMITATE_WITHER_SKELETON);
+		map.put(EntityType.ZOGLIN, SoundEvents.PARROT_IMITATE_ZOGLIN);
+		map.put(EntityType.ZOMBIE, SoundEvents.PARROT_IMITATE_ZOMBIE);
+		map.put(EntityType.ZOMBIE_VILLAGER, SoundEvents.PARROT_IMITATE_ZOMBIE_VILLAGER);
+	});
+
+	public static boolean imitateNearbyMobs(Level level, Entity entity) {
+		if (entity.isAlive() && !entity.isSilent() && level.random.nextInt(2) == 0) {
+			List<Mob> list = level.getEntitiesOfClass(Mob.class, entity.getBoundingBox().inflate(20.0D), NOT_RAPTOR_PREDICATE);
+			if (!list.isEmpty()) {
+				Mob mob = list.get(level.random.nextInt(list.size()));
+				if (!mob.isSilent()) {
+					SoundEvent soundevent = getImitatedSound(mob.getType());
+					level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), soundevent, entity.getSoundSource(), 0.7F, getPitch(level.random));
+					return true;
+				}
+			}
+
+			return false;
+		} else {
+			return false;
+		}
+	}
+
+	public float getVoicePitch() {
+		return getPitch(this.random);
+	}
+
+	public static float getPitch(RandomSource source) {
+		return (source.nextFloat() - source.nextFloat()) * 0.2F + 1.0F;
+	}
+
+	@Nullable
 	public SoundEvent getAmbientSound() {
-		super.getAmbientSound();
-		return DDDSoundEvents.LARGE_CARNIVORE_AMBIENT.get();
+		return getAmbient(this.level(), this.level().random);
+	}
+
+	public static SoundEvent getAmbient(Level level, RandomSource source) {
+		if (level.getDifficulty() != Difficulty.PEACEFUL && source.nextInt(1000) == 0) {
+			List<EntityType<?>> list = Lists.newArrayList(MOB_SOUND_MAP.keySet());
+			return getImitatedSound(list.get(source.nextInt(list.size())));
+		} else {
+			return DDDSoundEvents.RAPTOR_AMBIENT.get();
+		}
+	}
+
+	private static SoundEvent getImitatedSound(EntityType<?> type) {
+		return MOB_SOUND_MAP.getOrDefault(type, DDDSoundEvents.RAPTOR_AMBIENT.get());
 	}
 
 	public SoundEvent getDeathSound() {
@@ -332,11 +439,11 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 
 	public SoundEvent getHurtSound(DamageSource p_30720_) {
 		super.getHurtSound(p_30720_);
-		return SoundEvents.POLAR_BEAR_WARNING;
+		return SoundEvents.PHANTOM_DEATH;
 	}
 
 	public void playStepSound(BlockPos p_28254_, BlockState p_28255_) {
-		this.playSound(SoundEvents.POLAR_BEAR_STEP, 0.15F, 1.0F);
+		this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
 	}
 
 	// Generates the base texture

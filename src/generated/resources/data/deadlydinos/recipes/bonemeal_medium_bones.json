@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "deadlydinos:medium_bones"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "minecraft:bone_meal"
+  }
+}

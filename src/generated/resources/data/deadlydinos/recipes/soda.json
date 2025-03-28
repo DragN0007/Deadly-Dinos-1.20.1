@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:sugar"
+    },
+    "B": {
+      "item": "minecraft:iron_nugget"
+    },
+    "C": {
+      "item": "minecraft:potion"
+    }
+  },
+  "pattern": [
+    " B ",
+    " AC",
+    " B "
+  ],
+  "result": {
+    "item": "deadlydinos:soda"
+  },
+  "show_notification": true
+}

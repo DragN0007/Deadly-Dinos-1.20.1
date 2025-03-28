@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "forge:vegetables"
+    },
+    "B": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "pattern": [
+    " B ",
+    " AA",
+    " B "
+  ],
+  "result": {
+    "item": "deadlydinos:canned_veggies"
+  },
+  "show_notification": true
+}

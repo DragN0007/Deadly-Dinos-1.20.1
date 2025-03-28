@@ -13,6 +13,7 @@ public class DDDSoundEvents {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, DeadlyDinos.MODID);
 
     public static final RegistryObject<SoundEvent> LARGE_CARNIVORE_AMBIENT = registerSoundEvents("large_carnivore_ambient");
+    public static final RegistryObject<SoundEvent> RAPTOR_AMBIENT = registerSoundEvents("raptor_ambient");
 
     public static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(DeadlyDinos.MODID, name)));

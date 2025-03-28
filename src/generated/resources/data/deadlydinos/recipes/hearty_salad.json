@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:vegetables"
+    },
+    {
+      "tag": "forge:vegetables"
+    },
+    {
+      "tag": "deadlydinos:prehistoric_plants"
+    },
+    {
+      "item": "deadlydinos:tiger_nuts"
+    }
+  ],
+  "result": {
+    "item": "deadlydinos:hearty_salad"
+  }
+}
