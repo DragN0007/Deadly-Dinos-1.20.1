@@ -1,7 +1,8 @@
 package com.dragn0007.deadlydinos.entities.acrocanthosaurus;
 
-import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
+import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.util.AbstractDino;
+import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
@@ -30,6 +31,8 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -81,6 +84,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
+		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Monster.class, false));
 
 		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
 
@@ -90,6 +94,9 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby()));
 
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 2.0F, 1.8F,
+				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_DINOS_RUN_FROM) && this.isBaby()));
+
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 4, true, false,
 				entity -> entity instanceof Player && !this.isBaby()));
 
@@ -97,7 +104,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATOR_PREY) && !this.isBaby()));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !this.isBaby() && !entity.is(this)));
+				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.ACROCANTHOSAURUS_ENTITY.get()))));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby()));

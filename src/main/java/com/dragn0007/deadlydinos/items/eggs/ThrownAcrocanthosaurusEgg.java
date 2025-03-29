@@ -51,7 +51,7 @@ public class ThrownAcrocanthosaurusEgg extends ThrowableItemProjectile {
       super.onHit(p_37488_);
       if (!this.level().isClientSide) {
          int i = 1;
-         if (this.random.nextInt(64) == 0) {
+         if (this.random.nextInt(512) == 0) {
             i = 4;
          }
 

@@ -1,9 +1,10 @@
 package com.dragn0007.deadlydinos.entities.utahraptor;
 
-import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
+import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.ai.StalkMeleeAttackGoal;
 import com.dragn0007.deadlydinos.entities.ai.UtahraptorFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.entities.util.AbstractDino;
+import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
@@ -22,6 +23,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -36,11 +38,14 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -55,7 +60,9 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -75,6 +82,9 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 				.add(Attributes.MOVEMENT_SPEED, 0.28F);
 	}
 
+	public static boolean checkDesertDinoSpawnRules(EntityType<Utahraptor> type, LevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource source) {
+		return levelAccessor.getBlockState(pos.below()).is(BlockTags.RABBITS_SPAWNABLE_ON) && isBrightEnoughToSpawn(levelAccessor, pos);
+	}
 	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.CARNIVORE_EATS);
 
 	public boolean isFood(ItemStack itemStack) {
@@ -89,16 +99,21 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
-		this.goalSelector.addGoal(1, new StalkMeleeAttackGoal(this, 2.0D, true));
+		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Monster.class, false));
 
+		this.goalSelector.addGoal(1, new StalkMeleeAttackGoal(this, 2.0D, true));
 		this.goalSelector.addGoal(3, new UtahraptorFollowPackLeaderGoal(this));
 		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
+		this.goalSelector.addGoal(3, new DinoPanicGoal(2.0D));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity instanceof Player && this.isBaby()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby()));
+
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
+				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_DINOS_RUN_FROM) && !this.hasFollowers() && !this.isFollower()));
 
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
 				entity -> entity instanceof Player && !this.isBaby()));
@@ -110,19 +125,16 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS) && !entity.is(this) && !entity.getType().is(DDDTags.Entity_Types.RAPTORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
+				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS)  && !(entity.getType() == (EntityTypes.UTAHRAPTOR_ENTITY.get())) && !entity.getType().is(DDDTags.Entity_Types.RAPTORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATORS) && !this.isBaby()));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_HERBIVORES) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
+				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_HERBIVORES) && !this.isBaby()));
-
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_HERBIVORES) && !this.isBaby()));
+				entity -> (entity.getType().is(DDDTags.Entity_Types.SMALL_HERBIVORES) || entity.getType().is(DDDTags.Entity_Types.MEDIUM_HERBIVORES)) && !this.isBaby()));
 	}
 
 	public boolean doHurtTarget(Entity entity) {

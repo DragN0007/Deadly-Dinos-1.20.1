@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:medium_dinos_run_from",
+    "#forge:medium_predators",
+    "#forge:large_predators"
+  ]
+}

@@ -18,11 +18,13 @@ public class DDDTags {
         public static final TagKey<Item> RAW_DINO_MEATS = tag("raw_dino_meats");
         public static final TagKey<Item> COOKED_DINO_MEATS = tag("cooked_dino_meats");
         public static final TagKey<Item> CARNIVORE_EATS = tag("carnivore_eats");
+        public static final TagKey<Item> CARNIVORE_DESIRES = tag("carnivore_desires");
         public static final TagKey<Item> HERBIVORE_EATS = tag("herbivore_eats");
         public static final TagKey<Item> ANOMALY_BONES = tag("anomaly_bones");
         public static final TagKey<Item> LARGE_BONES = tag("large_bones");
         public static final TagKey<Item> MEDIUM_BONES = tag("medium_bones");
         public static final TagKey<Item> SMALL_BONES = tag("small_bones");
+        public static final TagKey<Item> TROPHIES = tag("trophies");
         public static final TagKey<Item> BONES = forgeTag("bones");
         public static final TagKey<Item> DOUGH = forgeTag("dough");
         public static final TagKey<Item> MEATS = forgeTag("meats");
@@ -49,6 +51,7 @@ public class DDDTags {
         public static final TagKey<EntityType<?>> MEDIUM_PREDATOR_PREY = forgeTag("medium_predator_prey");
         public static final TagKey<EntityType<?>> SMALL_PREDATOR_PREY = forgeTag("small_predator_prey");
 
+        public static final TagKey<EntityType<?>> LARGE_DINOS_RUN_FROM = forgeTag("large_dinos_run_from");
         public static final TagKey<EntityType<?>> MEDIUM_DINOS_RUN_FROM = forgeTag("medium_dinos_run_from");
         public static final TagKey<EntityType<?>> SMALL_DINOS_RUN_FROM = forgeTag("small_dinos_run_from");
 
@@ -73,6 +76,8 @@ public class DDDTags {
         public static final TagKey<Block> LARGE_DINO_DESTROYS = forgeTag("large_dino_destroys");
         public static final TagKey<Block> MEDIUM_DINO_DESTROYS = forgeTag("medium_dino_destroys");
         public static final TagKey<Block> SMALL_DINO_DESTROYS = forgeTag("small_dino_destroys");
+        public static final TagKey<Block> SAND = forgeTag("sand");
+        public static final TagKey<Block> DESERT_DINOS_SPAWNABLE_ON = tag("desert_dinos_spawnable_on");
 
         public static TagKey<net.minecraft.world.level.block.Block> forgeTag (String name) {
             return BlockTags.create(new ResourceLocation("forge", name));

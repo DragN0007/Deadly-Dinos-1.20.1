@@ -2,6 +2,7 @@ package com.dragn0007.deadlydinos.entities.util;
 
 import com.dragn0007.deadlydinos.util.DDDTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -27,6 +29,24 @@ public abstract class AbstractTamableDino extends TamableAnimal {
 
     protected AbstractTamableDino(EntityType<? extends TamableAnimal> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
+    }
+
+    private boolean doneStalking = false;
+    public boolean isDoneStalking() {
+        return this.doneStalking;
+    }
+    public void setDoneStalking(boolean doneStalking) {
+        this.doneStalking = doneStalking;
+    }
+
+    public boolean isOnSand() {
+        BlockState blockState = this.level().getBlockState(this.blockPosition().below());
+        return blockState.is(DDDTags.Blocks.SAND);
+    }
+
+    public boolean isOnSnow() {
+        BlockState blockState = this.level().getBlockState(this.blockPosition().below());
+        return blockState.is(Blocks.SNOW) || blockState.is(Blocks.SNOW_BLOCK) || blockState.is(Blocks.POWDER_SNOW);
     }
 
     public enum Gender {
@@ -75,6 +95,62 @@ public abstract class AbstractTamableDino extends TamableAnimal {
             navigation.stop();
             setEating(false);
         }
+    }
+
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putBoolean("Wandering", this.getToldToWander());
+        tag.putBoolean("Panicking", this.getPanicking());
+    }
+
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+
+        if (tag.contains("Wandering")) {
+            this.setToldToWander(tag.getBoolean("Wandering"));
+        }
+
+        if (tag.contains("Panicking")) {
+            this.setPanicking(tag.getBoolean("Panicking"));
+        }
+    }
+
+    public boolean isPanicking = false;
+
+    public boolean isPanicking() {
+        return this.getHealth() < this.getMaxHealth() / 3 && this.isAlive();
+    }
+
+    public boolean getPanicking() {
+        return this.isPanicking;
+    }
+
+    public void setPanicking(boolean panicking) {
+        this.isPanicking = panicking;
+    }
+
+    class DinoPanicGoal extends PanicGoal {
+        public DinoPanicGoal(double v) {
+            super(AbstractTamableDino.this, v);
+        }
+
+        public boolean shouldPanic() {
+            return this.mob.isFreezing() || this.mob.isOnFire() || this.mob.getHealth() < this.mob.getMaxHealth() / 3 && this.mob.isAlive();
+        }
+    }
+
+    public boolean toldToWander = false;
+
+    public boolean wasToldToWander() {
+        return this.toldToWander;
+    }
+
+    public boolean getToldToWander() {
+        return this.toldToWander;
+    }
+
+    public void setToldToWander(boolean toldToWander) {
+        this.toldToWander = toldToWander;
     }
 
     int moreCropsTicks;
@@ -157,7 +233,7 @@ public abstract class AbstractTamableDino extends TamableAnimal {
     }
 
     static final Predicate<ItemEntity> DESIRABLE_CARNIVORE_LOOT = (itemEntity) -> {
-        return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS);
+        return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES);
     };
 
     public class SearchForCarnivoreFoodGoal extends Goal {
@@ -191,7 +267,7 @@ public abstract class AbstractTamableDino extends TamableAnimal {
                 ItemEntity itemEntity = itemEntities.get(0);
                 getNavigation().moveTo(itemEntity, 1.0D);
 
-                if (distanceToSqr(itemEntity) < 10.0D && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS)) {
+                if (distanceToSqr(itemEntity) < 10.0D && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES)) {
                     pickUpItem(itemEntity);
                 }
             }
@@ -206,7 +282,7 @@ public abstract class AbstractTamableDino extends TamableAnimal {
         }
 
         private void pickUpItem(ItemEntity itemEntity) {
-            if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS) && this.canUse()) {
+            if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);
 

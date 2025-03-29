@@ -2,6 +2,7 @@ package com.dragn0007.deadlydinos.entities.util;
 
 import com.dragn0007.deadlydinos.gui.MountMenu;
 import com.dragn0007.deadlydinos.util.DDDTags;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -73,6 +74,24 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
 
     public AbstractDinoMount(EntityType<? extends AbstractDinoMount> entityType, Level level) {
         super(entityType, level);
+    }
+
+    public boolean isOnSand() {
+        BlockState blockState = this.level().getBlockState(this.blockPosition().below());
+        return blockState.is(DDDTags.Blocks.SAND);
+    }
+
+    public boolean isOnSnow() {
+        BlockState blockState = this.level().getBlockState(this.blockPosition().below());
+        return blockState.is(Blocks.SNOW) || blockState.is(Blocks.SNOW_BLOCK) || blockState.is(Blocks.POWDER_SNOW);
+    }
+
+    private boolean doneStalking = false;
+    public boolean isDoneStalking() {
+        return this.doneStalking;
+    }
+    public void setDoneStalking(boolean doneStalking) {
+        this.doneStalking = doneStalking;
     }
 
     public void openInventory(Player player) {
@@ -150,6 +169,10 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         return itemStack.getItem() instanceof HorseArmorItem || itemStack.is(ItemTags.WOOL_CARPETS);
     }
 
+    public boolean isBedroll(ItemStack itemStack) {
+        return itemStack.is(DDDTags.Items.BEDROLL_BEDS);
+    }
+
     @Override
     public double getPassengersRidingOffset() {
         return super.getPassengersRidingOffset() - 0.25D;
@@ -178,11 +201,25 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         this.entityData.set(GENDER, gender);
     }
 
+    @Nullable
+    public LivingEntity getControllingPassenger() {
+        return (LivingEntity) this.getFirstPassenger();
+    }
+
+    public void tame(Player player) {
+        this.setTamed(true);
+        this.setOwnerUUID(player.getUUID());
+        if (player instanceof ServerPlayer) {
+            CriteriaTriggers.TAME_ANIMAL.trigger((ServerPlayer)player, this);
+        }
+
+    }
+
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
 
-        if (itemStack.is(Items.SHEARS) && player.isShiftKeyDown()) {
+        if (itemStack.is(Items.SHEARS) && player.isShiftKeyDown() && isOwnedBy(player)) {
             if (this.hasChest()) {
                 this.dropEquipment();
                 this.inventory.removeAllItems();
@@ -195,7 +232,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         }
 
         if(!this.isBaby()) {
-            if(this.isTamed() && player.isSecondaryUseActive()) {
+            if(this.isTamed() && player.isSecondaryUseActive() && isOwnedBy(player)) {
                 this.openInventory(player);
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
@@ -215,12 +252,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                 return interactionResult;
             }
 
-            if(!this.isTamed()) {
-                this.makeMad();
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            }
-
-            if(!this.hasChest() && itemStack.is(Blocks.CHEST.asItem())) {
+            if(!this.hasChest() && itemStack.is(Blocks.CHEST.asItem()) && isOwnedBy(player)) {
                 this.setChest(true);
                 this.playChestEquipsSound();
                 if(!player.getAbilities().instabuild) {
@@ -236,19 +268,73 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                 this.openInventory(player);
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
+
+            if(this.isBedroll(itemStack) || canSaddle) {
+                this.openInventory(player);
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            }
         }
 
         if(this.isBaby()) {
             return super.mobInteract(player, hand);
+        }
+
+        if (this.level().isClientSide) {
+            boolean flag = this.isOwnedBy(player) || this.isTamed() || this.isFood(itemStack) && !this.isTamed();
+            return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
+        } else if (this.isTamed()) {
+            if (this.isFood(itemStack) && this.getHealth() < this.getMaxHealth()) {
+                this.heal((float)itemStack.getFoodProperties(this).getNutrition());
+                if (!player.getAbilities().instabuild) {
+                    itemStack.shrink(1);
+                }
+
+                this.gameEvent(GameEvent.EAT, this);
+                return InteractionResult.SUCCESS;
+            } else {
+                if (this.isOwnedBy(player) && this.isFood(itemStack)) {
+                    this.doPlayerRide(player);
+                    return InteractionResult.SUCCESS;
+                } else {
+                    InteractionResult interactionresult = super.mobInteract(player, hand);
+                    return interactionresult;
+                }
+            }
+        } else if (this.isFood(itemStack)) {
+            if (!player.getAbilities().instabuild) {
+                itemStack.shrink(1);
+            }
+
+            if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+                this.tame(player);
+                this.setTarget((LivingEntity)null);
+                this.level().broadcastEntityEvent(this, (byte)7);
+            } else {
+                this.level().broadcastEntityEvent(this, (byte)6);
+            }
+
+            return InteractionResult.SUCCESS;
         } else {
-            this.doPlayerRide(player);
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
+            return super.mobInteract(player, hand);
         }
     }
 
     @Override
     public boolean canWearArmor() {
         return true;
+    }
+
+    public boolean canHoldBedroll() {
+        return false;
+    }
+
+    public boolean canWearCarpet() {
+        return false;
+    }
+
+    @Override
+    protected boolean canPerformRearing() {
+        return false;
     }
 
     private static final EntityDataAccessor<Boolean> DATA_ID_CHEST = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.BOOLEAN);
@@ -276,7 +362,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             compoundTag.put("SaddleItem", this.inventory.getItem(0).save(new CompoundTag()));
         }
 
-        compoundTag.putBoolean("ChestedHorse", this.hasChest());
+        compoundTag.putBoolean("Chested", this.hasChest());
         if (this.hasChest()) {
             ListTag listtag = new ListTag();
         }
@@ -307,7 +393,14 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             }
         }
 
-        this.setChest(compoundTag.getBoolean("ChestedHorse"));
+        if(compoundTag.contains("BedrollItem", 10)) {
+            ItemStack itemStack = ItemStack.of(compoundTag.getCompound("BedrollItem"));
+            if(!itemStack.isEmpty() && this.isBedroll(itemStack)) {
+                this.inventory.setItem(1, itemStack);
+            }
+        }
+
+        this.setChest(compoundTag.getBoolean("Chested"));
 
         this.updateContainerEquipment();
 
@@ -338,8 +431,8 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(p_21817_));
     }
 
-    public boolean isOwnedBy(LivingEntity p_21831_) {
-        return p_21831_ == this.getOwner();
+    public boolean isOwnedBy(LivingEntity entity) {
+        return entity == this.getOwner();
     }
 
     public ItemStack getArmor() {
@@ -360,11 +453,20 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                 int protection = horseArmorItem.getProtection();
                 if (protection > 0) {
                     this.getAttribute(Attributes.ARMOR).addTransientModifier(
-                            new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double) protection, AttributeModifier.Operation.ADDITION)
+                            new AttributeModifier(ARMOR_MODIFIER_UUID, "Dino armor bonus", (double) protection, AttributeModifier.Operation.ADDITION)
                     );
                 }
             }
         }
+    }
+
+    public ItemStack getBedroll() {
+        return this.getItemBySlot(EquipmentSlot.CHEST);
+    }
+
+    public void setBedroll(ItemStack itemStack) {
+        this.setItemSlot(EquipmentSlot.CHEST, itemStack);
+        this.setDropChance(EquipmentSlot.CHEST, 0f);
     }
 
     @Override
@@ -559,7 +661,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
     }
 
     static final Predicate<ItemEntity> DESIRABLE_CARNIVORE_LOOT = (itemEntity) -> {
-        return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS);
+        return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES);
     };
 
     public class SearchForCarnivoreFoodGoal extends Goal {
@@ -593,7 +695,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                 ItemEntity itemEntity = itemEntities.get(0);
                 getNavigation().moveTo(itemEntity, 1.0D);
 
-                if (distanceToSqr(itemEntity) < 10.0D && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS)) {
+                if (distanceToSqr(itemEntity) < 10.0D && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES)) {
                     pickUpItem(itemEntity);
                 }
             }
@@ -608,7 +710,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         }
 
         private void pickUpItem(ItemEntity itemEntity) {
-            if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_EATS) && this.canUse()) {
+            if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);
 

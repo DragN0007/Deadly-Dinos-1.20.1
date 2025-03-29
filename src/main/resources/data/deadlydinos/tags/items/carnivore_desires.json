@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#deadlydinos:carnivore_eats",
+    "#deadlydinos:trophies",
+    "#forge:bones"
+  ]
+}

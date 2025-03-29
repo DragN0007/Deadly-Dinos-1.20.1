@@ -47,8 +47,15 @@ public class MountScreen extends AbstractContainerScreen<MountMenu> {
             graphics.blit(MOUNT_INVENTORY_LOCATION,x + 7, y + 35, 0, this.imageHeight + 54, 18, 18);
         }
 
-        if (this.mount.canWearArmor()) {
-            graphics.blit(MOUNT_INVENTORY_LOCATION, x + 7, y + 35, 0, this.imageHeight + 54, 18, 18);
+        if (this.mount.canHoldBedroll()) {
+            graphics.blit(MOUNT_INVENTORY_LOCATION, x + 7, y + 35, 54, this.imageHeight + 54, 18, 18);
+        }
+
+        if (this.mount.canWearCarpet()) {
+            if (!this.mount.canWearArmor()) {
+                graphics.blit(MOUNT_INVENTORY_LOCATION,x + 7, y + 35, 36, this.imageHeight + 54, 18, 18);
+            }
+            graphics.blit(MOUNT_INVENTORY_LOCATION,x + 7, y + 53, 36, this.imageHeight + 54, 18, 18);
         }
 
         if (this.mount.isFemale()) {
@@ -59,7 +66,6 @@ public class MountScreen extends AbstractContainerScreen<MountMenu> {
             graphics.blit(MOUNT_INVENTORY_LOCATION, x + 161, y + 9, 98, this.imageHeight + 54, 8, 8);
         }
 
-        InventoryScreen.renderEntityInInventoryFollowsMouse(graphics, x + 51, y + 60, 17, (float)(x + 51), (float)(y + 75 - 50), this.mount);
     }
 
     @Override

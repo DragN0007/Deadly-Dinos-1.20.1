@@ -18,6 +18,7 @@ public class BiomeHitter {
 
     public static final ResourceKey<BiomeModifier> SPAWN_ACROCANTHOSAURUS_PLAINS = registerKey("spawn_acrocanthosaurus_plains");
     public static final ResourceKey<BiomeModifier> SPAWN_UTAHRAPTOR_HOT = registerKey("spawn_utahraptor_hot");
+    public static final ResourceKey<BiomeModifier> SPAWN_YUTYRANNUS_COLD = registerKey("spawn_yutyrannus_cold");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -37,6 +38,14 @@ public class BiomeHitter {
                         6,
                         1,
                         4
+                ))));
+
+        context.register(SPAWN_YUTYRANNUS_COLD, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_COLD_OVERWORLD),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.YUTYRANNUS_ENTITY.get(),
+                        6,
+                        1,
+                        2
                 ))));
 
     }

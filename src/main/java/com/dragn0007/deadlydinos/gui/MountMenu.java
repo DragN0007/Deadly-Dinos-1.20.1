@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.gui;
 
 import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
+import com.dragn0007.deadlydinos.util.DDDTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
@@ -47,19 +48,21 @@ public class MountMenu extends AbstractContainerMenu {
                     return !this.hasItem() && MountMenu.this.mount.canWearArmor();
                 } else if (itemStack.is(ItemTags.WOOL_CARPETS)) {
                     return !this.hasItem() && MountMenu.this.mount.canWearArmor();
+                } else if (itemStack.is(DDDTags.Items.BEDROLL_BEDS)) {
+                    return !this.hasItem() && MountMenu.this.mount.canHoldBedroll();
                 }
                 return false;
             }
 
             @Override
             public boolean isActive() {
-                return MountMenu.this.mount.canWearArmor();
+                return MountMenu.this.mount.canWearArmor() || MountMenu.this.mount.canHoldBedroll();
             }
         });
 
         if(this.mount.hasChest()) {
             for(int y = 0; y < 3; y++) {
-                for(int x = 0; x < 5; x++) {
+                for(int x = 0; x < 8; x++) {
                     this.addSlot(new Slot(this.container, oMountSlots++, 80 + x * 18, 18 + y * 18));
                 }
             }

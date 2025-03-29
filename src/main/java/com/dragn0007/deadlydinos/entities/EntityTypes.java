@@ -2,6 +2,7 @@ package com.dragn0007.deadlydinos.entities;
 
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
+import com.dragn0007.deadlydinos.entities.yutyrannus.Yutyrannus;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -135,11 +136,11 @@ public class EntityTypes {
 //                    .sized(0.8f,1.8f)
 //                    .build(new ResourceLocation(MODID,"dilo").toString()));
 //
-//    public static final RegistryObject<EntityType<Yuty>> YUTY_ENTITY = ENTITY_TYPES.register("yuty",
-//            () -> EntityType.Builder.of(Yuty::new,
-//                            MobCategory.CREATURE)
-//                    .sized(2f,3f)
-//                    .build(new ResourceLocation(MODID,"yuty").toString()));
+    public static final RegistryObject<EntityType<Yutyrannus>> YUTYRANNUS_ENTITY = ENTITY_TYPES.register("yutyrannus",
+            () -> EntityType.Builder.of(Yutyrannus::new,
+                            MobCategory.CREATURE)
+                    .sized(2f,2.5f)
+                    .build(new ResourceLocation(MODID,"yutyrannus").toString()));
 //
 //    public static final RegistryObject<EntityType<Cryo>> CRYO_ENTITY = ENTITY_TYPES.register("cryo",
 //            () -> EntityType.Builder.of(Cryo::new,

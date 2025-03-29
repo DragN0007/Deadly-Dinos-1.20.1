@@ -5,6 +5,8 @@ import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.items.custom.SodaItem;
 import com.dragn0007.deadlydinos.items.custom.TrophyItem;
 import com.dragn0007.deadlydinos.items.eggs.FertilizedAcrocanthosaurusEggItem;
+import com.dragn0007.deadlydinos.items.eggs.FertilizedUtahraptorEggItem;
+import com.dragn0007.deadlydinos.items.eggs.FertilizedYutyrannusEggItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -27,11 +29,18 @@ public class DDDItems {
     public static final RegistryObject<Item> ACROCANTHOSAURUS_EGG = ITEMS.register("acrocanthosaurus_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
-        public static final RegistryObject<Item> UTAHRAPTOR_SPAWN_EGG = ITEMS.register("utahraptor_spawn_egg",
+    public static final RegistryObject<Item> UTAHRAPTOR_SPAWN_EGG = ITEMS.register("utahraptor_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.UTAHRAPTOR_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_UTAHRAPTOR_EGG = ITEMS.register("fertilized_utahraptor_egg",
-            () -> new FertilizedAcrocanthosaurusEggItem((new Item.Properties()).stacksTo(1)));
+            () -> new FertilizedUtahraptorEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> UTAHRAPTOR_EGG = ITEMS.register("utahraptor_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
+    public static final RegistryObject<Item> YUTYRANNUS_SPAWN_EGG = ITEMS.register("yutyrannus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.YUTYRANNUS_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_YUTYRANNUS_EGG = ITEMS.register("fertilized_yutyrannus_egg",
+            () -> new FertilizedYutyrannusEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> YUTYRANNUS_EGG = ITEMS.register("yutyrannus_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
         //    public static final RegistryObject<Item> COMPY_SPAWN_EGG = ITEMS.register("compy_spawn_egg",
@@ -70,8 +79,6 @@ public class DDDItems {
 //            () -> new ForgeSpawnEggItem(EntityTypes.ALLO_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
 //    public static final RegistryObject<Item> DILO_SPAWN_EGG = ITEMS.register("dilo_spawn_egg",
 //            () -> new ForgeSpawnEggItem(EntityTypes.DILO_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
-//    public static final RegistryObject<Item> YUTY_SPAWN_EGG = ITEMS.register("yuty_spawn_egg",
-//            () -> new ForgeSpawnEggItem(EntityTypes.YUTY_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
 //    public static final RegistryObject<Item> CRYO_SPAWN_EGG = ITEMS.register("cryo_spawn_egg",
 //            () -> new ForgeSpawnEggItem(EntityTypes.CRYO_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
 //    public static final RegistryObject<Item> AUSTRALO_SPAWN_EGG = ITEMS.register("australo_spawn_egg",
@@ -647,11 +654,13 @@ public class DDDItems {
                     new MobEffectInstance(MobEffects.JUMP, 2880, 2,true, false),
                     new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
             ));
-//    public static final RegistryObject<Item> YUTYTROPHY = ITEMS.register("yutytrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2,true, false),
-//                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
-//            ));
+
+    public static final RegistryObject<Item> YUTYRANNUS_TROPHY = ITEMS.register("yutyrannus_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2,true, false),
+                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
+            ));
+
 //    public static final RegistryObject<Item> AMARGATROPHY = ITEMS.register("amargatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
