@@ -36,7 +36,7 @@ public class MountScreen extends AbstractContainerScreen<MountMenu> {
         graphics.blit(MOUNT_INVENTORY_LOCATION, x, y, 0, 0, this.imageWidth, this.imageHeight);
 
         if (this.mount.hasChest()) {
-            graphics.blit(MOUNT_INVENTORY_LOCATION,x + 79, y + 17, 0, this.imageHeight, 90, 54);
+            graphics.blit(MOUNT_INVENTORY_LOCATION,x + 25, y + 17, 0, this.imageHeight, 144, 54);
         }
 
         if (this.mount.isSaddleable()) {

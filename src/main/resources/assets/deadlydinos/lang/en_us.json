@@ -114,5 +114,9 @@
 
 
   "sounds.deadlydinos.large_carnivore_ambient": "Large Carnivore Rumbles",
-  "sounds.deadlydinos.raptor_ambient": "Raptor Cackles"
+  "sounds.deadlydinos.raptor_ambient": "Raptor Cackles",
+
+  "key.dragnlivestock.categories.deadlydinos": "DragN's Deadly Dinos",
+  "key.dragnlivestock.speed_up": "Speed Up - Dino",
+  "key.dragnlivestock.slow_down": "Slow Down - Dino"
 }

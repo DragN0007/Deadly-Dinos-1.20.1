@@ -11,6 +11,7 @@ public class YutyrannusRender extends GeoEntityRenderer<Yutyrannus> {
 
     public YutyrannusRender(EntityRendererProvider.Context renderManager) {
         super(renderManager, new YutyrannusModel());
+        this.addRenderLayer(new YutyrannusTackLayer(this));
     }
 
     @Override

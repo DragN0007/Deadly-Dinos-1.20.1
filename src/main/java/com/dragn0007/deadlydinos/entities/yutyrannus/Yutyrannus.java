@@ -1,15 +1,20 @@
 package com.dragn0007.deadlydinos.entities.yutyrannus;
 
 import com.dragn0007.deadlydinos.entities.EntityTypes;
+import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtByTargetGoal;
+import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtTargetGoal;
+import com.dragn0007.deadlydinos.entities.ai.GroundTieGoal;
 import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
 import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -24,11 +29,13 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
@@ -51,6 +58,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
@@ -74,17 +82,22 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 	}
 
 	@Override
+	public boolean canJump() {
+		return false;
+	}
+
+	@Override
 	protected int getInventorySize() {
-		return 28;
+		return 27;
 	}
 
 	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.CARNIVORE_EATS);
-
 	public boolean isFood(ItemStack itemStack) {
 		return FOOD_ITEMS.test(itemStack);
 	}
 
 	public void registerGoals() {
+		this.goalSelector.addGoal(0, new GroundTieGoal(this));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -94,28 +107,30 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Monster.class, false));
 
+		this.goalSelector.addGoal(0, new DinoOwnerHurtByTargetGoal(this));
+		this.goalSelector.addGoal(1, new DinoOwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity instanceof Player && this.isBaby()));
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_DINOS_RUN_FROM)));
+				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_DINOS_RUN_FROM) && !this.isTamed()));
 
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 3, true, false,
-				entity -> entity instanceof Player && !this.isBaby()));
+				entity -> entity instanceof Player && !this.isBaby() && !this.isTamed()));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATOR_PREY) && !this.isBaby()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATOR_PREY) && !this.isBaby() && !this.isTamed()));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.YUTYRANNUS_ENTITY.get()))));
+				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.YUTYRANNUS_ENTITY.get())) && !this.isTamed()));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby() && !this.isTamed()));
 	}
 
 	public int regenHealthCounter = 0;
@@ -205,23 +220,30 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 
 	public <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> tAnimationState) {
 		double currentSpeed = this.getDeltaMovement().lengthSqr();
-		double speedThreshold = 0.01;
+		double speedThreshold = 0.02;
 
 		AnimationController<T> controller = tAnimationState.getController();
 
 		if (tAnimationState.isMoving()) {
 			if (hasSpeedEffect()) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.4);
+				controller.setAnimationSpeed(1.6);
 			} else if ((!hasSpeedEffect() && currentSpeed > speedThreshold) || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD))) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.2);
+				controller.setAnimationSpeed(2.0);
+			} else if (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
+				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(2.2);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.0);
+				controller.setAnimationSpeed(1.5);
 			}
 		} else {
-			controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+			if (this.isSaddled() && !this.isVehicle() && DeadlyDinosCommonConfig.GROUND_TIE.get()) {
+				controller.setAnimation(RawAnimation.begin().then("ground_tied_idle", Animation.LoopType.LOOP));
+			} else {
+				controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+			}
 			controller.setAnimationSpeed(0.8);
 		}
 
@@ -275,8 +297,8 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 	public void positionRider(Entity entity, Entity.MoveFunction moveFunction) {
 		if (this.hasPassenger(entity)) {
 			double offsetX = 0.0;
-			double offsetY = 0.0;
-			double offsetZ = 0.0;
+			double offsetY = 1.6;
+			double offsetZ = -0.3;
 
 			double radYaw = Math.toRadians(this.getYRot());
 

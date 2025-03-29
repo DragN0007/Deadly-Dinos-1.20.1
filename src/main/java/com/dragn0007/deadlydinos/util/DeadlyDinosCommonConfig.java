@@ -9,6 +9,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.BooleanValue LARGE_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue MEDIUM_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue SMALL_DINOS_DESTROY_BLOCKS;
+    public static final ForgeConfigSpec.BooleanValue GROUND_TIE;
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_TIME;
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_AMOUNT;
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BIPRODUCTS;
@@ -26,6 +27,9 @@ public class DeadlyDinosCommonConfig {
 
         SMALL_DINOS_DESTROY_BLOCKS = BUILDER.comment("Should small dinos be able to destroy blocks like glass?")
                 .define("Small Dinos Break Blocks", true);
+
+        GROUND_TIE = BUILDER.comment("Should Ridable Dinos \"ground tie\", or stop moving around, when saddled & dismounted?")
+                .define("Ground Tie When Dismounted", true);
 
         DINO_EGG_LAY_TIME = BUILDER.comment("Minimum amount of time, in ticks, that a dino can lay an unfertilized egg. Default is 24000 ticks, or 20 minutes.")
                 .define("Dino Egg Lay Cooldown", 24000);

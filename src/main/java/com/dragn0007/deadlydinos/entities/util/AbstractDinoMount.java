@@ -2,11 +2,13 @@ package com.dragn0007.deadlydinos.entities.util;
 
 import com.dragn0007.deadlydinos.gui.MountMenu;
 import com.dragn0007.deadlydinos.util.DDDTags;
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -21,13 +23,18 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -57,6 +64,10 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         return p_272504_ - 1;
     });
 
+    protected float getRiddenSpeed(Player player) {
+        return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED);
+    }
+
     public static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT);
     public boolean isFood(ItemStack stack) {
         return FOOD_ITEMS.test(stack);
@@ -66,7 +77,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
     public static final UUID SPRINT_SPEED_MOD_UUID = UUID.fromString("c9379664-01b5-4e19-a7e9-11264453bdce");
     public static final UUID WALK_SPEED_MOD_UUID = UUID.fromString("59b55c98-e39b-45e2-846c-f91f3e9ea861");
 
-    public static final AttributeModifier SPRINT_SPEED_MOD = new AttributeModifier(SPRINT_SPEED_MOD_UUID, "Sprint speed mod", 0.3D, AttributeModifier.Operation.MULTIPLY_TOTAL);
+    public static final AttributeModifier SPRINT_SPEED_MOD = new AttributeModifier(SPRINT_SPEED_MOD_UUID, "Sprint speed mod", 0.0D, AttributeModifier.Operation.MULTIPLY_TOTAL);
     public static final AttributeModifier WALK_SPEED_MOD = new AttributeModifier(WALK_SPEED_MOD_UUID, "Walk speed mod", -0.7D, AttributeModifier.Operation.MULTIPLY_TOTAL); // KEEP THIS NEGATIVE. It is calculated by adding 1. So -0.1 actually means 0.9
 
     public static final EntityDataAccessor<Integer> DATA_CARPET_ID = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.INT);
@@ -203,7 +214,10 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
 
     @Nullable
     public LivingEntity getControllingPassenger() {
-        return (LivingEntity) this.getFirstPassenger();
+        if (this.isTamed() && this.isSaddled()) {
+            return (LivingEntity) this.getFirstPassenger();
+        }
+        return null;
     }
 
     public void tame(Player player) {
@@ -215,7 +229,6 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
 
     }
 
-    @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
 
@@ -231,6 +244,18 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             }
         }
 
+        if (this.isBaby() && !this.isTamed() && this.isFood(itemStack) && this.random.nextInt(5) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+            this.tame(player);
+            return InteractionResult.SUCCESS;
+        }
+
+        if (this.isTamed() && this.isBaby() && this.isFood(itemStack)) {
+            int i = this.getAge();
+            this.usePlayerItem(player, hand, itemStack);
+            this.ageUp(getSpeedUpSecondsWhenFeeding(-i), true);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        }
+
         if(!this.isBaby()) {
             if(this.isTamed() && player.isSecondaryUseActive() && isOwnedBy(player)) {
                 this.openInventory(player);
@@ -240,19 +265,8 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             if(this.isVehicle()) {
                 return super.mobInteract(player, hand);
             }
-        }
 
-        if(!itemStack.isEmpty()) {
-            if(this.isFood(itemStack)) {
-                return this.fedFood(player, itemStack);
-            }
-
-            InteractionResult interactionResult = itemStack.interactLivingEntity(player, this, hand);
-            if(interactionResult.consumesAction()) {
-                return interactionResult;
-            }
-
-            if(!this.hasChest() && itemStack.is(Blocks.CHEST.asItem()) && isOwnedBy(player)) {
+            if(!this.hasChest() && itemStack.is(Blocks.CHEST.asItem()) && this.isOwnedBy(player)) {
                 this.setChest(true);
                 this.playChestEquipsSound();
                 if(!player.getAbilities().instabuild) {
@@ -262,21 +276,41 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                 this.createInventory();
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
+        }
 
-            boolean canSaddle = !this.isBaby() && !this.isSaddled() && this.isSaddle(itemStack);
-            if(this.isArmor(itemStack) || canSaddle) {
-                this.openInventory(player);
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            }
+//        if (this.isOwnedBy(player) && this.isSaddled() && !this.isBaby() && !itemStack.is(Items.SHEARS) && !itemStack.is(Blocks.CHEST.asItem())) {
+//            this.doPlayerRide(player);
+//            return InteractionResult.SUCCESS;
+//        }
 
-            if(this.isBedroll(itemStack) || canSaddle) {
-                this.openInventory(player);
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
+        if (this.level().isClientSide) {
+            boolean flag = this.isOwnedBy(player) || this.isTamed() || this.isFood(itemStack) && !this.isTamed();
+            return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
+        } else if (this.isTamed()) {
+            if (this.isFood(itemStack) && this.getHealth() < this.getMaxHealth()) {
+                this.heal((float) itemStack.getFoodProperties(this).getNutrition());
+                if (!player.getAbilities().instabuild) {
+                    itemStack.shrink(1);
+                }
+
+                this.gameEvent(GameEvent.EAT, this);
+                return InteractionResult.SUCCESS;
+            } else {
+                InteractionResult interactionresult = super.mobInteract(player, hand);
+                return interactionresult;
             }
         }
 
-        if(this.isBaby()) {
-            return super.mobInteract(player, hand);
+        if(!this.hasChest() && itemStack.is(Blocks.CHEST.asItem()) && isOwnedBy(player)) {
+            this.setChest(true);
+            this.playChestEquipsSound();
+
+            if(!player.getAbilities().instabuild) {
+                itemStack.shrink(1);
+            }
+
+            this.createInventory();
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
 
         if (this.level().isClientSide) {
@@ -292,7 +326,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                 this.gameEvent(GameEvent.EAT, this);
                 return InteractionResult.SUCCESS;
             } else {
-                if (this.isOwnedBy(player) && this.isFood(itemStack)) {
+                if (this.isOwnedBy(player) && !this.isFood(itemStack)) {
                     this.doPlayerRide(player);
                     return InteractionResult.SUCCESS;
                 } else {
@@ -300,22 +334,13 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                     return interactionresult;
                 }
             }
-        } else if (this.isFood(itemStack)) {
-            if (!player.getAbilities().instabuild) {
-                itemStack.shrink(1);
-            }
+        }
 
-            if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-                this.tame(player);
-                this.setTarget((LivingEntity)null);
-                this.level().broadcastEntityEvent(this, (byte)7);
-            } else {
-                this.level().broadcastEntityEvent(this, (byte)6);
-            }
-
-            return InteractionResult.SUCCESS;
-        } else {
+        if(this.isBaby() || !this.isOwnedBy(player) ) {
             return super.mobInteract(player, hand);
+        } else {
+            this.doPlayerRide(player);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
     }
 
@@ -522,64 +547,29 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             movementSpeed.addTransientModifier(WALK_SPEED_MOD);
         } else if (speedMod == 1 && movementSpeed.hasModifier(WALK_SPEED_MOD)) {
             movementSpeed.removeModifier(WALK_SPEED_MOD);
-        } else if (speedMod == 1 && !movementSpeed.hasModifier(SPRINT_SPEED_MOD)) {
-            movementSpeed.addTransientModifier(SPRINT_SPEED_MOD);
+        }
+    }
+
+    public boolean wantsToAttack(LivingEntity entity, LivingEntity living) {
+        if (!(entity instanceof Creeper) && !(entity instanceof Ghast)) {
+            if (entity instanceof AbstractDinoMount) {
+                AbstractDinoMount dinoMount = (AbstractDinoMount)entity;
+                return !dinoMount.isTamed() || dinoMount.getOwner() != living;
+            } else if (entity instanceof Player && living instanceof Player && !((Player)living).canHarmPlayer((Player)entity)) {
+                return false;
+            } else if (entity instanceof AbstractHorse && ((AbstractHorse)entity).isTamed()) {
+                return false;
+            } else {
+                return !(entity instanceof TamableAnimal) || !((TamableAnimal)entity).isTame();
+            }
+        } else {
+            return false;
         }
     }
 
     double x = this.getX() - this.xo;
     double z = this.getZ() - this.zo;
     public boolean isMoving = (x * x + z * z) > 0.0001;
-
-    @Override
-    public boolean handleEating(Player player, ItemStack stack) {
-        int i = 0;
-        int j = 0;
-        float f = 0.0F;
-        boolean flag = false;
-        if (stack.is(Items.WHEAT)) {
-            i = 90;
-            j = 6;
-            f = 10.0F;
-            if (this.isTamed() && this.getAge() == 0 && this.canFallInLove()) {
-                flag = true;
-                this.setInLove(player);
-            }
-        }
-
-        if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
-            this.heal(f);
-            flag = true;
-        }
-
-        if (this.isBaby() && i > 0) {
-            this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
-            if (!this.level().isClientSide) {
-                this.ageUp(i);
-            }
-
-            flag = true;
-        }
-
-        if (j > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
-            flag = true;
-            if (!this.level().isClientSide) {
-                this.modifyTemper(j);
-            }
-        }
-
-        if (flag) {
-            this.gameEvent(GameEvent.ENTITY_INTERACT);
-            if (!this.isSilent()) {
-                SoundEvent soundevent = this.getEatingSound();
-                if (soundevent != null) {
-                    this.level().playSound(null, this.getX(), this.getY(), this.getZ(), this.getEatingSound(), this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
-                }
-            }
-        }
-
-        return flag;
-    }
 
     int moreCropsTicks;
 
