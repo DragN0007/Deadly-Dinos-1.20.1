@@ -68,7 +68,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED);
     }
 
-    public static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT);
+    public static Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT);
     public boolean isFood(ItemStack stack) {
         return FOOD_ITEMS.test(stack);
     }
@@ -244,6 +244,15 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             }
         }
 
+        if (this.isFood(itemStack)) {
+            int i = this.getAge();
+            if (!this.level().isClientSide && i == 0 && this.canFallInLove()) {
+                this.usePlayerItem(player, hand, itemStack);
+                this.setInLove(player);
+                return InteractionResult.SUCCESS;
+            }
+        }
+
         if (this.isBaby() && !this.isTamed() && this.isFood(itemStack) && this.random.nextInt(5) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
             this.tame(player);
             return InteractionResult.SUCCESS;
@@ -266,9 +275,10 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                 return super.mobInteract(player, hand);
             }
 
-            if(!this.hasChest() && itemStack.is(Blocks.CHEST.asItem()) && this.isOwnedBy(player)) {
+            if(!this.hasChest() && itemStack.is(Blocks.CHEST.asItem()) && isOwnedBy(player)) {
                 this.setChest(true);
                 this.playChestEquipsSound();
+
                 if(!player.getAbilities().instabuild) {
                     itemStack.shrink(1);
                 }
@@ -278,17 +288,13 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             }
         }
 
-//        if (this.isOwnedBy(player) && this.isSaddled() && !this.isBaby() && !itemStack.is(Items.SHEARS) && !itemStack.is(Blocks.CHEST.asItem())) {
-//            this.doPlayerRide(player);
-//            return InteractionResult.SUCCESS;
-//        }
-
         if (this.level().isClientSide) {
             boolean flag = this.isOwnedBy(player) || this.isTamed() || this.isFood(itemStack) && !this.isTamed();
             return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
         } else if (this.isTamed()) {
             if (this.isFood(itemStack) && this.getHealth() < this.getMaxHealth()) {
-                this.heal((float) itemStack.getFoodProperties(this).getNutrition());
+                this.heal(2.0F);
+
                 if (!player.getAbilities().instabuild) {
                     itemStack.shrink(1);
                 }
@@ -298,41 +304,6 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             } else {
                 InteractionResult interactionresult = super.mobInteract(player, hand);
                 return interactionresult;
-            }
-        }
-
-        if(!this.hasChest() && itemStack.is(Blocks.CHEST.asItem()) && isOwnedBy(player)) {
-            this.setChest(true);
-            this.playChestEquipsSound();
-
-            if(!player.getAbilities().instabuild) {
-                itemStack.shrink(1);
-            }
-
-            this.createInventory();
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
-        }
-
-        if (this.level().isClientSide) {
-            boolean flag = this.isOwnedBy(player) || this.isTamed() || this.isFood(itemStack) && !this.isTamed();
-            return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
-        } else if (this.isTamed()) {
-            if (this.isFood(itemStack) && this.getHealth() < this.getMaxHealth()) {
-                this.heal((float)itemStack.getFoodProperties(this).getNutrition());
-                if (!player.getAbilities().instabuild) {
-                    itemStack.shrink(1);
-                }
-
-                this.gameEvent(GameEvent.EAT, this);
-                return InteractionResult.SUCCESS;
-            } else {
-                if (this.isOwnedBy(player) && !this.isFood(itemStack)) {
-                    this.doPlayerRide(player);
-                    return InteractionResult.SUCCESS;
-                } else {
-                    InteractionResult interactionresult = super.mobInteract(player, hand);
-                    return interactionresult;
-                }
             }
         }
 
