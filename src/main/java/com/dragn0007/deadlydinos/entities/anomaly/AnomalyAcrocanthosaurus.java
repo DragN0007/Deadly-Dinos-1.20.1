@@ -1,6 +1,7 @@
-package com.dragn0007.deadlydinos.entities.acrocanthosaurus;
+package com.dragn0007.deadlydinos.entities.anomaly;
 
 import com.dragn0007.deadlydinos.entities.EntityTypes;
+import com.dragn0007.deadlydinos.entities.ai.AnomalyNearestAttackableTargetGoal;
 import com.dragn0007.deadlydinos.entities.util.AbstractDino;
 import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
 import com.dragn0007.deadlydinos.items.DDDItems;
@@ -21,6 +22,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -31,7 +34,6 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -54,21 +56,21 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
+public class AnomalyAcrocanthosaurus extends AbstractDino implements GeoEntity {
 
-	public Acrocanthosaurus(EntityType<? extends Acrocanthosaurus> type, Level level) {
+	public AnomalyAcrocanthosaurus(EntityType<? extends AnomalyAcrocanthosaurus> type, Level level) {
 		super(type, level);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 70.0D)
-				.add(Attributes.ATTACK_DAMAGE, 10D)
+				.add(Attributes.MAX_HEALTH, 150.0D)
+				.add(Attributes.ATTACK_DAMAGE, 20D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1F)
-				.add(Attributes.ARMOR_TOUGHNESS, 4D)
-				.add(Attributes.ARMOR, 4D)
-				.add(Attributes.MOVEMENT_SPEED, 0.26F)
-				.add(Attributes.FOLLOW_RANGE, 48D);
+				.add(Attributes.ARMOR_TOUGHNESS, 8D)
+				.add(Attributes.ARMOR, 8D)
+				.add(Attributes.MOVEMENT_SPEED, 0.32F)
+				.add(Attributes.FOLLOW_RANGE, 64D);
 	}
 
 	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.CARNIVORE_EATS);
@@ -81,33 +83,23 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(1, new HurtByTargetGoal(this));
-		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
-		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Monster.class, false));
+		this.goalSelector.addGoal(1, new AnomalyNearestAttackableTargetGoal<>(this, Monster.class, false));
 
 		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity instanceof Player && this.isBaby()));
-
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby()));
-
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 2.0F, 1.8F,
-				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_DINOS_RUN_FROM) && this.isBaby()));
-
-		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 4, true, false,
+		this.goalSelector.addGoal(1, new AnomalyNearestAttackableTargetGoal<>(this, Player.class, 4, true, false,
 				entity -> entity instanceof Player && !this.isBaby()));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
+		this.goalSelector.addGoal(2, new AnomalyNearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATOR_PREY) && !this.isBaby()));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
+		this.goalSelector.addGoal(2, new AnomalyNearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.ACROCANTHOSAURUS_ENTITY.get()))));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
+		this.goalSelector.addGoal(2, new AnomalyNearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby()));
 	}
 
@@ -116,17 +108,28 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 	public void tick() {
 		super.tick();
 
-		if (eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get() && eggLayCooldown >= 100) {
-			eggsLaid = 0;
-			eggLayCooldown = 0;
-		}
-
 		regenHealthCounter++;
 
-		if (this.getHealth() < this.getMaxHealth() && regenHealthCounter >= 600 && this.isAlive()) {
-			this.setHealth(this.getHealth() + 2);
+		if (this.getHealth() < this.getMaxHealth() && regenHealthCounter >= 150 && this.isAlive()) {
+			this.setHealth(this.getHealth() + 4);
 			regenHealthCounter = 0;
 			this.level().addParticle(ParticleTypes.HEART, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 0.7D, 0.7D, 0.7D);
+		}
+
+		if (this.getHealth() < this.getMaxHealth()) {
+			if (!this.hasStrengthEffect()) {
+				this.applyStrengthEffect();
+			}
+			if (!this.hasSpeedEffect()) {
+				this.applySpeedEffect();
+			}
+		} else {
+			if (this.hasStrengthEffect()) {
+				this.removeStrengthEffect();
+			}
+			if (this.hasSpeedEffect()) {
+				this.removeSpeedEffect();
+			}
 		}
 
 		if (this.getHealth() < this.getMaxHealth() / 3) {
@@ -147,20 +150,12 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	}
 
-	public int eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
-
 	@Override
 	public void aiStep() {
 		super.aiStep();
 
-		if (this.getHealth() < this.getMaxHealth() / 3) {
+		if (this.getHealth() < this.getMaxHealth()) {
 			this.level().addParticle(ParticleTypes.SOUL, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 0.0D, 0.0D, 0.0D);
-		}
-
-		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.ACROCANTHOSAURUS_EGG.get());
-			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
 
 		if (this.horizontalCollision && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this) && this.isAggressive()) {
@@ -178,7 +173,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 	}
 
 	public void applyStrengthEffect() {
-		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 1, false, false);
+		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 2, false, false);
 		this.addEffect(effectInstance);
 	}
 
@@ -191,7 +186,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 	}
 
 	public void applySpeedEffect() {
-		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false);
+		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 2, false, false);
 		this.addEffect(effectInstance);
 	}
 
@@ -203,10 +198,26 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		this.removeEffect(MobEffects.MOVEMENT_SPEED);
 	}
 
+	public void applyAbsorptionEffect() {
+		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.ABSORPTION, 200, 2, false, false);
+		this.addEffect(effectInstance);
+	}
+
+	public boolean hasAbsorptionEffect() {
+		return this.hasEffect(MobEffects.ABSORPTION);
+	}
+
+	public void removeAbsorptionEffect() {
+		this.removeEffect(MobEffects.ABSORPTION);
+	}
+
 	public boolean hurt(DamageSource source, float v) {
 		super.hurt(source, v);
 		Entity entity = source.getDirectEntity();
 		if (entity instanceof AbstractArrow) {
+			return false;
+		}
+		if (source.is(DamageTypes.ON_FIRE) || source.is(DamageTypes.IN_FIRE)) {
 			return false;
 		}
 		return true;
@@ -214,7 +225,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	@Override
 	public float getStepHeight() {
-		return 1.0F;
+		return 1.6F;
 	}
 
 	public final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -227,18 +238,18 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 		if (tAnimationState.isMoving()) {
 			if (hasSpeedEffect()) {
-				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.6);
+				controller.setAnimation(RawAnimation.begin().then("anomaly_sprint", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(2.2);
 			} else if (!hasSpeedEffect() && currentSpeed > speedThreshold) {
-				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.4);
+				controller.setAnimation(RawAnimation.begin().then("anomaly_sprint", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(1.8);
 			} else {
-				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.0);
+				controller.setAnimation(RawAnimation.begin().then("anomaly_walk", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(1.4);
 			}
 		} else {
-			controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-			controller.setAnimationSpeed(0.8);
+			controller.setAnimation(RawAnimation.begin().then("anomaly_idle", Animation.LoopType.LOOP));
+			controller.setAnimationSpeed(1.0);
 		}
 
 		return PlayState.CONTINUE;
@@ -289,14 +300,14 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	// Generates the base texture
 	public ResourceLocation getFemaleTextureLocation() {
-		return AcrocanthosaurusModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return AnomalyAcrocanthosaurusModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
 	public ResourceLocation getMaleTextureLocation() {
-		return AcrocanthosaurusModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return AnomalyAcrocanthosaurusModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
-	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Acrocanthosaurus.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(AnomalyAcrocanthosaurus.class, EntityDataSerializers.INT);
 
 	public int getVariant() {
 		return this.entityData.get(VARIANT);
@@ -317,10 +328,6 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		if (tag.contains("Gender")) {
 			setGender(tag.getInt("Gender"));
 		}
-
-		if (tag.contains("EggLayTime")) {
-			this.eggTime = tag.getInt("EggLayTime");
-		}
 	}
 
 	@Override
@@ -328,7 +335,6 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		super.addAdditionalSaveData(tag);
 		tag.putInt("Variant", getVariant());
 		tag.putInt("Gender", getGender());
-		tag.putInt("EggLayTime", this.eggTime);
 	}
 
 	@Override
@@ -342,67 +348,25 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		setGender(random.nextInt(Gender.values().length));
 
 		if (this.isFemale()) {
-			setVariant(random.nextInt(AcrocanthosaurusModel.FemaleVariant.values().length));
+			setVariant(random.nextInt(AnomalyAcrocanthosaurusModel.FemaleVariant.values().length));
 		} else if (this.isMale()) {
-			setVariant(random.nextInt(AcrocanthosaurusModel.MaleVariant.values().length));
+			setVariant(random.nextInt(AnomalyAcrocanthosaurusModel.MaleVariant.values().length));
 		}
 
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
 	}
 
 	public boolean canParent() {
-		return !this.isBaby() && this.isInLove();
-	}
-
-	public boolean canMate(Animal animal) {
-		if (animal == this) {
-			return false;
-		} else if (!(animal instanceof Acrocanthosaurus)) {
-			return false;
-		} else {
-			if (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-				return this.canParent() && ((Acrocanthosaurus) animal).canParent();
-			} else {
-				Acrocanthosaurus partner = (Acrocanthosaurus) animal;
-				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
-					return true;
-				}
-
-				if (DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get() && this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
-					return isFemale();
-				}
-			}
-		}
 		return false;
 	}
 
-	public int eggsLaid = 0;
-	public int eggLayCooldown = 0;
+	public boolean canMate(Animal animal) {
+		return false;
+	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-
-		if (this.isMale() || !this.isInLove() || !this.isAlive() || eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get()) {
-			return null;
-		}
-
-		eggsLaid++;
-		dropFertilizedEgg(serverLevel);
 		return null;
-	}
-
-	private void dropFertilizedEgg(ServerLevel serverLevel) {
-		if (!this.isFemale() || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-			return;
-		}
-
-		if (this.isFemale()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get());
-			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
-			serverLevel.addFreshEntity(eggEntity);
-		}
-
-		serverLevel.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.CHICKEN_EGG, SoundSource.NEUTRAL, 1.0F, 1.0F);
 	}
 
 	@Override
@@ -418,14 +382,11 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		Random random = new Random();
 
 		int eggChance = random.nextInt(100);
-		if (this.isFemale() && eggChance <= 5) {
+		if (this.isFemale() && eggChance <= 15) {
 			this.spawnAtLocation(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get());
 		}
 
-		int trophyChance = random.nextInt(100);
-		if (trophyChance <= 8) {
-			this.spawnAtLocation(DDDItems.ACROCANTHOSAURUS_TROPHY.get());
-		}
+		this.spawnAtLocation(DDDItems.ACROCANTHOSAURUS_TROPHY.get());
 	}
 
 }

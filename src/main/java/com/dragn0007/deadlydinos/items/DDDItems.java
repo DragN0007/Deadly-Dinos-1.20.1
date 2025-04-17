@@ -28,6 +28,9 @@ public class DDDItems {
             () -> new FertilizedAcrocanthosaurusEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> ACROCANTHOSAURUS_EGG = ITEMS.register("acrocanthosaurus_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
+    public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG = ITEMS.register("anomaly_acrocanthosaurus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+
 
     public static final RegistryObject<Item> UTAHRAPTOR_SPAWN_EGG = ITEMS.register("utahraptor_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.UTAHRAPTOR_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));

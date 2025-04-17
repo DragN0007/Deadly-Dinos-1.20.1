@@ -1,6 +1,5 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "patchouli:shapeless_book_recipe",
   "ingredients": [
     {
       "item": "minecraft:book"
@@ -12,7 +11,5 @@
       "tag": "forge:bones"
     }
   ],
-  "result": {
-    "item": "deadlydinos:prehistoric_animal_guide"
-  }
+  "book": "deadlydinos:prehistoric_animal_guide"
 }

@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.entities.utahraptor;
 
 import com.dragn0007.deadlydinos.entities.EntityTypes;
+import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.StalkMeleeAttackGoal;
 import com.dragn0007.deadlydinos.entities.ai.UtahraptorFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.entities.util.AbstractDino;
@@ -75,11 +76,12 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 30.0D)
-				.add(Attributes.ATTACK_DAMAGE, 4D)
+				.add(Attributes.ATTACK_DAMAGE, 6D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.5F)
 				.add(Attributes.ARMOR_TOUGHNESS, 2D)
 				.add(Attributes.ARMOR, 2D)
-				.add(Attributes.MOVEMENT_SPEED, 0.28F);
+				.add(Attributes.MOVEMENT_SPEED, 0.28F)
+				.add(Attributes.FOLLOW_RANGE, 32D);
 	}
 
 	public static boolean checkDesertDinoSpawnRules(EntityType<Utahraptor> type, LevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource source) {
@@ -99,7 +101,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
-		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Monster.class, false));
+		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Monster.class, false));
 
 		this.goalSelector.addGoal(1, new StalkMeleeAttackGoal(this, 2.0D, true));
 		this.goalSelector.addGoal(3, new UtahraptorFollowPackLeaderGoal(this));
@@ -115,25 +117,25 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_DINOS_RUN_FROM) && !this.hasFollowers() && !this.isFollower()));
 
-		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
+		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
 				entity -> entity instanceof Player && !this.isBaby()));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATOR_PREY) && !this.isBaby()));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS)  && !(entity.getType() == (EntityTypes.UTAHRAPTOR_ENTITY.get())) && !entity.getType().is(DDDTags.Entity_Types.RAPTORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATORS) && !this.isBaby()));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> (entity.getType().is(DDDTags.Entity_Types.SMALL_HERBIVORES) || entity.getType().is(DDDTags.Entity_Types.MEDIUM_HERBIVORES)) && !this.isBaby()));
 	}
 

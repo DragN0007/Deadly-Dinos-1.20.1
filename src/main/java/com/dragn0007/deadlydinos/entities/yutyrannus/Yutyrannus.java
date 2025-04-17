@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.entities.yutyrannus;
 
 import com.dragn0007.deadlydinos.entities.EntityTypes;
+import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtByTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.GroundTieGoal;
@@ -70,11 +71,12 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 45.0D)
-				.add(Attributes.ATTACK_DAMAGE, 4.5D)
+				.add(Attributes.ATTACK_DAMAGE, 8D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8F)
 				.add(Attributes.ARMOR_TOUGHNESS, 3D)
 				.add(Attributes.ARMOR, 3D)
-				.add(Attributes.MOVEMENT_SPEED, 0.27F);
+				.add(Attributes.MOVEMENT_SPEED, 0.27F)
+				.add(Attributes.FOLLOW_RANGE, 48D);
 	}
 
 	public boolean canHoldBedroll() {
@@ -105,7 +107,7 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
-		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Monster.class, false));
+		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Monster.class, false));
 
 		this.goalSelector.addGoal(0, new DinoOwnerHurtByTargetGoal(this));
 		this.goalSelector.addGoal(1, new DinoOwnerHurtTargetGoal(this));
@@ -120,16 +122,16 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_DINOS_RUN_FROM) && !this.isTamed()));
 
-		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 3, true, false,
+		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Player.class, 3, true, false,
 				entity -> entity instanceof Player && !this.isBaby() && !this.isTamed()));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATOR_PREY) && !this.isBaby() && !this.isTamed()));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.YUTYRANNUS_ENTITY.get())) && !this.isTamed()));
 
-		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
+		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby() && !this.isTamed()));
 	}
 

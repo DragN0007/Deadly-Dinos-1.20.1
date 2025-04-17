@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = DeadlyDinos.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class DDDClientEvent {
 
-     public static final KeyMapping MOUNT_SPEED_UP = new KeyMapping("key.deadlydinos.mount_speed_up", InputConstants.KEY_LCONTROL, "key.deadlydinos.categories.deadlydinos");
+    public static final KeyMapping MOUNT_SPEED_UP = new KeyMapping("key.deadlydinos.mount_speed_up", InputConstants.KEY_LCONTROL, "key.deadlydinos.categories.deadlydinos");
     public static final KeyMapping MOUNT_SLOW_DOWN = new KeyMapping("key.deadlydinos.mount_slow_down", InputConstants.KEY_LALT, "key.deadlydinos.categories.deadlydinos");
     public static final KeyMapping SWIM_UP = new KeyMapping("key.deadlydinos.swim_up", InputConstants.KEY_SPACE, "key.deadlydinos.categories.deadlydinos");
     public static final KeyMapping SWIM_DOWN = new KeyMapping("key.deadlydinos.swim_down", InputConstants.KEY_LCONTROL, "key.deadlydinos.categories.deadlydinos");

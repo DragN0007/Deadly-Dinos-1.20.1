@@ -38,6 +38,8 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.YUTYRANNUS_EGG);
         simpleItem(DDDItems.YUTYRANNUS_TROPHY);
 
+        advancedItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG, "anomaly_acrocanthosaurus_egg");
+
         simpleItem(DDDItems.RAW_SMALL_MEAT);
         simpleItem(DDDItems.COOKED_SMALL_MEAT);
         simpleItem(DDDItems.RAW_MEDIUM_MEAT);

@@ -37,8 +37,8 @@ public class DDDNetwork {
             ctx.enqueueWork(() -> {
                 ServerPlayer player = ctx.getSender();
                 if(player != null) {
-                    if(player.getVehicle() instanceof AbstractDinoMount oHorse) {
-                        oHorse.handleSpeedRequest(msg.speedMod);
+                    if(player.getVehicle() instanceof AbstractDinoMount dinoMount) {
+                        dinoMount.handleSpeedRequest(msg.speedMod);
                     }
                 }
             });
@@ -48,7 +48,7 @@ public class DDDNetwork {
 
     public static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(DeadlyDinos.MODID, "lo_network"),
+            new ResourceLocation(DeadlyDinos.MODID, "ddd_network"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals

@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.entities;
 
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
+import com.dragn0007.deadlydinos.entities.anomaly.AnomalyAcrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
 import com.dragn0007.deadlydinos.entities.yutyrannus.Yutyrannus;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +22,12 @@ public class EntityTypes {
             () -> EntityType.Builder.of(Acrocanthosaurus::new,
                     MobCategory.CREATURE)
                     .sized(3f,3f)
+                    .build(new ResourceLocation(MODID,"acrocanthosaurus").toString()));
+
+    public static final RegistryObject<EntityType<AnomalyAcrocanthosaurus>> ANOMALOUS_ACROCANTHOSAURUS_ENTITY = ENTITY_TYPES.register("anomalous_acrocanthosaurus",
+            () -> EntityType.Builder.of(AnomalyAcrocanthosaurus::new,
+                            MobCategory.CREATURE)
+                    .sized(4f,4f)
                     .build(new ResourceLocation(MODID,"acrocanthosaurus").toString()));
 
     public static final RegistryObject<EntityType<Utahraptor>> UTAHRAPTOR_ENTITY = ENTITY_TYPES.register("utahraptor",

@@ -28,6 +28,8 @@ public class DDDItemGroup {
                         output.accept(DDDItems.YUTYRANNUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_YUTYRANNUS_EGG.get());
 
+                        output.accept(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG.get());
+
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> DDD_ITEMS = CREATIVE_MODE_TABS.register("ddd_items",
