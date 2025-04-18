@@ -6,6 +6,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static ForgeConfigSpec SPEC;
 
+    public static final ForgeConfigSpec.BooleanValue SPAWN_ANOMALIES;
     public static final ForgeConfigSpec.BooleanValue LARGE_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue MEDIUM_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue SMALL_DINOS_DESTROY_BLOCKS;
@@ -18,6 +19,9 @@ public class DeadlyDinosCommonConfig {
 
     static {
         BUILDER.push("Deadly Dinos");
+
+        SPAWN_ANOMALIES = BUILDER.comment("Should Anomalies be able to spawn?")
+                .define("Anomaly Spawning", true);
 
         LARGE_DINOS_DESTROY_BLOCKS = BUILDER.comment("Should large dinos be able to destroy blocks like cobblestone, wood and glass?")
                 .define("Large Dinos Break Blocks", true);

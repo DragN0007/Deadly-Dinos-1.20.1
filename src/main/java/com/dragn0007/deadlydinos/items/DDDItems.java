@@ -363,6 +363,22 @@ public class DDDItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LARGE_HERBIVORE_LEG = ITEMS.register("large_herbivore_leg",
             () -> new Item(new Item.Properties()));
+
+    //ANOMALY BONES
+    public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_TOOTH = ITEMS.register("anomaly_acrocanthosaurus_tooth",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_SKULL = ITEMS.register("anomaly_acrocanthosaurus_skull",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_RIBS= ITEMS.register("anomaly_acrocanthosaurus_ribs",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_CLAW = ITEMS.register("anomaly_acrocanthosaurus_claw",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_TAIL = ITEMS.register("anomaly_acrocanthosaurus_tail",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_SPINE = ITEMS.register("anomaly_acrocanthosaurus_spine",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_LEG = ITEMS.register("anomaly_acrocanthosaurus_leg",
+            () -> new Item(new Item.Properties()));
 //
 //
 ////    //TOOLS

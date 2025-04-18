@@ -1,12 +1,10 @@
 package com.dragn0007.deadlydinos.entities.ai;
 
-import java.util.EnumSet;
-
-import com.dragn0007.deadlydinos.entities.util.AbstractDino;
 import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.Goal.Flag;
+
+import java.util.EnumSet;
 
 public class GroundTieGoal extends Goal {
     private final AbstractDinoMount mob;

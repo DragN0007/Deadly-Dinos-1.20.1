@@ -1,13 +1,12 @@
 package com.dragn0007.deadlydinos.entities.ai;
 
-import java.util.EnumSet;
-
 import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+
+import java.util.EnumSet;
 
 public class DinoOwnerHurtTargetGoal extends TargetGoal {
    private final AbstractDinoMount tameAnimal;

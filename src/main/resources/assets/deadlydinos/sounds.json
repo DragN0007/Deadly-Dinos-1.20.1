@@ -5,6 +5,12 @@
       "deadlydinos:large_carnivore_ambient"
     ]
   },
+  "medium_carnivore_ambient": {
+    "subtitle": "sounds.deadlydinos.medium_carnivore_ambient",
+    "sounds": [
+      "deadlydinos:medium_carnivore_ambient"
+    ]
+  },
   "raptor_ambient": {
     "subtitle": "sounds.deadlydinos.raptor_ambient",
     "sounds": [

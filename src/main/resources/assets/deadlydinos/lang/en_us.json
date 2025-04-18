@@ -114,8 +114,17 @@
   "item.deadlydinos.large_herbivore_spine": "Large Herbivore Spine",
   "item.deadlydinos.large_herbivore_leg": "Large Herbivore Leg",
 
+  "item.deadlydinos.anomaly_acrocanthosaurus_tooth": "Anomaly Acrocanthosaurus Tooth",
+  "item.deadlydinos.anomaly_acrocanthosaurus_skull": "Anomaly Acrocanthosaurus Skull",
+  "item.deadlydinos.anomaly_acrocanthosaurus_ribs": "Anomaly Acrocanthosaurus Ribs",
+  "item.deadlydinos.anomaly_acrocanthosaurus_claw": "Anomaly Acrocanthosaurus Claw",
+  "item.deadlydinos.anomaly_acrocanthosaurus_tail": "Anomaly Acrocanthosaurus Tail",
+  "item.deadlydinos.anomaly_acrocanthosaurus_spine": "Anomaly Acrocanthosaurus Spine",
+  "item.deadlydinos.anomaly_acrocanthosaurus_leg": "Anomaly Acrocanthosaurus Leg",
+
 
   "sounds.deadlydinos.large_carnivore_ambient": "Large Carnivore Rumbles",
+  "sounds.deadlydinos.medium_carnivore_ambient": "Medium Carnivore Rumbles",
   "sounds.deadlydinos.raptor_ambient": "Raptor Cackles",
 
   "key.dragnlivestock.categories.deadlydinos": "DragN's Deadly Dinos",

@@ -18,11 +18,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -31,9 +29,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -68,7 +64,7 @@ public class AnomalyAcrocanthosaurus extends AbstractDino implements GeoEntity {
 				.add(Attributes.ATTACK_DAMAGE, 20D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1F)
 				.add(Attributes.ARMOR_TOUGHNESS, 8D)
-				.add(Attributes.ARMOR, 8D)
+				.add(Attributes.ARMOR, 12D)
 				.add(Attributes.MOVEMENT_SPEED, 0.32F)
 				.add(Attributes.FOLLOW_RANGE, 64D);
 	}
@@ -97,7 +93,7 @@ public class AnomalyAcrocanthosaurus extends AbstractDino implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATOR_PREY) && !this.isBaby()));
 
 		this.goalSelector.addGoal(2, new AnomalyNearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.ACROCANTHOSAURUS_ENTITY.get()))));
+				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY.get()))));
 
 		this.goalSelector.addGoal(2, new AnomalyNearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby()));

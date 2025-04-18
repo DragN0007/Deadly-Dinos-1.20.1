@@ -97,6 +97,14 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.SMALL_HERBIVORE_TAIL);
         simpleItem(DDDItems.SMALL_HERBIVORE_TOOTH);
 
+        simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_CLAW);
+        simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_LEG);
+        simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_RIBS);
+        simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_SKULL);
+        simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPINE);
+        simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_TAIL);
+        simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_TOOTH);
+
         simpleItem(DDDItems.CRACKER);
         simpleItem(DDDItems.DINO_SANDWICH);
         simpleItem(DDDItems.CANNED_VEGGIES);
