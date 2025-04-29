@@ -35,10 +35,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.WoolCarpetBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
@@ -59,7 +56,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         return p_272504_ - 1;
     });
 
-    protected float getRiddenSpeed(Player player) {
+    public float getRiddenSpeed(Player player) {
         return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED);
     }
 
@@ -76,7 +73,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
     public static final AttributeModifier WALK_SPEED_MOD = new AttributeModifier(WALK_SPEED_MOD_UUID, "Walk speed mod", -0.7D, AttributeModifier.Operation.MULTIPLY_TOTAL); // KEEP THIS NEGATIVE. It is calculated by adding 1. So -0.1 actually means 0.9
 
     public static final EntityDataAccessor<Integer> DATA_CARPET_ID = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.OPTIONAL_UUID);
+    public static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.OPTIONAL_UUID);
 
     public AbstractDinoMount(EntityType<? extends AbstractDinoMount> entityType, Level level) {
         super(entityType, level);
@@ -92,7 +89,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         return blockState.is(Blocks.SNOW) || blockState.is(Blocks.SNOW_BLOCK) || blockState.is(Blocks.POWDER_SNOW);
     }
 
-    private boolean doneStalking = false;
+    public boolean doneStalking = false;
     public boolean isDoneStalking() {
         return this.doneStalking;
     }
@@ -111,7 +108,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         }
     }
 
-    protected void createInventory() {
+    public void createInventory() {
         SimpleContainer simplecontainer = this.inventory;
         this.inventory = new SimpleContainer(this.getInventorySize());
         if (simplecontainer != null) {
@@ -302,7 +299,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             }
         }
 
-        if(this.isBaby() || !this.isOwnedBy(player) ) {
+        if(this.isBaby() || !this.isOwnedBy(player) || !this.isTamed()) {
             return super.mobInteract(player, hand);
         } else {
             this.doPlayerRide(player);
@@ -311,8 +308,20 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
     }
 
     @Override
+    protected void doPlayerRide(Player player) {
+        this.setEating(false);
+        this.setStanding(false);
+        if (!this.level().isClientSide && this.isTamed() && this.isOwnedBy(player)) {
+            player.setYRot(this.getYRot());
+            player.setXRot(this.getXRot());
+            player.startRiding(this);
+        }
+
+    }
+
+    @Override
     public boolean canWearArmor() {
-        return true;
+        return false;
     }
 
     public boolean canHoldBedroll() {
@@ -324,11 +333,11 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
     }
 
     @Override
-    protected boolean canPerformRearing() {
+    public boolean canPerformRearing() {
         return false;
     }
 
-    private static final EntityDataAccessor<Boolean> DATA_ID_CHEST = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> DATA_ID_CHEST = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.BOOLEAN);
 
     @Override
     public void defineSynchedData() {
@@ -533,19 +542,19 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         }
     }
 
-    double x = this.getX() - this.xo;
-    double z = this.getZ() - this.zo;
-    public boolean isMoving = (x * x + z * z) > 0.0001;
+//    double x = this.getX() - this.xo;
+//    double z = this.getZ() - this.zo;
+//    public boolean isMoving = (x * x + z * z) > 0.0001;
 
     int moreCropsTicks;
 
-    static class PickCropsGoal extends MoveToBlockGoal {
+    public static class PickCropsGoal extends MoveToBlockGoal {
         public final AbstractDinoMount dino;
         public boolean wantsToPick;
         public boolean canPick;
 
         public PickCropsGoal(AbstractDinoMount dino) {
-            super(dino, 0.7F, 16);
+            super(dino, 1.0F, 16);
             this.dino = dino;
         }
 
@@ -590,14 +599,13 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
                                     blockpos.getY() + 0.5,
                                     blockpos.getZ() + 0.5, stack)));
 
-                    level.destroyBlock(blockPos, true);
+                    level.destroyBlock(blockPos, false);
                     level.levelEvent(2001, blockpos, Block.getId(blockstate));
                 }
 
-                this.dino.setEating(true);
-                this.dino.moreCropsTicks = 40;
+                this.dino.moreCropsTicks = 0;
                 this.canPick = false;
-                this.nextStartTick = 20;
+                this.nextStartTick = 0;
             }
 
         }
@@ -665,7 +673,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             }
         }
 
-        private void pickUpItem(ItemEntity itemEntity) {
+        public void pickUpItem(ItemEntity itemEntity) {
             if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);
@@ -717,7 +725,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
             }
         }
 
-        private void pickUpItem(ItemEntity itemEntity) {
+        public void pickUpItem(ItemEntity itemEntity) {
             if (itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);

@@ -16,7 +16,7 @@ public class DDDItemModelProvider extends ItemModelProvider {
     }
 
     @Override
-    protected void registerModels() {
+    public void registerModels() {
         simpleItem(DDDItems.DDD_ENTITIES);
         simpleItem(DDDItems.DDD_ITEMS);
         simpleItem(DDDItems.DDD_FOOD);
@@ -37,6 +37,11 @@ public class DDDItemModelProvider extends ItemModelProvider {
         advancedItem(DDDItems.FERTILIZED_YUTYRANNUS_EGG, "yutyrannus_egg");
         simpleItem(DDDItems.YUTYRANNUS_EGG);
         simpleItem(DDDItems.YUTYRANNUS_TROPHY);
+
+        advancedItem(DDDItems.PARASAUROLOPHUS_SPAWN_EGG, "parasaurolophus_egg");
+        advancedItem(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG, "parasaurolophus_egg");
+        simpleItem(DDDItems.PARASAUROLOPHUS_EGG);
+        simpleItem(DDDItems.PARASAUROLOPHUS_TROPHY);
 
         advancedItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG, "anomaly_acrocanthosaurus_egg");
 
@@ -133,13 +138,13 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.DOUGH);
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
+    public ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(DeadlyDinos.MODID,"item/" + item.getId().getPath()));
     }
 
-    private ItemModelBuilder advancedItem(RegistryObject<Item> item, String getTextureName) {
+    public ItemModelBuilder advancedItem(RegistryObject<Item> item, String getTextureName) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(DeadlyDinos.MODID,"item/" + getTextureName));

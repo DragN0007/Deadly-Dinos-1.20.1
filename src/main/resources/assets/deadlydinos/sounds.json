@@ -16,5 +16,23 @@
     "sounds": [
       "deadlydinos:raptor_ambient"
     ]
+  },
+  "large_herbivore_ambient": {
+    "subtitle": "sounds.deadlydinos.large_herbivore_ambient",
+    "sounds": [
+      "deadlydinos:large_herbivore_ambient"
+    ]
+  },
+  "medium_herbivore_ambient": {
+    "subtitle": "sounds.deadlydinos.medium_herbivore_ambient",
+    "sounds": [
+      "deadlydinos:medium_herbivore_ambient"
+    ]
+  },
+  "herbivore_hiss": {
+    "subtitle": "sounds.deadlydinos.herbivore_hiss",
+    "sounds": [
+      "deadlydinos:herbivore_hiss"
+    ]
   }
 }

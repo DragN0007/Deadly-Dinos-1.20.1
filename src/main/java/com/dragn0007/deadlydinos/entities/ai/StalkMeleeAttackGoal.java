@@ -11,21 +11,21 @@ import net.minecraft.world.level.pathfinder.Path;
 import java.util.EnumSet;
 
 public class StalkMeleeAttackGoal extends Goal {
-   protected final AbstractDino mob;
-   private final double speedModifier;
-   private final boolean followingTargetEvenIfNotSeen;
-   private Path path;
-   private double pathedTargetX;
-   private double pathedTargetY;
-   private double pathedTargetZ;
-   private int ticksUntilNextPathRecalculation;
-   private int ticksUntilNextAttack;
-   private long lastCanUseCheck;
-   private int failedPathFindingPenalty = 0;
-   private boolean canPenalize = false;
-   private int stalkTimer = 60;
-   private static final int STALK_DURATION = 60;
-   private static final double STALK_SPEED = 0.6D;
+   public final AbstractDino mob;
+   public final double speedModifier;
+   public final boolean followingTargetEvenIfNotSeen;
+   public Path path;
+   public double pathedTargetX;
+   public double pathedTargetY;
+   public double pathedTargetZ;
+   public int ticksUntilNextPathRecalculation;
+   public int ticksUntilNextAttack;
+   public long lastCanUseCheck;
+   public int failedPathFindingPenalty = 0;
+   public boolean canPenalize = false;
+   public int stalkTimer = 60;
+   public static final int STALK_DURATION = 60;
+   public static final double STALK_SPEED = 0.6D;
 
    public StalkMeleeAttackGoal(AbstractDino dino, double speedMod, boolean followingTargetEvenIfNotSeen) {
       this.mob = dino;
@@ -143,7 +143,7 @@ public class StalkMeleeAttackGoal extends Goal {
       }
    }
 
-   protected void checkAndPerformAttack(LivingEntity targetEntity, double num) {
+   public void checkAndPerformAttack(LivingEntity targetEntity, double num) {
       double d0 = this.getAttackReachSqr(targetEntity);
 
       if (stalkTimer > 0 && num >= d0) {
@@ -163,11 +163,11 @@ public class StalkMeleeAttackGoal extends Goal {
 
    }
 
-   protected void resetAttackCooldown() {
+   public void resetAttackCooldown() {
       this.ticksUntilNextAttack = this.adjustedTickDelay(20);
    }
 
-   protected double getAttackReachSqr(LivingEntity p_25556_) {
+   public double getAttackReachSqr(LivingEntity p_25556_) {
       return (double)(this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + p_25556_.getBbWidth());
    }
 }

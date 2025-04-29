@@ -83,7 +83,12 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 	}
 
 	@Override
-	protected int getInventorySize() {
+	public boolean canWearArmor() {
+		return true;
+	}
+
+	@Override
+	public int getInventorySize() {
 		return 27;
 	}
 
@@ -414,7 +419,7 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 		return null;
 	}
 
-	private void dropFertilizedEgg(ServerLevel serverLevel) {
+	public void dropFertilizedEgg(ServerLevel serverLevel) {
 		if (!this.isFemale() || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
 			return;
 		}
@@ -436,7 +441,7 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 	}
 
 	@Override
-	protected void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
+	public void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
 		super.dropCustomDeathLoot(p_33574_, p_33575_, p_33576_);
 		Random random = new Random();
 

@@ -57,6 +57,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	public Acrocanthosaurus(EntityType<? extends Acrocanthosaurus> type, Level level) {
 		super(type, level);
+		noCulling = true;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -390,7 +391,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 		return null;
 	}
 
-	private void dropFertilizedEgg(ServerLevel serverLevel) {
+	public void dropFertilizedEgg(ServerLevel serverLevel) {
 		if (!this.isFemale() || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
 			return;
 		}
@@ -412,7 +413,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 	}
 
 	@Override
-	protected void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
+	public void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
 		super.dropCustomDeathLoot(p_33574_, p_33575_, p_33576_);
 		Random random = new Random();
 

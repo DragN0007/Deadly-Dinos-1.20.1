@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-17T21:59:47.8831066	Item Models: deadlydinos
+// 1.20.1	2025-04-28T16:26:41.0816792	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -34,6 +34,7 @@ f365549f568fefc45dbd0590cbf60709d7d2a553 assets/deadlydinos/models/item/dino_nug
 78d39e6319ecb8800d18a3a899a3e2a8fc63bc51 assets/deadlydinos/models/item/dino_sandwich.json
 ce829d776d63e8ae74172b4c2eaeccc2618df678 assets/deadlydinos/models/item/dough.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/fertilized_acrocanthosaurus_egg.json
+c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/fertilized_parasaurolophus_egg.json
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/fertilized_utahraptor_egg.json
 2f74c4141e491b1286e3d5fd88f372f2b681247b assets/deadlydinos/models/item/fertilized_yutyrannus_egg.json
 13983accb4f2d28b64b21364b246ed747c18338c assets/deadlydinos/models/item/glazed_ribs.json
@@ -68,6 +69,9 @@ efd3dc9fec0215a2a04c737cf16d04fe1eeb67fd assets/deadlydinos/models/item/medium_h
 42ca5a12a0b8a2824131c5507cbc168d702d0a39 assets/deadlydinos/models/item/medium_herbivore_tooth.json
 58148951add1b3082ce83f20577858bf0e384343 assets/deadlydinos/models/item/medium_raptor_claw.json
 03c86040a7cac72cca03e81c5d6dbe1338617c05 assets/deadlydinos/models/item/mre.json
+c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/parasaurolophus_egg.json
+c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/parasaurolophus_spawn_egg.json
+de495c66149fbe39edfbfc4ae1bc378c51fd7583 assets/deadlydinos/models/item/parasaurolophus_trophy.json
 7b68433f254fae2b22f9b85474ee9a99768eb645 assets/deadlydinos/models/item/pbj.json
 bbc307e912f6835c73c7dfe626f833d5676cd696 assets/deadlydinos/models/item/raw_escargot.json
 e8c167086eb29525fbdf826f74bcbcf01af24923 assets/deadlydinos/models/item/raw_large_meat.json

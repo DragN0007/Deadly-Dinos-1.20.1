@@ -14,12 +14,12 @@ import java.util.EnumSet;
 import java.util.function.Predicate;
 
 public class DinoNearestAttackableTargetGoal<T extends LivingEntity> extends TargetGoal {
-   private static final int DEFAULT_RANDOM_INTERVAL = 10;
-   protected final Class<T> targetType;
-   protected final int randomInterval;
+   public static final int DEFAULT_RANDOM_INTERVAL = 10;
+   public final Class<T> targetType;
+   public final int randomInterval;
    @Nullable
-   protected LivingEntity target;
-   protected TargetingConditions targetConditions;
+   public LivingEntity target;
+   public TargetingConditions targetConditions;
 
    public DinoNearestAttackableTargetGoal(Mob p_26060_, Class<T> p_26061_, boolean p_26062_) {
       this(p_26060_, p_26061_, 10, p_26062_, false, (Predicate<LivingEntity>)null);
@@ -50,11 +50,11 @@ public class DinoNearestAttackableTargetGoal<T extends LivingEntity> extends Tar
       }
    }
 
-   protected AABB getTargetSearchArea(double p_26069_) {
+   public AABB getTargetSearchArea(double p_26069_) {
       return this.mob.getBoundingBox().inflate(p_26069_, 15.0D, p_26069_);
    }
 
-   protected void findTarget() {
+   public void findTarget() {
       if (this.targetType != Player.class && this.targetType != ServerPlayer.class) {
          this.target = this.mob.level().getNearestEntity(this.mob.level().getEntitiesOfClass(this.targetType, this.getTargetSearchArea(this.getFollowDistance()), (p_148152_) -> {
             return true;

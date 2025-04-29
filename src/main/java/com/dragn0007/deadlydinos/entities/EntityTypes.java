@@ -2,6 +2,7 @@ package com.dragn0007.deadlydinos.entities;
 
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.anomaly.AnomalyAcrocanthosaurus;
+import com.dragn0007.deadlydinos.entities.parasaurolophus.Parasaurolophus;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
 import com.dragn0007.deadlydinos.entities.yutyrannus.Yutyrannus;
 import net.minecraft.resources.ResourceLocation;
@@ -28,7 +29,7 @@ public class EntityTypes {
             () -> EntityType.Builder.of(AnomalyAcrocanthosaurus::new,
                             MobCategory.CREATURE)
                     .sized(4f,4f)
-                    .build(new ResourceLocation(MODID,"acrocanthosaurus").toString()));
+                    .build(new ResourceLocation(MODID,"anomalous_acrocanthosaurus").toString()));
 
     public static final RegistryObject<EntityType<Utahraptor>> UTAHRAPTOR_ENTITY = ENTITY_TYPES.register("utahraptor",
             () -> EntityType.Builder.of(Utahraptor::new,
@@ -209,11 +210,13 @@ public class EntityTypes {
 //                    .sized(2f,4.5f)
 //                    .build(new ResourceLocation(MODID,"amarga").toString()));
 //
-//    public static final RegistryObject<EntityType<Para>> PARA_ENTITY = ENTITY_TYPES.register("para",
-//            () -> EntityType.Builder.of(Para::new,
-//                            MobCategory.CREATURE)
-//                    .sized(2f,4.5f)
-//                    .build(new ResourceLocation(MODID,"para").toString()));
+
+    public static final RegistryObject<EntityType<Parasaurolophus>> PARASAUROLOPHUS_ENTITY = ENTITY_TYPES.register("parasaurolophus",
+            () -> EntityType.Builder.of(Parasaurolophus::new,
+                            MobCategory.CREATURE)
+                    .sized(2f,4.5f)
+                    .build(new ResourceLocation(MODID,"parasaurolophus").toString()));
+
 //    public static final RegistryObject<EntityType<Theri>> THERI_ENTITY = ENTITY_TYPES.register("theri",
 //            () -> EntityType.Builder.of(Theri::new,
 //                            MobCategory.CREATURE)

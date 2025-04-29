@@ -56,6 +56,7 @@ public class AnomalyAcrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	public AnomalyAcrocanthosaurus(EntityType<? extends AnomalyAcrocanthosaurus> type, Level level) {
 		super(type, level);
+		noCulling = true;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -373,7 +374,7 @@ public class AnomalyAcrocanthosaurus extends AbstractDino implements GeoEntity {
 	}
 
 	@Override
-	protected void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
+	public void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
 		super.dropCustomDeathLoot(p_33574_, p_33575_, p_33576_);
 		Random random = new Random();
 

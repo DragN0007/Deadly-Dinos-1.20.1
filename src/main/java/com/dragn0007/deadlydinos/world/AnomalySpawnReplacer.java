@@ -54,6 +54,10 @@ public class AnomalySpawnReplacer {
                     acrocanthosaurus.remove(Entity.RemovalReason.DISCARDED);
 
                     event.setCanceled(true);
+
+                    if (DeadlyDinosCommonConfig.DEBUG_LOG.get()) {
+                        System.out.println("An Acrocanthosaurus has become Anomalous at " + anomalyAcrocanthosaurus.getOnPos());
+                    }
                 }
             }
         }

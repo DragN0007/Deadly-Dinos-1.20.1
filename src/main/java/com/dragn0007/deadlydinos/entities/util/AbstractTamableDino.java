@@ -27,11 +27,11 @@ import java.util.function.Predicate;
 
 public abstract class AbstractTamableDino extends TamableAnimal {
 
-    protected AbstractTamableDino(EntityType<? extends TamableAnimal> p_27557_, Level p_27558_) {
+    public AbstractTamableDino(EntityType<? extends TamableAnimal> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
     }
 
-    private boolean doneStalking = false;
+    public boolean doneStalking = false;
     public boolean isDoneStalking() {
         return this.doneStalking;
     }
@@ -72,7 +72,7 @@ public abstract class AbstractTamableDino extends TamableAnimal {
         this.entityData.set(GENDER, gender);
     }
 
-    private boolean eat = false;
+    public boolean eat = false;
     public boolean isEating() {
         return this.eat;
     }
@@ -211,9 +211,9 @@ public abstract class AbstractTamableDino extends TamableAnimal {
                 }
 
                 this.dino.setEating(true);
-                this.dino.moreCropsTicks = 40;
+                this.dino.moreCropsTicks = 0;
                 this.canPick = false;
-                this.nextStartTick = 20;
+                this.nextStartTick = 0;
             }
 
         }
@@ -281,7 +281,7 @@ public abstract class AbstractTamableDino extends TamableAnimal {
             }
         }
 
-        private void pickUpItem(ItemEntity itemEntity) {
+        public void pickUpItem(ItemEntity itemEntity) {
             if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);
@@ -333,7 +333,7 @@ public abstract class AbstractTamableDino extends TamableAnimal {
             }
         }
 
-        private void pickUpItem(ItemEntity itemEntity) {
+        public void pickUpItem(ItemEntity itemEntity) {
             if (itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);

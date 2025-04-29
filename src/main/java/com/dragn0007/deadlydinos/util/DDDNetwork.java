@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 public class DDDNetwork {
 
     public static class HandleSpeedRequest {
-        private final int speedMod;
+        public final int speedMod;
 
         public HandleSpeedRequest(int speedMod) {
             this.speedMod = speedMod;

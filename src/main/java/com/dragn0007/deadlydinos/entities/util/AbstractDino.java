@@ -27,11 +27,11 @@ import java.util.function.Predicate;
 
 public abstract class AbstractDino extends Animal {
 
-    protected AbstractDino(EntityType<? extends Animal> p_27557_, Level p_27558_) {
+    public AbstractDino(EntityType<? extends Animal> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
     }
 
-    private boolean doneStalking = false;
+    public boolean doneStalking = false;
     public boolean isDoneStalking() {
         return this.doneStalking;
     }
@@ -72,7 +72,7 @@ public abstract class AbstractDino extends Animal {
         this.entityData.set(GENDER, gender);
     }
 
-    private boolean eat = false;
+    public boolean eat = false;
     public boolean isEating() {
         return this.eat;
     }
@@ -258,7 +258,7 @@ public abstract class AbstractDino extends Animal {
             }
         }
 
-        private void pickUpItem(ItemEntity itemEntity) {
+        public void pickUpItem(ItemEntity itemEntity) {
             if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);
@@ -308,7 +308,7 @@ public abstract class AbstractDino extends Animal {
             }
         }
 
-        private void pickUpItem(ItemEntity itemEntity) {
+        public void pickUpItem(ItemEntity itemEntity) {
             if (itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS) && this.canUse()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);

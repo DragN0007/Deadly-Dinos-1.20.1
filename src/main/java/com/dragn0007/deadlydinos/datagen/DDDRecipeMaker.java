@@ -19,7 +19,7 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+    public void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BONE_MEAL, 2)
                 .requires(DDDTags.Items.SMALL_BONES)

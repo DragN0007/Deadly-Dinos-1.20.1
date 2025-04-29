@@ -161,7 +161,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 	}
 
 	@Override
-	protected int calculateFallDamage(float v, float v1) {
+	public int calculateFallDamage(float v, float v1) {
 		return super.calculateFallDamage(v, v1) - 10;
 	}
 
@@ -381,7 +381,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		return this.geoCache;
 	}
 
-	private static final Predicate<Mob> NOT_RAPTOR_PREDICATE = mob -> mob != null && Utahraptor.MOB_SOUND_MAP.containsKey(mob.getType());
+	public static final Predicate<Mob> NOT_RAPTOR_PREDICATE = mob -> mob != null && Utahraptor.MOB_SOUND_MAP.containsKey(mob.getType());
 
 	static final Map<EntityType<?>, SoundEvent> MOB_SOUND_MAP = Util.make(Maps.newHashMap(), (map) -> {
 		map.put(EntityType.COW, SoundEvents.COW_AMBIENT);
@@ -475,7 +475,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		}
 	}
 
-	private static SoundEvent getImitatedSound(EntityType<?> type) {
+	public static SoundEvent getImitatedSound(EntityType<?> type) {
 		return MOB_SOUND_MAP.getOrDefault(type, DDDSoundEvents.RAPTOR_AMBIENT.get());
 	}
 
@@ -597,7 +597,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		return null;
 	}
 
-	private void dropFertilizedEgg(ServerLevel serverLevel) {
+	public void dropFertilizedEgg(ServerLevel serverLevel) {
 		if (!this.isFemale() || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
 			return;
 		}
@@ -619,7 +619,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 	}
 
 	@Override
-	protected void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
+	public void dropCustomDeathLoot(DamageSource p_33574_, int p_33575_, boolean p_33576_) {
 		super.dropCustomDeathLoot(p_33574_, p_33575_, p_33576_);
 		Random random = new Random();
 

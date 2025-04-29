@@ -15,6 +15,9 @@ public class DDDSoundEvents {
     public static final RegistryObject<SoundEvent> LARGE_CARNIVORE_AMBIENT = registerSoundEvents("large_carnivore_ambient");
     public static final RegistryObject<SoundEvent> MEDIUM_CARNIVORE_AMBIENT = registerSoundEvents("medium_carnivore_ambient");
     public static final RegistryObject<SoundEvent> RAPTOR_AMBIENT = registerSoundEvents("raptor_ambient");
+    public static final RegistryObject<SoundEvent> LARGE_HERBIVORE_AMBIENT = registerSoundEvents("large_herbivore_ambient");
+    public static final RegistryObject<SoundEvent> MEDIUM_HERBIVORE_AMBIENT = registerSoundEvents("medium_herbivore_ambient");
+    public static final RegistryObject<SoundEvent> HERBIVORE_HISS = registerSoundEvents("herbivore_hiss");
 
     public static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(DeadlyDinos.MODID, name)));

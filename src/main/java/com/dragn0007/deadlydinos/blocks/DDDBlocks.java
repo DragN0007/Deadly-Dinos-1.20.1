@@ -145,26 +145,26 @@ public class DDDBlocks {
             () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
 
 
-    protected static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block){
+    public static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block){
         return BLOCKS.register(name, block);
     }
 
-    protected static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
+    public static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
-    protected static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
+    public static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         DDDItems.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties()));
     }
 
-    protected static <T extends Block>RegistryObject<T> registerPlantBlock(String name, Supplier<T> block){
+    public static <T extends Block>RegistryObject<T> registerPlantBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerPlantBlockItem(name, toReturn);
         return toReturn;
     }
-    protected static <T extends Block> void registerPlantBlockItem(String name, RegistryObject<T> block) {
+    public static <T extends Block> void registerPlantBlockItem(String name, RegistryObject<T> block) {
         DDDItems.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties()));
     }

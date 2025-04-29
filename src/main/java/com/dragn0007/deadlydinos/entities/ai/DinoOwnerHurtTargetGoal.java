@@ -9,9 +9,9 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import java.util.EnumSet;
 
 public class DinoOwnerHurtTargetGoal extends TargetGoal {
-   private final AbstractDinoMount tameAnimal;
-   private LivingEntity ownerLastHurt;
-   private int timestamp;
+   public final AbstractDinoMount tameAnimal;
+   public LivingEntity ownerLastHurt;
+   public int timestamp;
 
    public DinoOwnerHurtTargetGoal(AbstractDinoMount p_26114_) {
       super(p_26114_, false);

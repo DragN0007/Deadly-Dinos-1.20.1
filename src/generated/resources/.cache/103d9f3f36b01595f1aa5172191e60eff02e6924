@@ -1,4 +1,5 @@
-// 1.20.1	2025-03-29T02:48:11.5210717	Registries
-c576979f0c773679676e9c69f721f5bc18cbc075 data/deadlydinos/forge/biome_modifier/spawn_acrocanthosaurus_plains.json
-0ba3b46bb36b1e878d23b10157cbe58edf2bdaad data/deadlydinos/forge/biome_modifier/spawn_utahraptor_hot.json
-d8b37cf564f81a1ca3deb64196a63cf6b393aeea data/deadlydinos/forge/biome_modifier/spawn_yutyrannus_cold.json
+// 1.20.1	2025-04-28T16:26:41.0836682	Registries
+5e240ab76212aa5bc8756b2f56ffa8eb7aa0ecda data/deadlydinos/forge/biome_modifier/acrocanthosaurus_plains.json
+bcd941c32ab496425aa99ecd8383363454388fee data/deadlydinos/forge/biome_modifier/parasaurolophus_wet.json
+f9caa46522981afeb62182034f81f89c25e56106 data/deadlydinos/forge/biome_modifier/utahraptor_hot.json
+9a8434d7ed1e9f6f79ca1fd2325437a225504e55 data/deadlydinos/forge/biome_modifier/yutyrannus_cold.json

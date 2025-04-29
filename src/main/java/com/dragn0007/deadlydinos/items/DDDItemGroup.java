@@ -27,6 +27,9 @@ public class DDDItemGroup {
                         output.accept(DDDItems.YUTYRANNUS_SPAWN_EGG.get());
                         output.accept(DDDItems.YUTYRANNUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_YUTYRANNUS_EGG.get());
+                        output.accept(DDDItems.PARASAUROLOPHUS_SPAWN_EGG.get());
+                        output.accept(DDDItems.PARASAUROLOPHUS_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG.get());
 
                         output.accept(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG.get());
 
@@ -39,6 +42,7 @@ public class DDDItemGroup {
                         output.accept(DDDItems.ACROCANTHOSAURUS_TROPHY.get());
                         output.accept(DDDItems.UTAHRAPTOR_TROPHY.get());
                         output.accept(DDDItems.YUTYRANNUS_TROPHY.get());
+                        output.accept(DDDItems.PARASAUROLOPHUS_EGG.get());
 
                         output.accept(DDDItems.SMALL_CARNIVORE_CLAW.get());
                         output.accept(DDDItems.SMALL_CARNIVORE_LEG.get());

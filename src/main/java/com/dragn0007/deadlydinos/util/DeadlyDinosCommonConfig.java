@@ -6,6 +6,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static ForgeConfigSpec SPEC;
 
+    public static final ForgeConfigSpec.BooleanValue DEBUG_LOG;
     public static final ForgeConfigSpec.BooleanValue SPAWN_ANOMALIES;
     public static final ForgeConfigSpec.BooleanValue LARGE_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue MEDIUM_DINOS_DESTROY_BLOCKS;
@@ -16,9 +17,13 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BIPRODUCTS;
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BREEDING;
     public static final ForgeConfigSpec.ConfigValue<Integer> UTAHRAPTOR_MAX_PACK_COUNT;
+    public static final ForgeConfigSpec.ConfigValue<Integer> PARASAUROLOPHUS_MAX_HERD_COUNT;
 
     static {
         BUILDER.push("Deadly Dinos");
+
+        DEBUG_LOG = BUILDER.comment("Debug Log in Console")
+                .define("Debug Log Enabled", true);
 
         SPAWN_ANOMALIES = BUILDER.comment("Should Anomalies be able to spawn?")
                 .define("Anomaly Spawning", true);
@@ -49,6 +54,9 @@ public class DeadlyDinosCommonConfig {
 
         UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once.")
                 .define("Max Utahraptor Pack Count", 4);
+
+        PARASAUROLOPHUS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Parasaurolophus that can herd up at once.")
+                .define("Max Parasaurolophus Herd Count", 3);
 
         BUILDER.pop();
 
