@@ -98,6 +98,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
 		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Monster.class, false));
 
@@ -224,6 +225,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 
 	public int regenHealthCounter = 0;
 
+
 	public void tick() {
 		super.tick();
 
@@ -332,13 +334,16 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		double currentSpeed = this.getDeltaMovement().lengthSqr();
 		double speedThreshold = 0.02;
 		double stalkSpeedThreshold = 0.01;
+		double x = this.getX() - this.xo;
+		double z = this.getZ() - this.zo;
+		boolean isMoving = (x * x + z * z) > 0.0001;
 
 		AnimationController<T> controller = tAnimationState.getController();
 
 		if (!this.onGround() && this.isAggressive()) {
 			controller.setAnimation(RawAnimation.begin().then("jump", Animation.LoopType.LOOP));
 			controller.setAnimationSpeed(1.5);
-		} else if (tAnimationState.isMoving()) {
+		} else if (isMoving) {
 			if (currentSpeed > speedThreshold && this.onGround()) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(2.2);

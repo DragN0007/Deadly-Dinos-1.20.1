@@ -31,6 +31,10 @@ public abstract class AbstractTamableDino extends TamableAnimal {
         super(p_27557_, p_27558_);
     }
 
+    double x = this.getX() - this.xo;
+    double z = this.getZ() - this.zo;
+    public boolean isMoving = (x * x + z * z) > 0.0001;
+
     public boolean doneStalking = false;
     public boolean isDoneStalking() {
         return this.doneStalking;
