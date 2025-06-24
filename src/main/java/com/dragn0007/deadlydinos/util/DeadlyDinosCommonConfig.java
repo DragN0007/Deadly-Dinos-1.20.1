@@ -18,6 +18,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BREEDING;
     public static final ForgeConfigSpec.ConfigValue<Integer> UTAHRAPTOR_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> PARASAUROLOPHUS_MAX_HERD_COUNT;
+    public static final ForgeConfigSpec.ConfigValue<Integer> MEGARAPTOR_MAX_PACK_COUNT;
 
     static {
         BUILDER.push("Deadly Dinos");
@@ -57,6 +58,9 @@ public class DeadlyDinosCommonConfig {
 
         PARASAUROLOPHUS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Parasaurolophus that can herd up at once.")
                 .define("Max Parasaurolophus Herd Count", 6);
+
+        MEGARAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Megaraptors that can pack up at once.")
+                .define("Max Megaraptor Pack Count", 2);
 
         BUILDER.pop();
 
