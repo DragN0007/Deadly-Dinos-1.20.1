@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-23T23:56:03.1630483	Item Models: deadlydinos
+// 1.20.1	2025-06-24T01:54:37.9860732	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -10,6 +10,15 @@ db10ab36766f3a4ffd16a72763e7372cacfd8083 assets/deadlydinos/models/item/anomaly_
 c7218b363130736bc68529ff90a3e7790653c06a assets/deadlydinos/models/item/anomaly_acrocanthosaurus_spine.json
 4c5725cb9b9d7c9a8d67025dbe4109a317e56b73 assets/deadlydinos/models/item/anomaly_acrocanthosaurus_tail.json
 1d9f604fe2990e21db8f59289ac29f0501f6f175 assets/deadlydinos/models/item/anomaly_acrocanthosaurus_tooth.json
+f6bc56de3534e3cddaeff2e828843070cd32baf9 assets/deadlydinos/models/item/anomaly_bone_axe.json
+0ae487dc36074e05b311d04470ce8b6ec509a68b assets/deadlydinos/models/item/anomaly_bone_battleaxe.json
+2c9d5e1bfc64187d2899b71d8eb738638bce5519 assets/deadlydinos/models/item/anomaly_bone_dagger.json
+db151cf3c3ccbb6dbb51b7f38680cdf6e53f1ecd assets/deadlydinos/models/item/anomaly_bone_greatsword.json
+6b8488e13166092f46788b8c61a570061f91e2c2 assets/deadlydinos/models/item/anomaly_bone_hoe.json
+e34c710ad172693e455984f732fe7286b22a1b69 assets/deadlydinos/models/item/anomaly_bone_pickaxe.json
+2a08e52590b47afcff650e0062f3b61f907a5d6f assets/deadlydinos/models/item/anomaly_bone_shovel.json
+ad4ff1e00aea2af02816a381e9f36d55b9ca3a1f assets/deadlydinos/models/item/anomaly_bone_sword.json
+859bd274da6bc47cae08ae9957d1b22631ea295b assets/deadlydinos/models/item/anomaly_bone_warhammer.json
 fca802d503a6fff3d1907c2fcb83cb65b89a7524 assets/deadlydinos/models/item/bone_axe.json
 dd13c1b73e77324659a345737c22c37c57261518 assets/deadlydinos/models/item/bone_dagger.json
 6a1fb45ba29a6a98193ba1f38e8db6779ef8012e assets/deadlydinos/models/item/bone_hoe.json

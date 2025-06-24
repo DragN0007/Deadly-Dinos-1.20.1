@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
-
+    "deadlydinos:anomaly_acrocanthosaurus_claw",
+    "deadlydinos:anomaly_acrocanthosaurus_leg",
+    "deadlydinos:anomaly_acrocanthosaurus_ribs",
+    "deadlydinos:anomaly_acrocanthosaurus_skull",
+    "deadlydinos:anomaly_acrocanthosaurus_spine",
+    "deadlydinos:anomaly_acrocanthosaurus_tail",
+    "deadlydinos:anomaly_acrocanthosaurus_tooth"
   ]
 }

@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Occasionally, you may come across an Anomaly Dino. These dinosaurs have, theoretically, gone too close to the Access Points. Due to the time warping around the portals, these dinos have been both rapidly evolved and devolved at the same time. Anomalies are very rare, yet not impossible to find in their original species' usual areas."
+      "text": "Occasionally, you may come across an Anomaly Dino. These dinosaurs have, theoretically, wandered too close to the Access Points. Due to the time warping around the portals, these dinos have been both rapidly evolved and devolved at the same time. Anomalies are very rare, yet not impossible to find in their original species' usual areas."
     },
     {
       "type": "patchouli:spotlight",
@@ -16,7 +16,7 @@
     },
     {
       "type": "patchouli:entity",
-      "entity": "deadlydinos:anomalous_acrocanthosaurus{Variant:0}",
+      "entity": "deadlydinos:anomaly_acrocanthosaurus{Variant:0}",
       "name": "Anomalous Acrocanthosaurus",
       "default_rotation": 45,
       "scale": 0.8,
@@ -24,7 +24,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "However, it's not all bad. If you're prepared with the right gear, you might be able to take down one of these beasts and take your spoils home to make new weapons and armor. You know, as a replacement for your pummeled ones."
+      "text": "However, it's not all bad. If you're prepared with the right gear, you might be able to take down one of these beasts and take your spoils home to make new weapons. You know, as a replacement for your pummeled ones."
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "deadlydinos:anomaly_bones"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "AC ",
+    " C "
+  ],
+  "result": {
+    "item": "deadlydinos:anomaly_bone_warhammer"
+  },
+  "show_notification": true
+}

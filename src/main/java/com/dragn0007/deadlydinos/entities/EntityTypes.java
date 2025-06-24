@@ -25,11 +25,11 @@ public class EntityTypes {
                     .sized(3f,3f)
                     .build(new ResourceLocation(MODID,"acrocanthosaurus").toString()));
 
-    public static final RegistryObject<EntityType<AnomalyAcrocanthosaurus>> ANOMALOUS_ACROCANTHOSAURUS_ENTITY = ENTITY_TYPES.register("anomalous_acrocanthosaurus",
+    public static final RegistryObject<EntityType<AnomalyAcrocanthosaurus>> ANOMALOUS_ACROCANTHOSAURUS_ENTITY = ENTITY_TYPES.register("anomaly_acrocanthosaurus",
             () -> EntityType.Builder.of(AnomalyAcrocanthosaurus::new,
                             MobCategory.CREATURE)
                     .sized(4f,4f)
-                    .build(new ResourceLocation(MODID,"anomalous_acrocanthosaurus").toString()));
+                    .build(new ResourceLocation(MODID,"anomaly_acrocanthosaurus").toString()));
 
     public static final RegistryObject<EntityType<Utahraptor>> UTAHRAPTOR_ENTITY = ENTITY_TYPES.register("utahraptor",
             () -> EntityType.Builder.of(Utahraptor::new,

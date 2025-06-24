@@ -23,6 +23,97 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
     public void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
 
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_SWORD.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern(" A ")
+                .pattern(" A ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_PICKAXE.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern("AAA")
+                .pattern(" C ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_SHOVEL.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern(" A ")
+                .pattern(" C ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_AXE.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern("AA ")
+                .pattern("AC ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_HOE.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern("AA ")
+                .pattern(" C ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_DAGGER.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern(" A ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_GREATSWORD.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern(" A ")
+                .pattern("AAA")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_BATTLEAXE.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern("AAA")
+                .pattern("ACA")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_WARHAMMER.get())
+                .define('A', DDDTags.Items.ANOMALY_BONES)
+                .define('C', Items.STICK)
+                .pattern("AAA")
+                .pattern("AC ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_SWORD.get())
                 .define('A', DDDTags.Items.LARGE_BONES)
                 .define('C', Items.STICK)

@@ -14,7 +14,7 @@
   "item.deadlydinos.fertilized_acrocanthosaurus_egg": "Fertilized Acrocanthosaurus Egg",
   "entity.deadlydinos.acrocanthosaurus": "Acrocanthosaurus",
   "item.deadlydinos.anomaly_acrocanthosaurus_spawn_egg": "Anomalous Acrocanthosaurus Spawn Egg",
-  "entity.deadlydinos.anomalous_acrocanthosaurus": "Anomalous Acrocanthosaurus",
+  "entity.deadlydinos.anomaly_acrocanthosaurus": "Anomalous Acrocanthosaurus",
 
   "item.deadlydinos.utahraptor_trophy": "Utahraptor Trophy",
   "item.deadlydinos.utahraptor_spawn_egg": "Utahraptor Spawn Egg",
@@ -131,6 +131,16 @@
   "item.deadlydinos.anomaly_acrocanthosaurus_tail": "Anomaly Acrocanthosaurus Tail",
   "item.deadlydinos.anomaly_acrocanthosaurus_spine": "Anomaly Acrocanthosaurus Spine",
   "item.deadlydinos.anomaly_acrocanthosaurus_leg": "Anomaly Acrocanthosaurus Leg",
+
+  "item.deadlydinos.anomaly_bone_axe": "Anomaly Bone Axe",
+  "item.deadlydinos.anomaly_bone_sword": "Anomaly Bone Sword",
+  "item.deadlydinos.anomaly_bone_shovel": "Anomaly Bone Shovel",
+  "item.deadlydinos.anomaly_bone_pickaxe": "Anomaly Bone Pickaxe",
+  "item.deadlydinos.anomaly_bone_hoe": "Anomaly Bone Hoe",
+  "item.deadlydinos.anomaly_bone_dagger": "Anomaly Bone Dagger",
+  "item.deadlydinos.anomaly_bone_greatsword": "Anomaly Bone Greatsword",
+  "item.deadlydinos.anomaly_bone_battleaxe": "Anomaly Bone Battleaxe",
+  "item.deadlydinos.anomaly_bone_warhammer": "Anomaly Bone Warhammer",
 
   "item.deadlydinos.bone_axe": "Bone Axe",
   "item.deadlydinos.bone_sword": "Bone Sword",

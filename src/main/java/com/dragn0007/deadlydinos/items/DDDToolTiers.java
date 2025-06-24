@@ -18,4 +18,9 @@ public class DDDToolTiers {
                     DDDTags.Blocks.NEEDS_BONE_TOOL, () -> Ingredient.of(DDDTags.Items.BONES)),
             new ResourceLocation(DeadlyDinos.MODID, "bone"), List.of(Tiers.IRON), List.of());
 
+    public static final Tier ANOMALY_BONE = TierSortingRegistry.registerTier(
+            new ForgeTier(2, 1200, 9.0F, 8.5F, 15,
+                    DDDTags.Blocks.NEEDS_BONE_TOOL, () -> Ingredient.of(DDDTags.Items.ANOMALY_BONES)),
+            new ResourceLocation(DeadlyDinos.MODID, "anomaly_bone"), List.of(Tiers.IRON), List.of());
+
 }

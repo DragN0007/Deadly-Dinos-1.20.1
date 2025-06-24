@@ -1,0 +1,40 @@
+{
+  "criteria": {
+    "deadlydinos:anomaly_acrocanthosaurus": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "deadlydinos:anomaly_acrocanthosaurus"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Defeat an Anomalous Dino."
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "deadlydinos:anomaly_acrocanthosaurus_skull",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Neutralizer"
+    }
+  },
+  "requirements": [
+    [
+      "deadlydinos:anomaly_acrocanthosaurus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

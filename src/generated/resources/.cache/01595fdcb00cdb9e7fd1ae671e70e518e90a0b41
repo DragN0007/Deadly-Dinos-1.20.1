@@ -1,9 +1,9 @@
-// 1.20.1	2025-06-24T00:27:12.8145583	Block States: deadlydinos
+// 1.20.1	2025-06-24T01:40:33.9627864	Block States: deadlydinos
 2b7e1b2e7abff68381aebdb2bec78c3751a2f719 assets/deadlydinos/blockstates/reinforced_cobblestone.json
 ec2aa646285fe7ef3f6f0978c9a021f0b37ff396 assets/deadlydinos/blockstates/reinforced_glass.json
 c5538efe6e73c4f0f940e2e098b7b05170cbe099 assets/deadlydinos/blockstates/reinforced_stone_bricks.json
 e2f4a1df7d3fcfa451240fd2c309004a0009f773 assets/deadlydinos/models/block/reinforced_cobblestone.json
-9282037cb3307d4ec958fc0c71bbed7d1cb2420e assets/deadlydinos/models/block/reinforced_glass.json
+54d95f6306a6054f59bbeabd466503adc3c39cd2 assets/deadlydinos/models/block/reinforced_glass.json
 30f197dc85c2b6af16067e15b5dcafffded1a601 assets/deadlydinos/models/block/reinforced_stone_bricks.json
 5c22be03a09959583dba494ec528f928546cbbb5 assets/deadlydinos/models/item/reinforced_cobblestone.json
 52c266662b28c98f5d829395f061a405f90418eb assets/deadlydinos/models/item/reinforced_glass.json

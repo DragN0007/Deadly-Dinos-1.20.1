@@ -270,60 +270,6 @@ public class DDDItems {
     public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_LEG = ITEMS.register("anomaly_acrocanthosaurus_leg",
             () -> new Item(new Item.Properties()));
 //
-//
-////    //TOOLS
-////    public static final RegistryObject<Item> SMALL_BONE_SWORD = ITEMS.register("small_bone_sword",
-////            () -> new SwordItem(DDDItemTier.SMALL_BONE, 3, -2f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> SMALL_BONE_PICKAXE = ITEMS.register("small_bone_pickaxe",
-////            () -> new PickaxeItem(DDDItemTier.SMALL_BONE, 1, 1f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> SMALL_BONE_AXE = ITEMS.register("small_bone_axe",
-////            () -> new AxeItem(DDDItemTier.SMALL_BONE, 4, -2.5f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> SMALL_BONE_SHOVEL = ITEMS.register("small_bone_shovel",
-////            () -> new ShovelItem(DDDItemTier.SMALL_BONE, 1, 1f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> SMALL_BONE_HOE = ITEMS.register("small_bone_hoe",
-////            () -> new HoeItem(DDDItemTier.SMALL_BONE, 1, 1f,
-////                    new Item.Properties()));
-////
-////
-////    public static final RegistryObject<Item> MEDIUM_BONE_SWORD = ITEMS.register("medium_bone_sword",
-////            () -> new SwordItem(DDDItemTier.MEDIUM_BONE_, 3, -2f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> MEDIUM_BONE_PICKAXE = ITEMS.register("medium_bone_pickaxe",
-////            () -> new PickaxeItem(DDDItemTier.MEDIUM_BONE, 1, 1f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> MEDIUM_BONE_AXE = ITEMS.register("medium_bone_axe",
-////            () -> new AxeItem(DDDItemTier.MEDIUM_BONE, 4, -2.5f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> MEDIUM_BONE__SHOVEL = ITEMS.register("medium_bone_shovel",
-////            () -> new ShovelItem(DDDItemTier.MEDIUM_BONE, 1, 1f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> MEDIUM_BONE__HOE = ITEMS.register("medium_bone_hoe",
-////            () -> new HoeItem(DDDItemTier.MEDIUM_BONE, 1, 1f,
-////                    new Item.Properties()));
-////
-////
-////    public static final RegistryObject<Item> LARGE_BONE_SWORD = ITEMS.register("large_bone_sword",
-////            () -> new SwordItem(DDDItemTier.LARGE_BONE, 3, -1f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> LARGE_BONE_PICKAXE = ITEMS.register("large_bone_pickaxe",
-////            () -> new PickaxeItem(DDDItemTier.LARGE_BONE, 1, 1f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> LARGE_BONE_AXE = ITEMS.register("large_bone_axe",
-////            () -> new AxeItem(DDDItemTier.LARGE_BONE, 4, -2.5f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> LARGE_BONE_SHOVEL = ITEMS.register("large_bone_shovel",
-////            () -> new ShovelItem(DDDItemTier.LARGE_BONE, 1, 1f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> LARGE_BONE_HOE = ITEMS.register("large_bone_hoe",
-////            () -> new HoeItem(DDDItemTier.LARGE_BONE, 1, 1f,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> LARGE_BONE_CLUB = ITEMS.register("large_bone_club",
-////            () -> new SwordItem(DDDItemTier.LARGE_BONE, 5, -3f,
-////                    new Item.Properties()));
 ////
 ////
 ////    public static final RegistryObject<Item> BOWIE_KNIFE = ITEMS.register("bowie_knife",
@@ -734,6 +680,25 @@ public class DDDItems {
             () -> new ArmorItem(DDDArmorMaterials.RIOT, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> RIOT_BOOTS = ITEMS.register("riot_boots",
             () -> new ArmorItem(DDDArmorMaterials.RIOT, ArmorItem.Type.BOOTS, new Item.Properties()));
+
+    public static final RegistryObject<Item> ANOMALY_BONE_SWORD = ITEMS.register("anomaly_bone_sword",
+            () -> new SwordItem(DDDToolTiers.ANOMALY_BONE, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_BONE_PICKAXE = ITEMS.register("anomaly_bone_pickaxe",
+            () -> new PickaxeItem(DDDToolTiers.ANOMALY_BONE, 1, -2.8F, new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_BONE_SHOVEL = ITEMS.register("anomaly_bone_shovel",
+            () -> new ShovelItem(DDDToolTiers.ANOMALY_BONE, 1.5F, -3.0F, new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_BONE_AXE = ITEMS.register("anomaly_bone_axe",
+            () -> new AxeItem(DDDToolTiers.ANOMALY_BONE, 6, -3.1F, new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_BONE_HOE = ITEMS.register("anomaly_bone_hoe",
+            () -> new HoeItem(DDDToolTiers.ANOMALY_BONE, -2, -1.0F, new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_BONE_DAGGER = ITEMS.register("anomaly_bone_dagger",
+            () -> new SwordItem(DDDToolTiers.ANOMALY_BONE, 1, -1.4F, new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_BONE_GREATSWORD = ITEMS.register("anomaly_bone_greatsword",
+            () -> new SwordItem(DDDToolTiers.ANOMALY_BONE, 4, -2.8F, new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_BONE_BATTLEAXE = ITEMS.register("anomaly_bone_battleaxe",
+            () -> new AxeItem(DDDToolTiers.ANOMALY_BONE, 7, -3.3F, new Item.Properties()));
+    public static final RegistryObject<Item> ANOMALY_BONE_WARHAMMER = ITEMS.register("anomaly_bone_warhammer",
+            () -> new SwordItem(DDDToolTiers.ANOMALY_BONE, 9, -3.5F, new Item.Properties()));
 
 
     //MOD ITEM TABS (UNOBTAINABLE)

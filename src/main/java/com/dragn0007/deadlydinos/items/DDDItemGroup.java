@@ -45,6 +45,16 @@ public class DDDItemGroup {
                         output.accept(DDDItems.YUTYRANNUS_TROPHY.get());
                         output.accept(DDDItems.PARASAUROLOPHUS_TROPHY.get());
 
+                        output.accept(DDDItems.ANOMALY_BONE_SWORD.get());
+                        output.accept(DDDItems.ANOMALY_BONE_PICKAXE.get());
+                        output.accept(DDDItems.ANOMALY_BONE_SHOVEL.get());
+                        output.accept(DDDItems.ANOMALY_BONE_AXE.get());
+                        output.accept(DDDItems.ANOMALY_BONE_HOE.get());
+                        output.accept(DDDItems.ANOMALY_BONE_DAGGER.get());
+                        output.accept(DDDItems.ANOMALY_BONE_GREATSWORD.get());
+                        output.accept(DDDItems.ANOMALY_BONE_BATTLEAXE.get());
+                        output.accept(DDDItems.ANOMALY_BONE_WARHAMMER.get());
+
                         output.accept(DDDItems.BONE_SWORD.get());
                         output.accept(DDDItems.BONE_PICKAXE.get());
                         output.accept(DDDItems.BONE_SHOVEL.get());
@@ -54,6 +64,7 @@ public class DDDItemGroup {
                         output.accept(DDDItems.BONE_GREATSWORD.get());
                         output.accept(DDDItems.BONE_BATTLEAXE.get());
                         output.accept(DDDItems.BONE_WARHAMMER.get());
+
                         output.accept(DDDItems.RIOT_HELMET.get());
                         output.accept(DDDItems.RIOT_CHESTPLATE.get());
                         output.accept(DDDItems.RIOT_LEGGINGS.get());
