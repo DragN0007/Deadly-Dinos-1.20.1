@@ -28,7 +28,7 @@ public class BiomeHitter {
         context.register(ACROCANTHOSAURUS_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(),
-                        2,
+                        3,
                         1,
                         1
                 ))));
@@ -52,7 +52,7 @@ public class BiomeHitter {
         context.register(PARASAUROLOPHUS_WET, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_WET_OVERWORLD),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.PARASAUROLOPHUS_ENTITY.get(),
-                        3,
+                        4,
                         1,
                         3
                 ))));
