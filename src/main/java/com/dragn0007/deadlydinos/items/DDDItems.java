@@ -11,7 +11,7 @@ import com.dragn0007.deadlydinos.items.eggs.FertilizedYutyrannusEggItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -707,6 +707,33 @@ public class DDDItems {
 //            ));
 
 
+    public static final RegistryObject<Item> BONE_SWORD = ITEMS.register("bone_sword",
+            () -> new SwordItem(DDDToolTiers.BONE, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_PICKAXE = ITEMS.register("bone_pickaxe",
+            () -> new PickaxeItem(DDDToolTiers.BONE, 1, -2.8F, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_SHOVEL = ITEMS.register("bone_shovel",
+            () -> new ShovelItem(DDDToolTiers.BONE, 1.5F, -3.0F, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_AXE = ITEMS.register("bone_axe",
+            () -> new AxeItem(DDDToolTiers.BONE, 6, -3.1F, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_HOE = ITEMS.register("bone_hoe",
+            () -> new HoeItem(DDDToolTiers.BONE, -2, -1.0F, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_DAGGER = ITEMS.register("bone_dagger",
+            () -> new SwordItem(DDDToolTiers.BONE, 1, -1.4F, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_GREATSWORD = ITEMS.register("bone_greatsword",
+            () -> new SwordItem(DDDToolTiers.BONE, 4, -2.8F, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_BATTLEAXE = ITEMS.register("bone_battleaxe",
+            () -> new AxeItem(DDDToolTiers.BONE, 7, -3.3F, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_WARHAMMER = ITEMS.register("bone_warhammer",
+            () -> new SwordItem(DDDToolTiers.BONE, 9, -3.5F, new Item.Properties()));
+
+    public static final RegistryObject<Item> RIOT_HELMET = ITEMS.register("riot_helmet",
+            () -> new ArmorItem(DDDArmorMaterials.RIOT, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> RIOT_CHESTPLATE = ITEMS.register("riot_chestplate",
+            () -> new ArmorItem(DDDArmorMaterials.RIOT, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> RIOT_LEGGINGS = ITEMS.register("riot_leggings",
+            () -> new ArmorItem(DDDArmorMaterials.RIOT, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> RIOT_BOOTS = ITEMS.register("riot_boots",
+            () -> new ArmorItem(DDDArmorMaterials.RIOT, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 
     //MOD ITEM TABS (UNOBTAINABLE)

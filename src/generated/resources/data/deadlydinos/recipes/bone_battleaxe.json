@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "deadlydinos:large_bones"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "ACA",
+    " C "
+  ],
+  "result": {
+    "item": "deadlydinos:bone_battleaxe"
+  },
+  "show_notification": true
+}

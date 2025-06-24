@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-28T16:26:41.0816792	Item Models: deadlydinos
+// 1.20.1	2025-06-23T23:56:03.1630483	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -10,7 +10,13 @@ db10ab36766f3a4ffd16a72763e7372cacfd8083 assets/deadlydinos/models/item/anomaly_
 c7218b363130736bc68529ff90a3e7790653c06a assets/deadlydinos/models/item/anomaly_acrocanthosaurus_spine.json
 4c5725cb9b9d7c9a8d67025dbe4109a317e56b73 assets/deadlydinos/models/item/anomaly_acrocanthosaurus_tail.json
 1d9f604fe2990e21db8f59289ac29f0501f6f175 assets/deadlydinos/models/item/anomaly_acrocanthosaurus_tooth.json
+fca802d503a6fff3d1907c2fcb83cb65b89a7524 assets/deadlydinos/models/item/bone_axe.json
+dd13c1b73e77324659a345737c22c37c57261518 assets/deadlydinos/models/item/bone_dagger.json
+6a1fb45ba29a6a98193ba1f38e8db6779ef8012e assets/deadlydinos/models/item/bone_hoe.json
 3afd5cfab546c8a560ff37d3ad551973569597d2 assets/deadlydinos/models/item/bone_marrow.json
+4b3330f5add85f2e828e62e88bc0ab1da6678a41 assets/deadlydinos/models/item/bone_pickaxe.json
+5fe7743a41aa6ff4a0a73584dc23788bd98d9790 assets/deadlydinos/models/item/bone_shovel.json
+fa921022d6eb1305063e946d17c3224ca9775374 assets/deadlydinos/models/item/bone_sword.json
 35483280a3a68edd2611d2686b954bd9f9dcc3c2 assets/deadlydinos/models/item/broth.json
 370d40d8fda269bba44e097fb06307c319ceaed6 assets/deadlydinos/models/item/canned_meat.json
 6aebd2cc773b911aee7685f9ac5c9687e3e9eef7 assets/deadlydinos/models/item/canned_stew.json
@@ -77,6 +83,10 @@ bbc307e912f6835c73c7dfe626f833d5676cd696 assets/deadlydinos/models/item/raw_esca
 e8c167086eb29525fbdf826f74bcbcf01af24923 assets/deadlydinos/models/item/raw_large_meat.json
 0d80321178ca950f49d71f82fe2b5bc8ae97e03f assets/deadlydinos/models/item/raw_medium_meat.json
 d17cdcd47ed7bffdf45141259bbf7a0ff8eb4c58 assets/deadlydinos/models/item/raw_small_meat.json
+75253a44ba217243f6f249fb5cde4cd53d20184a assets/deadlydinos/models/item/riot_boots.json
+f6ae6187ff4a3cb97781bae12f087932be689a27 assets/deadlydinos/models/item/riot_chestplate.json
+77b1c285a3ca3aa447c1176fefa7f6018a82e803 assets/deadlydinos/models/item/riot_helmet.json
+59138146e968af8646d0a229c948fc668d891c80 assets/deadlydinos/models/item/riot_leggings.json
 73ee717071fb4a592303e686924709fbd943dde9 assets/deadlydinos/models/item/small_carnivore_claw.json
 718f045863b4ae1dfd3605c081210570af8e8ca1 assets/deadlydinos/models/item/small_carnivore_leg.json
 7c6458b9b921458223c847d8010766eabbd3cbb1 assets/deadlydinos/models/item/small_carnivore_ribs.json

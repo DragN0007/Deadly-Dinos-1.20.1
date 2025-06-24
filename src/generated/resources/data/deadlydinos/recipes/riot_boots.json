@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    }
+  },
+  "pattern": [
+    "A A",
+    "B B"
+  ],
+  "result": {
+    "item": "deadlydinos:riot_boots"
+  },
+  "show_notification": true
+}

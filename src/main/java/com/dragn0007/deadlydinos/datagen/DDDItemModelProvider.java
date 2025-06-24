@@ -23,6 +23,17 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.DDD_BLOCKS);
         simpleItem(DDDItems.DDD);
 
+        handheldItem(DDDItems.BONE_SWORD);
+        handheldItem(DDDItems.BONE_PICKAXE);
+        handheldItem(DDDItems.BONE_SHOVEL);
+        handheldItem(DDDItems.BONE_AXE);
+        handheldItem(DDDItems.BONE_HOE);
+        handheldItem(DDDItems.BONE_DAGGER);
+        simpleItem(DDDItems.RIOT_HELMET);
+        simpleItem(DDDItems.RIOT_CHESTPLATE);
+        simpleItem(DDDItems.RIOT_LEGGINGS);
+        simpleItem(DDDItems.RIOT_BOOTS);
+
         advancedItem(DDDItems.ACROCANTHOSAURUS_SPAWN_EGG, "acrocanthosaurus_egg");
         advancedItem(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG, "acrocanthosaurus_egg");
         simpleItem(DDDItems.ACROCANTHOSAURUS_EGG);
@@ -136,6 +147,12 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.BONE_MARROW);
         simpleItem(DDDItems.BROTH);
         simpleItem(DDDItems.DOUGH);
+    }
+
+    private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(DeadlyDinos.MODID,"item/" + item.getId().getPath()));
     }
 
     public ItemModelBuilder simpleItem(RegistryObject<Item> item) {

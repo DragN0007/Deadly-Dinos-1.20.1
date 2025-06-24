@@ -7,6 +7,7 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -20,6 +21,137 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_SWORD.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern(" A ")
+                .pattern(" A ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_PICKAXE.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern("AAA")
+                .pattern(" C ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_SHOVEL.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern(" A ")
+                .pattern(" C ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_AXE.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern("AA ")
+                .pattern("AC ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_HOE.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern("AA ")
+                .pattern(" C ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_DAGGER.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern(" A ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_GREATSWORD.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern(" A ")
+                .pattern("AAA")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_BATTLEAXE.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern("AAA")
+                .pattern("ACA")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BONE_WARHAMMER.get())
+                .define('A', DDDTags.Items.LARGE_BONES)
+                .define('C', Items.STICK)
+                .pattern("AAA")
+                .pattern("AC ")
+                .pattern(" C ")
+                .unlockedBy("has_stick", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK)
+                        .build())).save(pFinishedRecipeConsumer);
+        
+
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.RIOT_HELMET.get())
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.BLACK_WOOL)
+                .pattern("ABA")
+                .pattern("B B")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of()
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.RIOT_CHESTPLATE.get())
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.BLACK_WOOL)
+                .pattern("A A")
+                .pattern("AAA")
+                .pattern("BBB")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of()
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.RIOT_LEGGINGS.get())
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.BLACK_WOOL)
+                .pattern("ABA")
+                .pattern("B B")
+                .pattern("A A")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of()
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.RIOT_BOOTS.get())
+                .define('A', Items.IRON_INGOT)
+                .define('B', Items.BLACK_WOOL)
+                .pattern("A A")
+                .pattern("B B")
+                .unlockedBy("", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of()
+                        .build())).save(pFinishedRecipeConsumer);
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.BONE_MEAL, 2)
                 .requires(DDDTags.Items.SMALL_BONES)
@@ -117,7 +249,7 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                 .requires(DDDTags.Items.MEATS)
                 .requires(DDDTags.Items.VEGETABLES)
                 .requires(DDDTags.Items.VEGETABLES)
-                .requires(DDDTags.Items.PREHISTORIC_PLANTS)
+                .requires(ItemTags.LEAVES)
                 .requires(DDDItems.BONE_MARROW.get())
                 .unlockedBy("has_meat", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(DDDTags.Items.MEATS)
@@ -153,7 +285,7 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.HEARTY_SALAD.get())
                 .requires(DDDTags.Items.VEGETABLES)
                 .requires(DDDTags.Items.VEGETABLES)
-                .requires(DDDTags.Items.PREHISTORIC_PLANTS)
+                .requires(ItemTags.LEAVES)
                 .requires(DDDItems.TIGER_NUTS.get())
                 .unlockedBy("has_veggies", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(DDDTags.Items.VEGETABLES)

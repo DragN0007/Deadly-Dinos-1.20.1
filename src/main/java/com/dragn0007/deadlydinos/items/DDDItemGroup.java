@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.items;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
+import com.dragn0007.deadlydinos.blocks.DDDBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -42,7 +43,25 @@ public class DDDItemGroup {
                         output.accept(DDDItems.ACROCANTHOSAURUS_TROPHY.get());
                         output.accept(DDDItems.UTAHRAPTOR_TROPHY.get());
                         output.accept(DDDItems.YUTYRANNUS_TROPHY.get());
-                        output.accept(DDDItems.PARASAUROLOPHUS_EGG.get());
+                        output.accept(DDDItems.PARASAUROLOPHUS_TROPHY.get());
+
+                        output.accept(DDDItems.BONE_SWORD.get());
+                        output.accept(DDDItems.BONE_PICKAXE.get());
+                        output.accept(DDDItems.BONE_SHOVEL.get());
+                        output.accept(DDDItems.BONE_AXE.get());
+                        output.accept(DDDItems.BONE_HOE.get());
+                        output.accept(DDDItems.BONE_DAGGER.get());
+                        output.accept(DDDItems.BONE_GREATSWORD.get());
+                        output.accept(DDDItems.BONE_BATTLEAXE.get());
+                        output.accept(DDDItems.BONE_WARHAMMER.get());
+                        output.accept(DDDItems.RIOT_HELMET.get());
+                        output.accept(DDDItems.RIOT_CHESTPLATE.get());
+                        output.accept(DDDItems.RIOT_LEGGINGS.get());
+                        output.accept(DDDItems.RIOT_BOOTS.get());
+
+                        output.accept(DDDBlocks.REINFORCED_COBBLESTONE.get());
+                        output.accept(DDDBlocks.REINFORCED_GLASS.get());
+                        output.accept(DDDBlocks.REINFORCED_STONE_BRICKS.get());
 
                         output.accept(DDDItems.SMALL_CARNIVORE_CLAW.get());
                         output.accept(DDDItems.SMALL_CARNIVORE_LEG.get());

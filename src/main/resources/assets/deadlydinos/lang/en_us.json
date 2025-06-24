@@ -35,6 +35,10 @@
   "entity.deadlydinos.parasaurolophus": "Parasaurolophus",
 
 
+  "block.deadlydinos.reinforced_cobblestone": "Reinforced Cobblestone",
+  "block.deadlydinos.reinforced_glass": "Reinforced Glass",
+  "block.deadlydinos.reinforced_stone_bricks": "Reinforced Stone Bricks",
+
   "item.deadlydinos.raw_small_meat": "Small Dino Meat",
   "item.deadlydinos.cooked_small_meat": "Cooked Small Dino Meat",
   "item.deadlydinos.raw_medium_meat": "Medium Dino Meat",
@@ -127,6 +131,21 @@
   "item.deadlydinos.anomaly_acrocanthosaurus_tail": "Anomaly Acrocanthosaurus Tail",
   "item.deadlydinos.anomaly_acrocanthosaurus_spine": "Anomaly Acrocanthosaurus Spine",
   "item.deadlydinos.anomaly_acrocanthosaurus_leg": "Anomaly Acrocanthosaurus Leg",
+
+  "item.deadlydinos.bone_axe": "Bone Axe",
+  "item.deadlydinos.bone_sword": "Bone Sword",
+  "item.deadlydinos.bone_shovel": "Bone Shovel",
+  "item.deadlydinos.bone_pickaxe": "Bone Pickaxe",
+  "item.deadlydinos.bone_hoe": "Bone Hoe",
+  "item.deadlydinos.bone_dagger": "Bone Dagger",
+  "item.deadlydinos.bone_greatsword": "Bone Greatsword",
+  "item.deadlydinos.bone_battleaxe": "Bone Battleaxe",
+  "item.deadlydinos.bone_warhammer": "Bone Warhammer",
+
+  "item.deadlydinos.riot_helmet": "Riot Helmet",
+  "item.deadlydinos.riot_chestplate": "Riot Chestplate",
+  "item.deadlydinos.riot_leggings": "Riot Leggings",
+  "item.deadlydinos.riot_boots": "Riot Boots",
 
 
   "sounds.deadlydinos.large_carnivore_ambient": "Large Carnivore Rumbles",

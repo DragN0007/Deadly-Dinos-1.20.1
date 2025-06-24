@@ -79,6 +79,9 @@ public class DDDTags {
         public static final TagKey<Block> SAND = forgeTag("sand");
         public static final TagKey<Block> DESERT_DINOS_SPAWNABLE_ON = tag("desert_dinos_spawnable_on");
 
+        public static final TagKey<Block> NEEDS_BONE_TOOL = tag("needs_bone_tool");
+
+
         public static TagKey<net.minecraft.world.level.block.Block> forgeTag (String name) {
             return BlockTags.create(new ResourceLocation("forge", name));
         }

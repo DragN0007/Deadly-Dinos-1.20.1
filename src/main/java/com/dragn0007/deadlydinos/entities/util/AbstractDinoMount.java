@@ -15,6 +15,7 @@ import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -35,9 +36,13 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.WoolCarpetBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 
@@ -87,6 +92,31 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
     public boolean isOnSnow() {
         BlockState blockState = this.level().getBlockState(this.blockPosition().below());
         return blockState.is(Blocks.SNOW) || blockState.is(Blocks.SNOW_BLOCK) || blockState.is(Blocks.POWDER_SNOW);
+    }
+
+    protected void tickRidden(Player player, Vec3 vec3) {
+        Vec2 vec2 = this.getRiddenRotation(player);
+
+        float degrees = Mth.wrapDegrees(vec2.y - this.getYRot());
+        float playerXRot = vec2.x;
+        this.setXRot(vec2.x);
+        this.xRotO = this.getXRot();
+        float yRot = this.getYRot();
+        float maxHeadYRot = 25.0f;
+        this.yHeadRot = yRot + Mth.clamp(degrees, -maxHeadYRot, maxHeadYRot);
+        this.setXRot(playerXRot);
+        this.xRotO = this.getXRot();
+
+
+        if (Math.abs(degrees) > maxHeadYRot) {
+            float turnSpeed = 8.0f;
+            float yaw = yRot + Mth.clamp(degrees, -turnSpeed, turnSpeed);
+            this.setYRot(yaw);
+            this.yRotO = yaw;
+            this.yBodyRot = yaw;
+        } else {
+            this.yBodyRot = yRot;
+        }
     }
 
     public boolean doneStalking = false;

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "deadlydinos:large_bones"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " C ",
+    " C "
+  ],
+  "result": {
+    "item": "deadlydinos:bone_shovel"
+  },
+  "show_notification": true
+}

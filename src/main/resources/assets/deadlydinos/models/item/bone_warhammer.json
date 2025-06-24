@@ -1,0 +1,6 @@
+{
+	"parent": "deadlydinos:item/parent/warhammer",
+	"textures": {
+		"warhammer": "deadlydinos:item/bone_warhammer"
+	}
+}

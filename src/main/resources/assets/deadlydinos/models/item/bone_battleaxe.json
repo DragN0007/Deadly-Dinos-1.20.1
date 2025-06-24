@@ -1,0 +1,6 @@
+{
+	"parent": "deadlydinos:item/parent/battleaxe",
+	"textures": {
+		"battleaxe": "deadlydinos:item/bone_battleaxe"
+	}
+}

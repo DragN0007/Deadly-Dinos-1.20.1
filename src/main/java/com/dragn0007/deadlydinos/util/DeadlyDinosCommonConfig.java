@@ -53,10 +53,10 @@ public class DeadlyDinosCommonConfig {
                 .define("Genders Affect Breeding", true);
 
         UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once.")
-                .define("Max Utahraptor Pack Count", 4);
+                .define("Max Utahraptor Pack Count", 6);
 
         PARASAUROLOPHUS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Parasaurolophus that can herd up at once.")
-                .define("Max Parasaurolophus Herd Count", 3);
+                .define("Max Parasaurolophus Herd Count", 6);
 
         BUILDER.pop();
 

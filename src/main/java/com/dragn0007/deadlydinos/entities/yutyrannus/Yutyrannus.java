@@ -232,7 +232,7 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 		if (isMoving) {
 			if (hasSpeedEffect()) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.6);
+				controller.setAnimationSpeed(1.7);
 			} else if ((!hasSpeedEffect() && currentSpeed > speedThreshold) || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD))) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(2.0);
@@ -241,7 +241,7 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 				controller.setAnimationSpeed(2.2);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.5);
+				controller.setAnimationSpeed(1.7);
 			}
 		} else {
 			if (this.isSaddled() && !this.isVehicle() && DeadlyDinosCommonConfig.GROUND_TIE.get()) {

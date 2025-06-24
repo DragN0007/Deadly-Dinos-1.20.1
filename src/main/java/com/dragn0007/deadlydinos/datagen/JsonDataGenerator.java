@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.datagen;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
+import com.dragn0007.deadlydinos.datagen.biglooter.DDDLootTableProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -20,9 +21,10 @@ public class JsonDataGenerator {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+        generator.addProvider(event.includeServer(), DDDLootTableProvider.create(packOutput));
         generator.addProvider(event.includeServer(), new DDDRecipeMaker(packOutput));
+        generator.addProvider(event.includeClient(), new DDDBlockstateProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new DDDItemModelProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeServer(), new DDDWorldGenerator(packOutput, lookupProvider));
-//        generator.addProvider(event.includeServer(), DDDLootTableProvider.create(packOutput));
     }
 }
