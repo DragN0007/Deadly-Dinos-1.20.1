@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.datagen;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
+import com.dragn0007.deadlydinos.blocks.DDDBlocks;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -21,6 +22,30 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.REINFORCED_COBBLESTONE.get())
+                .define('A', Items.IRON_NUGGET)
+                .define('B', Items.COBBLESTONE)
+                .pattern("ABA")
+                .unlockedBy("has_iron_nugget", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_NUGGET)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.REINFORCED_GLASS.get())
+                .define('A', Items.IRON_NUGGET)
+                .define('B', Items.GLASS)
+                .pattern("ABA")
+                .unlockedBy("has_iron_nugget", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_NUGGET)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.REINFORCED_STONE_BRICKS.get())
+                .define('A', Items.IRON_NUGGET)
+                .define('B', Items.STONE_BRICKS)
+                .pattern("ABA")
+                .unlockedBy("has_iron_nugget", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_NUGGET)
+                        .build())).save(pFinishedRecipeConsumer);
 
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_SWORD.get())

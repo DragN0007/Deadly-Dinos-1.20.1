@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_nugget"
+    },
+    "B": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "pattern": [
+    "ABA"
+  ],
+  "result": {
+    "item": "deadlydinos:reinforced_cobblestone"
+  },
+  "show_notification": true
+}

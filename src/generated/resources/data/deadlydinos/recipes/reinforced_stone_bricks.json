@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_nugget"
+    },
+    "B": {
+      "item": "minecraft:stone_bricks"
+    }
+  },
+  "pattern": [
+    "ABA"
+  ],
+  "result": {
+    "item": "deadlydinos:reinforced_stone_bricks"
+  },
+  "show_notification": true
+}

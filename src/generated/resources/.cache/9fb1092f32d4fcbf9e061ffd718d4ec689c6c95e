@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-24T01:40:33.9657774	Recipes
+// 1.20.1	2025-06-24T02:18:36.0234235	Recipes
 ee883b8a9e7979ac35a30c69e5e908458b817709 data/deadlydinos/advancements/recipes/misc/anomaly_bone_axe.json
 83194201fec7bed52311c1aaba7ba6d784e5e2e7 data/deadlydinos/advancements/recipes/misc/anomaly_bone_battleaxe.json
 e4e5eaebc1cd3c8e3f41846a29535ca50b8eaa25 data/deadlydinos/advancements/recipes/misc/anomaly_bone_dagger.json
@@ -48,6 +48,9 @@ d1286356eb4a7c0a5ab68de780247e5c3913317d data/deadlydinos/advancements/recipes/m
 36aa30fde8cfc62c95f78d963b4ec40d6b19d0c8 data/deadlydinos/advancements/recipes/misc/hearty_salad.json
 1ccf1153630b3f4a2776936fa613b84a3d554272 data/deadlydinos/advancements/recipes/misc/mre.json
 3df668101d0cdc36c386b8886a976762f32b9fea data/deadlydinos/advancements/recipes/misc/pbj.json
+c18d2c61a49f925999c6bcbd2c05175b267fbf47 data/deadlydinos/advancements/recipes/misc/reinforced_cobblestone.json
+9dcef6137f86c318577a071f5226acca8de3f2e7 data/deadlydinos/advancements/recipes/misc/reinforced_glass.json
+e73d5e97f2d23c4747f34dacb0b6c98a63cb5465 data/deadlydinos/advancements/recipes/misc/reinforced_stone_bricks.json
 3713c7e9227deb1262366162d26723c3cd7bc955 data/deadlydinos/advancements/recipes/misc/riot_boots.json
 dad61b91d350bf9f7f94cfea5820ec6b085c1e30 data/deadlydinos/advancements/recipes/misc/riot_chestplate.json
 d24b5c3d6597951b292ddb4b0f7061f27e60bda5 data/deadlydinos/advancements/recipes/misc/riot_helmet.json
@@ -105,6 +108,9 @@ ec510965e1dcdd8e28ee1b56639f93971274e441 data/deadlydinos/recipes/dough.json
 bfd52d257305d37f3a8835e836fc5567d16d7f05 data/deadlydinos/recipes/hearty_salad.json
 44ec29fad0e0314f06cd24f3b76a90e5b3d61ee0 data/deadlydinos/recipes/mre.json
 91a0d0b43dcf3c7659b89dca0d826b5e04e6eb53 data/deadlydinos/recipes/pbj.json
+c1f32c82da7f495d4b8532631aca08558a910a0c data/deadlydinos/recipes/reinforced_cobblestone.json
+b49afc8d2287faf1f10bade0d338ea1c2b58785a data/deadlydinos/recipes/reinforced_glass.json
+97730c780531e351195d9be7f457bad432f7fd0a data/deadlydinos/recipes/reinforced_stone_bricks.json
 8574491e663f2b83d457965fa048efc4a3b3771b data/deadlydinos/recipes/riot_boots.json
 688aa3044f4a3a007f0d0334c772a4426273b548 data/deadlydinos/recipes/riot_chestplate.json
 add273f083f65e9d068f505981d2ad5362bd29e7 data/deadlydinos/recipes/riot_helmet.json
