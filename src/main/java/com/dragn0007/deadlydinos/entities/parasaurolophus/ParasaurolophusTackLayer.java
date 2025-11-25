@@ -25,7 +25,7 @@ public class ParasaurolophusTackLayer extends GeoRenderLayer<Parasaurolophus> {
         ResourceLocation resourceLocation = null;
 
         if (animatable.isSaddled() || animatable.hasChest()) {
-            resourceLocation = new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/tack/parasaurolophus_saddle.png");
+            resourceLocation = new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/tack/saddle.png");
         } else {
             return;
         }

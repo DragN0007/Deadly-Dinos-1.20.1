@@ -74,9 +74,9 @@ public class AcrocanthosaurusModel extends DefaultedEntityGeoModel<Acrocanthosau
     }
 
     public enum FemaleVariant {
-        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/acrocanthosaurus_female_black.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/acrocanthosaurus_female_blue.png")),
-        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/acrocanthosaurus_female_brown.png"));
+        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/female_black.png")),
+        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/female_blue.png")),
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/female_brown.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -88,9 +88,9 @@ public class AcrocanthosaurusModel extends DefaultedEntityGeoModel<Acrocanthosau
     }
 
     public enum MaleVariant {
-        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/acrocanthosaurus_male_black.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/acrocanthosaurus_male_blue.png")),
-        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/acrocanthosaurus_male_brown.png"));
+        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/male_black.png")),
+        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/male_blue.png")),
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/acrocanthosaurus/male_brown.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {

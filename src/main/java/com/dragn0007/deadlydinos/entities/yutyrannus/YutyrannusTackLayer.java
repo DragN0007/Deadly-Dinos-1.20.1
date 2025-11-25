@@ -25,7 +25,7 @@ public class YutyrannusTackLayer extends GeoRenderLayer<Yutyrannus> {
         ResourceLocation resourceLocation = null;
 
         if (animatable.isSaddled() || animatable.hasChest()) {
-            resourceLocation = new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/tack/yutyrannus_saddle.png");
+            resourceLocation = new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/tack/saddle.png");
         } else {
             return;
         }

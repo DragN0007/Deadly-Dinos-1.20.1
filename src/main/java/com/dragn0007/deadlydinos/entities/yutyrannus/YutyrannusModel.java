@@ -67,9 +67,9 @@ public class YutyrannusModel extends DefaultedEntityGeoModel<Yutyrannus> {
     }
 
     public enum FemaleVariant {
-        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/yutyrannus_female_black.png")),
-        WHITE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/yutyrannus_female_white.png")),
-        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/yutyrannus_female_purple.png"));
+        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/female_black.png")),
+        WHITE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/female_white.png")),
+        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/female_purple.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -81,9 +81,9 @@ public class YutyrannusModel extends DefaultedEntityGeoModel<Yutyrannus> {
     }
 
     public enum MaleVariant {
-        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/yutyrannus_male_black.png")),
-        WHITE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/yutyrannus_male_white.png")),
-        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/yutyrannus_male_purple.png"));
+        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/male_black.png")),
+        WHITE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/male_white.png")),
+        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/yutyrannus/male_purple.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {

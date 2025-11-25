@@ -32,6 +32,12 @@ public class DDDItems {
     public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG = ITEMS.register("anomaly_acrocanthosaurus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> MEGARAPTOR_SPAWN_EGG = ITEMS.register("megaraptor_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.MEGARAPTOR_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_MEGARAPTOR_EGG = ITEMS.register("fertilized_megaraptor_egg",
+            () -> new FertilizedUtahraptorEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> MEGARAPTOR_EGG = ITEMS.register("megaraptor_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
 
     public static final RegistryObject<Item> UTAHRAPTOR_SPAWN_EGG = ITEMS.register("utahraptor_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.UTAHRAPTOR_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
@@ -478,11 +484,11 @@ public class DDDItems {
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<Item> MEGARAPTROPHY = ITEMS.register("megaraptrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.INVISIBILITY, 2880, 5,true, false),
-//                    new MobEffectInstance(MobEffects.NIGHT_VISION, 2880, 3, true, false)
-//            ));
+    public static final RegistryObject<Item> MEGARAPTOR_TROPHY = ITEMS.register("megaraptor_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.INVISIBILITY, 2880, 5,true, false),
+                    new MobEffectInstance(MobEffects.NIGHT_VISION, 2880, 3, true, false)
+            ));
 //    public static final RegistryObject<Item> REXTROPHY = ITEMS.register("rextrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),

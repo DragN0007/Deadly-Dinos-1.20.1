@@ -1,11 +1,11 @@
 package com.dragn0007.deadlydinos.entities.utahraptor;
 
+import com.dragn0007.deadlydinos.entities.AbstractDino;
+import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.StalkMeleeAttackGoal;
-import com.dragn0007.deadlydinos.entities.ai.UtahraptorFollowPackLeaderGoal;
-import com.dragn0007.deadlydinos.entities.util.AbstractDino;
-import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
+import com.dragn0007.deadlydinos.entities.ai.herd.UtahraptorFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
@@ -37,8 +37,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
-import net.minecraft.world.entity.ai.util.GoalUtils;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
@@ -227,9 +227,36 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 
 	public int regenHealthCounter = 0;
 
+	protected PathNavigation createNavigation(Level level) {
+		return new WallClimberNavigation(this, level);
+	}
+
+	private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Utahraptor.class, EntityDataSerializers.BYTE);
+
+	public boolean isClimbing() {
+		return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
+	}
+
+	public void setClimbing(boolean p_33820_) {
+		byte b0 = this.entityData.get(DATA_FLAGS_ID);
+		if (p_33820_) {
+			b0 = (byte)(b0 | 1);
+		} else {
+			b0 = (byte)(b0 & -2);
+		}
+		this.entityData.set(DATA_FLAGS_ID, b0);
+	}
+
+	public boolean onClimbable() {
+		return this.isClimbing();
+	}
 
 	public void tick() {
 		super.tick();
+
+		if (!this.level().isClientSide && this.isAggressive()) {
+			this.setClimbing(this.horizontalCollision);
+		}
 
 		if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
 			List<? extends Utahraptor> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
@@ -351,6 +378,9 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 				controller.setAnimationSpeed(2.2);
 			} else if (currentSpeed < stalkSpeedThreshold) {
 				controller.setAnimation(RawAnimation.begin().then("stalk", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(1.0);
+			} else if (isClimbing() && !this.onGround()) {
+				controller.setAnimation(RawAnimation.begin().then("climb", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(1.0);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
@@ -623,6 +653,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		super.defineSynchedData();
 		this.entityData.define(VARIANT, 0);
 		this.entityData.define(GENDER, 0);
+		this.entityData.define(DATA_FLAGS_ID, (byte)0);
 	}
 
 	@Override

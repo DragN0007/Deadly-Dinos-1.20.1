@@ -1,9 +1,9 @@
 package com.dragn0007.deadlydinos.items.eggs;
 
+import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
 import com.dragn0007.deadlydinos.entities.utahraptor.UtahraptorModel;
-import com.dragn0007.deadlydinos.entities.util.AbstractDino;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;

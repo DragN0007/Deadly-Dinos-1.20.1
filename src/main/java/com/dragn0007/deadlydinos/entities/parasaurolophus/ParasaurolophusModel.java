@@ -75,12 +75,12 @@ public class ParasaurolophusModel extends DefaultedEntityGeoModel<Parasaurolophu
 
 
     public enum FemaleVariant {
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_blue.png")),
-        CREAM(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_cream.png")),
-        LIGHT_BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_light_blue.png")),
-        PERIDOT(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_peridot.png")),
-        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_purple.png")),
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_red.png"));
+        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/female_blue.png")),
+        CREAM(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/female_cream.png")),
+        LIGHT_BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/female_light_blue.png")),
+        PERIDOT(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/female_peridot.png")),
+        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/female_purple.png")),
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/female_red.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -92,12 +92,12 @@ public class ParasaurolophusModel extends DefaultedEntityGeoModel<Parasaurolophu
     }
 
     public enum MaleVariant {
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_blue.png")),
-        CREAM(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_cream.png")),
-        LIGHT_BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_light_blue.png")),
-        PERIDOT(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_peridot.png")),
-        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_purple.png")),
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_red.png"));
+        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/male_blue.png")),
+        CREAM(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/male_cream.png")),
+        LIGHT_BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/male_light_blue.png")),
+        PERIDOT(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/male_peridot.png")),
+        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/male_purple.png")),
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/male_red.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {

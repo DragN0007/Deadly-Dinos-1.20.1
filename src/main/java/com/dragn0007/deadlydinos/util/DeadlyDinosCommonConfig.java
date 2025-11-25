@@ -12,17 +12,18 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.BooleanValue MEDIUM_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue SMALL_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue GROUND_TIE;
+    public static final ForgeConfigSpec.BooleanValue ALLOW_TAMING;
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_TIME;
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_AMOUNT;
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BIPRODUCTS;
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BREEDING;
     public static final ForgeConfigSpec.ConfigValue<Integer> UTAHRAPTOR_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> PARASAUROLOPHUS_MAX_HERD_COUNT;
+    public static final ForgeConfigSpec.ConfigValue<Integer> TRICERATOPS_MAX_HERD_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> MEGARAPTOR_MAX_PACK_COUNT;
 
     static {
-        BUILDER.push("Deadly Dinos");
-
+        BUILDER.push("General");
         DEBUG_LOG = BUILDER.comment("Debug Log in Console")
                 .define("Debug Log Enabled", true);
 
@@ -40,6 +41,11 @@ public class DeadlyDinosCommonConfig {
 
         GROUND_TIE = BUILDER.comment("Should Ridable Dinos \"ground tie\", or stop moving around, when saddled & dismounted?")
                 .define("Ground Tie When Dismounted", true);
+        BUILDER.pop();
+
+        BUILDER.push("Husbandry");
+        ALLOW_TAMING = BUILDER.comment("Should players be able to tame certain kinds of dinos?")
+                .define("Allow Taming", true);
 
         DINO_EGG_LAY_TIME = BUILDER.comment("Minimum amount of time, in ticks, that a dino can lay an unfertilized egg. Default is 24000 ticks, or 20 minutes.")
                 .define("Dino Egg Lay Cooldown", 24000);
@@ -52,16 +58,20 @@ public class DeadlyDinosCommonConfig {
 
         GENDERS_AFFECT_BREEDING = BUILDER.comment("Should a dino's gender affect how it breeds?")
                 .define("Genders Affect Breeding", true);
+        BUILDER.pop();
 
+        BUILDER.push("Herding & Packing");
         UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once.")
                 .define("Max Utahraptor Pack Count", 6);
 
         PARASAUROLOPHUS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Parasaurolophus that can herd up at once.")
                 .define("Max Parasaurolophus Herd Count", 6);
 
+        TRICERATOPS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Triceratops that can herd up at once.")
+                .define("Max Triceratops Herd Count", 6);
+
         MEGARAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Megaraptors that can pack up at once.")
                 .define("Max Megaraptor Pack Count", 2);
-
         BUILDER.pop();
 
         SPEC = BUILDER.build();

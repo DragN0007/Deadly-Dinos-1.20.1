@@ -1,19 +1,16 @@
 package com.dragn0007.deadlydinos.entities.megaraptor;
 
+import com.dragn0007.deadlydinos.effects.DDDEffects;
+import com.dragn0007.deadlydinos.entities.AbstractDino;
+import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
-import com.dragn0007.deadlydinos.entities.ai.MegaraptorFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.entities.ai.StalkMeleeAttackGoal;
-import com.dragn0007.deadlydinos.entities.ai.UtahraptorFollowPackLeaderGoal;
-import com.dragn0007.deadlydinos.entities.util.AbstractDino;
-import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
+import com.dragn0007.deadlydinos.entities.ai.herd.MegaraptorFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -25,9 +22,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -45,8 +40,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -61,14 +56,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Megaraptor extends AbstractDino implements GeoEntity {
-
-	//todo: eggs
 
 	public Megaraptor(EntityType<? extends Megaraptor> type, Level level) {
 		super(type, level);
@@ -98,7 +89,6 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
 		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Monster.class, false));
 
 		this.goalSelector.addGoal(1, new StalkMeleeAttackGoal(this, 2.0D, true));
@@ -125,7 +115,7 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS)  && !(entity.getType() == (EntityTypes.UTAHRAPTOR_ENTITY.get())) && !entity.getType().is(DDDTags.Entity_Types.RAPTORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
+				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS)  && !(entity.getType() == (EntityTypes.MEGARAPTOR_ENTITY.get())) && !entity.getType().is(DDDTags.Entity_Types.RAPTORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATORS) && !this.isBaby()));
@@ -150,7 +140,8 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 				}
 
 				if (i > 0 && chance <= 50) {
-					((LivingEntity)entity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, i * 20, 0), this);
+					((LivingEntity)entity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, i * 20, 2), this);
+					((LivingEntity)entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, 2), this);
 				}
 			}
 
@@ -299,7 +290,7 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 		super.aiStep();
 
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.UTAHRAPTOR_EGG.get());
+			this.spawnAtLocation(DDDItems.MEGARAPTOR_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
@@ -451,16 +442,47 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 			data = new AgeableMobGroupData(0.2F);
 		}
 		Random random = new Random();
-
 		setGender(random.nextInt(Gender.values().length));
 
-		if (this.isFemale()) {
-			setVariant(random.nextInt(MegaraptorModel.FemaleVariant.values().length));
-		} else if (this.isMale()) {
-			setVariant(random.nextInt(MegaraptorModel.MaleVariant.values().length));
+		if (this.getSpawnType() != MobSpawnType.SPAWN_EGG) {
+			setSkinByBiome();
+		} else {
+			if (this.isFemale()) {
+				setVariant(random.nextInt(MegaraptorModel.FemaleVariant.values().length));
+			} else {
+				setVariant(random.nextInt(MegaraptorModel.MaleVariant.values().length));
+			}
 		}
 
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
+	}
+
+	public void setSkinByBiome() {
+		if (this.level().getBiome(this.blockPosition()).is(Biomes.BIRCH_FOREST) || this.level().getBiome(this.blockPosition()).is(Biomes.OLD_GROWTH_BIRCH_FOREST)) {
+			if (this.isFemale()) {
+				setVariant(MegaraptorModel.FemaleVariant.BIRCH.ordinal());
+			} else {
+				setVariant(MegaraptorModel.MaleVariant.BIRCH.ordinal());
+			}
+		} else if (this.level().getBiome(this.blockPosition()).is(Biomes.DARK_FOREST)) {
+			if (this.isFemale()) {
+				setVariant(MegaraptorModel.FemaleVariant.DARK_OAK.ordinal());
+			} else {
+				setVariant(MegaraptorModel.MaleVariant.DARK_OAK.ordinal());
+			}
+		} else if (this.level().getBiome(this.blockPosition()).is(Biomes.MANGROVE_SWAMP)) {
+			if (this.isFemale()) {
+				setVariant(MegaraptorModel.FemaleVariant.MANGROVE.ordinal());
+			} else {
+				setVariant(MegaraptorModel.MaleVariant.MANGROVE.ordinal());
+			}
+		} else {
+			if (this.isFemale()) {
+				setVariant(random.nextInt(MegaraptorModel.FemaleVariant.values().length));
+			} else {
+				setVariant(random.nextInt(MegaraptorModel.MaleVariant.values().length));
+			}
+		}
 	}
 
 	public boolean canParent() {
@@ -510,7 +532,7 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 		}
 
 		if (this.isFemale()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_UTAHRAPTOR_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_MEGARAPTOR_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
@@ -532,12 +554,12 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_UTAHRAPTOR_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_MEGARAPTOR_EGG.get());
 		}
 
 		int trophyChance = random.nextInt(100);
 		if (trophyChance <= 8) {
-			this.spawnAtLocation(DDDItems.UTAHRAPTOR_TROPHY.get());
+			this.spawnAtLocation(DDDItems.MEGARAPTOR_TROPHY.get());
 		}
 	}
 

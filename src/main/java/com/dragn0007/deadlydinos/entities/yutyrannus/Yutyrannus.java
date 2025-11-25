@@ -1,12 +1,12 @@
 package com.dragn0007.deadlydinos.entities.yutyrannus;
 
+import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
+import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtByTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.GroundTieGoal;
-import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
-import com.dragn0007.deadlydinos.entities.util.DDDAnimations;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;

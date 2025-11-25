@@ -1,6 +1,6 @@
 package com.dragn0007.deadlydinos.entities.ai;
 
-import com.dragn0007.deadlydinos.entities.util.AbstractDino;
+import com.dragn0007.deadlydinos.entities.AbstractDino;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.LivingEntity;

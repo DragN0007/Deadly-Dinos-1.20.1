@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.world.BiomeModifier;
@@ -17,6 +18,7 @@ import java.util.List;
 public class BiomeHitter {
 
     public static final ResourceKey<BiomeModifier> ACROCANTHOSAURUS_PLAINS = registerKey("acrocanthosaurus_plains");
+    public static final ResourceKey<BiomeModifier> MEGARAPTOR_FOREST = registerKey("megaraptor_forest");
     public static final ResourceKey<BiomeModifier> UTAHRAPTOR_HOT = registerKey("utahraptor_hot");
     public static final ResourceKey<BiomeModifier> YUTYRANNUS_COLD = registerKey("yutyrannus_cold");
     public static final ResourceKey<BiomeModifier> PARASAUROLOPHUS_WET = registerKey("parasaurolophus_wet");
@@ -31,6 +33,14 @@ public class BiomeHitter {
                         3,
                         1,
                         1
+                ))));
+
+        context.register(MEGARAPTOR_FOREST, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_FOREST),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.MEGARAPTOR_ENTITY.get(),
+                        3,
+                        1,
+                        4
                 ))));
 
         context.register(UTAHRAPTOR_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(

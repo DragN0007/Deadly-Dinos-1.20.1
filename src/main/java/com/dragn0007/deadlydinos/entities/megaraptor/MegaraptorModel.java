@@ -12,7 +12,7 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class MegaraptorModel extends DefaultedEntityGeoModel<Megaraptor> {
 
     public MegaraptorModel() {
-        super(new ResourceLocation(DeadlyDinos.MODID, "utahraptor"), true);
+        super(new ResourceLocation(DeadlyDinos.MODID, "megaraptor"), true);
     }
 
     @Override
@@ -74,9 +74,9 @@ public class MegaraptorModel extends DefaultedEntityGeoModel<Megaraptor> {
     }
 
     public enum FemaleVariant {
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_female_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_female_blue.png")),
-        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_female_green.png"));
+        DARK_OAK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/megaraptor/female_dark_oak.png")),
+        BIRCH(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/megaraptor/female_birch.png")),
+        MANGROVE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/megaraptor/female_mangrove.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -88,9 +88,9 @@ public class MegaraptorModel extends DefaultedEntityGeoModel<Megaraptor> {
     }
 
     public enum MaleVariant {
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_male_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_male_blue.png")),
-        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_male_green.png"));
+        DARK_OAK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/megaraptor/male_dark_oak.png")),
+        BIRCH(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/megaraptor/male_birch.png")),
+        MANGROVE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/megaraptor/male_mangrove.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {
@@ -101,8 +101,8 @@ public class MegaraptorModel extends DefaultedEntityGeoModel<Megaraptor> {
         }
     }
 
-    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/utahraptor.geo.json");
-    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/utahraptor.animation.json");
+    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/megaraptor.geo.json");
+    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/megaraptor.animation.json");
 
     @Override
     public ResourceLocation getModelResource(Megaraptor object) {

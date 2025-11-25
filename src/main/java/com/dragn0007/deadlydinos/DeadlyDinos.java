@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos;
 
 import com.dragn0007.deadlydinos.blocks.DDDBlocks;
+import com.dragn0007.deadlydinos.effects.DDDEffects;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.gui.DDDMenuTypes;
 import com.dragn0007.deadlydinos.items.DDDItemGroup;
@@ -34,6 +35,7 @@ public class DeadlyDinos
         DDDBlocks.register(eventBus);
         DDDMenuTypes.register(eventBus);
         DDDSoundEvents.register(eventBus);
+        DDDEffects.register(eventBus);
         EntityTypes.ENTITY_TYPES.register(eventBus);
 
         GeckoLib.initialize();
@@ -53,8 +55,8 @@ public class DeadlyDinos
 
         entity.displayClientMessage(Component.empty().append
                 (Component.literal(
-                        "Welcome to DDD 1.20.1! Keep in mind this mod is in Alpha and isn't nearly finished yet." +
-                        "\n(You can turn this warning off by turning off the Debug Log config in deadly-dinos-common.toml)")
+                        "Welcome to DDD 1.20.1!" +
+                        "\n(You can turn this message off by turning off the Debug Log config in deadly-dinos-common.toml)")
                 .withStyle(ChatFormatting.DARK_RED)), false);
 
         entity.displayClientMessage(Component.empty().append

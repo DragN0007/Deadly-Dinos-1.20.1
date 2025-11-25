@@ -1,6 +1,6 @@
 package com.dragn0007.deadlydinos.entities.ai;
 
-import com.dragn0007.deadlydinos.entities.util.AbstractDinoMount;
+import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;

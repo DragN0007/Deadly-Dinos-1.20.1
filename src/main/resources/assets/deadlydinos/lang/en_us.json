@@ -16,6 +16,12 @@
   "item.deadlydinos.anomaly_acrocanthosaurus_spawn_egg": "Anomalous Acrocanthosaurus Spawn Egg",
   "entity.deadlydinos.anomaly_acrocanthosaurus": "Anomalous Acrocanthosaurus",
 
+  "item.deadlydinos.megaraptor_trophy": "Megaraptor Trophy",
+  "item.deadlydinos.megaraptor_spawn_egg": "Megaraptor Spawn Egg",
+  "item.deadlydinos.megaraptor_egg": "Megaraptor Egg",
+  "item.deadlydinos.fertilized_megaraptor_egg": "Fertilized Megaraptor Egg",
+  "entity.deadlydinos.megaraptor": "Megaraptor",
+
   "item.deadlydinos.utahraptor_trophy": "Utahraptor Trophy",
   "item.deadlydinos.utahraptor_spawn_egg": "Utahraptor Spawn Egg",
   "item.deadlydinos.utahraptor_egg": "Utahraptor Egg",
@@ -27,7 +33,6 @@
   "item.deadlydinos.yutyrannus_egg": "Yutyrannus Egg",
   "item.deadlydinos.fertilized_yutyrannus_egg": "Fertilized Yutyrannus Egg",
   "entity.deadlydinos.yutyrannus": "Yutyrannus",
-
   "item.deadlydinos.parasaurolophus_trophy": "Parasaurolophus Trophy",
   "item.deadlydinos.parasaurolophus_spawn_egg": "Parasaurolophus Spawn Egg",
   "item.deadlydinos.parasaurolophus_egg": "Parasaurolophus Egg",
@@ -165,7 +170,9 @@
   "sounds.deadlydinos.medium_herbivore_ambient": "Medium Herbivore Bleats",
   "sounds.deadlydinos.herbivore_hiss": "Herbivore Hisses",
 
-  "key.dragnlivestock.categories.deadlydinos": "DragN's Deadly Dinos",
-  "key.dragnlivestock.speed_up": "Speed Up - Dino",
-  "key.dragnlivestock.slow_down": "Slow Down - Dino"
+  "key.deadlydinos.categories.deadlydinos": "DragN's Deadly Dinos",
+  "key.deadlydinos.speed_up": "Speed Up - Dino",
+  "key.deadlydinos.slow_down": "Slow Down - Dino",
+
+  "effect.deadlydinos.bleeding": "Bleeding"
 }

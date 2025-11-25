@@ -74,9 +74,9 @@ public class UtahraptorModel extends DefaultedEntityGeoModel<Utahraptor> {
     }
 
     public enum FemaleVariant {
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_female_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_female_blue.png")),
-        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_female_green.png"));
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/female_red.png")),
+        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/female_blue.png")),
+        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/female_green.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -88,9 +88,9 @@ public class UtahraptorModel extends DefaultedEntityGeoModel<Utahraptor> {
     }
 
     public enum MaleVariant {
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_male_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_male_blue.png")),
-        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/utahraptor_male_green.png"));
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/male_red.png")),
+        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/male_blue.png")),
+        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/utahraptor/male_green.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {

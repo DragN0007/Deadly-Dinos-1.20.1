@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-24T01:54:37.9860732	Item Models: deadlydinos
+// 1.20.1	2025-11-25T01:12:35.5222259	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -49,6 +49,7 @@ f365549f568fefc45dbd0590cbf60709d7d2a553 assets/deadlydinos/models/item/dino_nug
 78d39e6319ecb8800d18a3a899a3e2a8fc63bc51 assets/deadlydinos/models/item/dino_sandwich.json
 ce829d776d63e8ae74172b4c2eaeccc2618df678 assets/deadlydinos/models/item/dough.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/fertilized_acrocanthosaurus_egg.json
+e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/fertilized_megaraptor_egg.json
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/fertilized_parasaurolophus_egg.json
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/fertilized_utahraptor_egg.json
 2f74c4141e491b1286e3d5fd88f372f2b681247b assets/deadlydinos/models/item/fertilized_yutyrannus_egg.json
@@ -83,6 +84,9 @@ bbd24e66b704a5d7f48a6693ba2f1a2d2793c26f assets/deadlydinos/models/item/medium_h
 efd3dc9fec0215a2a04c737cf16d04fe1eeb67fd assets/deadlydinos/models/item/medium_herbivore_tail.json
 42ca5a12a0b8a2824131c5507cbc168d702d0a39 assets/deadlydinos/models/item/medium_herbivore_tooth.json
 58148951add1b3082ce83f20577858bf0e384343 assets/deadlydinos/models/item/medium_raptor_claw.json
+e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/megaraptor_egg.json
+e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/megaraptor_spawn_egg.json
+41db7e900865e21dde94b8210b67bb366d36ad64 assets/deadlydinos/models/item/megaraptor_trophy.json
 03c86040a7cac72cca03e81c5d6dbe1338617c05 assets/deadlydinos/models/item/mre.json
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/parasaurolophus_egg.json
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/parasaurolophus_spawn_egg.json

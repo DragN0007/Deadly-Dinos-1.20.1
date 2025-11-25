@@ -1,11 +1,11 @@
 package com.dragn0007.deadlydinos.world;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
+import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
-import com.dragn0007.deadlydinos.entities.anomaly.AnomalyAcrocanthosaurus;
-import com.dragn0007.deadlydinos.entities.anomaly.AnomalyAcrocanthosaurusModel;
-import com.dragn0007.deadlydinos.entities.util.AbstractDino;
+import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
+import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurusModel;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
