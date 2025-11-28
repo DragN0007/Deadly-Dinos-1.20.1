@@ -2,6 +2,7 @@ package com.dragn0007.deadlydinos.util;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
+import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -46,6 +47,31 @@ public class DDDNetwork {
         }
     }
 
+    public static class ToggleTillerPowerRequest {
+        private final int id;
+
+        public ToggleTillerPowerRequest(int id) {
+            this.id = id;
+        }
+
+        public static void encode(ToggleTillerPowerRequest msg, FriendlyByteBuf buffer) {
+            buffer.writeInt(msg.id);
+        }
+
+        public static ToggleTillerPowerRequest decode(FriendlyByteBuf buffer) {
+            return new ToggleTillerPowerRequest(buffer.readInt());
+        }
+
+        public static void handle(ToggleTillerPowerRequest msg, Supplier<NetworkEvent.Context> context) {
+            ServerPlayer player = context.get().getSender();
+            if(player != null) {
+                if(player.level().getEntity(msg.id) instanceof Triceratops plow) {
+                    plow.cycleMode();
+                }
+            }
+        }
+    }
+
     public static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(DeadlyDinos.MODID, "ddd_network"),
@@ -58,6 +84,7 @@ public class DDDNetwork {
     public static void commonSetupEvent(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             INSTANCE.registerMessage(0, HandleSpeedRequest.class, HandleSpeedRequest::encode, HandleSpeedRequest::decode, HandleSpeedRequest::handle);
+            INSTANCE.registerMessage(1, ToggleTillerPowerRequest.class, ToggleTillerPowerRequest::encode, ToggleTillerPowerRequest::decode, ToggleTillerPowerRequest::handle);
         });
     }
 }

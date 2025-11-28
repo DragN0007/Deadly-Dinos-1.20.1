@@ -57,7 +57,7 @@ public class ThrownYutyrannusEgg extends ThrowableItemProjectile {
 
          for (int j = 0; j < i; ++j) {
             if (getItem().is(DDDItems.FERTILIZED_YUTYRANNUS_EGG.get())) {
-               Yutyrannus dino = EntityTypes.YUTYRANNUS_ENTITY.get().create(this.level());
+               Yutyrannus dino = EntityTypes.YUTYRANNUS.get().create(this.level());
                dino.setAge(-24000);
                dino.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
 

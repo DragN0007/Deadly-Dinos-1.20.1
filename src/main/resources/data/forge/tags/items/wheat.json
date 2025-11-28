@@ -11,6 +11,21 @@
     {
       "id": "dffeasts:flour",
       "required": false
+    },
+
+    {
+      "id": "dragncrops:flour",
+      "required": false
+    },
+
+    {
+      "id": "dragncrops:rye",
+      "required": false
+    },
+
+    {
+      "id": "dragncrops:thorn_barley",
+      "required": false
     }
   ]
 }

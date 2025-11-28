@@ -16,6 +16,12 @@
   "item.deadlydinos.anomaly_acrocanthosaurus_spawn_egg": "Anomalous Acrocanthosaurus Spawn Egg",
   "entity.deadlydinos.anomaly_acrocanthosaurus": "Anomalous Acrocanthosaurus",
 
+  "item.deadlydinos.eocarcharia_trophy": "Eocarcharia Trophy",
+  "item.deadlydinos.eocarcharia_spawn_egg": "Eocarcharia Spawn Egg",
+  "item.deadlydinos.eocarcharia_egg": "Eocarcharia Egg",
+  "item.deadlydinos.fertilized_eocarcharia_egg": "Fertilized Eocarcharia Egg",
+  "entity.deadlydinos.eocarcharia": "Eocarcharia",
+
   "item.deadlydinos.megaraptor_trophy": "Megaraptor Trophy",
   "item.deadlydinos.megaraptor_spawn_egg": "Megaraptor Spawn Egg",
   "item.deadlydinos.megaraptor_egg": "Megaraptor Egg",
@@ -33,11 +39,18 @@
   "item.deadlydinos.yutyrannus_egg": "Yutyrannus Egg",
   "item.deadlydinos.fertilized_yutyrannus_egg": "Fertilized Yutyrannus Egg",
   "entity.deadlydinos.yutyrannus": "Yutyrannus",
+
   "item.deadlydinos.parasaurolophus_trophy": "Parasaurolophus Trophy",
   "item.deadlydinos.parasaurolophus_spawn_egg": "Parasaurolophus Spawn Egg",
   "item.deadlydinos.parasaurolophus_egg": "Parasaurolophus Egg",
   "item.deadlydinos.fertilized_parasaurolophus_egg": "Fertilized Parasaurolophus Egg",
   "entity.deadlydinos.parasaurolophus": "Parasaurolophus",
+
+  "item.deadlydinos.triceratops_trophy": "Triceratops Trophy",
+  "item.deadlydinos.triceratops_spawn_egg": "Triceratops Spawn Egg",
+  "item.deadlydinos.triceratops_egg": "Triceratops Egg",
+  "item.deadlydinos.fertilized_triceratops_egg": "Fertilized Triceratops Egg",
+  "entity.deadlydinos.triceratops": "Triceratops",
 
 
   "block.deadlydinos.reinforced_cobblestone": "Reinforced Cobblestone",
@@ -174,5 +187,9 @@
   "key.deadlydinos.speed_up": "Speed Up - Dino",
   "key.deadlydinos.slow_down": "Slow Down - Dino",
 
-  "effect.deadlydinos.bleeding": "Bleeding"
+  "effect.deadlydinos.bleeding": "Bleeding",
+
+  "config.jade.plugin_deadlydinos.ddd_tooltips": "Display DDD Dinosaur Info",
+  "tooltip.deadlydinos.jade.female.tooltip": "Female",
+  "tooltip.deadlydinos.jade.male.tooltip": "Male"
 }

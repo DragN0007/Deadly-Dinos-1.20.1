@@ -94,7 +94,7 @@ public class AnomalyAcrocanthosaurus extends AbstractDino implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATOR_PREY) && !this.isBaby()));
 
 		this.goalSelector.addGoal(2, new AnomalyNearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY.get()))));
+				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.ANOMALOUS_ACROCANTHOSAURUS.get()))));
 
 		this.goalSelector.addGoal(2, new AnomalyNearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby()));

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "deadlydinos:acrocanthosaurus"
+    "deadlydinos:acrocanthosaurus",
+    "deadlydinos:eocarcharia"
   ]
 }

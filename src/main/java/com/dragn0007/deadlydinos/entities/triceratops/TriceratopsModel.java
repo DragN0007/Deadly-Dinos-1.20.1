@@ -12,7 +12,7 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
 
     public TriceratopsModel() {
-        super(new ResourceLocation(DeadlyDinos.MODID, "parasaurolophus"), true);
+        super(new ResourceLocation(DeadlyDinos.MODID, "triceratops"), true);
     }
 
     @Override
@@ -75,12 +75,10 @@ public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
 
 
     public enum FemaleVariant {
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_blue.png")),
-        CREAM(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_cream.png")),
-        LIGHT_BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_light_blue.png")),
-        PERIDOT(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_peridot.png")),
-        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_purple.png")),
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_female_red.png"));
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/female_brown.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/female_mahogany.png")),
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/female_red.png")),
+        RUST(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/female_rust.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -92,12 +90,10 @@ public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
     }
 
     public enum MaleVariant {
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_blue.png")),
-        CREAM(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_cream.png")),
-        LIGHT_BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_light_blue.png")),
-        PERIDOT(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_peridot.png")),
-        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_purple.png")),
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/parasaurolophus/parasaurolophus_male_red.png"));
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/male_brown.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/male_mahogany.png")),
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/male_red.png")),
+        RUST(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/male_rust.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {
@@ -108,8 +104,8 @@ public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
         }
     }
 
-    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/parasaurolophus.geo.json");
-    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/parasaurolophus.animation.json");
+    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/triceratops.geo.json");
+    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/triceratops.animation.json");
 
     @Override
     public ResourceLocation getModelResource(Triceratops object) {

@@ -62,7 +62,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 70.0D)
+				.add(Attributes.MAX_HEALTH, 100.0D)
 				.add(Attributes.ATTACK_DAMAGE, 10D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1F)
 				.add(Attributes.ARMOR_TOUGHNESS, 4D)
@@ -106,7 +106,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATOR_PREY) && !this.isBaby()));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.ACROCANTHOSAURUS_ENTITY.get()))));
+				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.ACROCANTHOSAURUS.get()))));
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby()));
@@ -366,10 +366,6 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 			} else {
 				Acrocanthosaurus partner = (Acrocanthosaurus) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
-					return true;
-				}
-
-				if (DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get() && this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
 			}

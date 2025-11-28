@@ -57,7 +57,7 @@ public class ThrownUtahraptorEgg extends ThrowableItemProjectile {
 
          for (int j = 0; j < i; ++j) {
             if (getItem().is(DDDItems.FERTILIZED_UTAHRAPTOR_EGG.get())) {
-               Utahraptor dino = EntityTypes.UTAHRAPTOR_ENTITY.get().create(this.level());
+               Utahraptor dino = EntityTypes.UTAHRAPTOR.get().create(this.level());
                dino.setAge(-24000);
                dino.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
 

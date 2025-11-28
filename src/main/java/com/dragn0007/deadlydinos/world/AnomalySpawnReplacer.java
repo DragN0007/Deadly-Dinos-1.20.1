@@ -31,7 +31,7 @@ public class AnomalySpawnReplacer {
                     return;
                 }
 
-                AnomalyAcrocanthosaurus anomalyAcrocanthosaurus = EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY.get().create(event.getLevel());
+                AnomalyAcrocanthosaurus anomalyAcrocanthosaurus = EntityTypes.ANOMALOUS_ACROCANTHOSAURUS.get().create(event.getLevel());
                 if (anomalyAcrocanthosaurus != null && event.getLevel().getRandom().nextDouble() < 0.005) {
                     anomalyAcrocanthosaurus.copyPosition(acrocanthosaurus);
 

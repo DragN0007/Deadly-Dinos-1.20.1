@@ -1,5 +1,6 @@
 package com.dragn0007.deadlydinos.entities.triceratops;
 
+import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtByTargetGoal;
@@ -7,9 +8,12 @@ import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.GroundTieGoal;
 import com.dragn0007.deadlydinos.entities.ai.herd.TriceratopsFollowHerdLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
+import com.dragn0007.deadlydinos.util.DDDNetwork;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
+import net.minecraft.client.player.Input;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -40,8 +44,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -66,13 +73,18 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 120.0D)
+				.add(Attributes.MAX_HEALTH, 140.0D)
 				.add(Attributes.ATTACK_DAMAGE, 12D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1F)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.5F)
 				.add(Attributes.ARMOR_TOUGHNESS, 4D)
 				.add(Attributes.ARMOR, 12D)
 				.add(Attributes.MOVEMENT_SPEED, 0.22F)
 				.add(Attributes.FOLLOW_RANGE, 48D);
+	}
+
+	public float getRiddenSpeed(Player player) {
+		return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) / 1.5F;
 	}
 
 	@Override
@@ -101,11 +113,15 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
 
+		this.goalSelector.addGoal(3, new SearchForHerbivoreFoodGoal());
+		this.goalSelector.addGoal(3, new RaidGardenGoal(this));
 		this.goalSelector.addGoal(0, new DinoOwnerHurtByTargetGoal(this));
 		this.goalSelector.addGoal(1, new DinoOwnerHurtTargetGoal(this));
-		this.goalSelector.addGoal(3, new SearchForHerbivoreFoodGoal());
-		this.goalSelector.addGoal(2, new PickCropsGoal(this));
 		this.goalSelector.addGoal(4, new TriceratopsFollowHerdLeaderGoal(this));
+
+		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, entity ->
+			entity instanceof Player && (this.position().distanceToSqr(entity.getX() + 0.5D, entity.getY() + 0.5D, entity.getZ() + 0.5D) <= 12.0D) && !this.isTamed() && !this.isBaby()
+		));
 
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, entity ->
 				entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS) && (entity instanceof TamableAnimal && !((TamableAnimal) entity).isTame()) && !this.isBaby()
@@ -129,7 +145,7 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 	public int packSize = 1;
 
 	public int getMaxHerdSize() {
-		return DeadlyDinosCommonConfig.PARASAUROLOPHUS_MAX_HERD_COUNT.get();
+		return DeadlyDinosCommonConfig.TRICERATOPS_MAX_HERD_COUNT.get();
 	}
 
 	public boolean hasFollowers() {
@@ -184,8 +200,125 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 
 	public int regenHealthCounter = 0;
 
+	public static final EntityDataAccessor<Integer> MODE = SynchedEntityData.defineId(Triceratops.class, EntityDataSerializers.INT);
+
+	public Vec3 lastServerPos = Vec3.ZERO;
+
+	public enum Mode {
+		NO(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/nomode.png")),
+		HARVEST(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/harvestmode.png"));
+
+		public final ResourceLocation texture;
+
+		Mode(ResourceLocation texture) {
+			this.texture = texture;
+		}
+
+		public Mode next() {
+			return Mode.values()[(this.ordinal() + 1) % Mode.values().length];
+		}
+	}
+
+	public int mode() {
+		return this.entityData.get(MODE);
+	}
+
+	public void cycleMode() {
+		this.entityData.set(MODE, (this.entityData.get(MODE) +1) % 2);
+	}
+
+	protected Vec3 calcOffset(double x, double y, double z) {
+		double rad = this.getYRot() * Math.PI / 180;
+
+		double xOffset = this.position().x + (x * Math.cos(rad) - z * Math.sin(rad));
+		double yOffset = this.position().y + y;
+		double zOffset = this.position().z + (x * Math.sin(rad) + z * Math.cos(rad));
+
+		return new Vec3(xOffset, yOffset, zOffset);
+	}
+
+	private boolean addCropsToInventory(ItemStack stack) {
+		for (int slot = 2; slot < this.inventory.getContainerSize(); slot++) {
+			//cant be put in slot 1 or 2 since the saddle and hidden decor slots sit there
+			//the items will just disappear into the void forever if put in these slots, which naturally players cannot do
+
+			ItemStack previousStack = this.inventory.getItem(slot);
+
+			if (!previousStack.isEmpty() && ItemStack.isSameItem(previousStack, stack)) {
+				int transferable = Math.min(previousStack.getMaxStackSize() - previousStack.getCount(), stack.getCount());
+				if (transferable > 0) {
+					previousStack.grow(transferable);
+					stack.shrink(transferable);
+					if (stack.isEmpty()) return true;
+				}
+			}
+
+			if (previousStack.isEmpty()) {
+				this.inventory.setItem(slot, stack.copy());
+				stack.setCount(0);
+				return true;
+			}
+		}
+		return stack.isEmpty();
+	}
+
+	public void harvestCrop(BlockPos pos) {
+		if(this.level().getBlockState(pos).getBlock() instanceof CropBlock cropBlock) {
+			BlockState blockState = this.level().getBlockState(pos);
+
+			if(cropBlock.isMaxAge(blockState)) {
+				List<ItemStack> drops = Block.getDrops(blockState, (ServerLevel) this.level(), pos, null);
+				drops.remove(new ItemStack(cropBlock.asItem()));
+				drops.forEach(itemStack -> {
+					if (!addCropsToInventory(itemStack)) {
+						this.spawnAtLocation(itemStack);
+					}
+				});
+
+				this.level().setBlockAndUpdate(pos, cropBlock.getStateForAge(0));
+			}
+		}
+	}
+
+	public void harvest() {
+		Vec3 left = this.calcOffset(-1, 0.2, 3);
+		Vec3 mid = this.calcOffset(0, 0.2, 3);
+		Vec3 right = this.calcOffset(1, 0.2, 3);
+
+		BlockPos leftPos = new BlockPos((int)Math.floor(left.x), (int)Math.floor(left.y), (int)Math.floor(left.z));
+		BlockPos midPos = new BlockPos((int)Math.floor(mid.x), (int)Math.floor(mid.y), (int)Math.floor(mid.z));
+		BlockPos rightPos = new BlockPos((int)Math.floor(right.x), (int)Math.floor(right.y), (int)Math.floor(right.z));
+
+		this.harvestCrop(leftPos);
+		this.harvestCrop(midPos);
+		this.harvestCrop(rightPos);
+	}
+
+	public int tillerCooldown = 0;
+
+	public void handleInput(Input input) {
+		this.tillerCooldown = Math.max(this.tillerCooldown - 1, 0);
+		if(input.jumping && this.tillerCooldown == 0) {
+			DDDNetwork.INSTANCE.sendToServer(new DDDNetwork.ToggleTillerPowerRequest(this.getId()));
+			this.tillerCooldown = 10;
+		}
+	}
+
 	public void tick() {
 		super.tick();
+
+		if(!this.level().isClientSide) {
+			this.lastServerPos = this.position();
+			if(this.isVehicle()) {
+				if(this.entityData.get(MODE) == 1) {
+					this.harvest();
+				}
+			}
+		} else {
+			if(this.getControllingPassenger() instanceof LocalPlayer player) {
+				this.handleInput(player.input);
+			}
+		}
 
 		if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
 			List<? extends Triceratops> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
@@ -226,7 +359,7 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 		super.aiStep();
 
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.PARASAUROLOPHUS_EGG.get());
+			this.spawnAtLocation(DDDItems.TRICERATOPS_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
@@ -237,7 +370,7 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 
 			for (BlockPos blockpos : BlockPos.betweenClosed(Mth.floor(aabb.minX), Mth.floor(aabb.minY), Mth.floor(aabb.minZ), Mth.floor(aabb.maxX), Mth.floor(aabb.maxY), Mth.floor(aabb.maxZ))) {
 				BlockState blockstate = this.level().getBlockState(blockpos);
-				if (blockstate.is(DDDTags.Blocks.MEDIUM_DINO_DESTROYS) && DeadlyDinosCommonConfig.MEDIUM_DINOS_DESTROY_BLOCKS.get()) {
+				if (blockstate.is(DDDTags.Blocks.LARGE_DINO_DESTROYS) && DeadlyDinosCommonConfig.LARGE_DINOS_DESTROY_BLOCKS.get()) {
 					griefEvent = this.level().destroyBlock(blockpos, true, this) || griefEvent;
 				}
 			}
@@ -269,7 +402,7 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 
 	@Override
 	public float getStepHeight() {
-		return 1.6F;
+		return 1.0F;
 	}
 
 	public final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -282,14 +415,14 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 
 		if (tAnimationState.isMoving()) {
 			if (hasSpeedEffect()) {
-				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.6);
+				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(3.2);
 			} else if ((!hasSpeedEffect() && currentSpeed > speedThreshold) || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD))) {
-				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.9);
+				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(2.7);
 			} else if (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(2.1);
+				controller.setAnimationSpeed(1.7);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(1.5);
@@ -353,23 +486,8 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 	public void positionRider(Entity entity, MoveFunction moveFunction) {
 		if (this.hasPassenger(entity)) {
 			double offsetX = 0.0;
-			double offsetY = 2.4;
-			double offsetZ = -0.1;
-
-			double x = this.getX() - this.xo;
-			double z = this.getZ() - this.zo;
-			boolean isMoving = (x * x + z * z) > 0.0001;
-
-			if (this.isVehicle() && !isMoving) {
-				offsetY = 2.4;
-				offsetZ = -0.1;
-			} else if (this.isVehicle() && isMoving && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
-				offsetY = 2.5;
-				offsetZ = -0.3;
-			} else if (this.isVehicle() && isMoving && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
-				offsetY = 2.4;
-				offsetZ = -0.1;
-			}
+			double offsetY = 2.7;
+			double offsetZ = 0.3;
 
 			double radYaw = Math.toRadians(this.getYRot());
 
@@ -419,6 +537,8 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 		if (tag.contains("EggLayTime")) {
 			this.eggTime = tag.getInt("EggLayTime");
 		}
+
+		this.entityData.set(MODE, tag.getInt("Mode"));
 	}
 
 	@Override
@@ -427,6 +547,7 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 		tag.putInt("Variant", getVariant());
 		tag.putInt("Gender", getGender());
 		tag.putInt("EggLayTime", this.eggTime);
+		tag.putInt("Mode", this.entityData.get(MODE));
 	}
 
 	@Override
@@ -463,10 +584,6 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 			} else {
 				Triceratops partner = (Triceratops) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
-					return true;
-				}
-
-				if (DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get() && this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
 			}
@@ -495,7 +612,7 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 		}
 
 		if (this.isFemale()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_TRICERATOPS_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
@@ -508,6 +625,7 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 		super.defineSynchedData();
 		this.entityData.define(VARIANT, 0);
 		this.entityData.define(GENDER, 0);
+		this.entityData.define(MODE, 0);
 	}
 
 	@Override
@@ -517,12 +635,12 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_TRICERATOPS_EGG.get());
 		}
 
 		int trophyChance = random.nextInt(100);
 		if (trophyChance <= 8) {
-			this.spawnAtLocation(DDDItems.PARASAUROLOPHUS_TROPHY.get());
+			this.spawnAtLocation(DDDItems.TRICERATOPS_TROPHY.get());
 		}
 	}
 

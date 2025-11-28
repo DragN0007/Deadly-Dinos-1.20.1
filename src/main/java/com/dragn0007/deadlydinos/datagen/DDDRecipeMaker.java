@@ -390,31 +390,12 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                         .build()))
                 .save(pFinishedRecipeConsumer);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.SMOOTHIE.get())
-                .requires(DDDItems.TIGER_NUTS.get())
-                .requires(DDDItems.YEW_PLUM.get())
-                .unlockedBy("has_plum", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(DDDItems.YEW_PLUM.get())
-                        .build()))
-                .save(pFinishedRecipeConsumer);
-
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.HEARTY_SALAD.get())
                 .requires(DDDTags.Items.VEGETABLES)
                 .requires(DDDTags.Items.VEGETABLES)
                 .requires(ItemTags.LEAVES)
-                .requires(DDDItems.TIGER_NUTS.get())
                 .unlockedBy("has_veggies", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(DDDTags.Items.VEGETABLES)
-                        .build()))
-                .save(pFinishedRecipeConsumer);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.PBJ.get())
-                .requires(Items.BREAD)
-                .requires(DDDItems.YEW_PLUM_JAM.get())
-                .requires(DDDItems.TIGER_NUT_BUTTER.get())
-                .requires(Items.BREAD)
-                .unlockedBy("has_bread", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(Items.BREAD)
                         .build()))
                 .save(pFinishedRecipeConsumer);
 
@@ -438,30 +419,6 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                 .requires(DDDItems.BONE_MARROW.get())
                 .unlockedBy("has_bone_marrow", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(DDDItems.BONE_MARROW.get())
-                        .build()))
-                .save(pFinishedRecipeConsumer);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.GLAZED_RIBS.get())
-                .requires(DDDItems.COOKED_MEDIUM_MEAT.get())
-                .requires(DDDItems.YEW_PLUM_JAM.get())
-                .unlockedBy("has_meat", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(DDDTags.Items.COOKED_DINO_MEATS)
-                        .build()))
-                .save(pFinishedRecipeConsumer);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.YEW_PLUM_JAM.get())
-                .requires(DDDItems.YEW_PLUM.get())
-                .requires(DDDItems.YEW_PLUM.get())
-                .unlockedBy("has_plum", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(DDDItems.YEW_PLUM.get())
-                        .build()))
-                .save(pFinishedRecipeConsumer);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.TIGER_NUT_BUTTER.get())
-                .requires(DDDItems.TIGER_NUTS.get())
-                .requires(DDDItems.TIGER_NUTS.get())
-                .unlockedBy("has_tiger_nuts", inventoryTrigger(ItemPredicate.Builder.item()
-                        .of(DDDItems.TIGER_NUTS.get())
                         .build()))
                 .save(pFinishedRecipeConsumer);
 

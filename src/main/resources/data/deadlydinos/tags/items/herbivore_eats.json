@@ -12,11 +12,6 @@
     "minecraft:wheat",
 
     {
-      "id": "#deadlydinos:prehistoric_plants",
-      "required": false
-    },
-
-    {
       "id": "#forge:vegetables",
       "required": false
     },

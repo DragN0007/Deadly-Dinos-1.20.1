@@ -1,21 +1,26 @@
 package com.dragn0007.deadlydinos.event;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
+import com.dragn0007.deadlydinos.client.gui.MountScreen;
+import com.dragn0007.deadlydinos.client.gui.SmallInvScreen;
+import com.dragn0007.deadlydinos.common.gui.DDDMenuTypes;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.AcrocanthosaurusRender;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurusRender;
+import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
+import com.dragn0007.deadlydinos.entities.eocarcharia.EocarchariaRender;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.megaraptor.MegaraptorRender;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.Parasaurolophus;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.ParasaurolophusRender;
+import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
+import com.dragn0007.deadlydinos.entities.triceratops.TriceratopsRender;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
 import com.dragn0007.deadlydinos.entities.utahraptor.UtahraptorRender;
 import com.dragn0007.deadlydinos.entities.yutyrannus.Yutyrannus;
 import com.dragn0007.deadlydinos.entities.yutyrannus.YutyrannusRender;
-import com.dragn0007.deadlydinos.gui.DDDMenuTypes;
-import com.dragn0007.deadlydinos.gui.MountScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -33,33 +38,40 @@ public class DDDEvent {
 
     @SubscribeEvent
     public static void entityAttrbiuteCreationEvent(EntityAttributeCreationEvent event) {
-        event.put(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(), Acrocanthosaurus.createAttributes().build());
-        event.put(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY.get(), AnomalyAcrocanthosaurus.createAttributes().build());
-        event.put(EntityTypes.MEGARAPTOR_ENTITY.get(), Megaraptor.createAttributes().build());
-        event.put(EntityTypes.UTAHRAPTOR_ENTITY.get(), Utahraptor.createAttributes().build());
-        event.put(EntityTypes.YUTYRANNUS_ENTITY.get(), Yutyrannus.createAttributes().build());
-        event.put(EntityTypes.PARASAUROLOPHUS_ENTITY.get(), Parasaurolophus.createAttributes().build());
+        event.put(EntityTypes.ACROCANTHOSAURUS.get(), Acrocanthosaurus.createAttributes().build());
+        event.put(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS.get(), AnomalyAcrocanthosaurus.createAttributes().build());
+        event.put(EntityTypes.EOCARCHARIA.get(), Eocarcharia.createAttributes().build());
+        event.put(EntityTypes.MEGARAPTOR.get(), Megaraptor.createAttributes().build());
+        event.put(EntityTypes.UTAHRAPTOR.get(), Utahraptor.createAttributes().build());
+        event.put(EntityTypes.YUTYRANNUS.get(), Yutyrannus.createAttributes().build());
+        event.put(EntityTypes.PARASAUROLOPHUS.get(), Parasaurolophus.createAttributes().build());
+        event.put(EntityTypes.TRICERATOPS.get(), Triceratops.createAttributes().build());
     }
 
     @SubscribeEvent
     public static void clientSetupEvent(FMLClientSetupEvent event) {
-        EntityRenderers.register(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(), AcrocanthosaurusRender::new);
-        EntityRenderers.register(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY.get(), AnomalyAcrocanthosaurusRender::new);
-        EntityRenderers.register(EntityTypes.MEGARAPTOR_ENTITY.get(), MegaraptorRender::new);
-        EntityRenderers.register(EntityTypes.UTAHRAPTOR_ENTITY.get(), UtahraptorRender::new);
-        EntityRenderers.register(EntityTypes.YUTYRANNUS_ENTITY.get(), YutyrannusRender::new);
-        EntityRenderers.register(EntityTypes.PARASAUROLOPHUS_ENTITY.get(), ParasaurolophusRender::new);
+        EntityRenderers.register(EntityTypes.ACROCANTHOSAURUS.get(), AcrocanthosaurusRender::new);
+        EntityRenderers.register(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS.get(), AnomalyAcrocanthosaurusRender::new);
+        EntityRenderers.register(EntityTypes.EOCARCHARIA.get(), EocarchariaRender::new);
+        EntityRenderers.register(EntityTypes.MEGARAPTOR.get(), MegaraptorRender::new);
+        EntityRenderers.register(EntityTypes.UTAHRAPTOR.get(), UtahraptorRender::new);
+        EntityRenderers.register(EntityTypes.YUTYRANNUS.get(), YutyrannusRender::new);
+        EntityRenderers.register(EntityTypes.PARASAUROLOPHUS.get(), ParasaurolophusRender::new);
+        EntityRenderers.register(EntityTypes.TRICERATOPS.get(), TriceratopsRender::new);
 
         MenuScreens.register(DDDMenuTypes.MOUNT_MENU.get(), MountScreen::new);
+        MenuScreens.register(DDDMenuTypes.SMALL_INV_MENU.get(), SmallInvScreen::new);
     }
 
     @SubscribeEvent
     public static void spawnPlacementRegisterEvent(SpawnPlacementRegisterEvent event) {
-        event.register(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
-        event.register(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
-        event.register(EntityTypes.MEGARAPTOR_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
-        event.register(EntityTypes.UTAHRAPTOR_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Utahraptor::checkDesertDinoSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
-        event.register(EntityTypes.YUTYRANNUS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
-        event.register(EntityTypes.PARASAUROLOPHUS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.ACROCANTHOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.EOCARCHARIA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.MEGARAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.UTAHRAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Utahraptor::checkDesertDinoSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.YUTYRANNUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.PARASAUROLOPHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.TRICERATOPS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 }

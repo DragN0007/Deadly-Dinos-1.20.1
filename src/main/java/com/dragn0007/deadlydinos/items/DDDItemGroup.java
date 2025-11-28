@@ -22,6 +22,9 @@ public class DDDItemGroup {
                         output.accept(DDDItems.ACROCANTHOSAURUS_SPAWN_EGG.get());
                         output.accept(DDDItems.ACROCANTHOSAURUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get());
+                        output.accept(DDDItems.EOCARCHARIA_SPAWN_EGG.get());
+                        output.accept(DDDItems.EOCARCHARIA_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_EOCARCHARIA_EGG.get());
                         output.accept(DDDItems.MEGARAPTOR_SPAWN_EGG.get());
                         output.accept(DDDItems.MEGARAPTOR_EGG.get());
                         output.accept(DDDItems.FERTILIZED_MEGARAPTOR_EGG.get());
@@ -34,6 +37,9 @@ public class DDDItemGroup {
                         output.accept(DDDItems.PARASAUROLOPHUS_SPAWN_EGG.get());
                         output.accept(DDDItems.PARASAUROLOPHUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG.get());
+                        output.accept(DDDItems.TRICERATOPS_SPAWN_EGG.get());
+                        output.accept(DDDItems.TRICERATOPS_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_TRICERATOPS_EGG.get());
 
                         output.accept(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG.get());
 
@@ -44,10 +50,12 @@ public class DDDItemGroup {
                     .displayItems((displayParameters, output) -> {
 
                         output.accept(DDDItems.ACROCANTHOSAURUS_TROPHY.get());
+                        output.accept(DDDItems.EOCARCHARIA_TROPHY.get());
                         output.accept(DDDItems.MEGARAPTOR_TROPHY.get());
                         output.accept(DDDItems.UTAHRAPTOR_TROPHY.get());
                         output.accept(DDDItems.YUTYRANNUS_TROPHY.get());
                         output.accept(DDDItems.PARASAUROLOPHUS_TROPHY.get());
+                        output.accept(DDDItems.TRICERATOPS_TROPHY.get());
 
                         output.accept(DDDItems.ANOMALY_BONE_SWORD.get());
                         output.accept(DDDItems.ANOMALY_BONE_PICKAXE.get());
@@ -147,19 +155,12 @@ public class DDDItemGroup {
                         output.accept(DDDItems.CANNED_STEW.get());
                         output.accept(DDDItems.MRE.get());
                         output.accept(DDDItems.SODA.get());
-                        output.accept(DDDItems.TIGER_NUTS.get());
-                        output.accept(DDDItems.YEW_PLUM.get());
-                        output.accept(DDDItems.TIGER_NUT_BUTTER.get());
-                        output.accept(DDDItems.YEW_PLUM_JAM.get());
-                        output.accept(DDDItems.PBJ.get());
-                        output.accept(DDDItems.GLAZED_RIBS.get());
-                        output.accept(DDDItems.RAW_ESCARGOT.get());
-                        output.accept(DDDItems.COOKED_ESCARGOT .get());
-                        output.accept(DDDItems.DINO_NUGGET_1.get());
-                        output.accept(DDDItems.DINO_NUGGET_2.get());
-                        output.accept(DDDItems.DINO_NUGGET_3.get());
+//                        output.accept(DDDItems.RAW_ESCARGOT.get());
+//                        output.accept(DDDItems.COOKED_ESCARGOT .get());
+//                        output.accept(DDDItems.DINO_NUGGET_1.get());
+//                        output.accept(DDDItems.DINO_NUGGET_2.get());
+//                        output.accept(DDDItems.DINO_NUGGET_3.get());
                         output.accept(DDDItems.HEARTY_SALAD.get());
-                        output.accept(DDDItems.SMOOTHIE.get());
                         output.accept(DDDItems.DINO_DUMPLING.get());
                         output.accept(DDDItems.CHICKEN_NOODLE_SOUP.get());
                         output.accept(DDDItems.DINO_ROAST.get());

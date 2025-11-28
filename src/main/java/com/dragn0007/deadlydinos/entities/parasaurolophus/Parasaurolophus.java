@@ -65,7 +65,7 @@ public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 80.0D)
+				.add(Attributes.MAX_HEALTH, 120.0D)
 				.add(Attributes.ATTACK_DAMAGE, 8D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1F)
 				.add(Attributes.ARMOR_TOUGHNESS, 3D)
@@ -103,7 +103,7 @@ public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(0, new DinoOwnerHurtByTargetGoal(this));
 		this.goalSelector.addGoal(1, new DinoOwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(3, new SearchForHerbivoreFoodGoal());
-		this.goalSelector.addGoal(2, new PickCropsGoal(this));
+		this.goalSelector.addGoal(3, new RaidGardenGoal(this));
 		this.goalSelector.addGoal(4, new ParasaurolophusFollowHerdLeaderGoal(this));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
@@ -454,10 +454,6 @@ public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 			} else {
 				Parasaurolophus partner = (Parasaurolophus) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
-					return true;
-				}
-
-				if (DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get() && this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
 			}

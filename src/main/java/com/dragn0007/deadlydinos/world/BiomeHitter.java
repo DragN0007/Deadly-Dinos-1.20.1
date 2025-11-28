@@ -29,7 +29,7 @@ public class BiomeHitter {
 
         context.register(ACROCANTHOSAURUS_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
-                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.ACROCANTHOSAURUS_ENTITY.get(),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.ACROCANTHOSAURUS.get(),
                         3,
                         1,
                         1
@@ -37,7 +37,7 @@ public class BiomeHitter {
 
         context.register(MEGARAPTOR_FOREST, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_FOREST),
-                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.MEGARAPTOR_ENTITY.get(),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.MEGARAPTOR.get(),
                         3,
                         1,
                         4
@@ -45,7 +45,7 @@ public class BiomeHitter {
 
         context.register(UTAHRAPTOR_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.UTAHRAPTOR_ENTITY.get(),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.UTAHRAPTOR.get(),
                         4,
                         1,
                         4
@@ -53,7 +53,7 @@ public class BiomeHitter {
 
         context.register(YUTYRANNUS_COLD, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_COLD_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.YUTYRANNUS_ENTITY.get(),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.YUTYRANNUS.get(),
                         3,
                         1,
                         2
@@ -61,7 +61,7 @@ public class BiomeHitter {
 
         context.register(PARASAUROLOPHUS_WET, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_WET_OVERWORLD),
-                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.PARASAUROLOPHUS_ENTITY.get(),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.PARASAUROLOPHUS.get(),
                         4,
                         1,
                         3

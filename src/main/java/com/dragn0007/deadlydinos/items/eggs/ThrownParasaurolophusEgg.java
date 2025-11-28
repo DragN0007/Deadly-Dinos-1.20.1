@@ -57,7 +57,7 @@ public class ThrownParasaurolophusEgg extends ThrowableItemProjectile {
 
          for (int j = 0; j < i; ++j) {
             if (getItem().is(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG.get())) {
-               Parasaurolophus dino = EntityTypes.PARASAUROLOPHUS_ENTITY.get().create(this.level());
+               Parasaurolophus dino = EntityTypes.PARASAUROLOPHUS.get().create(this.level());
                dino.setAge(-24000);
                dino.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
 

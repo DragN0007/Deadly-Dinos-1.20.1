@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "deadlydinos:parasaurolophus"
+    "deadlydinos:parasaurolophus",
+    "deadlydinos:triceratops"
   ]
 }

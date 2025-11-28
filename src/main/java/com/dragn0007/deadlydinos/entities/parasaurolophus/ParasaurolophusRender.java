@@ -32,7 +32,7 @@ public class ParasaurolophusRender extends GeoEntityRenderer<Parasaurolophus> {
                 model.getBone("crest").ifPresent(b -> b.setScaleY(0.6F));
                 model.getBone("crest").ifPresent(b -> b.setScaleX(0.8F));
                 model.getBone("crest").ifPresent(b -> b.setScaleZ(0.8F));
-            } else if (entity.isFemale()) {
+            } else if (entity.isMale()) {
                 model.getBone("crest").ifPresent(b -> b.setScaleY(1F));
                 model.getBone("crest").ifPresent(b -> b.setScaleX(1F));
                 model.getBone("crest").ifPresent(b -> b.setScaleZ(1F));

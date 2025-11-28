@@ -128,7 +128,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS)  && !(entity.getType() == (EntityTypes.UTAHRAPTOR_ENTITY.get())) && !entity.getType().is(DDDTags.Entity_Types.RAPTORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
+				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS)  && !(entity.getType() == (EntityTypes.UTAHRAPTOR.get())) && !entity.getType().is(DDDTags.Entity_Types.RAPTORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATORS) && !this.isBaby()));
@@ -608,10 +608,6 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 			} else {
 				Utahraptor partner = (Utahraptor) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
-					return true;
-				}
-
-				if (DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get() && this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
 			}

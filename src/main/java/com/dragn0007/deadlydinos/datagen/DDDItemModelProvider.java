@@ -48,6 +48,11 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.ACROCANTHOSAURUS_EGG);
         simpleItem(DDDItems.ACROCANTHOSAURUS_TROPHY);
 
+        advancedItem(DDDItems.EOCARCHARIA_SPAWN_EGG, "eocarcharia_egg");
+        advancedItem(DDDItems.FERTILIZED_EOCARCHARIA_EGG, "eocarcharia_egg");
+        simpleItem(DDDItems.EOCARCHARIA_EGG);
+        simpleItem(DDDItems.EOCARCHARIA_TROPHY);
+
         advancedItem(DDDItems.MEGARAPTOR_SPAWN_EGG, "megaraptor_egg");
         advancedItem(DDDItems.FERTILIZED_MEGARAPTOR_EGG, "megaraptor_egg");
         simpleItem(DDDItems.MEGARAPTOR_EGG);
@@ -67,6 +72,11 @@ public class DDDItemModelProvider extends ItemModelProvider {
         advancedItem(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG, "parasaurolophus_egg");
         simpleItem(DDDItems.PARASAUROLOPHUS_EGG);
         simpleItem(DDDItems.PARASAUROLOPHUS_TROPHY);
+
+        advancedItem(DDDItems.TRICERATOPS_SPAWN_EGG, "triceratops_egg");
+        advancedItem(DDDItems.FERTILIZED_TRICERATOPS_EGG, "triceratops_egg");
+        simpleItem(DDDItems.TRICERATOPS_EGG);
+        simpleItem(DDDItems.TRICERATOPS_TROPHY);
 
         advancedItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG, "anomaly_acrocanthosaurus_egg");
 
@@ -142,19 +152,12 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.CANNED_STEW);
         simpleItem(DDDItems.MRE);
         simpleItem(DDDItems.SODA);
-        simpleItem(DDDItems.TIGER_NUTS);
-        simpleItem(DDDItems.YEW_PLUM);
-        simpleItem(DDDItems.TIGER_NUT_BUTTER);
-        simpleItem(DDDItems.YEW_PLUM_JAM);
-        simpleItem(DDDItems.PBJ);
-        simpleItem(DDDItems.GLAZED_RIBS);
         simpleItem(DDDItems.RAW_ESCARGOT);
         simpleItem(DDDItems.COOKED_ESCARGOT );
         simpleItem(DDDItems.DINO_NUGGET_1);
         simpleItem(DDDItems.DINO_NUGGET_2);
         simpleItem(DDDItems.DINO_NUGGET_3);
         simpleItem(DDDItems.HEARTY_SALAD);
-        simpleItem(DDDItems.SMOOTHIE);
         simpleItem(DDDItems.DINO_DUMPLING);
         simpleItem(DDDItems.CHICKEN_NOODLE_SOUP);
         simpleItem(DDDItems.DINO_ROAST);

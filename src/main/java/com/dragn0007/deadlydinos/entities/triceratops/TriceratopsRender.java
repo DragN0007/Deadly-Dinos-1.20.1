@@ -19,23 +19,25 @@ public class TriceratopsRender extends GeoEntityRenderer<Triceratops> {
 
         if(entity.isBaby()) {
             poseStack.scale(0.3F, 0.3F, 0.3F);
-            model.getBone("crest").ifPresent(b -> b.setScaleY(0.5F));
-            model.getBone("crest").ifPresent(b -> b.setScaleX(0.8F));
-            model.getBone("crest").ifPresent(b -> b.setScaleZ(0.8F));
+            model.getBone("horn_middle").ifPresent(b -> b.setHidden(true));
+            model.getBone("horn_end").ifPresent(b -> b.setHidden(true));
         } else {
-            poseStack.scale(1.0F, 1.0F, 1.0F);
+            model.getBone("horn_middle").ifPresent(b -> b.setHidden(false));
+            model.getBone("horn_end").ifPresent(b -> b.setHidden(false));
         }
 
         if (!entity.isBaby()) {
 
             if (entity.isFemale()) {
-                model.getBone("crest").ifPresent(b -> b.setScaleY(0.6F));
-                model.getBone("crest").ifPresent(b -> b.setScaleX(0.8F));
-                model.getBone("crest").ifPresent(b -> b.setScaleZ(0.8F));
-            } else if (entity.isFemale()) {
-                model.getBone("crest").ifPresent(b -> b.setScaleY(1F));
-                model.getBone("crest").ifPresent(b -> b.setScaleX(1F));
-                model.getBone("crest").ifPresent(b -> b.setScaleZ(1F));
+                model.getBone("horns").ifPresent(b -> b.setScaleY(1F));
+                model.getBone("horns").ifPresent(b -> b.setScaleX(1F));
+                model.getBone("horns").ifPresent(b -> b.setScaleZ(1F));
+                model.getBone("horn_end").ifPresent(b -> b.setHidden(true));
+            } else if (entity.isMale()) {
+                model.getBone("horns").ifPresent(b -> b.setScaleY(1.05F));
+                model.getBone("horns").ifPresent(b -> b.setScaleX(1.05F));
+                model.getBone("horns").ifPresent(b -> b.setScaleZ(1.05F));
+                model.getBone("horn_end").ifPresent(b -> b.setHidden(false));
             }
 
             if (entity.hasChest()) {

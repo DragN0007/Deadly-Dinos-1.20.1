@@ -1,6 +1,6 @@
 package com.dragn0007.deadlydinos.entities;
 
-import com.dragn0007.deadlydinos.gui.MountMenu;
+import com.dragn0007.deadlydinos.common.gui.MountMenu;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -10,7 +10,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
@@ -27,7 +26,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
-import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
@@ -54,7 +52,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public abstract class AbstractDinoMount extends AbstractChestedHorse {
+public abstract class AbstractDinoMount extends AbstractChestedAnimal {
 
     public net.minecraftforge.common.util.LazyOptional<?> itemHandler = null;
 
@@ -569,80 +567,51 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         }
     }
 
-//    double x = this.getX() - this.xo;
-//    double z = this.getZ() - this.zo;
-//    public boolean isMoving = (x * x + z * z) > 0.0001;
 
-    int moreCropsTicks;
+    public static class RaidGardenGoal extends MoveToBlockGoal {
+        private final AbstractDinoMount entity;
 
-    public static class PickCropsGoal extends MoveToBlockGoal {
-        public final AbstractDinoMount dino;
-        public boolean wantsToPick;
-        public boolean canPick;
-
-        public PickCropsGoal(AbstractDinoMount dino) {
-            super(dino, 1.0F, 16);
-            this.dino = dino;
+        public RaidGardenGoal(AbstractDinoMount entity) {
+            super(entity, 1F, 64);
+            this.entity = entity;
         }
 
         public boolean canUse() {
-            if (this.dino.isTamed()) {
+            if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.entity.level(), this.entity)) {
                 return false;
-            } else if (this.nextStartTick <= 0) {
-                if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.dino.level(), this.dino)) {
-                    return false;
-                }
-
-                this.canPick = false;
-                this.wantsToPick = true;
+            }
+            if (entity.isTamed()) {
+                return false;
             }
 
             return super.canUse();
         }
 
         public boolean canContinueToUse() {
-            return this.canPick && super.canContinueToUse();
+            return super.canContinueToUse();
         }
 
         public void tick() {
             super.tick();
-
-            this.dino.getLookControl().setLookAt(
-                    (double)this.blockPos.getX() + 0.5D,
-                    this.blockPos.getY() + 1,
-                    (double)this.blockPos.getZ() + 0.5D, 10.0F,
-                    (float)this.dino.getMaxHeadXRot());
-
-            if (this.isReachedTarget()) {
-                Level level = this.dino.level();
-                BlockPos blockpos = this.blockPos.above();
-                BlockState blockstate = level.getBlockState(blockpos);
+            this.entity.getLookControl().setLookAt((double)this.blockPos.getX() + 0.5D, (double)(this.blockPos.getY() + 1), (double)this.blockPos.getZ() + 0.5D, 10.0F, (float)this.entity.getMaxHeadXRot());
+            BlockPos cropPos = this.blockPos.above();
+            double distanceSq = this.entity.position().distanceToSqr(cropPos.getX() + 0.5D, cropPos.getY() + 0.5D, cropPos.getZ() + 0.5D);
+            if (distanceSq <= 4.0D) {
+                Level level = this.entity.level();
+                BlockState blockstate = level.getBlockState(cropPos);
                 Block block = blockstate.getBlock();
 
-                if (this.canPick && block instanceof CropBlock) {
-                    blockstate.getBlock().getDrops(blockstate, (ServerLevel) level, blockpos, null).forEach
-                            (stack -> level.addFreshEntity(new ItemEntity(level,
-                                    blockpos.getX() + 0.5,
-                                    blockpos.getY() + 0.5,
-                                    blockpos.getZ() + 0.5, stack)));
-
-                    level.destroyBlock(blockPos, false);
-                    level.levelEvent(2001, blockpos, Block.getId(blockstate));
+                if (block instanceof CropBlock) {
+                    level.removeBlock(cropPos, false);
                 }
-
-                this.dino.moreCropsTicks = 0;
-                this.canPick = false;
-                this.nextStartTick = 0;
             }
-
         }
 
         public boolean isValidTarget(LevelReader levelReader, BlockPos blockPos) {
             BlockState blockstate = levelReader.getBlockState(blockPos);
-            if (blockstate.is(Blocks.FARMLAND) && this.wantsToPick && !this.canPick) {
+            if (blockstate.is(Blocks.FARMLAND)) {
                 blockstate = levelReader.getBlockState(blockPos.above());
                 if (blockstate.getBlock() instanceof CropBlock) {
-                    this.canPick = true;
                     return true;
                 }
             }
@@ -701,7 +670,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         }
 
         public void pickUpItem(ItemEntity itemEntity) {
-            if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
+            if (itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse() && !isTamed()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);
 
@@ -753,7 +722,7 @@ public abstract class AbstractDinoMount extends AbstractChestedHorse {
         }
 
         public void pickUpItem(ItemEntity itemEntity) {
-            if (itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS) && this.canUse()) {
+            if (itemEntity.getItem().is(DDDTags.Items.HERBIVORE_EATS) && this.canUse() && !isTamed()) {
                 ItemStack itemStack = itemEntity.getItem();
                 itemStack.shrink(1);
 

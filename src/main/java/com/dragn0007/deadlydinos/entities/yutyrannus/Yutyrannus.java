@@ -1,5 +1,6 @@
 package com.dragn0007.deadlydinos.entities.yutyrannus;
 
+import com.dragn0007.deadlydinos.common.gui.SmallInvMenu;
 import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
@@ -19,11 +20,13 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -43,6 +46,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -64,7 +68,7 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 45.0D)
+				.add(Attributes.MAX_HEALTH, 60.0D)
 				.add(Attributes.ATTACK_DAMAGE, 8D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8F)
 				.add(Attributes.ARMOR_TOUGHNESS, 3D)
@@ -129,7 +133,7 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATOR_PREY) && !this.isBaby() && !this.isTamed()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.YUTYRANNUS_ENTITY.get())) && !this.isTamed()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.YUTYRANNUS.get())) && !this.isTamed()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby() && !this.isTamed()));
@@ -319,6 +323,17 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 		}
 	}
 
+	public void openInventory(Player player) {
+		if(player instanceof ServerPlayer serverPlayer && this.isTamed()) {
+			NetworkHooks.openScreen(serverPlayer, new SimpleMenuProvider((containerId, inventory, p) -> {
+				return new SmallInvMenu(containerId, inventory, this.inventory, this);
+			}, this.getDisplayName()), (data) -> {
+				data.writeInt(this.getInventorySize());
+				data.writeInt(this.getId());
+			});
+		}
+	}
+
 	// Generates the base texture
 	public ResourceLocation getFemaleTextureLocation() {
 		return YutyrannusModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
@@ -397,10 +412,6 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 			} else {
 				Yutyrannus partner = (Yutyrannus) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
-					return true;
-				}
-
-				if (DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get() && this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
 			}

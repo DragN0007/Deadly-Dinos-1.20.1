@@ -4,10 +4,7 @@ import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.items.custom.SodaItem;
 import com.dragn0007.deadlydinos.items.custom.TrophyItem;
-import com.dragn0007.deadlydinos.items.eggs.FertilizedAcrocanthosaurusEggItem;
-import com.dragn0007.deadlydinos.items.eggs.FertilizedParasaurolophusEggItem;
-import com.dragn0007.deadlydinos.items.eggs.FertilizedUtahraptorEggItem;
-import com.dragn0007.deadlydinos.items.eggs.FertilizedYutyrannusEggItem;
+import com.dragn0007.deadlydinos.items.eggs.*;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -24,40 +21,54 @@ public class DDDItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, DeadlyDinos.MODID);
 
     public static final RegistryObject<Item> ACROCANTHOSAURUS_SPAWN_EGG = ITEMS.register("acrocanthosaurus_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.ACROCANTHOSAURUS_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+            () -> new ForgeSpawnEggItem(EntityTypes.ACROCANTHOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_ACROCANTHOSAURUS_EGG = ITEMS.register("fertilized_acrocanthosaurus_egg",
             () -> new FertilizedAcrocanthosaurusEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> ACROCANTHOSAURUS_EGG = ITEMS.register("acrocanthosaurus_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
     public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG = ITEMS.register("anomaly_acrocanthosaurus_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+            () -> new ForgeSpawnEggItem(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+
+    public static final RegistryObject<Item> EOCARCHARIA_SPAWN_EGG = ITEMS.register("eocarcharia_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.EOCARCHARIA, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_EOCARCHARIA_EGG = ITEMS.register("fertilized_eocarcharia_egg",
+            () -> new FertilizedEocarchariaEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> EOCARCHARIA_EGG = ITEMS.register("eocarcharia_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
 
     public static final RegistryObject<Item> MEGARAPTOR_SPAWN_EGG = ITEMS.register("megaraptor_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.MEGARAPTOR_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+            () -> new ForgeSpawnEggItem(EntityTypes.MEGARAPTOR, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_MEGARAPTOR_EGG = ITEMS.register("fertilized_megaraptor_egg",
-            () -> new FertilizedUtahraptorEggItem((new Item.Properties()).stacksTo(1)));
+            () -> new FertilizedMegaraptorEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> MEGARAPTOR_EGG = ITEMS.register("megaraptor_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
     public static final RegistryObject<Item> UTAHRAPTOR_SPAWN_EGG = ITEMS.register("utahraptor_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.UTAHRAPTOR_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+            () -> new ForgeSpawnEggItem(EntityTypes.UTAHRAPTOR, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_UTAHRAPTOR_EGG = ITEMS.register("fertilized_utahraptor_egg",
             () -> new FertilizedUtahraptorEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> UTAHRAPTOR_EGG = ITEMS.register("utahraptor_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
     public static final RegistryObject<Item> YUTYRANNUS_SPAWN_EGG = ITEMS.register("yutyrannus_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.YUTYRANNUS_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+            () -> new ForgeSpawnEggItem(EntityTypes.YUTYRANNUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_YUTYRANNUS_EGG = ITEMS.register("fertilized_yutyrannus_egg",
             () -> new FertilizedYutyrannusEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> YUTYRANNUS_EGG = ITEMS.register("yutyrannus_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
     public static final RegistryObject<Item> PARASAUROLOPHUS_SPAWN_EGG = ITEMS.register("parasaurolophus_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.PARASAUROLOPHUS_ENTITY, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+            () -> new ForgeSpawnEggItem(EntityTypes.PARASAUROLOPHUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_PARASAUROLOPHUS_EGG = ITEMS.register("fertilized_parasaurolophus_egg",
             () -> new FertilizedParasaurolophusEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> PARASAUROLOPHUS_EGG = ITEMS.register("parasaurolophus_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
+    public static final RegistryObject<Item> TRICERATOPS_SPAWN_EGG = ITEMS.register("triceratops_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.TRICERATOPS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_TRICERATOPS_EGG = ITEMS.register("fertilized_triceratops_egg",
+            () -> new FertilizedTriceratopsEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> TRICERATOPS_EGG = ITEMS.register("triceratops_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
 
@@ -91,18 +102,6 @@ public class DDDItems {
                 new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 1, true, false),
                 new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 1, true, false)
         ));
-    public static final RegistryObject<Item> TIGER_NUTS = ITEMS.register("tiger_nuts",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
-    public static final RegistryObject<Item> YEW_PLUM = ITEMS.register("yew_plum",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationMod(1).build())));
-    public static final RegistryObject<Item> TIGER_NUT_BUTTER = ITEMS.register("tiger_nut_butter",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(1).build())));
-    public static final RegistryObject<Item> YEW_PLUM_JAM = ITEMS.register("yew_plum_jam",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(7).saturationMod(1).build())));
-    public static final RegistryObject<Item> PBJ = ITEMS.register("pbj",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(14).saturationMod(1).build())));
-    public static final RegistryObject<Item> GLAZED_RIBS = ITEMS.register("glazed_ribs",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).build())));
     public static final RegistryObject<Item> RAW_ESCARGOT = ITEMS.register("raw_escargot",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 250, 4) ,0.75F).build())));
     public static final RegistryObject<Item> COOKED_ESCARGOT = ITEMS.register("cooked_escargot",
@@ -115,8 +114,6 @@ public class DDDItems {
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> HEARTY_SALAD = ITEMS.register("hearty_salad",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
-    public static final RegistryObject<Item> SMOOTHIE = ITEMS.register("smoothie",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(1).build())));
     public static final RegistryObject<Item> DINO_DUMPLING = ITEMS.register("dino_dumpling",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(10).saturationMod(1).build())));
     public static final RegistryObject<Item> CHICKEN_NOODLE_SOUP = ITEMS.register("chicken_noodle_soup",
@@ -365,8 +362,8 @@ public class DDDItems {
 //    //TODO;
 ////    public static final RegistryObject<Item> ARCHAEOPTERYX_HARNESS = ITEMS.register("archaeopteryx_harness",
 ////            () -> new Item(new Item.Properties()));
-//    public static final RegistryObject<Item> EOCARCHARIA_ARMOR = ITEMS.register("eocarcharia_armor",
-//            () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> EOCARCHARIA_ARMOR = ITEMS.register("eocarcharia_armor",
+            () -> new Item(new Item.Properties().stacksTo(1)));
 //    public static final RegistryObject<Item> DUNKLEOSTEUS_SKELETON = ITEMS.register("dunkleo_skeleton",
 //            () -> new Item(new Item.Properties().stacksTo(1)));
 //
@@ -453,11 +450,11 @@ public class DDDItems {
 //                    new MobEffectInstance(MobEffects.INVISIBILITY, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.LUCK, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<Item> EOCARCHARTROPHY = ITEMS.register("eocarchartrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 5,true, false),
-//                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2, true, false)
-//            ));
+    public static final RegistryObject<Item> EOCARCHARIA_TROPHY = ITEMS.register("eocarcharia_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 5,true, false),
+                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2, true, false)
+            ));
 //    public static final RegistryObject<Item> GIGATROPHY = ITEMS.register("gigatrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 5,true, false),
@@ -592,11 +589,11 @@ public class DDDItems {
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<Item> TRIKETROPHY = ITEMS.register("triketrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
-//                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 3, true, false)
-//            ));
+    public static final RegistryObject<Item> TRICERATOPS_TROPHY = ITEMS.register("triceratops_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
+                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 3, true, false)
+            ));
 //    public static final RegistryObject<Item> PACHYTROPHY = ITEMS.register("pachytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2,true, false),

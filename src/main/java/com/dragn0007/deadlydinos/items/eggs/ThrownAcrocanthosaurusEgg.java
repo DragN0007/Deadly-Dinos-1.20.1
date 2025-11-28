@@ -57,7 +57,7 @@ public class ThrownAcrocanthosaurusEgg extends ThrowableItemProjectile {
 
          for (int j = 0; j < i; ++j) {
             if (getItem().is(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get())) {
-               Acrocanthosaurus dino = EntityTypes.ACROCANTHOSAURUS_ENTITY.get().create(this.level());
+               Acrocanthosaurus dino = EntityTypes.ACROCANTHOSAURUS.get().create(this.level());
                dino.setAge(-24000);
                dino.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
 
