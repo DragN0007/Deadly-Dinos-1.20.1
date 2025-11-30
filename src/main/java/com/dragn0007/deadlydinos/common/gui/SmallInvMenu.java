@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.common.gui;
 
 import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
+import com.dragn0007.deadlydinos.items.custom.DinosaurArmorItem;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.ItemTags;
@@ -10,7 +11,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.HorseArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -24,7 +24,7 @@ public class SmallInvMenu extends AbstractContainerMenu {
     }
 
     public SmallInvMenu(int containerId, Inventory inventory, Container container, AbstractDinoMount abstractOMount) {
-        super(DDDMenuTypes.MOUNT_MENU.get(), containerId);
+        super(DDDMenuTypes.SMALL_INV_MENU.get(), containerId);
         this.container = container;
         this.mount = abstractOMount;
 
@@ -44,7 +44,7 @@ public class SmallInvMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, oMountSlots++, 8, 36) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
-                if (itemStack.getItem() instanceof HorseArmorItem) {
+                if (itemStack.getItem() instanceof DinosaurArmorItem) {
                     return !this.hasItem() && SmallInvMenu.this.mount.canWearArmor();
                 } else if (itemStack.is(ItemTags.WOOL_CARPETS)) {
                     return !this.hasItem() && SmallInvMenu.this.mount.canWearCarpet();
@@ -56,7 +56,7 @@ public class SmallInvMenu extends AbstractContainerMenu {
 
             @Override
             public boolean isActive() {
-                return SmallInvMenu.this.mount.canWearArmor() || SmallInvMenu.this.mount.canHoldBedroll();
+                return SmallInvMenu.this.mount.canWearArmor() || SmallInvMenu.this.mount.canHoldBedroll() || SmallInvMenu.this.mount.canWearCarpet();
             }
         });
 

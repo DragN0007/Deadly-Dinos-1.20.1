@@ -57,6 +57,8 @@ public class DDDItemGroup {
                         output.accept(DDDItems.PARASAUROLOPHUS_TROPHY.get());
                         output.accept(DDDItems.TRICERATOPS_TROPHY.get());
 
+                        output.accept(DDDItems.EOCARCHARIA_ARMOR.get());
+
                         output.accept(DDDItems.ANOMALY_BONE_SWORD.get());
                         output.accept(DDDItems.ANOMALY_BONE_PICKAXE.get());
                         output.accept(DDDItems.ANOMALY_BONE_SHOVEL.get());

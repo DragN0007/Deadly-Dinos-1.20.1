@@ -48,6 +48,18 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                         .build())).save(pFinishedRecipeConsumer);
 
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.EOCARCHARIA_ARMOR.get())
+                .define('A', Items.IRON_BLOCK)
+                .define('B', Items.IRON_INGOT)
+                .define('C', Items.LEATHER)
+                .pattern("  B")
+                .pattern("BBA")
+                .pattern("CCC")
+                .unlockedBy("has_iron", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_INGOT)
+                        .build())).save(pFinishedRecipeConsumer);
+
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.ANOMALY_BONE_SWORD.get())
                 .define('A', DDDTags.Items.ANOMALY_BONES)
                 .define('C', Items.STICK)

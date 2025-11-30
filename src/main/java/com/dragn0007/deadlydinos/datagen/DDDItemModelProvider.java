@@ -145,6 +145,8 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_TAIL);
         simpleItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_TOOTH);
 
+        simpleItem(DDDItems.EOCARCHARIA_ARMOR);
+
         simpleItem(DDDItems.CRACKER);
         simpleItem(DDDItems.DINO_SANDWICH);
         simpleItem(DDDItems.CANNED_VEGGIES);

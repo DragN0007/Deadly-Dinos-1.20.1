@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_block"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:leather"
+    }
+  },
+  "pattern": [
+    "  B",
+    "BBA",
+    "CCC"
+  ],
+  "result": {
+    "item": "deadlydinos:eocarcharia_armor"
+  },
+  "show_notification": true
+}

@@ -81,10 +81,6 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) / 1.5F;
 	}
 
-	public boolean canHoldBedroll() {
-		return false;
-	}
-
 	@Override
 	public boolean canJump() {
 		return false;
@@ -300,11 +296,15 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		}
 	}
 
+	@Override
+	public boolean isArmor(ItemStack itemStack) {
+		return itemStack.is(DDDItems.EOCARCHARIA_ARMOR.get());
+	}
+
 	public void openInventory(Player player) {
 		if(player instanceof ServerPlayer serverPlayer && this.isTamed()) {
-			NetworkHooks.openScreen(serverPlayer, new SimpleMenuProvider((containerId, inventory, p) -> {
-				return new SmallInvMenu(containerId, inventory, this.inventory, this);
-			}, this.getDisplayName()), (data) -> {
+			NetworkHooks.openScreen(serverPlayer, new SimpleMenuProvider((containerId, inventory, p)
+					-> new SmallInvMenu(containerId, inventory, this.inventory, this), this.getDisplayName()), (data) -> {
 				data.writeInt(this.getInventorySize());
 				data.writeInt(this.getId());
 			});

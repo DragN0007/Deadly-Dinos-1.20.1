@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.entities;
 
 import com.dragn0007.deadlydinos.common.gui.MountMenu;
+import com.dragn0007.deadlydinos.items.custom.DinosaurArmorItem;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -14,7 +15,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.EntityType;
@@ -31,7 +31,10 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SaddleItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -198,7 +201,7 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
 
     @Override
     public boolean isArmor(ItemStack itemStack) {
-        return itemStack.getItem() instanceof HorseArmorItem || itemStack.is(ItemTags.WOOL_CARPETS);
+        return itemStack.getItem() instanceof DinosaurArmorItem;
     }
 
     public boolean isBedroll(ItemStack itemStack) {
@@ -474,8 +477,8 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
         if (!this.level().isClientSide) {
             this.getAttribute(Attributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
 
-            if (itemStack.getItem() instanceof HorseArmorItem horseArmorItem) {
-                int protection = horseArmorItem.getProtection();
+            if (itemStack.getItem() instanceof DinosaurArmorItem armorItem) {
+                int protection = armorItem.getProtection();
                 if (protection > 0) {
                     this.getAttribute(Attributes.ARMOR).addTransientModifier(
                             new AttributeModifier(ARMOR_MODIFIER_UUID, "Dino armor bonus", (double) protection, AttributeModifier.Operation.ADDITION)

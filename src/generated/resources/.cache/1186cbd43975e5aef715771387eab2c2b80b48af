@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-28T01:30:37.5762093	Item Models: deadlydinos
+// 1.20.1	2025-11-30T17:11:24.7611113	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -48,6 +48,7 @@ f365549f568fefc45dbd0590cbf60709d7d2a553 assets/deadlydinos/models/item/dino_nug
 46fe5b638ca046e32f7b815d79addd6a31806498 assets/deadlydinos/models/item/dino_roast.json
 78d39e6319ecb8800d18a3a899a3e2a8fc63bc51 assets/deadlydinos/models/item/dino_sandwich.json
 ce829d776d63e8ae74172b4c2eaeccc2618df678 assets/deadlydinos/models/item/dough.json
+4dfff56ae3c96c8b5dec658e236b554f9859e948 assets/deadlydinos/models/item/eocarcharia_armor.json
 f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/eocarcharia_egg.json
 f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/eocarcharia_spawn_egg.json
 5a10932e7df64aa43df288233b4c4a9bef7e8ce5 assets/deadlydinos/models/item/eocarcharia_trophy.json

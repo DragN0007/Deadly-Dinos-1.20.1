@@ -2,6 +2,7 @@ package com.dragn0007.deadlydinos.items;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
+import com.dragn0007.deadlydinos.items.custom.DinosaurArmorItem;
 import com.dragn0007.deadlydinos.items.custom.SodaItem;
 import com.dragn0007.deadlydinos.items.custom.TrophyItem;
 import com.dragn0007.deadlydinos.items.eggs.*;
@@ -272,103 +273,14 @@ public class DDDItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_LEG = ITEMS.register("anomaly_acrocanthosaurus_leg",
             () -> new Item(new Item.Properties()));
-//
-////
-////
-////    public static final RegistryObject<Item> BOWIE_KNIFE = ITEMS.register("bowie_knife",
-////            () -> new SwordItem(Tiers.IRON, 2, -1.4F,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
-////            () -> new SwordItem(Tiers.IRON, 2, -2.4F,
-////                    new Item.Properties()));
-////
-////
-////
-////    //ARMOR
-////    public static final RegistryObject<Item> BONE_NETHERITE_HELMET = ITEMS.register("bone_netherite_helmet",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.HEAD,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_NETHERITE_CHESTPLATE = ITEMS.register("bone_netherite_chestplate",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.CHEST,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_NETHERITE_LEGGINGS = ITEMS.register("bone_netherite_leggings",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.LEGS,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_NETHERITE_BOOTS = ITEMS.register("bone_netherite_boots",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.FEET,
-////                    new Item.Properties()));
-////
-////
-////    public static final RegistryObject<Item> BONE_DIAMOND_HELMET = ITEMS.register("bone_diamond_helmet",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_DIAMOND, EquipmentSlot.HEAD,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_DIAMOND_CHESTPLATE = ITEMS.register("bone_diamond_chestplate",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_DIAMOND, EquipmentSlot.CHEST,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_DIAMOND_LEGGINGS = ITEMS.register("bone_diamond_leggings",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_DIAMOND, EquipmentSlot.LEGS,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_DIAMOND_BOOTS = ITEMS.register("bone_diamond_boots",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_DIAMOND, EquipmentSlot.FEET,
-////                    new Item.Properties()));
-////
-////
-////    public static final RegistryObject<Item> BONE_GOLD_HELMET = ITEMS.register("bone_gold_helmet",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_GOLD, EquipmentSlot.HEAD,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_GOLD_CHESTPLATE = ITEMS.register("bone_gold_chestplate",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_GOLD, EquipmentSlot.CHEST,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_GOLD_LEGGINGS = ITEMS.register("bone_gold_leggings",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_GOLD, EquipmentSlot.LEGS,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_GOLD_BOOTS = ITEMS.register("bone_gold_boots",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_GOLD, EquipmentSlot.FEET,
-////                    new Item.Properties()));
-////
-////
-////    public static final RegistryObject<Item> BONE_IRON_HELMET = ITEMS.register("bone_iron_helmet",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_IRON, EquipmentSlot.HEAD,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_IRON_CHESTPLATE = ITEMS.register("bone_iron_chestplate",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_IRON, EquipmentSlot.CHEST,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_IRON_LEGGINGS = ITEMS.register("bone_iron_leggings",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_IRON, EquipmentSlot.LEGS,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> BONE_IRON_BOOTS = ITEMS.register("bone_iron_boots",
-////            () -> new ArmorItem(DDDArmorMaterial.BONE_IRON, EquipmentSlot.FEET,
-////                    new Item.Properties()));
-////
-////
-////    public static final RegistryObject<Item> DUNKLEOSTEUS_HELMET = ITEMS.register("dunkleo_helmet",
-////            () -> new DunkleoArmorItem(DDDArmorMaterial.DUNKLEOSTEUS, EquipmentSlot.HEAD,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> DUNKLEOSTEUS_CHESTPLATE = ITEMS.register("dunkleo_chestplate",
-////            () -> new DunkleoArmorItem(DDDArmorMaterial.DUNKLEOSTEUS, EquipmentSlot.CHEST,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> DUNKLEOSTEUS_LEGGINGS = ITEMS.register("dunkleo_leggings",
-////            () -> new DunkleoArmorItem(DDDArmorMaterial.DUNKLEOSTEUS, EquipmentSlot.LEGS,
-////                    new Item.Properties()));
-////    public static final RegistryObject<Item> DUNKLEOSTEUS_BOOTS = ITEMS.register("dunkleo_boots",
-////            () -> new DunkleoArmorItem(DDDArmorMaterial.DUNKLEOSTEUS, EquipmentSlot.FEET,
-////                    new Item.Properties()));
-//
-//
-//
-//
-//
-//
-//    //TODO;
-////    public static final RegistryObject<Item> ARCHAEOPTERYX_HARNESS = ITEMS.register("archaeopteryx_harness",
-////            () -> new Item(new Item.Properties()));
+
+
+    //TACK
     public static final RegistryObject<Item> EOCARCHARIA_ARMOR = ITEMS.register("eocarcharia_armor",
-            () -> new Item(new Item.Properties().stacksTo(1)));
-//    public static final RegistryObject<Item> DUNKLEOSTEUS_SKELETON = ITEMS.register("dunkleo_skeleton",
-//            () -> new Item(new Item.Properties().stacksTo(1)));
-//
-//
-//    //TROPHIES
+            () -> new DinosaurArmorItem(12, "iron_eocarcharia", (new Item.Properties()).stacksTo(1)));
+
+
+    //TROPHIES
     public static final RegistryObject<Item> ACROCANTHOSAURUS_TROPHY = ITEMS.register("acrocanthosaurus_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 3,true, false),
@@ -702,6 +614,78 @@ public class DDDItems {
             () -> new AxeItem(DDDToolTiers.ANOMALY_BONE, 7, -3.3F, new Item.Properties()));
     public static final RegistryObject<Item> ANOMALY_BONE_WARHAMMER = ITEMS.register("anomaly_bone_warhammer",
             () -> new SwordItem(DDDToolTiers.ANOMALY_BONE, 9, -3.5F, new Item.Properties()));
+
+//    public static final RegistryObject<Item> BOWIE_KNIFE = ITEMS.register("bowie_knife",
+//            () -> new SwordItem(Tiers.IRON, 2, -1.4F,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
+//            () -> new SwordItem(Tiers.IRON, 2, -2.4F,
+//                    new Item.Properties()));
+
+//    public static final RegistryObject<Item> BONE_NETHERITE_HELMET = ITEMS.register("bone_netherite_helmet",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.HEAD,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_NETHERITE_CHESTPLATE = ITEMS.register("bone_netherite_chestplate",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.CHEST,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_NETHERITE_LEGGINGS = ITEMS.register("bone_netherite_leggings",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.LEGS,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_NETHERITE_BOOTS = ITEMS.register("bone_netherite_boots",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.FEET,
+//                    new Item.Properties()));
+
+//    public static final RegistryObject<Item> BONE_DIAMOND_HELMET = ITEMS.register("bone_diamond_helmet",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_DIAMOND, EquipmentSlot.HEAD,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_DIAMOND_CHESTPLATE = ITEMS.register("bone_diamond_chestplate",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_DIAMOND, EquipmentSlot.CHEST,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_DIAMOND_LEGGINGS = ITEMS.register("bone_diamond_leggings",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_DIAMOND, EquipmentSlot.LEGS,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_DIAMOND_BOOTS = ITEMS.register("bone_diamond_boots",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_DIAMOND, EquipmentSlot.FEET,
+//                    new Item.Properties()));
+
+//    public static final RegistryObject<Item> BONE_GOLD_HELMET = ITEMS.register("bone_gold_helmet",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_GOLD, EquipmentSlot.HEAD,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_GOLD_CHESTPLATE = ITEMS.register("bone_gold_chestplate",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_GOLD, EquipmentSlot.CHEST,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_GOLD_LEGGINGS = ITEMS.register("bone_gold_leggings",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_GOLD, EquipmentSlot.LEGS,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_GOLD_BOOTS = ITEMS.register("bone_gold_boots",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_GOLD, EquipmentSlot.FEET,
+//                    new Item.Properties()));
+
+//    public static final RegistryObject<Item> BONE_IRON_HELMET = ITEMS.register("bone_iron_helmet",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_IRON, EquipmentSlot.HEAD,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_IRON_CHESTPLATE = ITEMS.register("bone_iron_chestplate",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_IRON, EquipmentSlot.CHEST,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_IRON_LEGGINGS = ITEMS.register("bone_iron_leggings",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_IRON, EquipmentSlot.LEGS,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> BONE_IRON_BOOTS = ITEMS.register("bone_iron_boots",
+//            () -> new ArmorItem(DDDArmorMaterial.BONE_IRON, EquipmentSlot.FEET,
+//                    new Item.Properties()));
+
+//    public static final RegistryObject<Item> DUNKLEOSTEUS_HELMET = ITEMS.register("dunkleo_helmet",
+//            () -> new DunkleoArmorItem(DDDArmorMaterial.DUNKLEOSTEUS, EquipmentSlot.HEAD,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> DUNKLEOSTEUS_CHESTPLATE = ITEMS.register("dunkleo_chestplate",
+//            () -> new DunkleoArmorItem(DDDArmorMaterial.DUNKLEOSTEUS, EquipmentSlot.CHEST,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> DUNKLEOSTEUS_LEGGINGS = ITEMS.register("dunkleo_leggings",
+//            () -> new DunkleoArmorItem(DDDArmorMaterial.DUNKLEOSTEUS, EquipmentSlot.LEGS,
+//                    new Item.Properties()));
+//    public static final RegistryObject<Item> DUNKLEOSTEUS_BOOTS = ITEMS.register("dunkleo_boots",
+//            () -> new DunkleoArmorItem(DDDArmorMaterial.DUNKLEOSTEUS, EquipmentSlot.FEET,
+//                    new Item.Properties()));
 
 
     //MOD ITEM TABS (UNOBTAINABLE)

@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-27T23:22:00.9078546	Recipes
+// 1.20.1	2025-11-30T17:17:02.4816763	Recipes
 ee883b8a9e7979ac35a30c69e5e908458b817709 data/deadlydinos/advancements/recipes/misc/anomaly_bone_axe.json
 83194201fec7bed52311c1aaba7ba6d784e5e2e7 data/deadlydinos/advancements/recipes/misc/anomaly_bone_battleaxe.json
 e4e5eaebc1cd3c8e3f41846a29535ca50b8eaa25 data/deadlydinos/advancements/recipes/misc/anomaly_bone_dagger.json
@@ -44,6 +44,7 @@ a6330ebf1bd3f453ce7f297a10aa60a0a76a55b2 data/deadlydinos/advancements/recipes/m
 3b9c871aa9f5a423fbba00e8e24dfd0e85765327 data/deadlydinos/advancements/recipes/misc/dino_roast.json
 8f623d462a9175df398675c1b24405a59d3ab4c7 data/deadlydinos/advancements/recipes/misc/dino_sandwich.json
 d1286356eb4a7c0a5ab68de780247e5c3913317d data/deadlydinos/advancements/recipes/misc/dough.json
+5c19825198f2a37543dced3ffde79fbaef6531f0 data/deadlydinos/advancements/recipes/misc/eocarcharia_armor.json
 36aa30fde8cfc62c95f78d963b4ec40d6b19d0c8 data/deadlydinos/advancements/recipes/misc/hearty_salad.json
 1ccf1153630b3f4a2776936fa613b84a3d554272 data/deadlydinos/advancements/recipes/misc/mre.json
 c18d2c61a49f925999c6bcbd2c05175b267fbf47 data/deadlydinos/advancements/recipes/misc/reinforced_cobblestone.json
@@ -99,6 +100,7 @@ fc6a2f9eb5cf2acb8f7b971960e41f8f4c99b1c2 data/deadlydinos/recipes/dino_dumpling.
 f9b21bf8b8ab778495b8221373355d92e8a66c2a data/deadlydinos/recipes/dino_roast.json
 91da94a835d6338053a4d8a8f9a03e2acd359cc7 data/deadlydinos/recipes/dino_sandwich.json
 ec510965e1dcdd8e28ee1b56639f93971274e441 data/deadlydinos/recipes/dough.json
+22794af9c072d65f431811bd463f66e8540f0726 data/deadlydinos/recipes/eocarcharia_armor.json
 cb3389aa4e066ebbe8d72b88e6cfdc7903cfcf0c data/deadlydinos/recipes/hearty_salad.json
 44ec29fad0e0314f06cd24f3b76a90e5b3d61ee0 data/deadlydinos/recipes/mre.json
 c1f32c82da7f495d4b8532631aca08558a910a0c data/deadlydinos/recipes/reinforced_cobblestone.json
