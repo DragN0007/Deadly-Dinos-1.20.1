@@ -19,6 +19,8 @@ import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
 import com.dragn0007.deadlydinos.entities.triceratops.TriceratopsRender;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
 import com.dragn0007.deadlydinos.entities.utahraptor.UtahraptorRender;
+import com.dragn0007.deadlydinos.entities.velociraptor.Velociraptor;
+import com.dragn0007.deadlydinos.entities.velociraptor.VelociraptorRender;
 import com.dragn0007.deadlydinos.entities.yutyrannus.Yutyrannus;
 import com.dragn0007.deadlydinos.entities.yutyrannus.YutyrannusRender;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -43,6 +45,7 @@ public class DDDEvent {
         event.put(EntityTypes.EOCARCHARIA.get(), Eocarcharia.createAttributes().build());
         event.put(EntityTypes.MEGARAPTOR.get(), Megaraptor.createAttributes().build());
         event.put(EntityTypes.UTAHRAPTOR.get(), Utahraptor.createAttributes().build());
+        event.put(EntityTypes.VELOCIRAPTOR.get(), Velociraptor.createAttributes().build());
         event.put(EntityTypes.YUTYRANNUS.get(), Yutyrannus.createAttributes().build());
         event.put(EntityTypes.PARASAUROLOPHUS.get(), Parasaurolophus.createAttributes().build());
         event.put(EntityTypes.TRICERATOPS.get(), Triceratops.createAttributes().build());
@@ -55,9 +58,11 @@ public class DDDEvent {
         EntityRenderers.register(EntityTypes.EOCARCHARIA.get(), EocarchariaRender::new);
         EntityRenderers.register(EntityTypes.MEGARAPTOR.get(), MegaraptorRender::new);
         EntityRenderers.register(EntityTypes.UTAHRAPTOR.get(), UtahraptorRender::new);
+        EntityRenderers.register(EntityTypes.VELOCIRAPTOR.get(), VelociraptorRender::new);
         EntityRenderers.register(EntityTypes.YUTYRANNUS.get(), YutyrannusRender::new);
         EntityRenderers.register(EntityTypes.PARASAUROLOPHUS.get(), ParasaurolophusRender::new);
         EntityRenderers.register(EntityTypes.TRICERATOPS.get(), TriceratopsRender::new);
+
 
         MenuScreens.register(DDDMenuTypes.MOUNT_MENU.get(), MountScreen::new);
         MenuScreens.register(DDDMenuTypes.SMALL_INV_MENU.get(), SmallInvScreen::new);
@@ -70,6 +75,7 @@ public class DDDEvent {
         event.register(EntityTypes.EOCARCHARIA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.MEGARAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.UTAHRAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Utahraptor::checkDesertDinoSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.VELOCIRAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.YUTYRANNUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.PARASAUROLOPHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.TRICERATOPS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);

@@ -7,6 +7,7 @@ import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.Parasaurolophus;
 import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
+import com.dragn0007.deadlydinos.entities.velociraptor.Velociraptor;
 import com.dragn0007.deadlydinos.entities.yutyrannus.Yutyrannus;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -51,6 +52,12 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(0.6f,1.8f)
                     .build(new ResourceLocation(MODID,"utahraptor").toString()));
+
+    public static final RegistryObject<EntityType<Velociraptor>> VELOCIRAPTOR = ENTITY_TYPES.register("velociraptor",
+            () -> EntityType.Builder.of(Velociraptor::new,
+                            MobCategory.CREATURE)
+                    .sized(0.5f,0.5f)
+                    .build(new ResourceLocation(MODID,"velociraptor").toString()));
 
     public static final RegistryObject<EntityType<Yutyrannus>> YUTYRANNUS = ENTITY_TYPES.register("yutyrannus",
             () -> EntityType.Builder.of(Yutyrannus::new,

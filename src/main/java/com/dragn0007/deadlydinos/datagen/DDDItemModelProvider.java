@@ -63,6 +63,11 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.UTAHRAPTOR_EGG);
         simpleItem(DDDItems.UTAHRAPTOR_TROPHY);
 
+        advancedItem(DDDItems.VELOCIRAPTOR_SPAWN_EGG, "velociraptor_egg");
+        advancedItem(DDDItems.FERTILIZED_VELOCIRAPTOR_EGG, "velociraptor_egg");
+        simpleItem(DDDItems.VELOCIRAPTOR_EGG);
+        simpleItem(DDDItems.VELOCIRAPTOR_TROPHY);
+
         advancedItem(DDDItems.YUTYRANNUS_SPAWN_EGG, "yutyrannus_egg");
         advancedItem(DDDItems.FERTILIZED_YUTYRANNUS_EGG, "yutyrannus_egg");
         simpleItem(DDDItems.YUTYRANNUS_EGG);

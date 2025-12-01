@@ -113,8 +113,8 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
 		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Monster.class, false));
 
-		this.goalSelector.addGoal(0, new DinoOwnerHurtByTargetGoal(this));
-		this.goalSelector.addGoal(1, new DinoOwnerHurtTargetGoal(this));
+		this.goalSelector.addGoal(1, new DinoOwnerHurtByTargetGoal(this));
+		this.goalSelector.addGoal(2, new DinoOwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
@@ -402,7 +402,10 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
 
-		if (this.isMale() || !this.isInLove() || !this.isAlive() || eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get()) {
+		if ((this.isMale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get())
+				|| !this.isInLove()
+				|| !this.isAlive()
+				|| eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get()) {
 			return null;
 		}
 
@@ -416,7 +419,7 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 			return;
 		}
 
-		if (this.isFemale()) {
+		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
 			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_EOCARCHARIA_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);

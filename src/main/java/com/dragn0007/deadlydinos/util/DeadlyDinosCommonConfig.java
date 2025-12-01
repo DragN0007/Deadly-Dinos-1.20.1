@@ -21,6 +21,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> PARASAUROLOPHUS_MAX_HERD_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> TRICERATOPS_MAX_HERD_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> MEGARAPTOR_MAX_PACK_COUNT;
+    public static final ForgeConfigSpec.ConfigValue<Integer> VELOCIRAPTOR_MAX_PACK_COUNT;
 
     static {
         BUILDER.push("General");
@@ -61,8 +62,6 @@ public class DeadlyDinosCommonConfig {
         BUILDER.pop();
 
         BUILDER.push("Herding & Packing");
-        UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once.")
-                .define("Max Utahraptor Pack Count", 6);
 
         PARASAUROLOPHUS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Parasaurolophus that can herd up at once.")
                 .define("Max Parasaurolophus Herd Count", 6);
@@ -72,6 +71,12 @@ public class DeadlyDinosCommonConfig {
 
         MEGARAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Megaraptors that can pack up at once.")
                 .define("Max Megaraptor Pack Count", 2);
+
+        UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once.")
+                .define("Max Utahraptor Pack Count", 6);
+
+        VELOCIRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Velociraptors that can pack up at once.")
+                .define("Max Velociraptor Pack Count", 8);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

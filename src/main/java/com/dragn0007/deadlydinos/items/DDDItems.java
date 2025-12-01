@@ -51,6 +51,13 @@ public class DDDItems {
     public static final RegistryObject<Item> UTAHRAPTOR_EGG = ITEMS.register("utahraptor_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
+    public static final RegistryObject<Item> VELOCIRAPTOR_SPAWN_EGG = ITEMS.register("velociraptor_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.VELOCIRAPTOR, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_VELOCIRAPTOR_EGG = ITEMS.register("fertilized_velociraptor_egg",
+            () -> new FertilizedVelociraptorEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> VELOCIRAPTOR_EGG = ITEMS.register("velociraptor_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
     public static final RegistryObject<Item> YUTYRANNUS_SPAWN_EGG = ITEMS.register("yutyrannus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.YUTYRANNUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_YUTYRANNUS_EGG = ITEMS.register("fertilized_yutyrannus_egg",
@@ -422,6 +429,11 @@ public class DDDItems {
     public static final RegistryObject<Item> UTAHRAPTOR_TROPHY = ITEMS.register("utahraptor_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.JUMP, 2880, 2,true, false),
+                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
+            ));
+
+    public static final RegistryObject<Item> VELOCIRAPTOR_TROPHY = ITEMS.register("velociraptor_trophy",
+            () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
             ));
 

@@ -98,6 +98,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:1.20.1-47.3.0" // 47.2.0 is Recommended
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.4')
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE")
@@ -110,6 +111,11 @@ dependencies {
 //    implementation fg.deobf("curse.maven:leawind-third-person-930880:5961735")
 //    implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
 //    implementation fg.deobf("curse.maven:comforts-276951:5503516")
+}
+
+mixin {
+    add sourceSets.main, 'mixins.deadlydinos.refmap.json'
+    config 'mixins.deadlydinos.json'
 }
 
 tasks.named('processResources', ProcessResources).configure {

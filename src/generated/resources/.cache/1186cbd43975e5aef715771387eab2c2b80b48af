@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-30T17:11:24.7611113	Item Models: deadlydinos
+// 1.20.1	2025-12-01T01:46:19.8790581	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -58,6 +58,7 @@ e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/fertiliz
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/fertilized_parasaurolophus_egg.json
 e15775608220ef59b09ad63a16eb82ca369245bd assets/deadlydinos/models/item/fertilized_triceratops_egg.json
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/fertilized_utahraptor_egg.json
+4656ad765fd6eb927bede6e0bbc9203b0c2bd40b assets/deadlydinos/models/item/fertilized_velociraptor_egg.json
 2f74c4141e491b1286e3d5fd88f372f2b681247b assets/deadlydinos/models/item/fertilized_yutyrannus_egg.json
 e124c98c2616aca3b169fbf107c023c57705e459 assets/deadlydinos/models/item/hearty_salad.json
 da6d4e6b3f58ac848384dda3973c5788a6f646c5 assets/deadlydinos/models/item/large_carnivore_claw.json
@@ -126,6 +127,9 @@ e15775608220ef59b09ad63a16eb82ca369245bd assets/deadlydinos/models/item/tricerat
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/utahraptor_egg.json
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/utahraptor_spawn_egg.json
 924a563146b132a85612e162092f46690ba0162b assets/deadlydinos/models/item/utahraptor_trophy.json
+4656ad765fd6eb927bede6e0bbc9203b0c2bd40b assets/deadlydinos/models/item/velociraptor_egg.json
+4656ad765fd6eb927bede6e0bbc9203b0c2bd40b assets/deadlydinos/models/item/velociraptor_spawn_egg.json
+7e20c13a1a265166543a6ce87dba42f7ee7e3aaf assets/deadlydinos/models/item/velociraptor_trophy.json
 2f74c4141e491b1286e3d5fd88f372f2b681247b assets/deadlydinos/models/item/yutyrannus_egg.json
 2f74c4141e491b1286e3d5fd88f372f2b681247b assets/deadlydinos/models/item/yutyrannus_spawn_egg.json
 6091e3ef623d55116fb45e2269cfca482057b2c7 assets/deadlydinos/models/item/yutyrannus_trophy.json

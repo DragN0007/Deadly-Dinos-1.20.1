@@ -621,7 +621,10 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
 
-		if (this.isMale() || !this.isInLove() || !this.isAlive() || eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get()) {
+		if ((this.isMale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get())
+				|| !this.isInLove()
+				|| !this.isAlive()
+				|| eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get()) {
 			return null;
 		}
 
@@ -635,7 +638,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 			return;
 		}
 
-		if (this.isFemale()) {
+		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
 			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_UTAHRAPTOR_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);

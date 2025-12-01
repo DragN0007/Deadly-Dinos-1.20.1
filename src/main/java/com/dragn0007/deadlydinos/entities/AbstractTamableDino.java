@@ -8,6 +8,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -85,9 +86,37 @@ public abstract class AbstractTamableDino extends TamableAnimal {
         this.eat = eating;
     }
 
+    private static final int RIDE_COOLDOWN = 100;
+    private int rideCooldownCounter;
+
+    public boolean ridingShoulder = false;
+    public boolean isRidingShoulder() {
+        return this.ridingShoulder;
+    }
+    public void setRidingShoulder(boolean ridingShoulder) {
+        this.ridingShoulder = ridingShoulder;
+    }
+
+    public boolean setEntityOnShoulder(ServerPlayer player) {
+        CompoundTag compoundtag = new CompoundTag();
+        compoundtag.putString("id", this.getEncodeId());
+        this.saveWithoutId(compoundtag);
+        if (player.setEntityOnShoulder(compoundtag)) {
+            this.discard();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean canSitOnShoulder() {
+        return this.rideCooldownCounter > 100;
+    }
+
     int eatingTick = 0;
 
     public void tick() {
+        ++this.rideCooldownCounter;
         super.tick();
 
         if (eatingTick >= 20) {
@@ -167,20 +196,17 @@ public abstract class AbstractTamableDino extends TamableAnimal {
     }
 
     public boolean isPanicking = false;
-
     public boolean isPanicking() {
         return this.getHealth() < this.getMaxHealth() / 3 && this.isAlive();
     }
-
     public boolean getPanicking() {
         return this.isPanicking;
     }
-
     public void setPanicking(boolean panicking) {
         this.isPanicking = panicking;
     }
 
-    class DinoPanicGoal extends PanicGoal {
+    protected class DinoPanicGoal extends PanicGoal {
         public DinoPanicGoal(double v) {
             super(AbstractTamableDino.this, v);
         }
@@ -191,15 +217,12 @@ public abstract class AbstractTamableDino extends TamableAnimal {
     }
 
     public boolean toldToWander = false;
-
     public boolean wasToldToWander() {
         return this.toldToWander;
     }
-
     public boolean getToldToWander() {
         return this.toldToWander;
     }
-
     public void setToldToWander(boolean toldToWander) {
         this.toldToWander = toldToWander;
     }

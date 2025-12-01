@@ -16,8 +16,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FertilizedUtahraptorEggItem extends Item {
-   public FertilizedUtahraptorEggItem(Properties properties) {
+public class FertilizedVelociraptorEggItem extends Item {
+   public FertilizedVelociraptorEggItem(Properties properties) {
       super(properties);
    }
 
@@ -25,7 +25,7 @@ public class FertilizedUtahraptorEggItem extends Item {
       ItemStack itemstack = player.getItemInHand(hand);
       level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
       if (!level.isClientSide) {
-         ThrownUtahraptorEgg thrownegg = new ThrownUtahraptorEgg(level, player);
+         ThrownVelociraptorEgg thrownegg = new ThrownVelociraptorEgg(level, player);
          thrownegg.setItem(itemstack);
          thrownegg.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
          level.addFreshEntity(thrownegg);
@@ -41,6 +41,6 @@ public class FertilizedUtahraptorEggItem extends Item {
 
    @Override
    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-      pTooltipComponents.add(Component.translatable("tooltip.deadlydinos.not_tamable.tooltip").withStyle(ChatFormatting.GRAY));
+      pTooltipComponents.add(Component.translatable("tooltip.deadlydinos.tamable.tooltip").withStyle(ChatFormatting.GOLD));
    }
 }
