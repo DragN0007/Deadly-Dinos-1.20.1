@@ -26,6 +26,8 @@ public class VelociraptorFollowPackLeaderGoal extends Goal {
          return false;
       } else if (this.mob.isFollower()) {
          return true;
+      } else if (mob.isOrderedToSit() || mob.isInSittingPose()) {
+         return false;
       } else if (this.nextStartTick > 0) {
          --this.nextStartTick;
          return false;

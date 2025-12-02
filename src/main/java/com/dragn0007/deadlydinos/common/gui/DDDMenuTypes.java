@@ -15,6 +15,7 @@ public class DDDMenuTypes {
 
     public static final RegistryObject<MenuType<MountMenu>> MOUNT_MENU = registerMenuType("mount_menu", MountMenu::new);
     public static final RegistryObject<MenuType<SmallInvMenu>> SMALL_INV_MENU = registerMenuType("small_inv_menu", SmallInvMenu::new);
+    public static final RegistryObject<MenuType<TinyInvMenu>> TINY_INV_MENU = registerMenuType("tiny_inv_menu", TinyInvMenu::new);
 
     public static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENU_TYPES.register(name, () -> IForgeMenuType.create(factory));

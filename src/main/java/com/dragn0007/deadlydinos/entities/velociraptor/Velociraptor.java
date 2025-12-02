@@ -1,12 +1,12 @@
 package com.dragn0007.deadlydinos.entities.velociraptor;
 
+import com.dragn0007.deadlydinos.common.gui.TinyInvMenu;
+import com.dragn0007.deadlydinos.datagen.DDDRecipeMaker;
 import com.dragn0007.deadlydinos.effects.DDDEffects;
+import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import com.dragn0007.deadlydinos.entities.AbstractTamableDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
-import com.dragn0007.deadlydinos.entities.ai.DinoFollowOwnerGoal;
-import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
-import com.dragn0007.deadlydinos.entities.ai.DinoSitOnOwnersShoulderGoal;
-import com.dragn0007.deadlydinos.entities.ai.TamableStalkMeleeAttackGoal;
+import com.dragn0007.deadlydinos.entities.ai.*;
 import com.dragn0007.deadlydinos.entities.ai.herd.VelociraptorFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
@@ -14,22 +14,25 @@ import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -45,14 +48,19 @@ import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -64,16 +72,19 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class Velociraptor extends AbstractTamableDino implements GeoEntity {
+public class Velociraptor extends AbstractTamableDino implements InventoryCarrier, GeoEntity, ContainerListener {
 
 	public Velociraptor(EntityType<? extends Velociraptor> type, Level level) {
 		super(type, level);
+		this.updateInventory();
+		this.setCanPickUpLoot(true);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -81,7 +92,7 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 				.add(Attributes.MAX_HEALTH, 10.0D)
 				.add(Attributes.ATTACK_DAMAGE, 2D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.2F)
-				.add(Attributes.MOVEMENT_SPEED, 0.32F)
+				.add(Attributes.MOVEMENT_SPEED, 0.30F)
 				.add(Attributes.FOLLOW_RANGE, 32D);
 	}
 
@@ -92,45 +103,47 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 	}
 
 	public void registerGoals() {
+		this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
-		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
+		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
+		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Monster.class, false));
 		this.goalSelector.addGoal(1, new HurtByTargetGoal(this));
+		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
+		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
-		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
-		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Monster.class, false));
 
-		this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-		this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-		this.goalSelector.addGoal(6, new DinoFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-		this.goalSelector.addGoal(3, new DinoSitOnOwnersShoulderGoal(this));
-		this.goalSelector.addGoal(1, new TamableStalkMeleeAttackGoal(this, 2.0D, true));
-		this.goalSelector.addGoal(3, new VelociraptorFollowPackLeaderGoal(this));
-		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
+		this.goalSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+		this.goalSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+		this.goalSelector.addGoal(3, new DinoFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+		this.goalSelector.addGoal(3, new TamedSearchForItemsGoal());
 		this.goalSelector.addGoal(3, new DinoPanicGoal(2.0D));
+		this.goalSelector.addGoal(3, new VelociraptorFollowPackLeaderGoal(this));
+		this.goalSelector.addGoal(3, new TamableStalkMeleeAttackGoal(this, 2.0D, true));
+		this.goalSelector.addGoal(3, new DinoSitOnOwnersShoulderGoal(this));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity instanceof Player && this.isBaby()));
+				entity -> entity instanceof Player && this.isBaby() && !this.isTame()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby() && !this.isTame()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && !this.hasFollowers() && !this.isFollower()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && !this.hasFollowers() && !this.isFollower() && (entity instanceof AbstractTamableDino && !((AbstractTamableDino) entity).isTame() && !this.isTame())));
 
 		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
-				entity -> entity instanceof Player && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
+				entity -> entity instanceof Player && !this.isBaby() && (this.isFollower() || this.hasFollowers()) && !this.isTame()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATOR_PREY) && !this.isBaby()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATOR_PREY) && !this.isBaby() && !this.isTame()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers())));
+				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers()) && !this.isTame()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> (entity.getType().is(DDDTags.Entity_Types.SMALL_HERBIVORES)) && !this.isBaby()));
+				entity -> (entity.getType().is(DDDTags.Entity_Types.SMALL_HERBIVORES)) && !this.isBaby() && !this.isTame()));
 	}
 
 	public boolean doHurtTarget(Entity entity) {
@@ -154,6 +167,54 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 		} else {
 			return false;
 		}
+	}
+
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+		Item item = itemstack.getItem();
+
+		if (this.isOwnedBy(player) && this.isTame() && !this.isBaby()) {
+			if (this.isTame() && player.isSecondaryUseActive() && this.isOrderedToSit()) {
+				this.openInventory(player);
+				return InteractionResult.sidedSuccess(this.level().isClientSide);
+			}
+		}
+
+		if (player.isShiftKeyDown() && !this.isFood(itemstack) && !this.isOrderedToSit() && !this.wasToldToWander() && this.isOwnedBy(player)) {
+			this.setToldToWander(true);
+			player.displayClientMessage(Component.translatable("tooltip.deadlydinos.wandering.tooltip").withStyle(ChatFormatting.GOLD), true);
+			return InteractionResult.SUCCESS;
+		}
+
+		if (player.isShiftKeyDown() && !this.isFood(itemstack) && !this.isOrderedToSit() && this.wasToldToWander() && this.isOwnedBy(player)) {
+			this.setToldToWander(false);
+			player.displayClientMessage(Component.translatable("tooltip.deadlydinos.following.tooltip").withStyle(ChatFormatting.GOLD), true);
+			return InteractionResult.SUCCESS;
+		}
+
+		if (this.isTame()) {
+			if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+				this.heal((float) itemstack.getFoodProperties(this).getNutrition());
+				if (!player.getAbilities().instabuild) {
+					itemstack.shrink(1);
+				}
+
+				this.gameEvent(GameEvent.EAT, this);
+				return InteractionResult.SUCCESS;
+			} else {
+				InteractionResult interactionresult = super.mobInteract(player, hand);
+				if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
+					this.setOrderedToSit(!this.isOrderedToSit());
+					this.jumping = false;
+					this.navigation.stop();
+					this.setTarget(null);
+					return InteractionResult.SUCCESS;
+				} else {
+					return interactionresult;
+				}
+			}
+		}
+		return super.mobInteract(player, hand);
 	}
 
 	@Override
@@ -180,7 +241,6 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 		if (this.isFollower()) {
 			this.getNavigation().moveTo(this.leader, 1.0D);
 		}
-
 	}
 
 	public void addFollowers(Stream<? extends Velociraptor> p_27534_) {
@@ -343,8 +403,6 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 
 	}
 
-	//TODO: Inventory, sitting
-
 	@Override
 	public float getStepHeight() {
 		return 1.6F;
@@ -368,16 +426,16 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 		} else if (isMoving) {
 			if (currentSpeed > speedThreshold && this.onGround()) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(2.2);
+				controller.setAnimationSpeed(3.5);
 			} else if (currentSpeed < stalkSpeedThreshold) {
 				controller.setAnimation(RawAnimation.begin().then("stalk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.0);
+				controller.setAnimationSpeed(2.0);
 			} else if (isClimbing() && !this.onGround()) {
 				controller.setAnimation(RawAnimation.begin().then("climb", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.0);
+				controller.setAnimationSpeed(1.5);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(2.0);
+				controller.setAnimationSpeed(3.5);
 			}
 		} else {
 			if (isInSittingPose()) {
@@ -565,6 +623,22 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 		if (tag.contains("EggLayTime")) {
 			this.eggTime = tag.getInt("EggLayTime");
 		}
+
+		this.updateInventory();
+
+		if(this.isTame()) {
+			ListTag listTag = tag.getList("Items", 10);
+
+			for(int i = 0; i < listTag.size(); i++) {
+				CompoundTag compoundTag = listTag.getCompound(i);
+				int j = compoundTag.getByte("Slot") & 255;
+				if(j < this.inventory.getContainerSize()) {
+					this.inventory.setItem(j, ItemStack.of(compoundTag));
+				}
+			}
+		}
+
+		this.setCanPickUpLoot(true);
 	}
 
 	@Override
@@ -573,6 +647,21 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 		tag.putInt("Variant", getVariant());
 		tag.putInt("Gender", getGender());
 		tag.putInt("EggLayTime", this.eggTime);
+
+		if(this.isTame()) {
+			ListTag listTag = new ListTag();
+
+			for(int i = 0; i < this.inventory.getContainerSize(); i++) {
+				ItemStack itemStack = this.inventory.getItem(i);
+				if(!itemStack.isEmpty()) {
+					CompoundTag compoundTag = new CompoundTag();
+					compoundTag.putByte("Slot", (byte) i);
+					itemStack.save(compoundTag);
+					listTag.add(compoundTag);
+				}
+			}
+			tag.put("Items", listTag);
+		}
 	}
 
 	@Override
@@ -669,6 +758,162 @@ public class Velociraptor extends AbstractTamableDino implements GeoEntity {
 		int trophyChance = random.nextInt(100);
 		if (trophyChance <= 8) {
 			this.spawnAtLocation(DDDItems.VELOCIRAPTOR_TROPHY.get());
+		}
+	}
+
+	public SimpleContainer inventory;
+
+	public LazyOptional<?> itemHandler = null;
+
+	public void updateInventory() {
+		SimpleContainer tempInventory = this.inventory;
+		this.inventory = new SimpleContainer(this.getInventorySize());
+
+		if(tempInventory != null) {
+			tempInventory.removeListener(this);
+			int maxSize = Math.min(tempInventory.getContainerSize(), this.inventory.getContainerSize());
+
+			for(int i = 0; i < maxSize; i++) {
+				ItemStack itemStack = tempInventory.getItem(i);
+				if(!itemStack.isEmpty()) {
+					this.inventory.setItem(i, itemStack.copy());
+				}
+			}
+		}
+		this.inventory.addListener(this);
+		this.itemHandler = LazyOptional.of(() -> new InvWrapper(this.inventory));
+	}
+
+	@Override
+	public void dropEquipment() {
+		if(!this.level().isClientSide) {
+			super.dropEquipment();
+			Containers.dropContents(this.level(), this, this.inventory);
+		}
+	}
+
+	@Override
+	public void invalidateCaps() {
+		super.invalidateCaps();
+		if(this.itemHandler != null) {
+			LazyOptional<?> oldHandler = this.itemHandler;
+			this.itemHandler = null;
+			oldHandler.invalidate();
+		}
+	}
+
+	public int getInventorySize() {
+		return 5;
+	}
+
+	public SimpleContainer getInventory() {
+		return this.inventory;
+	}
+
+	public void openInventory(Player player) {
+		if(player instanceof ServerPlayer serverPlayer && this.isTame()) {
+			NetworkHooks.openScreen(serverPlayer, new SimpleMenuProvider((containerId, inventory, p) -> {
+				return new TinyInvMenu(containerId, inventory, this.inventory, this);
+			}, this.getDisplayName()), (data) -> {
+				data.writeInt(this.getInventorySize());
+				data.writeInt(this.getId());
+			});
+		}
+	}
+
+	@Override
+	public void containerChanged(Container p_18983_) {
+		return;
+	}
+
+	public boolean isInventoryFull() {
+		for (int i = 0; i < inventory.getContainerSize(); i++) {
+			if (inventory.getItem(i).isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	static final Predicate<ItemEntity> ANIMAL_LOOT = (itemEntity) -> {
+		return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES);
+	};
+	
+	public class TamedSearchForItemsGoal extends Goal {
+
+		public TamedSearchForItemsGoal() {
+			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+		}
+
+		public boolean canUse() {
+			if (isOrderedToSit()) {
+				return false;
+			} else if (isInventoryFull()) {
+				return false;
+			} else if (Velociraptor.this.getTarget() == null && Velociraptor.this.getLastHurtByMob() == null) {
+				if (Velociraptor.this.getRandom().nextInt(reducedTickDelay(10)) != 0) {
+					return false;
+				} else {
+					List<ItemEntity> list = Velociraptor.this.level().getEntitiesOfClass(ItemEntity.class, Velociraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+					return !list.isEmpty();
+				}
+			} else {
+				return false;
+			}
+		}
+
+		@Override
+		public void tick() {
+			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+
+			if (!itemEntities.isEmpty() && !isInventoryFull()) {
+				ItemEntity itemEntity = itemEntities.get(0);
+				getNavigation().moveTo(itemEntity, 1.2D);
+
+				if (distanceToSqr(itemEntity) < 2.0D && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES)) {
+					pickUpItem(itemEntity);
+				}
+			}
+		}
+
+		@Override
+		public void start() {
+			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+			if (!itemEntities.isEmpty()) {
+				getNavigation().moveTo(itemEntities.get(0), 1.2D);
+			}
+		}
+
+		private void pickUpItem(ItemEntity itemEntity) {
+			if (!isInventoryFull() && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
+				ItemStack itemStack = itemEntity.getItem();
+
+				for (int i = 0; i < getInventory().getContainerSize(); i++) {
+					ItemStack inventoryStack = getInventory().getItem(i);
+
+					if (!inventoryStack.isEmpty() && inventoryStack.is(itemStack.getItem()) && inventoryStack.getCount() < inventoryStack.getMaxStackSize() && itemStack.is(DDDTags.Items.CARNIVORE_DESIRES)) {
+						int j = inventoryStack.getMaxStackSize() - inventoryStack.getCount();
+						int k = Math.min(j, itemStack.getCount());
+						inventoryStack.grow(k);
+						itemStack.shrink(k);
+
+						if (itemStack.isEmpty()) {
+							itemEntity.discard();
+							break;
+						}
+					}
+				}
+
+				if (!itemStack.isEmpty() && itemStack.is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
+					for (int i = 0; i < getInventory().getContainerSize(); i++) {
+						if (getInventory().getItem(i).isEmpty()) {
+							getInventory().setItem(i, itemStack);
+							itemEntity.discard();
+							break;
+						}
+					}
+				}
+			}
 		}
 	}
 

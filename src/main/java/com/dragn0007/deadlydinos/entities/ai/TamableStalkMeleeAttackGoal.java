@@ -38,6 +38,8 @@ public class TamableStalkMeleeAttackGoal extends Goal {
       long i = this.mob.level().getGameTime();
       if (i - this.lastCanUseCheck < 20L) {
          return false;
+      } else if (mob.isOrderedToSit() || mob.isInSittingPose()) {
+            return false;
       } else {
          this.lastCanUseCheck = i;
          LivingEntity livingentity = this.mob.getTarget();
@@ -68,6 +70,8 @@ public class TamableStalkMeleeAttackGoal extends Goal {
    public boolean canContinueToUse() {
       LivingEntity targetEntity = this.mob.getTarget();
       if (targetEntity == null) {
+         return false;
+      } else if (mob.isOrderedToSit() || mob.isInSittingPose()) {
          return false;
       } else if (!targetEntity.isAlive()) {
          return false;

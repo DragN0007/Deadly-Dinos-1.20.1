@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -29,6 +30,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 public abstract class AbstractTamableDino extends TamableAnimal {
@@ -36,10 +38,6 @@ public abstract class AbstractTamableDino extends TamableAnimal {
     public AbstractTamableDino(EntityType<? extends TamableAnimal> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
     }
-
-    double x = this.getX() - this.xo;
-    double z = this.getZ() - this.zo;
-    public boolean isMoving = (x * x + z * z) > 0.0001;
 
     public boolean doneStalking = false;
     public boolean isDoneStalking() {
@@ -86,7 +84,6 @@ public abstract class AbstractTamableDino extends TamableAnimal {
         this.eat = eating;
     }
 
-    private static final int RIDE_COOLDOWN = 100;
     private int rideCooldownCounter;
 
     public boolean ridingShoulder = false;
@@ -170,17 +167,38 @@ public abstract class AbstractTamableDino extends TamableAnimal {
                 return InteractionResult.SUCCESS;
             } else {
                 InteractionResult interactionresult = super.mobInteract(player, hand);
-                return interactionresult;
+                if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(player) && !player.isShiftKeyDown()) {
+                    this.setOrderedToSit(!this.isOrderedToSit());
+                    this.jumping = false;
+                    this.navigation.stop();
+                    this.setTarget(null);
+                    return InteractionResult.SUCCESS;
+                } else {
+                    return interactionresult;
+                }
             }
         }
 
         return InteractionResult.sidedSuccess(this.level().isClientSide);
     }
 
+    private boolean orderedToSit;
+    public boolean isOrderedToSit() {
+        return this.orderedToSit;
+    }
+    public void setOrderedToSit(boolean p_21840_) {
+        this.orderedToSit = p_21840_;
+    }
+
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("Wandering", this.getToldToWander());
         tag.putBoolean("Panicking", this.getPanicking());
+        tag.putBoolean("Sitting", this.orderedToSit);
+
+        if (this.getOwnerUUID() != null) {
+            tag.putUUID("Owner", this.getOwnerUUID());
+        }
     }
 
     public void readAdditionalSaveData(CompoundTag tag) {
@@ -192,6 +210,26 @@ public abstract class AbstractTamableDino extends TamableAnimal {
 
         if (tag.contains("Panicking")) {
             this.setPanicking(tag.getBoolean("Panicking"));
+        }
+
+        this.orderedToSit = tag.getBoolean("Sitting");
+        this.setInSittingPose(this.orderedToSit);
+
+        UUID uuid;
+        if (tag.hasUUID("Owner")) {
+            uuid = tag.getUUID("Owner");
+        } else {
+            String s = tag.getString("Owner");
+            uuid = OldUsersConverter.convertMobOwnerIfNecessary(this.getServer(), s);
+        }
+
+        if (uuid != null) {
+            try {
+                this.setOwnerUUID(uuid);
+                this.setTame(true);
+            } catch (Throwable throwable) {
+                this.setTame(false);
+            }
         }
     }
 
@@ -318,6 +356,8 @@ public abstract class AbstractTamableDino extends TamableAnimal {
 
         public boolean canUse() {
             if (isTame()) {
+                return false;
+            } else if (isOrderedToSit() || isInSittingPose()) {
                 return false;
             } else if (isInPowderSnow) {
                 return false;

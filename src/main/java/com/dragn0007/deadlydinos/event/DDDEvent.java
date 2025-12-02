@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.event;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
+import com.dragn0007.deadlydinos.client.TinyInvScreen;
 import com.dragn0007.deadlydinos.client.gui.MountScreen;
 import com.dragn0007.deadlydinos.client.gui.SmallInvScreen;
 import com.dragn0007.deadlydinos.common.gui.DDDMenuTypes;
@@ -66,6 +67,7 @@ public class DDDEvent {
 
         MenuScreens.register(DDDMenuTypes.MOUNT_MENU.get(), MountScreen::new);
         MenuScreens.register(DDDMenuTypes.SMALL_INV_MENU.get(), SmallInvScreen::new);
+        MenuScreens.register(DDDMenuTypes.TINY_INV_MENU.get(), TinyInvScreen::new);
     }
 
     @SubscribeEvent

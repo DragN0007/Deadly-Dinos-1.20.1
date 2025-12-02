@@ -6,7 +6,8 @@
 
   "tooltip.deadlydinos.tamable.tooltip": "This baby is tamable!",
   "tooltip.deadlydinos.not_tamable.tooltip": "This baby is not tamable.",
-
+  "tooltip.deadlydinos.wandering.tooltip": "Your Companion is Wandering",
+  "tooltip.deadlydinos.following.tooltip": "Your Companion is Following",
 
   "item.deadlydinos.acrocanthosaurus_trophy": "Acrocanthosaurus Trophy",
   "item.deadlydinos.acrocanthosaurus_spawn_egg": "Acrocanthosaurus Spawn Egg",
