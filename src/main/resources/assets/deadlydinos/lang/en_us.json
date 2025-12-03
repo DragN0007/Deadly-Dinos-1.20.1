@@ -198,6 +198,8 @@
   "key.deadlydinos.slow_down": "Slow Down - Dino",
 
   "effect.deadlydinos.bleeding": "Bleeding",
+  "effect.deadlydinos.bird_flu": "Avian Influenza H0",
+  "effect.deadlydinos.bug_bite": "Bug Bite",
 
   "config.jade.plugin_deadlydinos.ddd_tooltips": "Display DDD Dinosaur Info",
   "tooltip.deadlydinos.jade.female.tooltip": "Female",
