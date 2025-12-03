@@ -22,6 +22,7 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.DDD_FOOD);
         simpleItem(DDDItems.DDD_BLOCKS);
         simpleItem(DDDItems.DDD);
+        simpleItem(DDDItems.BLEEDING);
 
         handheldItem(DDDItems.ANOMALY_BONE_SWORD);
         handheldItem(DDDItems.ANOMALY_BONE_PICKAXE);
@@ -72,6 +73,11 @@ public class DDDItemModelProvider extends ItemModelProvider {
         advancedItem(DDDItems.FERTILIZED_YUTYRANNUS_EGG, "yutyrannus_egg");
         simpleItem(DDDItems.YUTYRANNUS_EGG);
         simpleItem(DDDItems.YUTYRANNUS_TROPHY);
+
+        advancedItem(DDDItems.OLOROTITAN_SPAWN_EGG, "olorotitan_egg");
+        advancedItem(DDDItems.FERTILIZED_OLOROTITAN_EGG, "olorotitan_egg");
+        simpleItem(DDDItems.OLOROTITAN_EGG);
+        simpleItem(DDDItems.OLOROTITAN_TROPHY);
 
         advancedItem(DDDItems.PARASAUROLOPHUS_SPAWN_EGG, "parasaurolophus_egg");
         advancedItem(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG, "parasaurolophus_egg");

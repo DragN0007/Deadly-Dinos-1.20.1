@@ -5,7 +5,7 @@ import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtByTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.GroundTieGoal;
-import com.dragn0007.deadlydinos.entities.ai.herd.ParasaurolophusFollowHerdLeaderGoal;
+import com.dragn0007.deadlydinos.entities.ai.herd.AbstractMountFollowHerdLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
@@ -52,9 +52,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 
@@ -93,7 +91,7 @@ public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(0, new GroundTieGoal(this));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.addGoal(1, new HurtByTargetGoal(this));
+		this.goalSelector.addGoal(2, new HurtByTargetGoal(this));
 		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
@@ -104,7 +102,7 @@ public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(1, new DinoOwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(3, new SearchForHerbivoreFoodGoal());
 		this.goalSelector.addGoal(3, new RaidGardenGoal(this));
-		this.goalSelector.addGoal(4, new ParasaurolophusFollowHerdLeaderGoal(this));
+		this.goalSelector.addGoal(4, new AbstractMountFollowHerdLeaderGoal(this));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity instanceof Player && this.isBaby()));
@@ -116,74 +114,10 @@ public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isTamed()));
 	}
 
-	public Parasaurolophus leader;
-	public int packSize = 1;
-
-	public int getMaxHerdSize() {
-		return DeadlyDinosCommonConfig.PARASAUROLOPHUS_MAX_HERD_COUNT.get();
-	}
-
-	public boolean hasFollowers() {
-		return this.packSize > 1;
-	}
-
-	public boolean inRangeOfLeader() {
-		return this.distanceToSqr(this.leader) <= 121.0D;
-	}
-
-	public void pathToLeader() {
-		if (this.isFollower()) {
-			this.getNavigation().moveTo(this.leader, 1.0D);
-		}
-
-	}
-
-	public void addFollowers(Stream<? extends Parasaurolophus> p_27534_) {
-		p_27534_.limit((long)(this.getMaxHerdSize() - this.packSize)).filter((mob) -> {
-			return mob != this;
-		}).forEach((mob) -> {
-			mob.startFollowing(this);
-		});
-	}
-
-	public boolean isFollower() {
-		return this.leader != null && this.leader.isAlive();
-	}
-
-	public Parasaurolophus startFollowing(Parasaurolophus mob) {
-		this.leader = mob;
-		mob.addFollower();
-		return mob;
-	}
-
-	public void stopFollowing() {
-		this.leader.removeFollower();
-		this.leader = null;
-	}
-
-	public void addFollower() {
-		++this.packSize;
-	}
-
-	public void removeFollower() {
-		--this.packSize;
-	}
-
-	public boolean canBeFollowed() {
-		return this.hasFollowers() && this.packSize < this.getMaxHerdSize();
-	}
-
 	public int regenHealthCounter = 0;
 
 	public void tick() {
 		super.tick();
-
-		if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
-			List<? extends Parasaurolophus> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (list.size() <= 1) {
-				this.packSize = 1;
-			}
-		}
 
 		if (eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get() && eggLayCooldown >= 100) {
 			eggsLaid = 0;

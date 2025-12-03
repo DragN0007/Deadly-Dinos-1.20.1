@@ -1,12 +1,13 @@
 package com.dragn0007.deadlydinos.entities.velociraptor;
 
 import com.dragn0007.deadlydinos.common.gui.TinyInvMenu;
-import com.dragn0007.deadlydinos.datagen.DDDRecipeMaker;
 import com.dragn0007.deadlydinos.effects.DDDEffects;
-import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import com.dragn0007.deadlydinos.entities.AbstractTamableDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
-import com.dragn0007.deadlydinos.entities.ai.*;
+import com.dragn0007.deadlydinos.entities.ai.DinoFollowOwnerGoal;
+import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
+import com.dragn0007.deadlydinos.entities.ai.DinoSitOnOwnersShoulderGoal;
+import com.dragn0007.deadlydinos.entities.ai.TamableStalkMeleeAttackGoal;
 import com.dragn0007.deadlydinos.entities.ai.herd.VelociraptorFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
@@ -50,7 +51,8 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -178,6 +180,11 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 				this.openInventory(player);
 				return InteractionResult.sidedSuccess(this.level().isClientSide);
 			}
+		}
+
+		if (DeadlyDinosCommonConfig.ALLOW_TAMING.get() && !this.isTame() && this.isFood(itemstack) && this.random.nextInt(5) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+			this.tame(player);
+			return InteractionResult.SUCCESS;
 		}
 
 		if (player.isShiftKeyDown() && !this.isFood(itemstack) && !this.isOrderedToSit() && !this.wasToldToWander() && this.isOwnedBy(player)) {

@@ -62,7 +62,7 @@ public class MegaraptorFollowPackLeaderGoal extends Goal {
          Megaraptor leader = this.mob.leader;
          if (leader != null) {
             double distanceSq = this.mob.distanceToSqr(leader);
-            double minDistanceSq = 2.0D * 2.0D;
+            double minDistanceSq = 4.0D * 4.0D;
 
             if (distanceSq > minDistanceSq) {
                this.mob.pathToLeader();

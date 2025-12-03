@@ -1,0 +1,19 @@
+{
+  "name": "Diseases & Injuries",
+  "icon": "deadlydinos:bleeding",
+  "category": "deadlydinos:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Dinosaurs can carry diseases and, obviously, can injure you and other animals. You'll have to tread carefully to avoid these ailments:$(br2)$(l)Bleeding $(br)Avian Influenza (H0) $(br)Bug Bites"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You can begin $(l)Bleeding$() as a result of being attacked by certain dinosaurs. This can be life-threatening, especially in higher blood loss levels. Sprinting will make it worse, so you should try to stop and rest to wait for the bleeding to stop."
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

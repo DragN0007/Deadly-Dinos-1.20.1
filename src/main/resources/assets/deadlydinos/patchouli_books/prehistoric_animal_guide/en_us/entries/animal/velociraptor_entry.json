@@ -12,7 +12,8 @@
       "item": {
         "item": "deadlydinos:velociraptor_trophy"
       },
-      "text": "The Velociraptor is a small, swift carnivore. It hunts in packs, but can be tamed if found alone with meat.
+      "text": "The Velociraptor is a small, swift carnivore. It hunts in packs, but can be tamed if found solo/ alone with meat. Velociraptors don't have to be babies to be tamed, unlike some other dinosaurs."
+    },
     {
       "type": "patchouli:entity",
       "entity": "deadlydinos:velociraptor{Variant:0}",

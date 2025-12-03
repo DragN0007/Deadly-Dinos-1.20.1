@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-01T01:46:19.8790581	Item Models: deadlydinos
+// 1.20.1	2025-12-03T02:40:53.66437	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -19,6 +19,7 @@ e34c710ad172693e455984f732fe7286b22a1b69 assets/deadlydinos/models/item/anomaly_
 2a08e52590b47afcff650e0062f3b61f907a5d6f assets/deadlydinos/models/item/anomaly_bone_shovel.json
 ad4ff1e00aea2af02816a381e9f36d55b9ca3a1f assets/deadlydinos/models/item/anomaly_bone_sword.json
 859bd274da6bc47cae08ae9957d1b22631ea295b assets/deadlydinos/models/item/anomaly_bone_warhammer.json
+695ca4c1314365b5198bfef5f2dc0beb2155c833 assets/deadlydinos/models/item/bleeding.json
 fca802d503a6fff3d1907c2fcb83cb65b89a7524 assets/deadlydinos/models/item/bone_axe.json
 dd13c1b73e77324659a345737c22c37c57261518 assets/deadlydinos/models/item/bone_dagger.json
 6a1fb45ba29a6a98193ba1f38e8db6779ef8012e assets/deadlydinos/models/item/bone_hoe.json
@@ -55,6 +56,7 @@ f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/eocarcha
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/fertilized_acrocanthosaurus_egg.json
 f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/fertilized_eocarcharia_egg.json
 e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/fertilized_megaraptor_egg.json
+3428ce635d1b6a2655de63d4d03c1b0133a68cfd assets/deadlydinos/models/item/fertilized_olorotitan_egg.json
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/fertilized_parasaurolophus_egg.json
 e15775608220ef59b09ad63a16eb82ca369245bd assets/deadlydinos/models/item/fertilized_triceratops_egg.json
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/fertilized_utahraptor_egg.json
@@ -94,6 +96,9 @@ e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/megarapt
 e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/megaraptor_spawn_egg.json
 41db7e900865e21dde94b8210b67bb366d36ad64 assets/deadlydinos/models/item/megaraptor_trophy.json
 03c86040a7cac72cca03e81c5d6dbe1338617c05 assets/deadlydinos/models/item/mre.json
+3428ce635d1b6a2655de63d4d03c1b0133a68cfd assets/deadlydinos/models/item/olorotitan_egg.json
+3428ce635d1b6a2655de63d4d03c1b0133a68cfd assets/deadlydinos/models/item/olorotitan_spawn_egg.json
+045a043aa33b8620f732c70b66837b50e24cd8a2 assets/deadlydinos/models/item/olorotitan_trophy.json
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/parasaurolophus_egg.json
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/parasaurolophus_spawn_egg.json
 de495c66149fbe39edfbfc4ae1bc378c51fd7583 assets/deadlydinos/models/item/parasaurolophus_trophy.json

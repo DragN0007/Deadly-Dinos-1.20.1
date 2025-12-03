@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Some dinos can be tamed. However, adult dinos cannot be domesticated, so you'll have to obtain a Fertilized Egg to tame the baby instead. $(br2)Some dinos are either too smart, too stupid, or simply too aggressive to be able to be domesticated, regardless of their age."
+      "text": "Some dinos can be tamed. However, most adult dinos cannot be domesticated, so you'll have to obtain a Fertilized Egg to tame the baby instead. $(br2)Some dinos are either too smart, too stupid, or simply too aggressive to be able to be domesticated, regardless of their age."
     },
     {
       "type": "patchouli:spotlight",

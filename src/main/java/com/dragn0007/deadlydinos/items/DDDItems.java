@@ -65,6 +65,13 @@ public class DDDItems {
     public static final RegistryObject<Item> YUTYRANNUS_EGG = ITEMS.register("yutyrannus_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
+    public static final RegistryObject<Item> OLOROTITAN_SPAWN_EGG = ITEMS.register("olorotitan_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.OLOROTITAN, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_OLOROTITAN_EGG = ITEMS.register("fertilized_olorotitan_egg",
+            () -> new FertilizedOlorotitanEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> OLOROTITAN_EGG = ITEMS.register("olorotitan_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
     public static final RegistryObject<Item> PARASAUROLOPHUS_SPAWN_EGG = ITEMS.register("parasaurolophus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.PARASAUROLOPHUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_PARASAUROLOPHUS_EGG = ITEMS.register("fertilized_parasaurolophus_egg",
@@ -482,6 +489,11 @@ public class DDDItems {
 //                    new MobEffectInstance(MobEffects.SATURATION, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.HEAL, 2880, 3, true, false)
 //            ));
+public static final RegistryObject<Item> OLOROTITAN_TROPHY = ITEMS.register("olorotitan_trophy",
+        () -> new TrophyItem(
+                new MobEffectInstance(MobEffects.SATURATION, 2880, 2,true, false),
+                new MobEffectInstance(MobEffects.LUCK, 2880, 3, true, false)
+        ));
 //    public static final RegistryObject<Item> PACHYRTROPHY = ITEMS.register("pachyrtrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.HEAL, 2880, 2,true, false),
@@ -710,6 +722,8 @@ public class DDDItems {
     public static final RegistryObject<Item> DDD_BLOCKS = ITEMS.register("ddd_blocks",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DDD = ITEMS.register("ddd",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BLEEDING = ITEMS.register("bleeding",
             () -> new Item(new Item.Properties()));
 
 

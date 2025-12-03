@@ -2,7 +2,6 @@ package com.dragn0007.deadlydinos.util;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
-import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -65,8 +64,8 @@ public class DDDNetwork {
         public static void handle(ToggleTillerPowerRequest msg, Supplier<NetworkEvent.Context> context) {
             ServerPlayer player = context.get().getSender();
             if(player != null) {
-                if(player.level().getEntity(msg.id) instanceof Triceratops plow) {
-                    plow.cycleMode();
+                if(player.level().getEntity(msg.id) instanceof AbstractDinoMount dinoMount) {
+                    dinoMount.cycleMode();
                 }
             }
         }

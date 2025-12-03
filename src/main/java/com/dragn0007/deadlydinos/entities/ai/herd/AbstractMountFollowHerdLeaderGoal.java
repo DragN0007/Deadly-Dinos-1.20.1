@@ -1,23 +1,23 @@
 package com.dragn0007.deadlydinos.entities.ai.herd;
 
-import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
+import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import com.mojang.datafixers.DataFixUtils;
 import net.minecraft.world.entity.ai.goal.Goal;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-public class TriceratopsFollowHerdLeaderGoal extends Goal {
-   public final Triceratops mob;
+public class AbstractMountFollowHerdLeaderGoal extends Goal {
+   public final AbstractDinoMount mob;
    public int timeToRecalcPath;
    public int nextStartTick;
 
-   public TriceratopsFollowHerdLeaderGoal(Triceratops p_25249_) {
+   public AbstractMountFollowHerdLeaderGoal(AbstractDinoMount p_25249_) {
       this.mob = p_25249_;
       this.nextStartTick = this.nextStartTick(p_25249_);
    }
 
-   public int nextStartTick(Triceratops mob) {
+   public int nextStartTick(AbstractDinoMount mob) {
       return reducedTickDelay(200 + mob.getRandom().nextInt(200) % 20);
    }
 
@@ -31,12 +31,12 @@ public class TriceratopsFollowHerdLeaderGoal extends Goal {
          return false;
       } else {
          this.nextStartTick = this.nextStartTick(this.mob);
-         Predicate<Triceratops> predicate = (follower) -> {
+         Predicate<AbstractDinoMount> predicate = (follower) -> {
             return follower.canBeFollowed() || !follower.isFollower();
          };
-         List<? extends Triceratops> list = this.mob.level().getEntitiesOfClass(this.mob.getClass(), this.mob.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
-         Triceratops Parasaurolophus = DataFixUtils.orElse(list.stream().filter(com.dragn0007.deadlydinos.entities.triceratops.Triceratops::canBeFollowed).findAny(), this.mob);
-         Parasaurolophus.addFollowers(list.stream().filter((mob) -> {
+         List<? extends AbstractDinoMount> list = this.mob.level().getEntitiesOfClass(this.mob.getClass(), this.mob.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), predicate);
+         AbstractDinoMount dinoMount = DataFixUtils.orElse(list.stream().filter(AbstractDinoMount::canBeFollowed).findAny(), this.mob);
+         dinoMount.addFollowers(list.stream().filter((mob) -> {
             return !mob.isFollower();
          }));
          return this.mob.isFollower();
@@ -59,10 +59,10 @@ public class TriceratopsFollowHerdLeaderGoal extends Goal {
       if (--this.timeToRecalcPath <= 0) {
          this.timeToRecalcPath = this.adjustedTickDelay(10);
 
-         Triceratops leader = this.mob.leader;
+         AbstractDinoMount leader = this.mob.leader;
          if (leader != null) {
             double distanceSq = this.mob.distanceToSqr(leader);
-            double minDistanceSq = 3.0D * 3.0D;
+            double minDistanceSq = 5.0D * 5.0D;
 
             if (distanceSq > minDistanceSq) {
                this.mob.pathToLeader();

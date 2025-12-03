@@ -1,7 +1,7 @@
 package com.dragn0007.deadlydinos.client.gui;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
-import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
+import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DeadlyDinos.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class TriceratopsHUD {
+public class HarvesterHUD {
 
     @SubscribeEvent
     public static void onFMLClientSetupEvent(RegisterGuiOverlaysEvent event) {
@@ -21,8 +21,8 @@ public class TriceratopsHUD {
             Minecraft minecraft = Minecraft.getInstance();
             Player player = (Player) minecraft.getCameraEntity();
 
-            if(!minecraft.options.hideGui && player instanceof LocalPlayer && player.getVehicle() instanceof Triceratops plow) {
-                Triceratops.Mode mode = Triceratops.Mode.values()[plow.mode()];
+            if(!minecraft.options.hideGui && player instanceof LocalPlayer && player.getVehicle() instanceof AbstractDinoMount dinoMount) {
+                AbstractDinoMount.Mode mode = AbstractDinoMount.Mode.values()[dinoMount.mode()];
                 ResourceLocation texture = mode.texture;
 
                 int x = (screenWidth / 2) + 92;

@@ -1,6 +1,8 @@
 package com.dragn0007.deadlydinos.entities;
 
+import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.common.gui.MountMenu;
+import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
 import com.dragn0007.deadlydinos.items.custom.DinosaurArmorItem;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
@@ -11,6 +13,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
@@ -54,6 +57,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public abstract class AbstractDinoMount extends AbstractChestedAnimal {
 
@@ -94,6 +98,99 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
     public boolean isOnSnow() {
         BlockState blockState = this.level().getBlockState(this.blockPosition().below());
         return blockState.is(Blocks.SNOW) || blockState.is(Blocks.SNOW_BLOCK) || blockState.is(Blocks.POWDER_SNOW);
+    }
+
+    public AbstractDinoMount leader;
+    public int packSize = 1;
+
+    public int getMaxHerdSize() {
+        return DeadlyDinosCommonConfig.TRICERATOPS_MAX_HERD_COUNT.get();
+    }
+
+    public boolean hasFollowers() {
+        return this.packSize > 1;
+    }
+
+    public boolean inRangeOfLeader() {
+        return this.distanceToSqr(this.leader) <= 121.0D;
+    }
+
+    public void pathToLeader() {
+        if (this.isFollower()) {
+            this.getNavigation().moveTo(this.leader, 1.0D);
+        }
+
+    }
+
+    public void addFollowers(Stream<? extends AbstractDinoMount> p_27534_) {
+        p_27534_.limit((long)(this.getMaxHerdSize() - this.packSize)).filter((mob) -> {
+            return mob != this;
+        }).forEach((mob) -> {
+            mob.startFollowing(this);
+        });
+    }
+
+    public boolean isFollower() {
+        return this.leader != null && this.leader.isAlive();
+    }
+
+    public AbstractDinoMount startFollowing(AbstractDinoMount mob) {
+        this.leader = mob;
+        mob.addFollower();
+        return mob;
+    }
+
+    public void stopFollowing() {
+        this.leader.removeFollower();
+        this.leader = null;
+    }
+
+    public void addFollower() {
+        ++this.packSize;
+    }
+
+    public void removeFollower() {
+        --this.packSize;
+    }
+
+    public boolean canBeFollowed() {
+        return this.hasFollowers() && this.packSize < this.getMaxHerdSize();
+    }
+
+    public static final EntityDataAccessor<Integer> MODE = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.INT);
+
+    public int mode() {
+        return this.entityData.get(MODE);
+    }
+
+    public void cycleMode() {
+        this.entityData.set(MODE, (this.entityData.get(MODE) +1) % 2);
+    }
+
+    public enum Mode {
+        NO(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/nomode.png")),
+        HARVEST(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/harvestmode.png"));
+
+        public final ResourceLocation texture;
+
+        Mode(ResourceLocation texture) {
+            this.texture = texture;
+        }
+
+        public Triceratops.Mode next() {
+            return Triceratops.Mode.values()[(this.ordinal() + 1) % Triceratops.Mode.values().length];
+        }
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
+            List<? extends AbstractDinoMount> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
+            if (list.size() <= 1) {
+                this.packSize = 1;
+            }
+        }
     }
 
     protected void tickRidden(Player player, Vec3 vec3) {
@@ -370,6 +467,7 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
     @Override
     public void defineSynchedData() {
         super.defineSynchedData();
+        this.entityData.define(MODE, 0);
         this.entityData.define(DATA_CARPET_ID, -1);
         this.entityData.define(DATA_ID_CHEST, false);
         this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
@@ -378,6 +476,8 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
     @Override
     public void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
+        compoundTag.putInt("Mode", this.entityData.get(MODE));
+
         if (!this.inventory.getItem(1).isEmpty()) {
             compoundTag.put("ArmorItem", this.inventory.getItem(1).save(new CompoundTag()));
         }
@@ -403,6 +503,8 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
     @Override
     public void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
+        this.entityData.set(MODE, compoundTag.getInt("Mode"));
+
         if(compoundTag.contains("ArmorItem", 10)) {
             ItemStack itemStack = ItemStack.of(compoundTag.getCompound("ArmorItem"));
             if(!itemStack.isEmpty() && this.isArmor(itemStack)) {
