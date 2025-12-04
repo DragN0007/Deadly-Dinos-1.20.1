@@ -1,6 +1,6 @@
 {
   "name": "Parasaurolophus",
-  "icon": "deadlydinos:large_herbivore_skull",
+  "icon": "deadlydinos:parasaurolophus_egg",
   "category": "deadlydinos:animals_category",
   "pages": [
     {
@@ -12,7 +12,7 @@
       "item": {
         "item": "deadlydinos:parasaurolophus_trophy"
       },
-      "text": "The Parasaurolophus is a herd herbivore. They're mostly-peaceful unless attacked, and their babies can be tamed with veggies. They can be ridden with a saddle and chested."
+      "text": "Journal Page by $(l)Unknown Survivor$() $(br2)The Parasaurolophus is an herding herbivore. They're mostly-peaceful unless attacked, and their babies can be tamed with veggies. They can be ridden with a saddle and chested."
     },
     {
       "type": "patchouli:entity",

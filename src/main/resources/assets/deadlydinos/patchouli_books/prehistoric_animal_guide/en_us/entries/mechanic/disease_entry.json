@@ -1,7 +1,7 @@
 {
   "name": "Diseases & Injuries",
   "icon": "deadlydinos:bleeding",
-  "category": "deadlydinos:animals_category",
+  "category": "deadlydinos:mechanics_category",
   "pages": [
     {
       "type": "patchouli:text",
@@ -9,11 +9,15 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You can begin $(l)Bleeding$() as a result of being attacked by certain dinosaurs. This can be life-threatening, especially in higher blood loss levels. Sprinting will make it worse, so you should try to stop and rest to wait for the bleeding to stop."
+      "text": "You can begin $(l)Bleeding$() as a result of being attacked by certain dinosaurs. This can be life-threatening, especially in higher blood loss levels. Sprinting will make it worse, so you should try to stop and rest to wait for the bleeding to stop. $(br2)High Bleeding levels are most often caused by Raptor-Class dinosaurs."
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "You can catch $(l)Avian Influenza H0$() (a prehistoric strain of Bird Flu) by being bitten by certain dinosaurs. It is usually not lethal on it's own, but can weaken survivors and allow for other ailments to easily settle in alongside it. $(br2)Bird Flu is most often caught from smaller carnivores or Raptor-Class dinosaurs."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You can receive $(l)Bug Bites$() from an assortment of prehistoric insects. These often deal no physical damage, but can weaken survivors due to their intense itch!  $(br2)More intense Bug Bites are often dealt by Libanoculex, a large, prehistoric mosquito."
     }
   ]
 }

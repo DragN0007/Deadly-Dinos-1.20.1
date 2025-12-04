@@ -1,6 +1,6 @@
 {
   "name": "Olorotitan",
-  "icon": "deadlydinos:large_herbivore_skull",
+  "icon": "deadlydinos:olorotitan_egg",
   "category": "deadlydinos:animals_category",
   "pages": [
     {
@@ -12,7 +12,7 @@
       "item": {
         "item": "deadlydinos:olorotitan_trophy"
       },
-      "text": "The Olorotitan is a herd herbivore. They're mostly-peaceful unless attacked, and their babies can be tamed with veggies. They can be ridden with a saddle and chested, along with harvest your fruit trees. Press Space while riding your chested Olorotitan to switch into Harvesting Mode if Crop Overhaul is installed."
+      "text": "Journal Page by $(l)Unknown Survivor$() $(br2)The Olorotitan is an herding herbivore. They're mostly-peaceful unless attacked, and their babies can be tamed with veggies. They can be ridden with a saddle and chested, along with harvest your fruit trees. Press Space while riding your chested Olorotitan to switch into Harvesting Mode if Crop Overhaul is installed."
     },
     {
       "type": "patchouli:entity",

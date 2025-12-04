@@ -1,6 +1,6 @@
 {
   "name": "Acrocanthosaurus",
-  "icon": "deadlydinos:large_carnivore_skull",
+  "icon": "deadlydinos:acrocanthosaurus_egg",
   "category": "deadlydinos:animals_category",
   "pages": [
     {
@@ -12,7 +12,7 @@
       "item": {
         "item": "deadlydinos:acrocanthosaurus_trophy"
       },
-      "text": "The Acrocanthosaurus is a large-sized, swift carnivore. Upon hitting 33% health or less, it'll go into a panic mode and gain Speed and Strength."
+      "text": "Journal Page by $(l)Unknown Survivor$() $(br2)The Acrocanthosaurus is a large-sized, swift carnivore. Upon hitting 33% health or less, it'll go into a panic mode and gain Speed and Strength."
     },
     {
       "type": "patchouli:entity",

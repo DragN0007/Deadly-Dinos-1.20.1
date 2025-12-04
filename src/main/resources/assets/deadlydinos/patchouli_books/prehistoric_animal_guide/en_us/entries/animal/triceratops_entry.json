@@ -1,6 +1,6 @@
 {
   "name": "Triceratops",
-  "icon": "deadlydinos:large_herbivore_skull",
+  "icon": "deadlydinos:triceratops_egg",
   "category": "deadlydinos:animals_category",
   "pages": [
     {
@@ -12,7 +12,7 @@
       "item": {
         "item": "deadlydinos:triceratops_trophy"
       },
-      "text": "The Triceratops is a herd herbivore. They're mostly-peaceful unless approached too closely, and their babies can be tamed with veggies. They can be ridden with a saddle and chested, along with harvest your crops. Press Space while riding your chested Triceratops to switch into Harvesting Mode."
+      "text": "Journal Page by $(l)Unknown Survivor$() $(br2)The Triceratops is an herding herbivore. They're mostly-peaceful unless approached too closely, and their babies can be tamed with veggies. They can be ridden with a saddle and chested, along with harvest your crops. Press Space while riding your chested Triceratops to switch into Harvesting Mode."
     },
     {
       "type": "patchouli:entity",

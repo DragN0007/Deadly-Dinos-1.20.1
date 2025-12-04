@@ -1,7 +1,7 @@
 {
   "name": "Anomalies",
   "icon": "deadlydinos:anomaly_acrocanthosaurus_skull",
-  "category": "deadlydinos:animals_category",
+  "category": "deadlydinos:mechanics_category",
   "pages": [
     {
       "type": "patchouli:text",

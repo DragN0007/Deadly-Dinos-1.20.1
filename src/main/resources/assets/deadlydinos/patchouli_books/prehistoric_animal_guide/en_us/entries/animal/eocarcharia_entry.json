@@ -1,6 +1,6 @@
 {
   "name": "Eocarcharia",
-  "icon": "deadlydinos:large_carnivore_skull",
+  "icon": "deadlydinos:eocarcharia_egg",
   "category": "deadlydinos:animals_category",
   "pages": [
     {
@@ -12,7 +12,7 @@
       "item": {
         "item": "deadlydinos:eocarcharia_trophy"
       },
-      "text": "The Eocarcharia is a large, bulky carnivore. $(br2)Eocarcharia babies can be tamed, and domesticated adults can be armored for an extra battle boost. (See \"Domestication\" section.)"
+      "text": "Journal Page by $(l)Unknown Survivor$() $(br2)The Eocarcharia is a large, bulky carnivore. $(br2)Eocarcharia babies can be tamed, and domesticated adults can be armored for an extra battle boost. (See \"Domestication\" section.)"
     },
     {
       "type": "patchouli:entity",

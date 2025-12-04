@@ -1,6 +1,6 @@
 {
   "name": "Yutyrannus",
-  "icon": "deadlydinos:medium_carnivore_skull",
+  "icon": "deadlydinos:yutyrannus_egg",
   "category": "deadlydinos:animals_category",
   "pages": [
     {
@@ -12,7 +12,7 @@
       "item": {
         "item": "deadlydinos:yutyrannus_trophy"
       },
-      "text": "The Yutyrannus is a mid-sized, swift carnivore. It can walk over Powdered Snow and gain a speed buff when walking over it or normal snow. $(br2)Yutyrannus babies can be tamed. (See \"Domestication\" section.)"
+      "text": "Journal Page by $(l)Unknown Survivor$() $(br2)The Yutyrannus is a mid-sized, swift carnivore. It can walk over Powdered Snow and gain a speed buff when walking over it or normal snow. $(br2)Yutyrannus babies can be tamed. (See \"Domestication\" section.)"
     },
     {
       "type": "patchouli:entity",

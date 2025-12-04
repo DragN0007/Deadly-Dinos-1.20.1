@@ -1,7 +1,7 @@
 {
   "name": "Domestication",
   "icon": "minecraft:saddle",
-  "category": "deadlydinos:animals_category",
+  "category": "deadlydinos:mechanics_category",
   "pages": [
     {
       "type": "patchouli:text",
