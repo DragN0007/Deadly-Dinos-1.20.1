@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -40,6 +41,9 @@ public class VelociraptorOnShoulderLayer<T extends Player>
             dummy = new Velociraptor(EntityTypes.VELOCIRAPTOR.get(), player.level());
             if (left) leftDummy = dummy; else rightDummy = dummy;
         }
+        if (EntityType.byString(tag.getString("id")).filter(t -> t == EntityTypes.VELOCIRAPTOR.get()).isEmpty()) {
+            return;
+        }
         dummy.setRidingShoulder(true);
         dummy.readAdditionalSaveData(tag);
         dummy.tickCount = player.tickCount;
@@ -49,14 +53,14 @@ public class VelociraptorOnShoulderLayer<T extends Player>
         poseStack.mulPose(Axis.XP.rotationDegrees(180));
         if (left) {
             if (player.isCrouching()) {
-                poseStack.translate(0.4F, 1F, 0F);
+                poseStack.translate(0.0F, -0.2F, 0.0F);
             }
-            poseStack.translate(0.4F, 0F, 0F);
+            poseStack.translate(0.4F, 0.0F, 0.0F);
         } else {
             if (player.isCrouching()) {
-                poseStack.translate(-0.4F, 1F, 0F);
+                poseStack.translate(0.0F, -0.2F, 0.0F);
             }
-            poseStack.translate(-0.4F, 0F, 0F);
+            poseStack.translate(-0.4F, 0.0F, 0.0F);
         }
         poseStack.scale(1F, 1F, 1F);
         geckoRenderer.render(dummy, 0f, partialTicks, poseStack, buffer, packedLight);

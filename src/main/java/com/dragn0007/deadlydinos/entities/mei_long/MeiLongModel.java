@@ -76,10 +76,10 @@ public class MeiLongModel extends DefaultedEntityGeoModel<MeiLong> {
     }
 
     public enum FemaleVariant {
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/velociraptor/female_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/velociraptor/female_blue.png")),
-        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/velociraptor/female_black.png")),
-        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/velociraptor/female_mahogany.png"));
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_red.png")),
+        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_blue.png")),
+        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_black.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_mahogany.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -91,10 +91,10 @@ public class MeiLongModel extends DefaultedEntityGeoModel<MeiLong> {
     }
 
     public enum MaleVariant {
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/velociraptor/male_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/velociraptor/male_blue.png")),
-        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/velociraptor/male_black.png")),
-        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/velociraptor/male_mahogany.png"));
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_red.png")),
+        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_blue.png")),
+        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_black.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_mahogany.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {
@@ -105,8 +105,8 @@ public class MeiLongModel extends DefaultedEntityGeoModel<MeiLong> {
         }
     }
 
-    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/velociraptor.geo.json");
-    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/velociraptor.animation.json");
+    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/mei_long.geo.json");
+    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/mei_long.animation.json");
 
     @Override
     public ResourceLocation getModelResource(MeiLong object) {

@@ -30,9 +30,6 @@ public class DDDItemModelProvider extends ItemModelProvider {
         handheldItem(DDDItems.ANOMALY_BONE_AXE);
         handheldItem(DDDItems.ANOMALY_BONE_HOE);
         handheldItem(DDDItems.ANOMALY_BONE_DAGGER);
-        handheldItem(DDDItems.ANOMALY_BONE_GREATSWORD);
-        handheldItem(DDDItems.ANOMALY_BONE_BATTLEAXE);
-        handheldItem(DDDItems.ANOMALY_BONE_WARHAMMER);
         handheldItem(DDDItems.BONE_SWORD);
         handheldItem(DDDItems.BONE_PICKAXE);
         handheldItem(DDDItems.BONE_SHOVEL);

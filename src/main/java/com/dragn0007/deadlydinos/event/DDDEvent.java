@@ -14,6 +14,8 @@ import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
 import com.dragn0007.deadlydinos.entities.eocarcharia.EocarchariaRender;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.megaraptor.MegaraptorRender;
+import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
+import com.dragn0007.deadlydinos.entities.mei_long.MeiLongRender;
 import com.dragn0007.deadlydinos.entities.olorotitan.Olorotitan;
 import com.dragn0007.deadlydinos.entities.olorotitan.OlorotitanRender;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.Parasaurolophus;
@@ -53,6 +55,7 @@ public class DDDEvent {
         event.put(EntityTypes.PARASAUROLOPHUS.get(), Parasaurolophus.createAttributes().build());
         event.put(EntityTypes.TRICERATOPS.get(), Triceratops.createAttributes().build());
         event.put(EntityTypes.OLOROTITAN.get(), Olorotitan.createAttributes().build());
+        event.put(EntityTypes.MEI_LONG.get(), MeiLong.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -67,6 +70,7 @@ public class DDDEvent {
         EntityRenderers.register(EntityTypes.PARASAUROLOPHUS.get(), ParasaurolophusRender::new);
         EntityRenderers.register(EntityTypes.TRICERATOPS.get(), TriceratopsRender::new);
         EntityRenderers.register(EntityTypes.OLOROTITAN.get(), OlorotitanRender::new);
+        EntityRenderers.register(EntityTypes.MEI_LONG.get(), MeiLongRender::new);
 
         MenuScreens.register(DDDMenuTypes.MOUNT_MENU.get(), MountScreen::new);
         MenuScreens.register(DDDMenuTypes.SMALL_INV_MENU.get(), SmallInvScreen::new);
@@ -85,5 +89,6 @@ public class DDDEvent {
         event.register(EntityTypes.PARASAUROLOPHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.TRICERATOPS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.OLOROTITAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.MEI_LONG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 }
