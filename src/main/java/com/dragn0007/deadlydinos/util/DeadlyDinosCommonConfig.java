@@ -21,6 +21,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> PARASAUROLOPHUS_MAX_HERD_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> TRICERATOPS_MAX_HERD_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> MEGARAPTOR_MAX_PACK_COUNT;
+    public static final ForgeConfigSpec.ConfigValue<Integer> MEI_LONG_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> VELOCIRAPTOR_MAX_PACK_COUNT;
 
     static {
@@ -71,6 +72,9 @@ public class DeadlyDinosCommonConfig {
 
         MEGARAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Megaraptors that can pack up at once.")
                 .define("Max Megaraptor Pack Count", 2);
+
+        MEI_LONG_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Mei Longs that can pack up at once.")
+                .define("Max Mei Long Pack Count", 4);
 
         UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once.")
                 .define("Max Utahraptor Pack Count", 6);

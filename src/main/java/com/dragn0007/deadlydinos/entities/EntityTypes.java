@@ -4,6 +4,7 @@ import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
+import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
 import com.dragn0007.deadlydinos.entities.olorotitan.Olorotitan;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.Parasaurolophus;
 import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
@@ -47,6 +48,12 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(1.0f,2.0f)
                     .build(new ResourceLocation(MODID,"megaraptor").toString()));
+
+    public static final RegistryObject<EntityType<MeiLong>> MEI_LONG = ENTITY_TYPES.register("mei_long",
+            () -> EntityType.Builder.of(MeiLong::new,
+                            MobCategory.CREATURE)
+                    .sized(0.4f,0.4f)
+                    .build(new ResourceLocation(MODID,"mei_long").toString()));
 
     public static final RegistryObject<EntityType<Utahraptor>> UTAHRAPTOR = ENTITY_TYPES.register("utahraptor",
             () -> EntityType.Builder.of(Utahraptor::new,

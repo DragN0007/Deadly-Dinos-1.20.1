@@ -64,6 +64,7 @@ public class DDDTags {
         public static final TagKey<EntityType<?>> MEDIUM_HERBIVORES = forgeTag("medium_herbivores");
         public static final TagKey<EntityType<?>> SMALL_HERBIVORES = forgeTag("small_herbivores");
         public static final TagKey<EntityType<?>> HERBIVORES = forgeTag("herbivores");
+        public static final TagKey<EntityType<?>> INSECTS = forgeTag("insects");
 
         public static TagKey<EntityType<?>> forgeTag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge", name));

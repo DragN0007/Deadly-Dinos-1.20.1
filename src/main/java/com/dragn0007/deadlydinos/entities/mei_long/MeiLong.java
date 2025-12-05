@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.entities.velociraptor;
+package com.dragn0007.deadlydinos.entities.mei_long;
 
 import com.dragn0007.deadlydinos.common.gui.TinyInvMenu;
 import com.dragn0007.deadlydinos.effects.DDDEffects;
@@ -8,7 +8,7 @@ import com.dragn0007.deadlydinos.entities.ai.DinoFollowOwnerGoal;
 import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
 import com.dragn0007.deadlydinos.entities.ai.DinoSitOnOwnersShoulderGoal;
 import com.dragn0007.deadlydinos.entities.ai.TamableStalkMeleeAttackGoal;
-import com.dragn0007.deadlydinos.entities.ai.herd.VelociraptorFollowPackLeaderGoal;
+import com.dragn0007.deadlydinos.entities.ai.herd.MeiLongFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
@@ -81,9 +81,9 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class Velociraptor extends AbstractTamableDino implements InventoryCarrier, GeoEntity, ContainerListener {
+public class MeiLong extends AbstractTamableDino implements InventoryCarrier, GeoEntity, ContainerListener {
 
-	public Velociraptor(EntityType<? extends Velociraptor> type, Level level) {
+	public MeiLong(EntityType<? extends MeiLong> type, Level level) {
 		super(type, level);
 		this.updateInventory();
 		this.setCanPickUpLoot(true);
@@ -91,10 +91,10 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 10.0D)
-				.add(Attributes.ATTACK_DAMAGE, 2D)
-				.add(Attributes.KNOCKBACK_RESISTANCE, 0.2F)
-				.add(Attributes.MOVEMENT_SPEED, 0.30F)
+				.add(Attributes.MAX_HEALTH, 4.0D)
+				.add(Attributes.ATTACK_DAMAGE, 1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 0.0F)
+				.add(Attributes.MOVEMENT_SPEED, 0.28F)
 				.add(Attributes.FOLLOW_RANGE, 32D);
 	}
 
@@ -122,7 +122,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		this.goalSelector.addGoal(3, new DinoFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 		this.goalSelector.addGoal(3, new TamedSearchForItemsGoal());
 		this.goalSelector.addGoal(3, new DinoPanicGoal(2.0D));
-		this.goalSelector.addGoal(3, new VelociraptorFollowPackLeaderGoal(this));
+		this.goalSelector.addGoal(3, new MeiLongFollowPackLeaderGoal(this));
 		this.goalSelector.addGoal(3, new TamableStalkMeleeAttackGoal(this, 2.0D, true));
 		this.goalSelector.addGoal(3, new DinoSitOnOwnersShoulderGoal(this));
 
@@ -134,18 +134,9 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && !this.hasFollowers() && !this.isFollower() && (entity instanceof AbstractTamableDino && !((AbstractTamableDino) entity).isTame() && !this.isTame())));
-
-		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
-				entity -> entity instanceof Player && !this.isBaby() && (this.isFollower() || this.hasFollowers()) && !this.isTame()));
-
+		
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATOR_PREY) && !this.isBaby() && !this.isTame()));
-
-		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers()) && !this.isTame()));
-
-		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> (entity.getType().is(DDDTags.Entity_Types.SMALL_HERBIVORES)) && !this.isBaby() && !this.isTame()));
+				entity -> (entity.getType().is(DDDTags.Entity_Types.INSECTS)) && !this.isBaby() && !this.isTame()));
 	}
 
 	public boolean doHurtTarget(Entity entity) {
@@ -160,7 +151,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 					i = 15;
 				}
 
-				if (i > 0 && chance <= 75) {
+				if (i > 0 && chance <= 50) {
 					((LivingEntity)entity).addEffect(new MobEffectInstance(DDDEffects.BIRD_FLU.get(), i * 20, 0), this);
 				}
 			}
@@ -182,7 +173,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 			}
 		}
 
-		if (DeadlyDinosCommonConfig.ALLOW_TAMING.get() && !this.isTame() && this.isFood(itemstack) && this.random.nextInt(5) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+		if (DeadlyDinosCommonConfig.ALLOW_TAMING.get() && !this.isTame() && this.isFood(itemstack) && this.random.nextInt(5) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
 			this.tame(player);
 			return InteractionResult.SUCCESS;
 		}
@@ -229,11 +220,11 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		return super.calculateFallDamage(v, v1) - 10;
 	}
 
-	public Velociraptor leader;
+	public MeiLong leader;
 	public int packSize = 1;
 
 	public int getMaxHerdSize() {
-		return DeadlyDinosCommonConfig.VELOCIRAPTOR_MAX_PACK_COUNT.get();
+		return DeadlyDinosCommonConfig.MEI_LONG_MAX_PACK_COUNT.get();
 	}
 
 	public boolean hasFollowers() {
@@ -250,7 +241,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		}
 	}
 
-	public void addFollowers(Stream<? extends Velociraptor> p_27534_) {
+	public void addFollowers(Stream<? extends MeiLong> p_27534_) {
 		p_27534_.limit((long)(this.getMaxHerdSize() - this.packSize)).filter((mob) -> mob != this).forEach((mob) -> {
 			mob.startFollowing(this);
 		});
@@ -260,7 +251,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		return this.leader != null && this.leader.isAlive();
 	}
 
-	public Velociraptor startFollowing(Velociraptor mob) {
+	public MeiLong startFollowing(MeiLong mob) {
 		this.leader = mob;
 		mob.addFollower();
 		return mob;
@@ -289,7 +280,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		return new WallClimberNavigation(this, level);
 	}
 
-	private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.BYTE);
+	private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(MeiLong.class, EntityDataSerializers.BYTE);
 
 	public boolean isClimbing() {
 		return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
@@ -317,7 +308,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		}
 
 		if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
-			List<? extends Velociraptor> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
+			List<? extends MeiLong> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
 			if (list.size() <= 1) {
 				this.packSize = 1;
 			}
@@ -391,7 +382,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		}
 
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.VELOCIRAPTOR_EGG.get());
+			this.spawnAtLocation(DDDItems.MEI_LONG_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
@@ -484,7 +475,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		return this.geoCache;
 	}
 
-	public static final Predicate<Mob> NOT_RAPTOR_PREDICATE = mob -> mob != null && Velociraptor.MOB_SOUND_MAP.containsKey(mob.getType());
+	public static final Predicate<Mob> NOT_RAPTOR_PREDICATE = mob -> mob != null && MeiLong.MOB_SOUND_MAP.containsKey(mob.getType());
 
 	static final Map<EntityType<?>, SoundEvent> MOB_SOUND_MAP = Util.make(Maps.newHashMap(), (map) -> {
 		map.put(EntityType.COW, SoundEvents.COW_AMBIENT);
@@ -598,14 +589,14 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 	// Generates the base texture
 	public ResourceLocation getFemaleTextureLocation() {
-		return VelociraptorModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return MeiLongModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
 	public ResourceLocation getMaleTextureLocation() {
-		return VelociraptorModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return MeiLongModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
-	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(MeiLong.class, EntityDataSerializers.INT);
 
 	public int getVariant() {
 		return this.entityData.get(VARIANT);
@@ -682,9 +673,9 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		setGender(random.nextInt(Gender.values().length));
 
 		if (this.isFemale()) {
-			setVariant(random.nextInt(VelociraptorModel.FemaleVariant.values().length));
+			setVariant(random.nextInt(MeiLongModel.FemaleVariant.values().length));
 		} else if (this.isMale()) {
-			setVariant(random.nextInt(VelociraptorModel.MaleVariant.values().length));
+			setVariant(random.nextInt(MeiLongModel.MaleVariant.values().length));
 		}
 
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
@@ -697,13 +688,13 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 	public boolean canMate(Animal animal) {
 		if (animal == this) {
 			return false;
-		} else if (!(animal instanceof Velociraptor)) {
+		} else if (!(animal instanceof MeiLong)) {
 			return false;
 		} else {
 			if (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-				return this.canParent() && ((Velociraptor) animal).canParent();
+				return this.canParent() && ((MeiLong) animal).canParent();
 			} else {
-				Velociraptor partner = (Velociraptor) animal;
+				MeiLong partner = (MeiLong) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
@@ -736,7 +727,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		}
 
 		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_VELOCIRAPTOR_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_MEI_LONG_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
@@ -759,12 +750,12 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_VELOCIRAPTOR_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_MEI_LONG_EGG.get());
 		}
 
 		int trophyChance = random.nextInt(100);
 		if (trophyChance <= 8) {
-			this.spawnAtLocation(DDDItems.VELOCIRAPTOR_TROPHY.get());
+			this.spawnAtLocation(DDDItems.MEI_LONG_TROPHY.get());
 		}
 	}
 
@@ -849,7 +840,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 	public class TamedSearchForItemsGoal extends Goal {
 
 		public TamedSearchForItemsGoal() {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+			this.setFlags(EnumSet.of(Flag.MOVE));
 		}
 
 		public boolean canUse() {
@@ -857,11 +848,11 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 				return false;
 			} else if (isInventoryFull()) {
 				return false;
-			} else if (Velociraptor.this.getTarget() == null && Velociraptor.this.getLastHurtByMob() == null) {
-				if (Velociraptor.this.getRandom().nextInt(reducedTickDelay(10)) != 0) {
+			} else if (MeiLong.this.getTarget() == null && MeiLong.this.getLastHurtByMob() == null) {
+				if (MeiLong.this.getRandom().nextInt(reducedTickDelay(10)) != 0) {
 					return false;
 				} else {
-					List<ItemEntity> list = Velociraptor.this.level().getEntitiesOfClass(ItemEntity.class, Velociraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+					List<ItemEntity> list = MeiLong.this.level().getEntitiesOfClass(ItemEntity.class, MeiLong.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), MeiLong.ANIMAL_LOOT);
 					return !list.isEmpty();
 				}
 			} else {
@@ -871,7 +862,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 		@Override
 		public void tick() {
-			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), MeiLong.ANIMAL_LOOT);
 
 			if (!itemEntities.isEmpty() && !isInventoryFull()) {
 				ItemEntity itemEntity = itemEntities.get(0);
@@ -885,7 +876,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 		@Override
 		public void start() {
-			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), MeiLong.ANIMAL_LOOT);
 			if (!itemEntities.isEmpty()) {
 				getNavigation().moveTo(itemEntities.get(0), 1.2D);
 			}

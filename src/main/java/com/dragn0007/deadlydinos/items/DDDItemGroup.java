@@ -28,6 +28,9 @@ public class DDDItemGroup {
                         output.accept(DDDItems.MEGARAPTOR_SPAWN_EGG.get());
                         output.accept(DDDItems.MEGARAPTOR_EGG.get());
                         output.accept(DDDItems.FERTILIZED_MEGARAPTOR_EGG.get());
+                        output.accept(DDDItems.MEI_LONG_SPAWN_EGG.get());
+                        output.accept(DDDItems.MEI_LONG_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_MEI_LONG_EGG.get());
                         output.accept(DDDItems.UTAHRAPTOR_SPAWN_EGG.get());
                         output.accept(DDDItems.UTAHRAPTOR_EGG.get());
                         output.accept(DDDItems.FERTILIZED_UTAHRAPTOR_EGG.get());
@@ -58,6 +61,7 @@ public class DDDItemGroup {
                         output.accept(DDDItems.ACROCANTHOSAURUS_TROPHY.get());
                         output.accept(DDDItems.EOCARCHARIA_TROPHY.get());
                         output.accept(DDDItems.MEGARAPTOR_TROPHY.get());
+                        output.accept(DDDItems.MEI_LONG_TROPHY.get());
                         output.accept(DDDItems.UTAHRAPTOR_TROPHY.get());
                         output.accept(DDDItems.VELOCIRAPTOR_TROPHY.get());
                         output.accept(DDDItems.YUTYRANNUS_TROPHY.get());

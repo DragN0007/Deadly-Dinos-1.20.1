@@ -44,6 +44,13 @@ public class DDDItems {
     public static final RegistryObject<Item> MEGARAPTOR_EGG = ITEMS.register("megaraptor_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
+    public static final RegistryObject<Item> MEI_LONG_SPAWN_EGG = ITEMS.register("mei_long_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.MEI_LONG, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_MEI_LONG_EGG = ITEMS.register("fertilized_mei_long_egg",
+            () -> new FertilizedMeiLongEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> MEI_LONG_EGG = ITEMS.register("mei_long_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
     public static final RegistryObject<Item> UTAHRAPTOR_SPAWN_EGG = ITEMS.register("utahraptor_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.UTAHRAPTOR, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_UTAHRAPTOR_EGG = ITEMS.register("fertilized_utahraptor_egg",
@@ -411,6 +418,10 @@ public class DDDItems {
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.INVISIBILITY, 2880, 5,true, false),
                     new MobEffectInstance(MobEffects.NIGHT_VISION, 2880, 3, true, false)
+            ));
+    public static final RegistryObject<Item> MEI_LONG_TROPHY = ITEMS.register("mei_long_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.LUCK, 2880, 5,true, false)
             ));
 //    public static final RegistryObject<Item> REXTROPHY = ITEMS.register("rextrophy",
 //            () -> new TrophyItem(

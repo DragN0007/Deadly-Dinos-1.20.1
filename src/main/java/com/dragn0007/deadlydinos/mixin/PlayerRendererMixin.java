@@ -1,5 +1,6 @@
 package com.dragn0007.deadlydinos.mixin;
 
+import com.dragn0007.deadlydinos.entities.mei_long.MeiLongOnShoulderLayer;
 import com.dragn0007.deadlydinos.entities.velociraptor.VelociraptorOnShoulderLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
@@ -15,5 +16,6 @@ public abstract class PlayerRendererMixin {
     private void addCustomShoulderLayer(EntityRendererProvider.Context ctx, boolean slim, CallbackInfo ci) {
         PlayerRenderer self = (PlayerRenderer) (Object) this;
         self.addLayer(new VelociraptorOnShoulderLayer<>(self, ctx));
+        self.addLayer(new MeiLongOnShoulderLayer<>(self, ctx));
     }
 }

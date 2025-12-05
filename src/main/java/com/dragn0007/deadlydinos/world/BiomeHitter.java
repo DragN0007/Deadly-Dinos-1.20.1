@@ -26,6 +26,7 @@ public class BiomeHitter {
     public static final ResourceKey<BiomeModifier> TRICERATOPS_PLAINS = registerKey("triceratops_plains");
     public static final ResourceKey<BiomeModifier> OLOROTITAN_WET = registerKey("olorotitan_wet");
     public static final ResourceKey<BiomeModifier> VELOCIRAPTOR_DENSE = registerKey("velociraptor_dense");
+    public static final ResourceKey<BiomeModifier> MEI_LONG_FOREST = registerKey("mei_long_forest");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -51,6 +52,14 @@ public class BiomeHitter {
                 biomes.getOrThrow(BiomeTags.IS_FOREST),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.MEGARAPTOR.get(),
                         3,
+                        1,
+                        4
+                ))));
+
+        context.register(MEI_LONG_FOREST, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_FOREST),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.MEI_LONG.get(),
+                        5,
                         1,
                         4
                 ))));

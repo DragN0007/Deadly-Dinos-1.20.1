@@ -1,0 +1,6 @@
+{
+	"parent": "deadlydinos:item/parent/greatsword",
+	"textures": {
+		"greatsword": "deadlydinos:item/anomaly_bone_greatsword"
+	}
+}
