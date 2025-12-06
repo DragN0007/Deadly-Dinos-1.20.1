@@ -2,8 +2,8 @@ package com.dragn0007.deadlydinos.items.eggs;
 
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
-import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
-import com.dragn0007.deadlydinos.entities.utahraptor.UtahraptorModel;
+import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
+import com.dragn0007.deadlydinos.entities.yutyrannus.YutyrannusModel;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -17,16 +17,16 @@ import net.minecraft.world.phys.HitResult;
 
 import java.util.Random;
 
-public class ThrownMeiLongEgg extends ThrowableItemProjectile {
-   public ThrownMeiLongEgg(EntityType<? extends ThrownMeiLongEgg> p_37473_, Level p_37474_) {
+public class ThrownCeratosaurusEgg extends ThrowableItemProjectile {
+   public ThrownCeratosaurusEgg(EntityType<? extends ThrownCeratosaurusEgg> p_37473_, Level p_37474_) {
       super(p_37473_, p_37474_);
    }
 
-   public ThrownMeiLongEgg(Level p_37481_, LivingEntity p_37482_) {
+   public ThrownCeratosaurusEgg(Level p_37481_, LivingEntity p_37482_) {
       super(EntityType.EGG, p_37482_, p_37481_);
    }
 
-   public ThrownMeiLongEgg(Level p_37476_, double p_37477_, double p_37478_, double p_37479_) {
+   public ThrownCeratosaurusEgg(Level p_37476_, double p_37477_, double p_37478_, double p_37479_) {
       super(EntityType.EGG, p_37477_, p_37478_, p_37479_, p_37476_);
    }
 
@@ -56,8 +56,8 @@ public class ThrownMeiLongEgg extends ThrowableItemProjectile {
          }
 
          for (int j = 0; j < i; ++j) {
-            if (getItem().is(DDDItems.FERTILIZED_MEI_LONG_EGG.get())) {
-               MeiLong dino = EntityTypes.MEI_LONG.get().create(this.level());
+            if (getItem().is(DDDItems.FERTILIZED_CERATOSAURUS_EGG.get())) {
+               Ceratosaurus dino = EntityTypes.CERATOSAURUS.get().create(this.level());
                dino.setAge(-24000);
                dino.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
 
@@ -66,9 +66,9 @@ public class ThrownMeiLongEgg extends ThrowableItemProjectile {
                dino.setGender(random.nextInt(AbstractDino.Gender.values().length));
 
                if (dino.isFemale()) {
-                  dino.setVariant(random.nextInt(UtahraptorModel.FemaleVariant.values().length));
+                  dino.setVariant(random.nextInt(YutyrannusModel.FemaleVariant.values().length));
                } else if (dino.isMale()) {
-                  dino.setVariant(random.nextInt(UtahraptorModel.MaleVariant.values().length));
+                  dino.setVariant(random.nextInt(YutyrannusModel.MaleVariant.values().length));
                } else {
                   dino.setVariant(0);
                }
@@ -83,6 +83,6 @@ public class ThrownMeiLongEgg extends ThrowableItemProjectile {
    }
 
    public Item getDefaultItem() {
-      return DDDItems.FERTILIZED_UTAHRAPTOR_EGG.get();
+      return DDDItems.FERTILIZED_YUTYRANNUS_EGG.get();
    }
 }

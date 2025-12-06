@@ -22,6 +22,9 @@ public class DDDItemGroup {
                         output.accept(DDDItems.ACROCANTHOSAURUS_SPAWN_EGG.get());
                         output.accept(DDDItems.ACROCANTHOSAURUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get());
+                        output.accept(DDDItems.CERATOSAURUS_SPAWN_EGG.get());
+                        output.accept(DDDItems.CERATOSAURUS_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_CERATOSAURUS_EGG.get());
                         output.accept(DDDItems.EOCARCHARIA_SPAWN_EGG.get());
                         output.accept(DDDItems.EOCARCHARIA_EGG.get());
                         output.accept(DDDItems.FERTILIZED_EOCARCHARIA_EGG.get());

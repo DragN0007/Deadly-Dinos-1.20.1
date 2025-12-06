@@ -30,6 +30,13 @@ public class DDDItems {
     public static final RegistryObject<Item> ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG = ITEMS.register("anomaly_acrocanthosaurus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.ANOMALOUS_ACROCANTHOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> CERATOSAURUS_SPAWN_EGG = ITEMS.register("ceratosaurus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.CERATOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_CERATOSAURUS_EGG = ITEMS.register("fertilized_ceratosaurus_egg",
+            () -> new FertilizedCeratosaurusEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> CERATOSAURUS_EGG = ITEMS.register("ceratosaurus_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
     public static final RegistryObject<Item> EOCARCHARIA_SPAWN_EGG = ITEMS.register("eocarcharia_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.EOCARCHARIA, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_EOCARCHARIA_EGG = ITEMS.register("fertilized_eocarcharia_egg",
@@ -358,11 +365,11 @@ public class DDDItems {
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
 //            ));
-//    public static final RegistryObject<Item> CERATOTROPHY = ITEMS.register("ceratotrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
-//                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 3, true, false)
-//            ));
+    public static final RegistryObject<Item> CERATOSAURUS_TROPHY = ITEMS.register("ceratosaurus_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 5,true, false),
+                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 3, true, false)
+            ));
 //    public static final RegistryObject<Item> COMPYTROPHY = ITEMS.register("compytrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.SATURATION, 2880, 5,true, false),

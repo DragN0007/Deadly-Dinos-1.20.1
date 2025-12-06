@@ -46,6 +46,11 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.ACROCANTHOSAURUS_EGG);
         simpleItem(DDDItems.ACROCANTHOSAURUS_TROPHY);
 
+        advancedItem(DDDItems.CERATOSAURUS_SPAWN_EGG, "ceratosaurus_egg");
+        advancedItem(DDDItems.FERTILIZED_CERATOSAURUS_EGG, "ceratosaurus_egg");
+        simpleItem(DDDItems.CERATOSAURUS_EGG);
+        simpleItem(DDDItems.CERATOSAURUS_TROPHY);
+
         advancedItem(DDDItems.EOCARCHARIA_SPAWN_EGG, "eocarcharia_egg");
         advancedItem(DDDItems.FERTILIZED_EOCARCHARIA_EGG, "eocarcharia_egg");
         simpleItem(DDDItems.EOCARCHARIA_EGG);

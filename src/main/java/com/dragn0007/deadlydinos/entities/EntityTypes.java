@@ -2,6 +2,7 @@ package com.dragn0007.deadlydinos.entities;
 
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
+import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
@@ -36,6 +37,12 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(4f,4f)
                     .build(new ResourceLocation(MODID,"anomaly_acrocanthosaurus").toString()));
+
+    public static final RegistryObject<EntityType<Ceratosaurus>> CERATOSAURUS = ENTITY_TYPES.register("ceratosaurus",
+            () -> EntityType.Builder.of(Ceratosaurus::new,
+                            MobCategory.CREATURE)
+                    .sized(2.2f,2.2f)
+                    .build(new ResourceLocation(MODID,"ceratosaurus").toString()));
 
     public static final RegistryObject<EntityType<Eocarcharia>> EOCARCHARIA = ENTITY_TYPES.register("eocarcharia",
             () -> EntityType.Builder.of(Eocarcharia::new,

@@ -22,7 +22,11 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        buildCommonRecipes(pFinishedRecipeConsumer);
+        buildModdedRecipes(pFinishedRecipeConsumer);
+    }
 
+    public void buildCommonRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.REINFORCED_COBBLESTONE.get())
                 .define('A', Items.IRON_NUGGET)
                 .define('B', Items.COBBLESTONE)
@@ -519,4 +523,16 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                         .of(DDDTags.Items.MEATS).build()))
                 .save(pFinishedRecipeConsumer);
     }
+
+    public void buildModdedRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+//        ConditionalRecipe.builder()
+//                .addCondition(new ModLoadedCondition("fossil"))
+//                .addRecipe(
+//                        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDItems.TRICERATOPS_EGG.get())
+//                                .requires(ModItemTags.ALL_EGGS)
+//                                ::save).build
+//                        (pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, DDDItems.TRICERATOPS_EGG.get().toString()));
+    }
+
+
 }

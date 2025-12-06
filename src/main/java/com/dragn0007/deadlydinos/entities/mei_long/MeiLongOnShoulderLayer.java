@@ -14,8 +14,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Optional;
-
 @OnlyIn(Dist.CLIENT)
 public class MeiLongOnShoulderLayer<T extends Player>
         extends RenderLayer<T, PlayerModel<T>> {
