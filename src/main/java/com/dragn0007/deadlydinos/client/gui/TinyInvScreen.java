@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.client;
+package com.dragn0007.deadlydinos.client.gui;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.common.gui.TinyInvMenu;

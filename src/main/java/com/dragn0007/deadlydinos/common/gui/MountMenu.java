@@ -1,6 +1,7 @@
 package com.dragn0007.deadlydinos.common.gui;
 
 import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
+import com.dragn0007.deadlydinos.items.custom.DinosaurArmorItem;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.ItemTags;
@@ -44,9 +45,9 @@ public class MountMenu extends AbstractContainerMenu {
         this.addSlot(new Slot(this.container, oMountSlots++, 8, 36) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
-                if (itemStack.getItem() instanceof HorseArmorItem) {
+                if (itemStack.getItem() instanceof DinosaurArmorItem) {
                     return !this.hasItem() && MountMenu.this.mount.canWearArmor();
-                } else if (itemStack.is(ItemTags.WOOL_CARPETS)) {
+                } else if (itemStack.is(DDDTags.Items.DINO_CARPETS)) {
                     return !this.hasItem() && MountMenu.this.mount.canWearCarpet();
                 } else if (itemStack.is(DDDTags.Items.BEDROLL_BEDS)) {
                     return !this.hasItem() && MountMenu.this.mount.canHoldBedroll();
@@ -56,7 +57,7 @@ public class MountMenu extends AbstractContainerMenu {
 
             @Override
             public boolean isActive() {
-                return MountMenu.this.mount.canWearArmor() || MountMenu.this.mount.canHoldBedroll();
+                return MountMenu.this.mount.canWearArmor() || MountMenu.this.mount.canHoldBedroll() || MountMenu.this.mount.canWearCarpet();
             }
         });
 

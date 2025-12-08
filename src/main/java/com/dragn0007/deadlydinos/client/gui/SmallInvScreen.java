@@ -54,8 +54,9 @@ public class SmallInvScreen extends AbstractContainerScreen<SmallInvMenu> {
         if (this.mount.canWearCarpet()) {
             if (!this.mount.canWearArmor()) {
                 graphics.blit(MOUNT_INVENTORY_LOCATION,x + 7, y + 35, 36, this.imageHeight + 54, 18, 18);
+            } else {
+                graphics.blit(MOUNT_INVENTORY_LOCATION, x + 7, y + 53, 36, this.imageHeight + 54, 18, 18);
             }
-            graphics.blit(MOUNT_INVENTORY_LOCATION,x + 7, y + 53, 36, this.imageHeight + 54, 18, 18);
         }
 
         if (this.mount.isFemale()) {

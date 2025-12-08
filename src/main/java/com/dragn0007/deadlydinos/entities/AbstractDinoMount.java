@@ -463,12 +463,19 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
     }
 
     public static final EntityDataAccessor<Boolean> DATA_ID_CHEST = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.BOOLEAN);
+    public ItemStack getDecorItem() {
+        return this.entityData.get(DECOR_ITEM);
+    }
+    public void setDecorItem(ItemStack decorItem) {
+        this.entityData.set(DECOR_ITEM, decorItem);
+    }
+    public static final EntityDataAccessor<ItemStack> DECOR_ITEM = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.ITEM_STACK);
 
     @Override
     public void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(MODE, 0);
-        this.entityData.define(DATA_CARPET_ID, -1);
+        this.entityData.define(DECOR_ITEM, ItemStack.EMPTY);
         this.entityData.define(DATA_ID_CHEST, false);
         this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
     }
@@ -512,8 +519,10 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
             }
         }
 
-        if (compoundTag.contains("DecorItem", 10)) {
-            this.inventory.setItem(1, ItemStack.of(compoundTag.getCompound("DecorItem")));
+        if(compoundTag.contains("DecorItem")) {
+            ItemStack decorItem = ItemStack.of(compoundTag.getCompound("DecorItem"));
+            this.setDecorItem(decorItem);
+            this.inventory.setItem(this.decorSlot(), decorItem);
         }
 
         if (compoundTag.contains("SaddleItem", 10)) {
@@ -604,26 +613,22 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
        super.updateContainerEquipment();
        this.setArmorEquipment(this.inventory.getItem(1));
        this.setDropChance(EquipmentSlot.CHEST, 0f);
+       this.setDecorItem(this.inventory.getItem(this.decorSlot()));
         if (!this.level().isClientSide) {
             super.updateContainerEquipment();
-            this.setCarpet(getDyeColor(this.inventory.getItem(1)));
         }
     }
 
-    public void setCarpet(@Nullable DyeColor p_30772_) {
-        this.entityData.set(DATA_CARPET_ID, p_30772_ == null ? -1 : p_30772_.getId());
+    public int saddleSlot() {
+        return 0;
     }
 
-    @Nullable
-    public static DyeColor getDyeColor(ItemStack p_30836_) {
-        Block block = Block.byItem(p_30836_.getItem());
-        return block instanceof WoolCarpetBlock ? ((WoolCarpetBlock)block).getColor() : null;
+    public int armorSlot() {
+        return 1;
     }
 
-    @Nullable
-    public DyeColor getCarpet() {
-        int i = this.entityData.get(DATA_CARPET_ID);
-        return i == -1 ? null : DyeColor.byId(i);
+    public int decorSlot() {
+        return 1;
     }
 
     @Override

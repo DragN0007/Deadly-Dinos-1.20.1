@@ -79,6 +79,13 @@ public class DDDItems {
     public static final RegistryObject<Item> YUTYRANNUS_EGG = ITEMS.register("yutyrannus_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
+    public static final RegistryObject<Item> GRYPOSAURUS_SPAWN_EGG = ITEMS.register("gryposaurus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.GRYPOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_GRYPOSAURUS_EGG = ITEMS.register("fertilized_gryposaurus_egg",
+            () -> new FertilizedGryposaurusEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> GRYPOSAURUS_EGG = ITEMS.register("gryposaurus_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
     public static final RegistryObject<Item> OLOROTITAN_SPAWN_EGG = ITEMS.register("olorotitan_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.OLOROTITAN, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_OLOROTITAN_EGG = ITEMS.register("fertilized_olorotitan_egg",
@@ -502,11 +509,11 @@ public class DDDItems {
 //                    new MobEffectInstance(MobEffects.JUMP, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<Item> GRYPOTROPHY = ITEMS.register("grypotrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.SATURATION, 2880, 2,true, false),
-//                    new MobEffectInstance(MobEffects.HEAL, 2880, 3, true, false)
-//            ));
+    public static final RegistryObject<Item> GRYPOSAURUS_TROPHY = ITEMS.register("gryposaurus_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.SATURATION, 2880, 2,true, false),
+                    new MobEffectInstance(MobEffects.HEAL, 2880, 3, true, false)
+            ));
 public static final RegistryObject<Item> OLOROTITAN_TROPHY = ITEMS.register("olorotitan_trophy",
         () -> new TrophyItem(
                 new MobEffectInstance(MobEffects.SATURATION, 2880, 2,true, false),

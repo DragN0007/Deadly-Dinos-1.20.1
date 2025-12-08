@@ -4,6 +4,7 @@ import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
+import com.dragn0007.deadlydinos.entities.gryposaurus.Gryposaurus;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
 import com.dragn0007.deadlydinos.entities.olorotitan.Olorotitan;
@@ -82,6 +83,12 @@ public class EntityTypes {
 
 
     //Herbivores
+    public static final RegistryObject<EntityType<Gryposaurus>> GRYPOSAURUS = ENTITY_TYPES.register("gryposaurus",
+            () -> EntityType.Builder.of(Gryposaurus::new,
+                            MobCategory.CREATURE)
+                    .sized(2f,3.5f)
+                    .build(new ResourceLocation(MODID,"gryposaurus").toString()));
+
     public static final RegistryObject<EntityType<Olorotitan>> OLOROTITAN = ENTITY_TYPES.register("olorotitan",
             () -> EntityType.Builder.of(Olorotitan::new,
                             MobCategory.CREATURE)

@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.entities.triceratops;
+package com.dragn0007.deadlydinos.entities.gryposaurus;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import net.minecraft.resources.ResourceLocation;
@@ -9,14 +9,14 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
+public class GryposaurusModel extends DefaultedEntityGeoModel<Gryposaurus> {
 
-    public TriceratopsModel() {
-        super(new ResourceLocation(DeadlyDinos.MODID, "triceratops"), true);
+    public GryposaurusModel() {
+        super(new ResourceLocation(DeadlyDinos.MODID, "gryposaurus"), true);
     }
 
     @Override
-    public void setCustomAnimations(Triceratops animatable, long instanceId, AnimationState<Triceratops> animationState) {
+    public void setCustomAnimations(Gryposaurus animatable, long instanceId, AnimationState<Gryposaurus> animationState) {
 
         double x = animatable.getX() - animatable.xo;
         double z = animatable.getZ() - animatable.zo;
@@ -68,10 +68,10 @@ public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
 
 
     public enum FemaleVariant {
-        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/female_brown.png")),
-        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/female_mahogany.png")),
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/female_red.png")),
-        RUST(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/female_rust.png"));
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/gryposaurus/female_brown.png")),
+        LILAC(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/gryposaurus/female_lilac.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/gryposaurus/female_mahogany.png")),
+        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/gryposaurus/female_purple.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -83,10 +83,10 @@ public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
     }
 
     public enum MaleVariant {
-        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/male_brown.png")),
-        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/male_mahogany.png")),
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/male_red.png")),
-        RUST(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/triceratops/male_rust.png"));
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/gryposaurus/male_brown.png")),
+        LILAC(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/gryposaurus/male_lilac.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/gryposaurus/male_mahogany.png")),
+        PURPLE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/gryposaurus/male_purple.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {
@@ -97,16 +97,16 @@ public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
         }
     }
 
-    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/triceratops.geo.json");
-    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/triceratops.animation.json");
+    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/gryposaurus.geo.json");
+    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/gryposaurus.animation.json");
 
     @Override
-    public ResourceLocation getModelResource(Triceratops object) {
+    public ResourceLocation getModelResource(Gryposaurus object) {
         return MODEL;
     }
 
     @Override
-    public ResourceLocation getTextureResource(Triceratops object) {
+    public ResourceLocation getTextureResource(Gryposaurus object) {
         if (object.isFemale()) {
             return object.getFemaleTextureLocation();
         } else if (object.isMale()) {
@@ -117,7 +117,7 @@ public class TriceratopsModel extends DefaultedEntityGeoModel<Triceratops> {
     }
 
     @Override
-    public ResourceLocation getAnimationResource(Triceratops animatable) {
+    public ResourceLocation getAnimationResource(Gryposaurus animatable) {
         return ANIMATION;
     }
 }

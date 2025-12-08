@@ -1,7 +1,7 @@
 package com.dragn0007.deadlydinos.event;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
-import com.dragn0007.deadlydinos.client.TinyInvScreen;
+import com.dragn0007.deadlydinos.client.gui.TinyInvScreen;
 import com.dragn0007.deadlydinos.client.gui.MountScreen;
 import com.dragn0007.deadlydinos.client.gui.SmallInvScreen;
 import com.dragn0007.deadlydinos.common.gui.DDDMenuTypes;
@@ -14,6 +14,8 @@ import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
 import com.dragn0007.deadlydinos.entities.ceratosaurus.CeratosaurusRender;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
 import com.dragn0007.deadlydinos.entities.eocarcharia.EocarchariaRender;
+import com.dragn0007.deadlydinos.entities.gryposaurus.Gryposaurus;
+import com.dragn0007.deadlydinos.entities.gryposaurus.GryposaurusRender;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.megaraptor.MegaraptorRender;
 import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
@@ -59,6 +61,7 @@ public class DDDEvent {
         event.put(EntityTypes.OLOROTITAN.get(), Olorotitan.createAttributes().build());
         event.put(EntityTypes.MEI_LONG.get(), MeiLong.createAttributes().build());
         event.put(EntityTypes.CERATOSAURUS.get(), Ceratosaurus.createAttributes().build());
+        event.put(EntityTypes.GRYPOSAURUS.get(), Gryposaurus.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -75,6 +78,7 @@ public class DDDEvent {
         EntityRenderers.register(EntityTypes.OLOROTITAN.get(), OlorotitanRender::new);
         EntityRenderers.register(EntityTypes.MEI_LONG.get(), MeiLongRender::new);
         EntityRenderers.register(EntityTypes.CERATOSAURUS.get(), CeratosaurusRender::new);
+        EntityRenderers.register(EntityTypes.GRYPOSAURUS.get(), GryposaurusRender::new);
 
         MenuScreens.register(DDDMenuTypes.MOUNT_MENU.get(), MountScreen::new);
         MenuScreens.register(DDDMenuTypes.SMALL_INV_MENU.get(), SmallInvScreen::new);
@@ -95,5 +99,6 @@ public class DDDEvent {
         event.register(EntityTypes.OLOROTITAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.MEI_LONG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.CERATOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.GRYPOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 }
