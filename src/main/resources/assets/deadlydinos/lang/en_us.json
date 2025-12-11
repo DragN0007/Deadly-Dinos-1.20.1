@@ -41,6 +41,12 @@
   "item.deadlydinos.fertilized_mei_long_egg": "Fertilized Mei Long Egg",
   "entity.deadlydinos.mei_long": "Mei Long",
 
+  "item.deadlydinos.oviraptor_trophy": "Oviraptor Trophy",
+  "item.deadlydinos.oviraptor_spawn_egg": "Oviraptor Spawn Egg",
+  "item.deadlydinos.oviraptor_egg": "Oviraptor Egg",
+  "item.deadlydinos.fertilized_oviraptor_egg": "Fertilized Oviraptor Egg",
+  "entity.deadlydinos.oviraptor": "Oviraptor",
+
   "item.deadlydinos.utahraptor_trophy": "Utahraptor Trophy",
   "item.deadlydinos.utahraptor_spawn_egg": "Utahraptor Spawn Egg",
   "item.deadlydinos.utahraptor_egg": "Utahraptor Egg",

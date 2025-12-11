@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "deadlydinos:velociraptor"
+    "deadlydinos:velociraptor",
+    "deadlydinos:oviraptor"
   ]
 }

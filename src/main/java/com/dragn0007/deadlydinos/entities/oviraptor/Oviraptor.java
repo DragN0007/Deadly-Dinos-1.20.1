@@ -1,22 +1,14 @@
-package com.dragn0007.deadlydinos.entities.velociraptor;
+package com.dragn0007.deadlydinos.entities.oviraptor;
 
 import com.dragn0007.deadlydinos.common.gui.TinyInvMenu;
-import com.dragn0007.deadlydinos.effects.DDDEffects;
 import com.dragn0007.deadlydinos.entities.AbstractTamableDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.ai.DinoFollowOwnerGoal;
-import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
-import com.dragn0007.deadlydinos.entities.ai.DinoSitOnOwnersShoulderGoal;
-import com.dragn0007.deadlydinos.entities.ai.TamableStalkMeleeAttackGoal;
-import com.dragn0007.deadlydinos.entities.ai.herd.VelociraptorFollowPackLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -31,6 +23,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
@@ -41,11 +34,8 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
-import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.npc.InventoryCarrier;
@@ -54,6 +44,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -75,14 +66,12 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
-public class Velociraptor extends AbstractTamableDino implements InventoryCarrier, GeoEntity, ContainerListener {
+public class Oviraptor extends AbstractTamableDino implements InventoryCarrier, GeoEntity, ContainerListener {
 
-	public Velociraptor(EntityType<? extends Velociraptor> type, Level level) {
+	public Oviraptor(EntityType<? extends Oviraptor> type, Level level) {
 		super(type, level);
 		this.updateInventory();
 		this.setCanPickUpLoot(true);
@@ -93,11 +82,15 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 				.add(Attributes.MAX_HEALTH, 10.0D)
 				.add(Attributes.ATTACK_DAMAGE, 2D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.2F)
-				.add(Attributes.MOVEMENT_SPEED, 0.30F)
+				.add(Attributes.MOVEMENT_SPEED, 0.27F)
 				.add(Attributes.FOLLOW_RANGE, 32D);
 	}
 
-	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.CARNIVORE_EATS);
+	public static boolean checkDesertDinoSpawnRules(EntityType<Oviraptor> type, LevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource source) {
+		return levelAccessor.getBlockState(pos.below()).is(BlockTags.RABBITS_SPAWNABLE_ON) && isBrightEnoughToSpawn(levelAccessor, pos);
+	}
+
+	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.EGGS);
 
 	public boolean isFood(ItemStack itemStack) {
 		return FOOD_ITEMS.test(itemStack);
@@ -107,7 +100,6 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
-		this.goalSelector.addGoal(1, new HurtByTargetGoal(this));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
@@ -118,55 +110,14 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		this.goalSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
 		this.goalSelector.addGoal(2, new OwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(3, new DinoFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-		this.goalSelector.addGoal(3, new TamedSearchForItemsGoal());
+		this.goalSelector.addGoal(3, new SearchForItemsGoal());
 		this.goalSelector.addGoal(3, new DinoPanicGoal(2.0D));
-		this.goalSelector.addGoal(3, new VelociraptorFollowPackLeaderGoal(this));
-		this.goalSelector.addGoal(3, new TamableStalkMeleeAttackGoal(this, 2.0D, true));
-		this.goalSelector.addGoal(3, new DinoSitOnOwnersShoulderGoal(this));
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity instanceof Player && this.isBaby() && !this.isTame()));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 2.0F, 2.0F,
+				entity -> entity instanceof Player && !this.isTame()));
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby() && !this.isTame()));
-
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && !this.hasFollowers() && !this.isFollower() && (entity instanceof AbstractTamableDino && !((AbstractTamableDino) entity).isTame() && !this.isTame())));
-
-		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
-				entity -> entity instanceof Player && !this.isBaby() && (this.isFollower() || this.hasFollowers()) && !this.isTame()));
-
-		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATOR_PREY) && !this.isBaby() && !this.isTame()));
-
-		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_PREDATORS) && !this.isBaby() && (this.isFollower() || this.hasFollowers()) && !this.isTame()));
-
-		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-				entity -> (entity.getType().is(DDDTags.Entity_Types.SMALL_HERBIVORES)) && !this.isBaby() && !this.isTame()));
-	}
-
-	public boolean doHurtTarget(Entity entity) {
-		Random random = new Random();
-		int chance = random.nextInt(100);
-		if (super.doHurtTarget(entity)) {
-			if (entity instanceof LivingEntity) {
-				int i = 0;
-				if (this.level().getDifficulty() == Difficulty.NORMAL) {
-					i = 7;
-				} else if (this.level().getDifficulty() == Difficulty.HARD) {
-					i = 15;
-				}
-
-				if (i > 0 && chance <= 75) {
-					((LivingEntity)entity).addEffect(new MobEffectInstance(DDDEffects.BIRD_FLU.get(), i * 20, 0), this);
-				}
-			}
-
-			return true;
-		} else {
-			return false;
-		}
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 2.0F,
+				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && !this.isTame()));
 	}
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
@@ -180,7 +131,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 			}
 		}
 
-		if (DeadlyDinosCommonConfig.ALLOW_TAMING.get() && !this.isTame() && this.isFood(itemstack) && this.random.nextInt(5) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+		if (DeadlyDinosCommonConfig.ALLOW_TAMING.get() && !this.isTame() && this.isFood(itemstack) && this.random.nextInt(5) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
 			this.tame(player);
 			return InteractionResult.SUCCESS;
 		}
@@ -227,99 +178,10 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		return super.calculateFallDamage(v, v1) - 10;
 	}
 
-	public Velociraptor leader;
-	public int packSize = 1;
-
-	public int getMaxHerdSize() {
-		return DeadlyDinosCommonConfig.VELOCIRAPTOR_MAX_PACK_COUNT.get();
-	}
-
-	public boolean hasFollowers() {
-		return this.packSize > 1;
-	}
-
-	public boolean inRangeOfLeader() {
-		return this.distanceToSqr(this.leader) <= 121.0D;
-	}
-
-	public void pathToLeader() {
-		if (this.isFollower()) {
-			this.getNavigation().moveTo(this.leader, 1.0D);
-		}
-	}
-
-	public void addFollowers(Stream<? extends Velociraptor> p_27534_) {
-		p_27534_.limit((long)(this.getMaxHerdSize() - this.packSize)).filter((mob) -> mob != this).forEach((mob) -> {
-			mob.startFollowing(this);
-		});
-	}
-
-	public boolean isFollower() {
-		return this.leader != null && this.leader.isAlive();
-	}
-
-	public Velociraptor startFollowing(Velociraptor mob) {
-		this.leader = mob;
-		mob.addFollower();
-		return mob;
-	}
-
-	public void stopFollowing() {
-		this.leader.removeFollower();
-		this.leader = null;
-	}
-
-	public void addFollower() {
-		++this.packSize;
-	}
-
-	public void removeFollower() {
-		--this.packSize;
-	}
-
-	public boolean canBeFollowed() {
-		return this.hasFollowers() && this.packSize < this.getMaxHerdSize();
-	}
-
 	public int regenHealthCounter = 0;
-
-	protected PathNavigation createNavigation(Level level) {
-		return new WallClimberNavigation(this, level);
-	}
-
-	private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.BYTE);
-
-	public boolean isClimbing() {
-		return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
-	}
-
-	public void setClimbing(boolean p_33820_) {
-		byte b0 = this.entityData.get(DATA_FLAGS_ID);
-		if (p_33820_) {
-			b0 = (byte)(b0 | 1);
-		} else {
-			b0 = (byte)(b0 & -2);
-		}
-		this.entityData.set(DATA_FLAGS_ID, b0);
-	}
-
-	public boolean onClimbable() {
-		return this.isClimbing();
-	}
 
 	public void tick() {
 		super.tick();
-
-		if (!this.level().isClientSide && this.isAggressive()) {
-			this.setClimbing(this.horizontalCollision);
-		}
-
-		if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
-			List<? extends Velociraptor> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
-			if (list.size() <= 1) {
-				this.packSize = 1;
-			}
-		}
 
 		if (eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get() && eggLayCooldown >= 100) {
 			eggsLaid = 0;
@@ -384,12 +246,8 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 	public void aiStep() {
 		super.aiStep();
 
-		if (this.level().random.nextInt(400) == 0) {
-			imitateNearbyMobs(this.level(), this);
-		}
-
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.VELOCIRAPTOR_EGG.get());
+			this.spawnAtLocation(DDDItems.OVIRAPTOR_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
@@ -431,13 +289,10 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		} else if (isMoving) {
 			if (currentSpeed > speedThreshold && this.onGround()) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(3.5);
+				controller.setAnimationSpeed(3.7);
 			} else if (currentSpeed < stalkSpeedThreshold) {
 				controller.setAnimation(RawAnimation.begin().then("stalk", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(2.0);
-			} else if (isClimbing() && !this.onGround()) {
-				controller.setAnimation(RawAnimation.begin().then("climb", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.5);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(3.5);
@@ -482,84 +337,12 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		return this.geoCache;
 	}
 
-	public static final Predicate<Mob> NOT_RAPTOR_PREDICATE = mob -> mob != null && Velociraptor.MOB_SOUND_MAP.containsKey(mob.getType());
-
-	static final Map<EntityType<?>, SoundEvent> MOB_SOUND_MAP = Util.make(Maps.newHashMap(), (map) -> {
-		map.put(EntityType.COW, SoundEvents.COW_AMBIENT);
-		map.put(EntityType.SHEEP, SoundEvents.SHEEP_AMBIENT);
-		map.put(EntityType.PIG, SoundEvents.PIG_AMBIENT);
-		map.put(EntityType.CHICKEN, SoundEvents.CHICKEN_AMBIENT);
-		map.put(EntityType.GOAT, SoundEvents.GOAT_AMBIENT);
-		map.put(EntityType.PARROT, SoundEvents.PARROT_AMBIENT);
-		map.put(EntityType.POLAR_BEAR, SoundEvents.POLAR_BEAR_AMBIENT);
-		map.put(EntityType.HORSE, SoundEvents.HORSE_AMBIENT);
-		map.put(EntityType.DONKEY, SoundEvents.DONKEY_AMBIENT);
-		map.put(EntityType.MULE, SoundEvents.MULE_AMBIENT);
-		map.put(EntityType.LLAMA, SoundEvents.LLAMA_AMBIENT);
-		map.put(EntityType.WOLF, SoundEvents.WOLF_AMBIENT);
-		map.put(EntityType.CAT, SoundEvents.CAT_AMBIENT);
-		map.put(EntityType.OCELOT, SoundEvents.OCELOT_AMBIENT);
-
-		map.put(EntityType.BLAZE, SoundEvents.PARROT_IMITATE_BLAZE);
-		map.put(EntityType.CAVE_SPIDER, SoundEvents.PARROT_IMITATE_SPIDER);
-		map.put(EntityType.CREEPER, SoundEvents.PARROT_IMITATE_CREEPER);
-		map.put(EntityType.DROWNED, SoundEvents.PARROT_IMITATE_DROWNED);
-		map.put(EntityType.ELDER_GUARDIAN, SoundEvents.PARROT_IMITATE_ELDER_GUARDIAN);
-		map.put(EntityType.ENDER_DRAGON, SoundEvents.PARROT_IMITATE_ENDER_DRAGON);
-		map.put(EntityType.ENDERMITE, SoundEvents.PARROT_IMITATE_ENDERMITE);
-		map.put(EntityType.EVOKER, SoundEvents.PARROT_IMITATE_EVOKER);
-		map.put(EntityType.GHAST, SoundEvents.PARROT_IMITATE_GHAST);
-		map.put(EntityType.GUARDIAN, SoundEvents.PARROT_IMITATE_GUARDIAN);
-		map.put(EntityType.HOGLIN, SoundEvents.PARROT_IMITATE_HOGLIN);
-		map.put(EntityType.HUSK, SoundEvents.PARROT_IMITATE_HUSK);
-		map.put(EntityType.ILLUSIONER, SoundEvents.PARROT_IMITATE_ILLUSIONER);
-		map.put(EntityType.MAGMA_CUBE, SoundEvents.PARROT_IMITATE_MAGMA_CUBE);
-		map.put(EntityType.PHANTOM, SoundEvents.PARROT_IMITATE_PHANTOM);
-		map.put(EntityType.PIGLIN, SoundEvents.PARROT_IMITATE_PIGLIN);
-		map.put(EntityType.PIGLIN_BRUTE, SoundEvents.PARROT_IMITATE_PIGLIN_BRUTE);
-		map.put(EntityType.PILLAGER, SoundEvents.PARROT_IMITATE_PILLAGER);
-		map.put(EntityType.RAVAGER, SoundEvents.PARROT_IMITATE_RAVAGER);
-		map.put(EntityType.SHULKER, SoundEvents.PARROT_IMITATE_SHULKER);
-		map.put(EntityType.SILVERFISH, SoundEvents.PARROT_IMITATE_SILVERFISH);
-		map.put(EntityType.SKELETON, SoundEvents.PARROT_IMITATE_SKELETON);
-		map.put(EntityType.SLIME, SoundEvents.PARROT_IMITATE_SLIME);
-		map.put(EntityType.SPIDER, SoundEvents.PARROT_IMITATE_SPIDER);
-		map.put(EntityType.STRAY, SoundEvents.PARROT_IMITATE_STRAY);
-		map.put(EntityType.VEX, SoundEvents.PARROT_IMITATE_VEX);
-		map.put(EntityType.VINDICATOR, SoundEvents.PARROT_IMITATE_VINDICATOR);
-		map.put(EntityType.WARDEN, SoundEvents.PARROT_IMITATE_WARDEN);
-		map.put(EntityType.WITCH, SoundEvents.PARROT_IMITATE_WITCH);
-		map.put(EntityType.WITHER, SoundEvents.PARROT_IMITATE_WITHER);
-		map.put(EntityType.WITHER_SKELETON, SoundEvents.PARROT_IMITATE_WITHER_SKELETON);
-		map.put(EntityType.ZOGLIN, SoundEvents.PARROT_IMITATE_ZOGLIN);
-		map.put(EntityType.ZOMBIE, SoundEvents.PARROT_IMITATE_ZOMBIE);
-		map.put(EntityType.ZOMBIE_VILLAGER, SoundEvents.PARROT_IMITATE_ZOMBIE_VILLAGER);
-	});
-
-	public static boolean imitateNearbyMobs(Level level, Entity entity) {
-		if (entity.isAlive() && !entity.isSilent() && level.random.nextInt(2) == 0) {
-			List<Mob> list = level.getEntitiesOfClass(Mob.class, entity.getBoundingBox().inflate(20.0D), NOT_RAPTOR_PREDICATE);
-			if (!list.isEmpty()) {
-				Mob mob = list.get(level.random.nextInt(list.size()));
-				if (!mob.isSilent()) {
-					SoundEvent soundevent = getImitatedSound(mob.getType());
-					level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), soundevent, entity.getSoundSource(), 0.7F, getPitch(level.random));
-					return true;
-				}
-			}
-
-			return false;
-		} else {
-			return false;
-		}
-	}
-
 	public float getVoicePitch() {
 		return getPitch(this.random);
 	}
 
 	public static float getPitch(RandomSource source) {
-		return (source.nextFloat() - source.nextFloat()) * 0.2F + 1.8F;
+		return (source.nextFloat() - source.nextFloat()) * 0.2F + 1.6F;
 	}
 
 	@Nullable
@@ -568,16 +351,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 	}
 
 	public static SoundEvent getAmbient(Level level, RandomSource source) {
-		if (level.getDifficulty() != Difficulty.PEACEFUL && source.nextInt(1000) == 0) {
-			List<EntityType<?>> list = Lists.newArrayList(MOB_SOUND_MAP.keySet());
-			return getImitatedSound(list.get(source.nextInt(list.size())));
-		} else {
-			return DDDSoundEvents.RAPTOR_AMBIENT.get();
-		}
-	}
-
-	public static SoundEvent getImitatedSound(EntityType<?> type) {
-		return MOB_SOUND_MAP.getOrDefault(type, DDDSoundEvents.RAPTOR_AMBIENT.get());
+		return DDDSoundEvents.RAPTOR_AMBIENT.get();
 	}
 
 	public SoundEvent getDeathSound() {
@@ -596,14 +370,14 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 	// Generates the base texture
 	public ResourceLocation getFemaleTextureLocation() {
-		return VelociraptorModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return OviraptorModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
 	public ResourceLocation getMaleTextureLocation() {
-		return VelociraptorModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return OviraptorModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
-	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Velociraptor.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Oviraptor.class, EntityDataSerializers.INT);
 
 	public int getVariant() {
 		return this.entityData.get(VARIANT);
@@ -680,9 +454,9 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		setGender(random.nextInt(Gender.values().length));
 
 		if (this.isFemale()) {
-			setVariant(random.nextInt(VelociraptorModel.FemaleVariant.values().length));
+			setVariant(random.nextInt(OviraptorModel.FemaleVariant.values().length));
 		} else if (this.isMale()) {
-			setVariant(random.nextInt(VelociraptorModel.MaleVariant.values().length));
+			setVariant(random.nextInt(OviraptorModel.MaleVariant.values().length));
 		}
 
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
@@ -695,13 +469,13 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 	public boolean canMate(Animal animal) {
 		if (animal == this) {
 			return false;
-		} else if (!(animal instanceof Velociraptor)) {
+		} else if (!(animal instanceof Oviraptor)) {
 			return false;
 		} else {
 			if (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-				return this.canParent() && ((Velociraptor) animal).canParent();
+				return this.canParent() && ((Oviraptor) animal).canParent();
 			} else {
-				Velociraptor partner = (Velociraptor) animal;
+				Oviraptor partner = (Oviraptor) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
@@ -734,13 +508,15 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		}
 
 		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_VELOCIRAPTOR_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_OVIRAPTOR_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
 
 		serverLevel.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.CHICKEN_EGG, SoundSource.NEUTRAL, 1.0F, 1.0F);
 	}
+
+	protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Oviraptor.class, EntityDataSerializers.BYTE);
 
 	@Override
 	public void defineSynchedData() {
@@ -757,12 +533,12 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_VELOCIRAPTOR_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_OVIRAPTOR_EGG.get());
 		}
 
 		int trophyChance = random.nextInt(100);
 		if (trophyChance <= 8) {
-			this.spawnAtLocation(DDDItems.VELOCIRAPTOR_TROPHY.get());
+			this.spawnAtLocation(DDDItems.OVIRAPTOR_TROPHY.get());
 		}
 	}
 
@@ -840,14 +616,14 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		return true;
 	}
 
-	static final Predicate<ItemEntity> ANIMAL_LOOT = (itemEntity) -> {
-		return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES);
+	static final Predicate<ItemEntity> EGGS = (itemEntity) -> {
+		return !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().is(DDDTags.Items.EGGS);
 	};
 	
-	public class TamedSearchForItemsGoal extends Goal {
+	public class SearchForItemsGoal extends Goal {
 
-		public TamedSearchForItemsGoal() {
-			this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+		public SearchForItemsGoal() {
+			this.setFlags(EnumSet.of(Flag.MOVE));
 		}
 
 		public boolean canUse() {
@@ -855,11 +631,11 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 				return false;
 			} else if (isInventoryFull()) {
 				return false;
-			} else if (Velociraptor.this.getTarget() == null && Velociraptor.this.getLastHurtByMob() == null) {
-				if (Velociraptor.this.getRandom().nextInt(reducedTickDelay(10)) != 0) {
+			} else if (Oviraptor.this.getTarget() == null && Oviraptor.this.getLastHurtByMob() == null) {
+				if (Oviraptor.this.getRandom().nextInt(reducedTickDelay(10)) != 0) {
 					return false;
 				} else {
-					List<ItemEntity> list = Velociraptor.this.level().getEntitiesOfClass(ItemEntity.class, Velociraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+					List<ItemEntity> list = Oviraptor.this.level().getEntitiesOfClass(ItemEntity.class, Oviraptor.this.getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Oviraptor.EGGS);
 					return !list.isEmpty();
 				}
 			} else {
@@ -869,13 +645,13 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 		@Override
 		public void tick() {
-			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Oviraptor.EGGS);
 
 			if (!itemEntities.isEmpty() && !isInventoryFull()) {
 				ItemEntity itemEntity = itemEntities.get(0);
 				getNavigation().moveTo(itemEntity, 1.2D);
 
-				if (distanceToSqr(itemEntity) < 2.0D && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES)) {
+				if (distanceToSqr(itemEntity) < 2.0D && itemEntity.getItem().is(DDDTags.Items.EGGS)) {
 					pickUpItem(itemEntity);
 				}
 			}
@@ -883,20 +659,20 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 
 		@Override
 		public void start() {
-			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Velociraptor.ANIMAL_LOOT);
+			List<ItemEntity> itemEntities = level().getEntitiesOfClass(ItemEntity.class, getBoundingBox().inflate(8.0D, 8.0D, 8.0D), Oviraptor.EGGS);
 			if (!itemEntities.isEmpty()) {
 				getNavigation().moveTo(itemEntities.get(0), 1.2D);
 			}
 		}
 
 		private void pickUpItem(ItemEntity itemEntity) {
-			if (!isInventoryFull() && itemEntity.getItem().is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
+			if (!isInventoryFull() && itemEntity.getItem().is(DDDTags.Items.EGGS) && this.canUse()) {
 				ItemStack itemStack = itemEntity.getItem();
 
 				for (int i = 0; i < getInventory().getContainerSize(); i++) {
 					ItemStack inventoryStack = getInventory().getItem(i);
 
-					if (!inventoryStack.isEmpty() && inventoryStack.is(itemStack.getItem()) && inventoryStack.getCount() < inventoryStack.getMaxStackSize() && itemStack.is(DDDTags.Items.CARNIVORE_DESIRES)) {
+					if (!inventoryStack.isEmpty() && inventoryStack.is(itemStack.getItem()) && inventoryStack.getCount() < inventoryStack.getMaxStackSize() && itemStack.is(DDDTags.Items.EGGS)) {
 						int j = inventoryStack.getMaxStackSize() - inventoryStack.getCount();
 						int k = Math.min(j, itemStack.getCount());
 						inventoryStack.grow(k);
@@ -909,7 +685,7 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 					}
 				}
 
-				if (!itemStack.isEmpty() && itemStack.is(DDDTags.Items.CARNIVORE_DESIRES) && this.canUse()) {
+				if (!itemStack.isEmpty() && itemStack.is(DDDTags.Items.EGGS) && this.canUse()) {
 					for (int i = 0; i < getInventory().getContainerSize(); i++) {
 						if (getInventory().getItem(i).isEmpty()) {
 							getInventory().setItem(i, itemStack);

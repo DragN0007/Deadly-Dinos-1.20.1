@@ -34,6 +34,7 @@ public class DDDTags {
         public static final TagKey<Item> FISH = forgeTag("fish");
         public static final TagKey<Item> RAW_MEATS = forgeTag("raw_meats");
         public static final TagKey<Item> COOKED_MEATS = forgeTag("cooked_meats");
+        public static final TagKey<Item> EGGS = forgeTag("eggs");
         public static final TagKey<Item> RAW_CHICKEN = forgeTag("raw_chicken");
         public static final TagKey<Item> BEDROLL_BEDS = forgeTag("bedroll_beds");
         public static final TagKey<Item> DINO_CARPETS = forgeTag("dino_carpets");

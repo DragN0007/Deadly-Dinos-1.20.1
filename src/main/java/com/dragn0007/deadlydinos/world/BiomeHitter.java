@@ -27,6 +27,9 @@ public class BiomeHitter {
     public static final ResourceKey<BiomeModifier> OLOROTITAN_WET = registerKey("olorotitan_wet");
     public static final ResourceKey<BiomeModifier> VELOCIRAPTOR_DENSE = registerKey("velociraptor_dense");
     public static final ResourceKey<BiomeModifier> MEI_LONG_FOREST = registerKey("mei_long_forest");
+    public static final ResourceKey<BiomeModifier> CERATOSAURUS_FOREST = registerKey("ceratosaurus_forest");
+    public static final ResourceKey<BiomeModifier> GRYPOSAURUS_WET = registerKey("gryposaurus_wet");
+    public static final ResourceKey<BiomeModifier> OVIRAPTOR_HOT = registerKey("oviraptor_hot");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -35,6 +38,14 @@ public class BiomeHitter {
         context.register(ACROCANTHOSAURUS_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.ACROCANTHOSAURUS.get(),
+                        3,
+                        1,
+                        1
+                ))));
+
+        context.register(CERATOSAURUS_FOREST, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_FOREST),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.CERATOSAURUS.get(),
                         3,
                         1,
                         1
@@ -64,10 +75,18 @@ public class BiomeHitter {
                         4
                 ))));
 
+        context.register(OVIRAPTOR_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.OVIRAPTOR.get(),
+                        3,
+                        1,
+                        1
+                ))));
+
         context.register(UTAHRAPTOR_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.UTAHRAPTOR.get(),
-                        4,
+                        3,
                         1,
                         4
                 ))));
@@ -88,10 +107,18 @@ public class BiomeHitter {
                         2
                 ))));
 
+        context.register(GRYPOSAURUS_WET, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_WET_OVERWORLD),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.GRYPOSAURUS.get(),
+                        5,
+                        1,
+                        3
+                ))));
+
         context.register(OLOROTITAN_WET, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_WET_OVERWORLD),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.OLOROTITAN.get(),
-                        4,
+                        3,
                         1,
                         3
                 ))));
@@ -99,7 +126,7 @@ public class BiomeHitter {
         context.register(PARASAUROLOPHUS_WET, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_WET_OVERWORLD),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.PARASAUROLOPHUS.get(),
-                        4,
+                        3,
                         1,
                         3
                 ))));

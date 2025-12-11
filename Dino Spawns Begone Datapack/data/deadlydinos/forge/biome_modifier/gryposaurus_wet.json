@@ -2,9 +2,9 @@
   "type": "forge:add_spawns",
   "biomes": "#forge:is_wet/overworld",
   "spawners": {
-    "type": "deadlydinos:olorotitan",
+    "type": "deadlydinos:gryposaurus",
     "maxCount": 3,
     "minCount": 1,
-    "weight": 3
+    "weight": 0
   }
 }

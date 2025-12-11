@@ -2,8 +2,8 @@
   "type": "forge:add_spawns",
   "biomes": "#forge:is_hot/overworld",
   "spawners": {
-    "type": "deadlydinos:utahraptor",
-    "maxCount": 4,
+    "type": "deadlydinos:oviraptor",
+    "maxCount": 1,
     "minCount": 1,
     "weight": 3
   }

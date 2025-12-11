@@ -87,6 +87,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 	public static boolean checkDesertDinoSpawnRules(EntityType<Utahraptor> type, LevelAccessor levelAccessor, MobSpawnType spawnType, BlockPos pos, RandomSource source) {
 		return levelAccessor.getBlockState(pos.below()).is(BlockTags.RABBITS_SPAWNABLE_ON) && isBrightEnoughToSpawn(levelAccessor, pos);
 	}
+
 	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.CARNIVORE_EATS);
 
 	public boolean isFood(ItemStack itemStack) {

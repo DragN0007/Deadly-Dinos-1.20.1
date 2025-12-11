@@ -1,9 +1,9 @@
 package com.dragn0007.deadlydinos.event;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
-import com.dragn0007.deadlydinos.client.gui.TinyInvScreen;
 import com.dragn0007.deadlydinos.client.gui.MountScreen;
 import com.dragn0007.deadlydinos.client.gui.SmallInvScreen;
+import com.dragn0007.deadlydinos.client.gui.TinyInvScreen;
 import com.dragn0007.deadlydinos.common.gui.DDDMenuTypes;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
@@ -22,6 +22,8 @@ import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
 import com.dragn0007.deadlydinos.entities.mei_long.MeiLongRender;
 import com.dragn0007.deadlydinos.entities.olorotitan.Olorotitan;
 import com.dragn0007.deadlydinos.entities.olorotitan.OlorotitanRender;
+import com.dragn0007.deadlydinos.entities.oviraptor.Oviraptor;
+import com.dragn0007.deadlydinos.entities.oviraptor.OviraptorRender;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.Parasaurolophus;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.ParasaurolophusRender;
 import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
@@ -62,6 +64,7 @@ public class DDDEvent {
         event.put(EntityTypes.MEI_LONG.get(), MeiLong.createAttributes().build());
         event.put(EntityTypes.CERATOSAURUS.get(), Ceratosaurus.createAttributes().build());
         event.put(EntityTypes.GRYPOSAURUS.get(), Gryposaurus.createAttributes().build());
+        event.put(EntityTypes.OVIRAPTOR.get(), Oviraptor.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -79,6 +82,7 @@ public class DDDEvent {
         EntityRenderers.register(EntityTypes.MEI_LONG.get(), MeiLongRender::new);
         EntityRenderers.register(EntityTypes.CERATOSAURUS.get(), CeratosaurusRender::new);
         EntityRenderers.register(EntityTypes.GRYPOSAURUS.get(), GryposaurusRender::new);
+        EntityRenderers.register(EntityTypes.OVIRAPTOR.get(), OviraptorRender::new);
 
         MenuScreens.register(DDDMenuTypes.MOUNT_MENU.get(), MountScreen::new);
         MenuScreens.register(DDDMenuTypes.SMALL_INV_MENU.get(), SmallInvScreen::new);
@@ -100,5 +104,6 @@ public class DDDEvent {
         event.register(EntityTypes.MEI_LONG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.CERATOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.GRYPOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.OVIRAPTOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Oviraptor::checkDesertDinoSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 }

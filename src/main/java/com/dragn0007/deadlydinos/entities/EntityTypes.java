@@ -8,6 +8,7 @@ import com.dragn0007.deadlydinos.entities.gryposaurus.Gryposaurus;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
 import com.dragn0007.deadlydinos.entities.olorotitan.Olorotitan;
+import com.dragn0007.deadlydinos.entities.oviraptor.Oviraptor;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.Parasaurolophus;
 import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
@@ -63,6 +64,12 @@ public class EntityTypes {
                     .sized(0.4f,0.4f)
                     .build(new ResourceLocation(MODID,"mei_long").toString()));
 
+    public static final RegistryObject<EntityType<Oviraptor>> OVIRAPTOR = ENTITY_TYPES.register("oviraptor",
+            () -> EntityType.Builder.of(Oviraptor::new,
+                            MobCategory.CREATURE)
+                    .sized(0.6f,0.6f)
+                    .build(new ResourceLocation(MODID,"oviraptor").toString()));
+
     public static final RegistryObject<EntityType<Utahraptor>> UTAHRAPTOR = ENTITY_TYPES.register("utahraptor",
             () -> EntityType.Builder.of(Utahraptor::new,
                             MobCategory.CREATURE)
@@ -72,7 +79,7 @@ public class EntityTypes {
     public static final RegistryObject<EntityType<Velociraptor>> VELOCIRAPTOR = ENTITY_TYPES.register("velociraptor",
             () -> EntityType.Builder.of(Velociraptor::new,
                             MobCategory.CREATURE)
-                    .sized(0.5f,0.5f)
+                    .sized(0.6f,0.6f)
                     .build(new ResourceLocation(MODID,"velociraptor").toString()));
 
     public static final RegistryObject<EntityType<Yutyrannus>> YUTYRANNUS = ENTITY_TYPES.register("yutyrannus",
