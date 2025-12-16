@@ -110,6 +110,11 @@ public class DDDItemGroup {
                         output.accept(DDDBlocks.REINFORCED_COBBLESTONE.get());
                         output.accept(DDDBlocks.REINFORCED_GLASS.get());
                         output.accept(DDDBlocks.REINFORCED_STONE_BRICKS.get());
+                        output.accept(DDDBlocks.CHAIN_LINK_FENCE.get());
+                        output.accept(DDDBlocks.HORIZONTAL_BAR_FENCE.get());
+                        output.accept(DDDBlocks.WIDE_BAR_FENCE.get());
+                        output.accept(DDDBlocks.WIRE_FENCE.get());
+                        output.accept(DDDBlocks.ELECTRIC_WIRE_FENCE.get());
 
                         output.accept(DDDItems.SMALL_CARNIVORE_CLAW.get());
                         output.accept(DDDItems.SMALL_CARNIVORE_LEG.get());

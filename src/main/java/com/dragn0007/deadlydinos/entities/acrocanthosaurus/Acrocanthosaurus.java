@@ -21,6 +21,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -207,7 +208,7 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 	public boolean hurt(DamageSource source, float v) {
 		super.hurt(source, v);
 		Entity entity = source.getDirectEntity();
-		if (entity instanceof AbstractArrow) {
+		if (entity instanceof AbstractArrow || source.is(DamageTypes.CACTUS)) {
 			return false;
 		}
 		return true;

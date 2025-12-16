@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-11T01:04:02.7404187	Item Models: deadlydinos
+// 1.20.1	2025-12-16T14:29:46.4056544	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -31,6 +31,7 @@ c3e441a13e9c9001d2d03c7576ee3fe1b35e1cf8 assets/deadlydinos/models/item/canned_v
 97887567987aa0a18073fa1ef1f23b01533875f5 assets/deadlydinos/models/item/ceratosaurus_egg.json
 97887567987aa0a18073fa1ef1f23b01533875f5 assets/deadlydinos/models/item/ceratosaurus_spawn_egg.json
 c3c9b5a339e4618f5851640c273e8d5932e20b13 assets/deadlydinos/models/item/ceratosaurus_trophy.json
+57e65cd1814c2b3079d0ec30597c6103d6b1bb2e assets/deadlydinos/models/item/chain_link_fence.json
 9da13a34d9cf43d44f77aeb7650689fc5c155547 assets/deadlydinos/models/item/chicken_noodle_soup.json
 de5d2a77e041f6fc452319d96ad138cfc92b8ba3 assets/deadlydinos/models/item/cooked_escargot.json
 0e374180e653a9948ea64c50e519b8c2413257ee assets/deadlydinos/models/item/cooked_large_meat.json
@@ -49,6 +50,7 @@ f365549f568fefc45dbd0590cbf60709d7d2a553 assets/deadlydinos/models/item/dino_nug
 46fe5b638ca046e32f7b815d79addd6a31806498 assets/deadlydinos/models/item/dino_roast.json
 78d39e6319ecb8800d18a3a899a3e2a8fc63bc51 assets/deadlydinos/models/item/dino_sandwich.json
 ce829d776d63e8ae74172b4c2eaeccc2618df678 assets/deadlydinos/models/item/dough.json
+37917beab6178550d897263830ad9ce059e851c3 assets/deadlydinos/models/item/electric_wire_fence.json
 4dfff56ae3c96c8b5dec658e236b554f9859e948 assets/deadlydinos/models/item/eocarcharia_armor.json
 f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/eocarcharia_egg.json
 f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/eocarcharia_spawn_egg.json
@@ -70,6 +72,7 @@ f2c098046ff2b1abeb44f22008a7d0d97341b946 assets/deadlydinos/models/item/gryposau
 f2c098046ff2b1abeb44f22008a7d0d97341b946 assets/deadlydinos/models/item/gryposaurus_spawn_egg.json
 d7ef2b999af689276ac5d331335198bc7ab71f0d assets/deadlydinos/models/item/gryposaurus_trophy.json
 e124c98c2616aca3b169fbf107c023c57705e459 assets/deadlydinos/models/item/hearty_salad.json
+d9a331e97808c0dbd5fb0a09f6aba79940b2b871 assets/deadlydinos/models/item/horizontal_bar_fence.json
 da6d4e6b3f58ac848384dda3973c5788a6f646c5 assets/deadlydinos/models/item/large_carnivore_claw.json
 796bfe82fdc0110283b193e27117d79da2baa922 assets/deadlydinos/models/item/large_carnivore_leg.json
 179a7eb5e301114c8c1d733730995112adcb41b9 assets/deadlydinos/models/item/large_carnivore_ribs.json
@@ -148,6 +151,8 @@ e15775608220ef59b09ad63a16eb82ca369245bd assets/deadlydinos/models/item/tricerat
 4656ad765fd6eb927bede6e0bbc9203b0c2bd40b assets/deadlydinos/models/item/velociraptor_egg.json
 4656ad765fd6eb927bede6e0bbc9203b0c2bd40b assets/deadlydinos/models/item/velociraptor_spawn_egg.json
 7e20c13a1a265166543a6ce87dba42f7ee7e3aaf assets/deadlydinos/models/item/velociraptor_trophy.json
+b9d0cabe6899ddb84ec3758697068a7bffa68208 assets/deadlydinos/models/item/wide_bar_fence.json
+97c915f84927e62deab2c0ca77297ade2c847e35 assets/deadlydinos/models/item/wire_fence.json
 2f74c4141e491b1286e3d5fd88f372f2b681247b assets/deadlydinos/models/item/yutyrannus_egg.json
 2f74c4141e491b1286e3d5fd88f372f2b681247b assets/deadlydinos/models/item/yutyrannus_spawn_egg.json
 6091e3ef623d55116fb45e2269cfca482057b2c7 assets/deadlydinos/models/item/yutyrannus_trophy.json

@@ -19,6 +19,11 @@ public class DDDBlockLoot extends BlockLootSubProvider {
         dropSelf(DDDBlocks.REINFORCED_COBBLESTONE.get());
         dropSelf(DDDBlocks.REINFORCED_GLASS.get());
         dropSelf(DDDBlocks.REINFORCED_STONE_BRICKS.get());
+        dropSelf(DDDBlocks.CHAIN_LINK_FENCE.get());
+        dropSelf(DDDBlocks.HORIZONTAL_BAR_FENCE.get());
+        dropSelf(DDDBlocks.WIDE_BAR_FENCE.get());
+        dropSelf(DDDBlocks.WIRE_FENCE.get());
+        dropSelf(DDDBlocks.ELECTRIC_WIRE_FENCE.get());
     }
 
     @Override

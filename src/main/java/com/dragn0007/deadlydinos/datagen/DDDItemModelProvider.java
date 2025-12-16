@@ -1,10 +1,12 @@
 package com.dragn0007.deadlydinos.datagen;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
+import com.dragn0007.deadlydinos.blocks.DDDBlocks;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -23,6 +25,12 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.DDD_BLOCKS);
         simpleItem(DDDItems.DDD);
         simpleItem(DDDItems.BLEEDING);
+
+        simpleSpriteBlock(DDDBlocks.CHAIN_LINK_FENCE);
+        simpleSpriteBlock(DDDBlocks.HORIZONTAL_BAR_FENCE);
+        simpleSpriteBlock(DDDBlocks.WIDE_BAR_FENCE);
+        simpleSpriteBlock(DDDBlocks.WIRE_FENCE);
+        simpleSpriteBlock(DDDBlocks.ELECTRIC_WIRE_FENCE);
 
         handheldItem(DDDItems.ANOMALY_BONE_SWORD);
         handheldItem(DDDItems.ANOMALY_BONE_PICKAXE);
@@ -212,5 +220,11 @@ public class DDDItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(DeadlyDinos.MODID,"item/" + getTextureName));
+    }
+
+    private ItemModelBuilder simpleSpriteBlock(RegistryObject<Block> block) {
+        return withExistingParent(block.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(DeadlyDinos.MODID,"block/" + block.getId().getPath()));
     }
 }

@@ -28,6 +28,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -187,7 +188,7 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 	public boolean hurt(DamageSource source, float v) {
 		super.hurt(source, v);
 		Entity entity = source.getDirectEntity();
-		if (entity instanceof AbstractArrow) {
+		if (entity instanceof AbstractArrow || source.is(DamageTypes.CACTUS)) {
 			return false;
 		}
 		return true;

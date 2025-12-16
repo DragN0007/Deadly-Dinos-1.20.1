@@ -93,6 +93,11 @@
   "block.deadlydinos.reinforced_cobblestone": "Reinforced Cobblestone",
   "block.deadlydinos.reinforced_glass": "Reinforced Glass",
   "block.deadlydinos.reinforced_stone_bricks": "Reinforced Stone Bricks",
+  "block.deadlydinos.chain_link_fence": "Chain Link Fence",
+  "block.deadlydinos.horizontal_bar_fence": "Horizontal Bar Fence",
+  "block.deadlydinos.wide_bar_fence": "Wide Bar Fence",
+  "block.deadlydinos.wire_fence": "Wire Fence",
+  "block.deadlydinos.electric_wire_fence": "Electric Wire Fence",
 
   "item.deadlydinos.raw_small_meat": "Small Dino Meat",
   "item.deadlydinos.cooked_small_meat": "Cooked Small Dino Meat",

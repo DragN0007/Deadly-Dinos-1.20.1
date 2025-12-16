@@ -1,11 +1,14 @@
 package com.dragn0007.deadlydinos.blocks;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
+import com.dragn0007.deadlydinos.blocks.custom.ElectricIronBarsBlock;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GlassBlock;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -36,14 +39,16 @@ public class DDDBlocks {
 
 
     //Decor
-//    public static final RegistryObject<Block> WIRE_FENCE_1 = registerBlock("wire_fence_1",
-//            () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
-//    public static final RegistryObject<Block> WIRE_FENCE_2 = registerBlock("wire_fence_2",
-//            () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
-//    public static final RegistryObject<Block> WIRE_FENCE_3 = registerBlock("wire_fence_3",
-//            () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
-//    public static final RegistryObject<Block> WIRE_FENCE_4 = registerBlock("wire_fence_4",
-//            () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
+    public static final RegistryObject<Block> CHAIN_LINK_FENCE = registerBlock("chain_link_fence",
+            () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
+    public static final RegistryObject<Block> HORIZONTAL_BAR_FENCE = registerBlock("horizontal_bar_fence",
+            () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
+    public static final RegistryObject<Block> WIDE_BAR_FENCE = registerBlock("wide_bar_fence",
+            () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
+    public static final RegistryObject<Block> WIRE_FENCE = registerBlock("wire_fence",
+            () -> new IronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
+    public static final RegistryObject<Block> ELECTRIC_WIRE_FENCE = registerBlock("electric_wire_fence",
+            () -> new ElectricIronBarsBlock(Block.Properties.copy(Blocks.IRON_BARS)));
 
 
     public static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block){

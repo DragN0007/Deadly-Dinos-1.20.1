@@ -8,6 +8,7 @@
     "#minecraft:slabs",
     "#minecraft:walls",
     "#forge:cobblestone",
+    "deadlydinos:electric_wire_fence",
 
     {
       "id": "#forge:medium_dino_destroys",

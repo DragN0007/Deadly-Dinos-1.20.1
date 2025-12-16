@@ -2,6 +2,11 @@
   "replace": false,
   "values": [
     "deadlydinos:reinforced_cobblestone",
-    "deadlydinos:reinforced_stone_bricks"
+    "deadlydinos:reinforced_stone_bricks",
+    "deadlydinos:chain_link_fence",
+    "deadlydinos:wide_bar_fence",
+    "deadlydinos:horizontal_bar_fence",
+    "deadlydinos:wire_fence",
+    "deadlydinos:electric_wire_fence"
   ]
 }
