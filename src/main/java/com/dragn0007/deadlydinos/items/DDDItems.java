@@ -2,9 +2,7 @@ package com.dragn0007.deadlydinos.items;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
-import com.dragn0007.deadlydinos.items.custom.DinosaurArmorItem;
-import com.dragn0007.deadlydinos.items.custom.SodaItem;
-import com.dragn0007.deadlydinos.items.custom.TrophyItem;
+import com.dragn0007.deadlydinos.items.custom.*;
 import com.dragn0007.deadlydinos.items.eggs.*;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -628,7 +626,15 @@ public static final RegistryObject<Item> OLOROTITAN_TROPHY = ITEMS.register("olo
 //                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 3, true, false)
 //            ));
 
+    //MEDICAL
+    public static final RegistryObject<Item> PARASITIC_ANTIBIOTIC = ITEMS.register("parasitic_antibiotic",
+            () -> new ParasiticAntibioticItem(new Item.Properties().stacksTo(16)));
 
+    public static final RegistryObject<Item> GAUZE_WRAP = ITEMS.register("gauze_wrap",
+            () -> new GauzeItem(new Item.Properties().stacksTo(16)));
+
+
+    //EQUIPMENT
     public static final RegistryObject<Item> BONE_SWORD = ITEMS.register("bone_sword",
             () -> new SwordItem(DDDToolTiers.BONE, 3, -2.4F, new Item.Properties()));
     public static final RegistryObject<Item> BONE_PICKAXE = ITEMS.register("bone_pickaxe",

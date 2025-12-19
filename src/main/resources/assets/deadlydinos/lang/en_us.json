@@ -1,7 +1,7 @@
 {
   "itemGroup.ddd_entities": "Deadly Dinos: Entities",
   "itemGroup.ddd_items": "Deadly Dinos: Items",
-  "itemGroup.ddd_food": "Deadly Dinos: Food",
+  "itemGroup.ddd_food": "Deadly Dinos: Food & Medical",
   "itemGroup.ddd_blocks": "Deadly Dinos: Blocks",
 
   "tooltip.deadlydinos.tamable.tooltip": "This baby is tamable!",
@@ -98,6 +98,9 @@
   "block.deadlydinos.wide_bar_fence": "Wide Bar Fence",
   "block.deadlydinos.wire_fence": "Wire Fence",
   "block.deadlydinos.electric_wire_fence": "Electric Wire Fence",
+  "block.deadlydinos.food_supply_stash": "Food Supply Stash",
+  "block.deadlydinos.medical_supply_stash": "Medical Supply Stash",
+  "block.deadlydinos.equipment_supply_stash": "Equipment Supply Stash",
 
   "item.deadlydinos.raw_small_meat": "Small Dino Meat",
   "item.deadlydinos.cooked_small_meat": "Cooked Small Dino Meat",
@@ -217,6 +220,12 @@
   "item.deadlydinos.riot_leggings": "Riot Leggings",
   "item.deadlydinos.riot_boots": "Riot Boots",
 
+
+  "item.deadlydinos.gauze_wrap": "Gauze Wrap",
+  "item.deadlydinos.bug_bite_cream": "Bug Bite Cream",
+  "item.deadlydinos.bird_flu_shot": "Avian Flu Shot",
+  "item.deadlydinos.parasitic_antibiotic": "Parasitic Antibiotic",
+  "item.deadlydinos.bacterial_antibiotic": "Bacterial Antibiotic",
 
   "item.deadlydinos.eocarcharia_armor": "Eocarcharia Armor",
 

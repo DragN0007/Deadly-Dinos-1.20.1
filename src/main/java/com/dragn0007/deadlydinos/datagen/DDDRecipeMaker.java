@@ -27,6 +27,58 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
     }
 
     public void buildCommonRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.CHAIN_LINK_FENCE.get(), 16)
+                .define('A', Items.IRON_NUGGET)
+                .pattern("A A")
+                .pattern(" A ")
+                .pattern("A A")
+                .unlockedBy("has_iron_nugget", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_NUGGET)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.HORIZONTAL_BAR_FENCE.get(), 16)
+                .define('A', Items.IRON_INGOT)
+                .pattern("AAA")
+                .pattern("   ")
+                .pattern("AAA")
+                .unlockedBy("has_iron_ingot", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_INGOT)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.WIDE_BAR_FENCE.get(), 16)
+                .define('A', Items.IRON_INGOT)
+                .pattern("A A")
+                .pattern("A A")
+                .pattern("A A")
+                .unlockedBy("has_iron_ingot", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_INGOT)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.WIRE_FENCE.get(), 16)
+                .define('A', Items.IRON_NUGGET)
+                .pattern("AAA")
+                .unlockedBy("has_iron_nugget", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_NUGGET)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.ELECTRIC_WIRE_FENCE.get(), 8)
+                .define('A', Items.IRON_NUGGET)
+                .define('B', Items.REDSTONE)
+                .pattern("BBB")
+                .pattern("AAA")
+                .pattern("BBB")
+                .unlockedBy("has_iron_nugget", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_NUGGET)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DDDBlocks.ELECTRIC_WIRE_FENCE.get())
+                .requires(DDDBlocks.WIRE_FENCE.get())
+                .requires(Items.REDSTONE)
+                .unlockedBy("has_wire_fence", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(DDDBlocks.WIRE_FENCE.get())
+                        .build())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "electric_wire_fence_from_wire_fence"));
+
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.REINFORCED_COBBLESTONE.get())
                 .define('A', Items.IRON_NUGGET)
                 .define('B', Items.COBBLESTONE)

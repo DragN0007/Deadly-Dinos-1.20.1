@@ -2,6 +2,7 @@ package com.dragn0007.deadlydinos.blocks;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.blocks.custom.ElectricIronBarsBlock;
+import com.dragn0007.deadlydinos.blocks.custom.SupplyBox;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,11 +24,10 @@ public class DDDBlocks {
     public static final DeferredRegister<Block> BLOCKS
             = DeferredRegister.create(ForgeRegistries.BLOCKS, DeadlyDinos.MODID);
 
-    //Box
-//    public static final RegistryObject<Block> DINO_GIFT_BOX = registerBlock("dino_gift_box",
-//            () -> new RotatedPillarBlock(Block.Properties.copy(WHITE_WOOL).strength(0.3F)));
-//    public static final RegistryObject<Block> DINO_NUGGETS_BOX = registerBlock("dino_nuggets_box",
-//            () -> new DinoNuggetBox());
+    //Stash
+    public static final RegistryObject<Block> FOOD_SUPPLY_STASH = registerBlock("food_supply_stash", SupplyBox::new);
+    public static final RegistryObject<Block> EQUIPMENT_SUPPLY_STASH = registerBlock("equipment_supply_stash", SupplyBox::new);
+    public static final RegistryObject<Block> MEDICAL_SUPPLY_STASH = registerBlock("medical_supply_stash", SupplyBox::new);
 
     //Blocks
     public static final RegistryObject<Block> REINFORCED_COBBLESTONE = registerBlock("reinforced_cobblestone",
@@ -36,7 +36,6 @@ public class DDDBlocks {
             () -> new GlassBlock(BlockBehaviour.Properties.copy(GLASS)));
     public static final RegistryObject<Block> REINFORCED_STONE_BRICKS = registerBlock("reinforced_stone_bricks",
             () -> new Block(BlockBehaviour.Properties.copy(STONE_BRICKS)));
-
 
     //Decor
     public static final RegistryObject<Block> CHAIN_LINK_FENCE = registerBlock("chain_link_fence",

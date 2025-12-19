@@ -1,0 +1,101 @@
+{
+  "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "deadlydinos:food_supply_stash",
+              "condition": "minecraft:block_state_property"
+            }
+          ],
+          "functions": [
+            {
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "function": "minecraft:apply_bonus",
+              "parameters": {
+                "extra": 2,
+                "probability": 0.5714286
+              }
+            }
+          ],
+          "name": "deadlydinos:cracker"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "deadlydinos:food_supply_stash",
+              "condition": "minecraft:block_state_property"
+            }
+          ],
+          "functions": [
+            {
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "function": "minecraft:apply_bonus",
+              "parameters": {
+                "extra": 2,
+                "probability": 0.5714286
+              }
+            }
+          ],
+          "name": "deadlydinos:cracker"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "deadlydinos:food_supply_stash",
+              "condition": "minecraft:block_state_property"
+            }
+          ],
+          "functions": [
+            {
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "function": "minecraft:apply_bonus",
+              "parameters": {
+                "extra": 2,
+                "probability": 0.5714286
+              }
+            }
+          ],
+          "name": "deadlydinos:soda"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "deadlydinos:food_supply_stash",
+              "condition": "minecraft:block_state_property"
+            }
+          ],
+          "functions": [
+            {
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "function": "minecraft:apply_bonus",
+              "parameters": {
+                "extra": 2,
+                "probability": 0.5714286
+              }
+            }
+          ],
+          "name": "deadlydinos:mre"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "deadlydinos:blocks/food_supply_stash"
+}

@@ -115,6 +115,9 @@ public class DDDItemGroup {
                         output.accept(DDDBlocks.WIDE_BAR_FENCE.get());
                         output.accept(DDDBlocks.WIRE_FENCE.get());
                         output.accept(DDDBlocks.ELECTRIC_WIRE_FENCE.get());
+                        output.accept(DDDBlocks.FOOD_SUPPLY_STASH.get());
+                        output.accept(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get());
+                        output.accept(DDDBlocks.MEDICAL_SUPPLY_STASH.get());
 
                         output.accept(DDDItems.SMALL_CARNIVORE_CLAW.get());
                         output.accept(DDDItems.SMALL_CARNIVORE_LEG.get());
@@ -172,6 +175,9 @@ public class DDDItemGroup {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(DDDItems.DDD_FOOD.get())).title(Component.translatable("itemGroup.ddd_food"))
                     .displayItems((displayParameters, output) -> {
 
+                        output.accept(DDDItems.GAUZE_WRAP.get());
+                        output.accept(DDDItems.PARASITIC_ANTIBIOTIC.get());
+
                         output.accept(DDDItems.RAW_SMALL_MEAT.get());
                         output.accept(DDDItems.COOKED_SMALL_MEAT.get());
                         output.accept(DDDItems.RAW_MEDIUM_MEAT.get());
@@ -185,8 +191,8 @@ public class DDDItemGroup {
                         output.accept(DDDItems.CANNED_STEW.get());
                         output.accept(DDDItems.MRE.get());
                         output.accept(DDDItems.SODA.get());
-//                        output.accept(DDDItems.RAW_ESCARGOT.get());
-//                        output.accept(DDDItems.COOKED_ESCARGOT .get());
+                        output.accept(DDDItems.RAW_ESCARGOT.get());
+                        output.accept(DDDItems.COOKED_ESCARGOT .get());
 //                        output.accept(DDDItems.DINO_NUGGET_1.get());
 //                        output.accept(DDDItems.DINO_NUGGET_2.get());
 //                        output.accept(DDDItems.DINO_NUGGET_3.get());

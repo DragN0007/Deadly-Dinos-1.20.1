@@ -23,6 +23,10 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> MEGARAPTOR_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> MEI_LONG_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> VELOCIRAPTOR_MAX_PACK_COUNT;
+    public static final ForgeConfigSpec.BooleanValue INJURY_EFFECTS;
+    public static final ForgeConfigSpec.BooleanValue ILLNESS_EFFECTS;
+    public static final ForgeConfigSpec.ConfigValue<Double> GAUZE_SUCCESS_CHANCE;
+    public static final ForgeConfigSpec.ConfigValue<Double> ANTI_PARASITIC_SUCCESS_CHANCE;
 
     static {
         BUILDER.push("General");
@@ -64,23 +68,39 @@ public class DeadlyDinosCommonConfig {
 
         BUILDER.push("Herding & Packing");
 
-        PARASAUROLOPHUS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Parasaurolophus that can herd up at once.")
+        PARASAUROLOPHUS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Parasaurolophus that can herd up at once. Default is 6.")
                 .define("Max Parasaurolophus Herd Count", 6);
 
-        TRICERATOPS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Triceratops that can herd up at once.")
+        TRICERATOPS_MAX_HERD_COUNT = BUILDER.comment("Maximum amount of Triceratops that can herd up at once. Default is 6.")
                 .define("Max Triceratops Herd Count", 6);
 
-        MEGARAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Megaraptors that can pack up at once.")
+        MEGARAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Megaraptors that can pack up at once. Default is 2.")
                 .define("Max Megaraptor Pack Count", 2);
 
-        MEI_LONG_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Mei Longs that can pack up at once.")
+        MEI_LONG_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Mei Longs that can pack up at once. Default is 4.")
                 .define("Max Mei Long Pack Count", 4);
 
-        UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once.")
+        UTAHRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Utahraptors that can pack up at once. Default is 6.")
                 .define("Max Utahraptor Pack Count", 6);
 
-        VELOCIRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Velociraptors that can pack up at once.")
+        VELOCIRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Velociraptors that can pack up at once. Default is 8.")
                 .define("Max Velociraptor Pack Count", 8);
+        BUILDER.pop();
+
+        BUILDER.push("Injuries, Illnesses and Medical");
+
+        INJURY_EFFECTS = BUILDER.comment("Should players be able to gain injury effects, such as Bleeding and Broken Bones?")
+                .define("Injuries", true);
+
+        ILLNESS_EFFECTS = BUILDER.comment("Should players be able to gain illness effects, such as Avian Flu and Taeniasis?")
+                .define("Illnesses", true);
+
+        GAUZE_SUCCESS_CHANCE = BUILDER.comment("Chance that Gauze Wraps will lower or stop Bleeding. Default is 0.90 (90%).")
+                .define("Gauze Wraps Success Chance", 0.90);
+
+        ANTI_PARASITIC_SUCCESS_CHANCE = BUILDER.comment("Chance that Parasitic Antibiotics will treat parasitic infections. Default is 0.75 (75%).")
+                .define("Parasitic Antibiotics Success Chance", 0.75);
+
         BUILDER.pop();
 
         SPEC = BUILDER.build();

@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-16T14:29:46.4056544	Item Models: deadlydinos
+// 1.20.1	2025-12-18T19:13:00.5507972	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -68,6 +68,7 @@ e15775608220ef59b09ad63a16eb82ca369245bd assets/deadlydinos/models/item/fertiliz
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/fertilized_utahraptor_egg.json
 4656ad765fd6eb927bede6e0bbc9203b0c2bd40b assets/deadlydinos/models/item/fertilized_velociraptor_egg.json
 2f74c4141e491b1286e3d5fd88f372f2b681247b assets/deadlydinos/models/item/fertilized_yutyrannus_egg.json
+3d86dd311e7fe658706cbc78bda65d8a0e7c83c4 assets/deadlydinos/models/item/gauze_wrap.json
 f2c098046ff2b1abeb44f22008a7d0d97341b946 assets/deadlydinos/models/item/gryposaurus_egg.json
 f2c098046ff2b1abeb44f22008a7d0d97341b946 assets/deadlydinos/models/item/gryposaurus_spawn_egg.json
 d7ef2b999af689276ac5d331335198bc7ab71f0d assets/deadlydinos/models/item/gryposaurus_trophy.json
@@ -118,6 +119,7 @@ f71e965e0e1b43ac1f2b50262f7f957ef0cdc1cb assets/deadlydinos/models/item/ovirapto
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/parasaurolophus_egg.json
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/parasaurolophus_spawn_egg.json
 de495c66149fbe39edfbfc4ae1bc378c51fd7583 assets/deadlydinos/models/item/parasaurolophus_trophy.json
+7e3955244ad24b8857e622f7a5ad7588897894d8 assets/deadlydinos/models/item/parasitic_antibiotic.json
 bbc307e912f6835c73c7dfe626f833d5676cd696 assets/deadlydinos/models/item/raw_escargot.json
 e8c167086eb29525fbdf826f74bcbcf01af24923 assets/deadlydinos/models/item/raw_large_meat.json
 0d80321178ca950f49d71f82fe2b5bc8ae97e03f assets/deadlydinos/models/item/raw_medium_meat.json

@@ -1,7 +1,10 @@
-// 1.20.1	2025-12-16T14:17:06.792681	Loot Tables
+// 1.20.1	2025-12-18T19:13:00.5537909	Loot Tables
 8a32d352df20f861aa9f856761e634fb99599318 data/deadlydinos/loot_tables/blocks/chain_link_fence.json
 a9984f6b72eee9b27714912ed751a926cfb3280f data/deadlydinos/loot_tables/blocks/electric_wire_fence.json
+ec03589bff51e5aec63152801da3b534121c2d92 data/deadlydinos/loot_tables/blocks/equipment_supply_stash.json
+59f62466d2f7e01a94f53110620ca2938b5f281d data/deadlydinos/loot_tables/blocks/food_supply_stash.json
 6233b3583ec2ecc88950dc3b19c73a9a34db7794 data/deadlydinos/loot_tables/blocks/horizontal_bar_fence.json
+47eb560d26062cfc916e36e728e844d9f9833a95 data/deadlydinos/loot_tables/blocks/medical_supply_stash.json
 2429057d2981dbda17b81030de39cb7e4d134b3d data/deadlydinos/loot_tables/blocks/reinforced_cobblestone.json
 47b5bbac37ad087508fb2b7b47a02c51a9342d07 data/deadlydinos/loot_tables/blocks/reinforced_glass.json
 c3a1f68c259fcbb4b922861a336fa3d44dd664d9 data/deadlydinos/loot_tables/blocks/reinforced_stone_bricks.json
