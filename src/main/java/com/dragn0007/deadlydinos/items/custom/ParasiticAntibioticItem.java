@@ -28,9 +28,23 @@ public class ParasiticAntibioticItem extends Item {
     Random random = new Random();
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
-        if (!level.isClientSide && random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get()) {
-            entity.removeEffect(DDDEffects.BIRD_FLU.get());
+        if (!level.isClientSide && entity.hasEffect(DDDEffects.BIRD_FLU.get())) {
+            if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get()) {
+                entity.removeEffect(DDDEffects.BIRD_FLU.get());
+                if (entity instanceof Player player) {
+                    player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
+                }
+            } else {
+                if (entity instanceof Player player) {
+                    player.displayClientMessage(Component.translatable("tooltip.deadlydinos.not_cured.tooltip").withStyle(ChatFormatting.DARK_RED), true);
+                }
+            }
+        } else {
+            if (entity instanceof Player player) {
+                player.displayClientMessage(Component.translatable("tooltip.deadlydinos.no_ailment.tooltip").withStyle(ChatFormatting.YELLOW), true);
+            }
         }
+
         if (entity instanceof ServerPlayer serverplayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, itemStack);
             serverplayer.awardStat(Stats.ITEM_USED.get(this));
@@ -66,6 +80,6 @@ public class ParasiticAntibioticItem extends Item {
         } else if (DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get() > 0.75 && DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get() <= 1.0) {
             cureChanceText = "High";
         }
-        pTooltipComponents.add(Component.translatable(cureChanceText + " chance of success at stopping or slowing bleeding.").withStyle(ChatFormatting.GRAY));
+        pTooltipComponents.add(Component.translatable(cureChanceText + " chance of success at curing parasitic infections.").withStyle(ChatFormatting.GRAY));
     }
 }

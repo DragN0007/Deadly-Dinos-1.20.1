@@ -32,9 +32,29 @@ public class GauzeItem extends Item {
         if (!level.isClientSide && random.nextDouble() <= DeadlyDinosCommonConfig.GAUZE_SUCCESS_CHANCE.get()) {
             if (entity.hasEffect(DDDEffects.BLEEDING.get())) {
                 int amp = entity.getEffect(DDDEffects.BLEEDING.get()).getAmplifier();
-                entity.addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), amp * 20, amp));
+                int duration = entity.getEffect(DDDEffects.BLEEDING.get()).getDuration();
+                entity.removeEffect(DDDEffects.BLEEDING.get());
+                if (amp > 0) {
+                    entity.addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), duration, amp - 1, false, true));
+                    if (entity instanceof Player player) {
+                        player.displayClientMessage(Component.translatable("tooltip.deadlydinos.bleed_slowed.tooltip").withStyle(ChatFormatting.WHITE), true);
+                    }
+                } else {
+                    if (entity instanceof Player player) {
+                        player.displayClientMessage(Component.translatable("tooltip.deadlydinos.bleed_stopped.tooltip").withStyle(ChatFormatting.GOLD), true);
+                    }
+                }
+            } else {
+                if (entity instanceof Player player) {
+                    player.displayClientMessage(Component.translatable("tooltip.deadlydinos.no_ailment.tooltip").withStyle(ChatFormatting.YELLOW), true);
+                }
+            }
+        } else {
+            if (entity instanceof Player player) {
+                player.displayClientMessage(Component.translatable("tooltip.deadlydinos.gauze_failed.tooltip").withStyle(ChatFormatting.DARK_RED), true);
             }
         }
+
         if (entity instanceof ServerPlayer serverplayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, itemStack);
             serverplayer.awardStat(Stats.ITEM_USED.get(this));

@@ -247,5 +247,11 @@
 
   "config.jade.plugin_deadlydinos.ddd_tooltips": "Display DDD Dinosaur Info",
   "tooltip.deadlydinos.jade.female.tooltip": "Female",
-  "tooltip.deadlydinos.jade.male.tooltip": "Male"
+  "tooltip.deadlydinos.jade.male.tooltip": "Male",
+  "tooltip.deadlydinos.gauze_failed.tooltip": "The gauze is soaked and failed to seal your wound.",
+  "tooltip.deadlydinos.bleed_slowed.tooltip": "The bleeding has been slowed by the gauze, but not stopped...",
+  "tooltip.deadlydinos.bleed_stopped.tooltip": "Your wound has been sealed, and the bleeding has stopped.",
+  "tooltip.deadlydinos.cured.tooltip": "Your treatment was successful and your ailment was cured.",
+  "tooltip.deadlydinos.not_cured.tooltip": "Your treatment failed and the ailment wasn't cured.",
+  "tooltip.deadlydinos.no_ailment.tooltip": "You don't have the ailment that this treats."
 }
