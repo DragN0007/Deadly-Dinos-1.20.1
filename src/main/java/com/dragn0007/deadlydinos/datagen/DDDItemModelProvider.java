@@ -117,6 +117,8 @@ public class DDDItemModelProvider extends ItemModelProvider {
         advancedItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG, "anomaly_acrocanthosaurus_egg");
 
         simpleItem(DDDItems.GAUZE_WRAP);
+        simpleItem(DDDItems.BUG_BITE_CREAM);
+        simpleItem(DDDItems.BACTERIAL_ANTIBIOTIC);
         simpleItem(DDDItems.PARASITIC_ANTIBIOTIC);
 
         simpleItem(DDDItems.RAW_SMALL_MEAT);

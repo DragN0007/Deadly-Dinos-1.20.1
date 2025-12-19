@@ -1,12 +1,7 @@
 package com.dragn0007.deadlydinos.entities.giant_crop_snail;
 
 import com.dragn0007.deadlydinos.entities.AbstractDino;
-import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
-import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtByTargetGoal;
-import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtTargetGoal;
-import com.dragn0007.deadlydinos.entities.ai.GroundTieGoal;
-import com.dragn0007.deadlydinos.entities.ai.herd.AbstractMountFollowHerdLeaderGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;

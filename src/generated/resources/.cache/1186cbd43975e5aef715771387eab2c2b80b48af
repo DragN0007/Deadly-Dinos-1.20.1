@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-18T19:13:00.5507972	Item Models: deadlydinos
+// 1.20.1	2025-12-19T00:28:02.8072083	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -16,6 +16,7 @@ f6bc56de3534e3cddaeff2e828843070cd32baf9 assets/deadlydinos/models/item/anomaly_
 e34c710ad172693e455984f732fe7286b22a1b69 assets/deadlydinos/models/item/anomaly_bone_pickaxe.json
 2a08e52590b47afcff650e0062f3b61f907a5d6f assets/deadlydinos/models/item/anomaly_bone_shovel.json
 ad4ff1e00aea2af02816a381e9f36d55b9ca3a1f assets/deadlydinos/models/item/anomaly_bone_sword.json
+ea09e0fdf4591d101e952719af9fe562f2d6e17f assets/deadlydinos/models/item/bacterial_antibiotic.json
 695ca4c1314365b5198bfef5f2dc0beb2155c833 assets/deadlydinos/models/item/bleeding.json
 fca802d503a6fff3d1907c2fcb83cb65b89a7524 assets/deadlydinos/models/item/bone_axe.json
 dd13c1b73e77324659a345737c22c37c57261518 assets/deadlydinos/models/item/bone_dagger.json
@@ -25,6 +26,7 @@ dd13c1b73e77324659a345737c22c37c57261518 assets/deadlydinos/models/item/bone_dag
 5fe7743a41aa6ff4a0a73584dc23788bd98d9790 assets/deadlydinos/models/item/bone_shovel.json
 fa921022d6eb1305063e946d17c3224ca9775374 assets/deadlydinos/models/item/bone_sword.json
 35483280a3a68edd2611d2686b954bd9f9dcc3c2 assets/deadlydinos/models/item/broth.json
+62bb34c9715d77cda8129c07b3d8169f39e67022 assets/deadlydinos/models/item/bug_bite_cream.json
 370d40d8fda269bba44e097fb06307c319ceaed6 assets/deadlydinos/models/item/canned_meat.json
 6aebd2cc773b911aee7685f9ac5c9687e3e9eef7 assets/deadlydinos/models/item/canned_stew.json
 c3e441a13e9c9001d2d03c7576ee3fe1b35e1cf8 assets/deadlydinos/models/item/canned_veggies.json

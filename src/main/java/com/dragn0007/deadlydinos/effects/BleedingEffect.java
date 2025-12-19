@@ -32,6 +32,7 @@ public class BleedingEffect extends MobEffect {
         }
     }
 
+    //how fast the player takes damage (how fast applyEffectTick() is run)
     @Override
     public boolean isDurationEffectTick(int duration, int amplifier) {
         if (amplifier > 0) {

@@ -2,12 +2,7 @@ package com.dragn0007.deadlydinos.entities.giant_crop_snail;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import software.bernie.geckolib.constant.DataTickets;
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
-import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
-import software.bernie.geckolib.model.data.EntityModelData;
 
 public class CropSnailModel extends DefaultedEntityGeoModel<CropSnail> {
 

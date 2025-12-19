@@ -244,6 +244,11 @@
   "effect.deadlydinos.bleeding": "Bleeding",
   "effect.deadlydinos.bird_flu": "Avian Influenza H0",
   "effect.deadlydinos.bug_bite": "Bug Bite",
+  "effect.deadlydinos.broken_arm": "Broken Arm",
+  "effect.deadlydinos.broken_leg": "Broken Leg",
+  "effect.deadlydinos.taeniasis": "Taeniasis Infection",
+  "effect.deadlydinos.aeromonas": "Aeromonas Infection",
+  "effect.deadlydinos.sepsis": "Sepsis",
 
   "config.jade.plugin_deadlydinos.ddd_tooltips": "Display DDD Dinosaur Info",
   "tooltip.deadlydinos.jade.female.tooltip": "Female",
@@ -253,5 +258,6 @@
   "tooltip.deadlydinos.bleed_stopped.tooltip": "Your wound has been sealed, and the bleeding has stopped.",
   "tooltip.deadlydinos.cured.tooltip": "Your treatment was successful and your ailment was cured.",
   "tooltip.deadlydinos.not_cured.tooltip": "Your treatment failed and the ailment wasn't cured.",
-  "tooltip.deadlydinos.no_ailment.tooltip": "You don't have the ailment that this treats."
+  "tooltip.deadlydinos.no_ailment.tooltip": "You don't have the ailment that this treats.",
+  "tooltip.deadlydinos.medicals_disabled.tooltip": "Medical supplies are disabled on this world/ server."
 }

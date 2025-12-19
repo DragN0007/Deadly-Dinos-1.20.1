@@ -1,6 +1,5 @@
 package com.dragn0007.deadlydinos.entities.giant_crop_snail;
 
-import com.dragn0007.deadlydinos.entities.parasaurolophus.ParasaurolophusTackLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

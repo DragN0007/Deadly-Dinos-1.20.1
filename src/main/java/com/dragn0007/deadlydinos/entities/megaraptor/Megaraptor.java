@@ -140,8 +140,8 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 				}
 
 				if (i > 0 && chance <= 50) {
-					((LivingEntity)entity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, i * 20, 2), this);
-					((LivingEntity)entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, 2), this);
+					((LivingEntity)entity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, i * 20, 2, true, false), this);
+					((LivingEntity)entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, 2, true, false), this);
 				}
 			}
 

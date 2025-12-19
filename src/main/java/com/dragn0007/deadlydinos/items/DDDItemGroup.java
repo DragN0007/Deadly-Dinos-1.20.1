@@ -176,6 +176,8 @@ public class DDDItemGroup {
                     .displayItems((displayParameters, output) -> {
 
                         output.accept(DDDItems.GAUZE_WRAP.get());
+                        output.accept(DDDItems.BUG_BITE_CREAM.get());
+                        output.accept(DDDItems.BACTERIAL_ANTIBIOTIC.get());
                         output.accept(DDDItems.PARASITIC_ANTIBIOTIC.get());
 
                         output.accept(DDDItems.RAW_SMALL_MEAT.get());

@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -28,30 +27,32 @@ public class ParasiticAntibioticItem extends Item {
     Random random = new Random();
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
-        if (!level.isClientSide && entity.hasEffect(DDDEffects.BIRD_FLU.get())) {
-            if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get()) {
-                entity.removeEffect(DDDEffects.BIRD_FLU.get());
-                if (entity instanceof Player player) {
-                    player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
+        if (DeadlyDinosCommonConfig.MEDICAL_SUPPLIES.get()) {
+            if (!level.isClientSide && entity.hasEffect(DDDEffects.BIRD_FLU.get())) {
+                if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get()) {
+                    entity.removeEffect(DDDEffects.BIRD_FLU.get());
+                    if (entity instanceof Player player) {
+                        player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
+                    }
+                } else {
+                    if (entity instanceof Player player) {
+                        player.displayClientMessage(Component.translatable("tooltip.deadlydinos.not_cured.tooltip").withStyle(ChatFormatting.DARK_RED), true);
+                    }
                 }
             } else {
                 if (entity instanceof Player player) {
-                    player.displayClientMessage(Component.translatable("tooltip.deadlydinos.not_cured.tooltip").withStyle(ChatFormatting.DARK_RED), true);
+                    player.displayClientMessage(Component.translatable("tooltip.deadlydinos.no_ailment.tooltip").withStyle(ChatFormatting.YELLOW), true);
                 }
             }
-        } else {
-            if (entity instanceof Player player) {
-                player.displayClientMessage(Component.translatable("tooltip.deadlydinos.no_ailment.tooltip").withStyle(ChatFormatting.YELLOW), true);
+
+            if (entity instanceof ServerPlayer serverplayer) {
+                CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, itemStack);
+                serverplayer.awardStat(Stats.ITEM_USED.get(this));
             }
-        }
 
-        if (entity instanceof ServerPlayer serverplayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, itemStack);
-            serverplayer.awardStat(Stats.ITEM_USED.get(this));
-        }
-
-        if (entity instanceof Player && !((Player)entity).getAbilities().instabuild) {
-            itemStack.shrink(1);
+            if (entity instanceof Player && !((Player) entity).getAbilities().instabuild) {
+                itemStack.shrink(1);
+            }
         }
 
         return super.finishUsingItem(itemStack, level, entity);
@@ -80,6 +81,10 @@ public class ParasiticAntibioticItem extends Item {
         } else if (DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get() > 0.75 && DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get() <= 1.0) {
             cureChanceText = "High";
         }
-        pTooltipComponents.add(Component.translatable(cureChanceText + " chance of success at curing parasitic infections.").withStyle(ChatFormatting.GRAY));
+        if (DeadlyDinosCommonConfig.MEDICAL_SUPPLIES.get()) {
+            pTooltipComponents.add(Component.translatable(cureChanceText + " chance of success at curing parasitic infections.").withStyle(ChatFormatting.GRAY));
+        } else {
+            pTooltipComponents.add(Component.translatable("tooltip.deadlydinos.medicals_disabled.tooltip").withStyle(ChatFormatting.GRAY));
+        }
     }
 }

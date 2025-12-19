@@ -2,12 +2,9 @@ package com.dragn0007.deadlydinos.datagen.biglooter;
 
 import com.dragn0007.deadlydinos.blocks.DDDBlocks;
 import com.dragn0007.deadlydinos.items.DDDItems;
-import com.dragn0007.dragncrops.blocks.COBlocks;
-import com.dragn0007.dragncrops.items.COItems;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;

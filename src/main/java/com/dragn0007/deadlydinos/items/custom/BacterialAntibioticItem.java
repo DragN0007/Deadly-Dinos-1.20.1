@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -19,9 +18,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class GauzeItem extends Item {
+public class BacterialAntibioticItem extends Item {
 
-    public GauzeItem(Properties properties) {
+    public BacterialAntibioticItem(Properties properties) {
         super(properties);
     }
 
@@ -29,29 +28,20 @@ public class GauzeItem extends Item {
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
         if (DeadlyDinosCommonConfig.MEDICAL_SUPPLIES.get()) {
-            if (!level.isClientSide && random.nextDouble() <= DeadlyDinosCommonConfig.GAUZE_SUCCESS_CHANCE.get()) {
-                if (entity.hasEffect(DDDEffects.BLEEDING.get())) {
-                    int amp = entity.getEffect(DDDEffects.BLEEDING.get()).getAmplifier();
-                    int duration = entity.getEffect(DDDEffects.BLEEDING.get()).getDuration();
-                    entity.removeEffect(DDDEffects.BLEEDING.get());
-                    if (amp > 0) {
-                        entity.addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), duration, amp - 1, false, true));
-                        if (entity instanceof Player player) {
-                            player.displayClientMessage(Component.translatable("tooltip.deadlydinos.bleed_slowed.tooltip").withStyle(ChatFormatting.WHITE), true);
-                        }
-                    } else {
-                        if (entity instanceof Player player) {
-                            player.displayClientMessage(Component.translatable("tooltip.deadlydinos.bleed_stopped.tooltip").withStyle(ChatFormatting.GOLD), true);
-                        }
+            if (!level.isClientSide && entity.hasEffect(DDDEffects.BIRD_FLU.get())) {
+                if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get()) {
+                    entity.removeEffect(DDDEffects.BIRD_FLU.get());
+                    if (entity instanceof Player player) {
+                        player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
                     }
                 } else {
                     if (entity instanceof Player player) {
-                        player.displayClientMessage(Component.translatable("tooltip.deadlydinos.no_ailment.tooltip").withStyle(ChatFormatting.YELLOW), true);
+                        player.displayClientMessage(Component.translatable("tooltip.deadlydinos.not_cured.tooltip").withStyle(ChatFormatting.DARK_RED), true);
                     }
                 }
             } else {
                 if (entity instanceof Player player) {
-                    player.displayClientMessage(Component.translatable("tooltip.deadlydinos.gauze_failed.tooltip").withStyle(ChatFormatting.DARK_RED), true);
+                    player.displayClientMessage(Component.translatable("tooltip.deadlydinos.no_ailment.tooltip").withStyle(ChatFormatting.YELLOW), true);
                 }
             }
 
@@ -73,7 +63,7 @@ public class GauzeItem extends Item {
     }
 
     public UseAnim getUseAnimation(ItemStack p_42931_) {
-        return UseAnim.BRUSH;
+        return UseAnim.BOW;
     }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -84,15 +74,16 @@ public class GauzeItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         String cureChanceText = "Unknown";
-        if (DeadlyDinosCommonConfig.GAUZE_SUCCESS_CHANCE.get() <= 0.25) {
+        if (DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() <= 0.25) {
             cureChanceText = "Low";
-        } else if (DeadlyDinosCommonConfig.GAUZE_SUCCESS_CHANCE.get() > 0.25 && DeadlyDinosCommonConfig.GAUZE_SUCCESS_CHANCE.get() <= 0.75) {
+        } else if (DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() > 0.25 && DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() <= 0.75) {
             cureChanceText = "Average";
-        } else if (DeadlyDinosCommonConfig.GAUZE_SUCCESS_CHANCE.get() > 0.75 && DeadlyDinosCommonConfig.GAUZE_SUCCESS_CHANCE.get() <= 1.0) {
+        } else if (DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() > 0.75 && DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() <= 1.0) {
             cureChanceText = "High";
         }
+
         if (DeadlyDinosCommonConfig.MEDICAL_SUPPLIES.get()) {
-            pTooltipComponents.add(Component.translatable(cureChanceText + " chance of success at stopping or slowing bleeding.").withStyle(ChatFormatting.GRAY));
+            pTooltipComponents.add(Component.translatable(cureChanceText + " chance of success at curing bacterial infections.").withStyle(ChatFormatting.GRAY));
         } else {
             pTooltipComponents.add(Component.translatable("tooltip.deadlydinos.medicals_disabled.tooltip").withStyle(ChatFormatting.GRAY));
         }

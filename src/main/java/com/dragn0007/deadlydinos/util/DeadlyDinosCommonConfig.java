@@ -23,10 +23,18 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> MEGARAPTOR_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> MEI_LONG_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> VELOCIRAPTOR_MAX_PACK_COUNT;
+    public static final ForgeConfigSpec.BooleanValue MILK_CURE;
     public static final ForgeConfigSpec.BooleanValue INJURY_EFFECTS;
     public static final ForgeConfigSpec.BooleanValue ILLNESS_EFFECTS;
+    public static final ForgeConfigSpec.BooleanValue MEDICAL_SUPPLIES;
+    public static final ForgeConfigSpec.BooleanValue SEPSIS;
+    public static final ForgeConfigSpec.ConfigValue<Integer> SEPSIS_TIME;
+    public static final ForgeConfigSpec.ConfigValue<Double> RAW_MEAT_PARASITE_CHANCE;
+    public static final ForgeConfigSpec.ConfigValue<Double> LEG_BREAK_CHANCE;
     public static final ForgeConfigSpec.ConfigValue<Double> GAUZE_SUCCESS_CHANCE;
+    public static final ForgeConfigSpec.ConfigValue<Double> BUG_CREAM_SUCCESS_CHANCE;
     public static final ForgeConfigSpec.ConfigValue<Double> ANTI_PARASITIC_SUCCESS_CHANCE;
+    public static final ForgeConfigSpec.ConfigValue<Double> ANTI_BACTERIAL_SUCCESS_CHANCE;
 
     static {
         BUILDER.push("General");
@@ -89,17 +97,41 @@ public class DeadlyDinosCommonConfig {
 
         BUILDER.push("Injuries, Illnesses and Medical");
 
-        INJURY_EFFECTS = BUILDER.comment("Should players be able to gain injury effects, such as Bleeding and Broken Bones?")
-                .define("Injuries", true);
+        MILK_CURE = BUILDER.comment("Should Milk Buckets be able to cure effects like vanilla? Disabled by default for the true apocalypse experience.")
+                .define("Milk Buckets Cure Effects", false);
+
+        INJURY_EFFECTS = BUILDER.comment("Should players be able to gain injury effects, such as Bleeding and Broken Bones? This may be better turned false if you have a health mod installed (i.e. First Aid, Legendary Survival Overhaul) so that they don't overlap.")
+                .define("Injuries Enabled", true);
 
         ILLNESS_EFFECTS = BUILDER.comment("Should players be able to gain illness effects, such as Avian Flu and Taeniasis?")
-                .define("Illnesses", true);
+                .define("Illnesses Enabled", true);
+
+        MEDICAL_SUPPLIES = BUILDER.comment("Should medical supplies, such as Gauze, work for their intended effects? Turning this false will disable all DDD medical supplies and they will no longer work.")
+                .define("Medical Supplies Enabled", true);
+
+        SEPSIS = BUILDER.comment("Should some untreated bacterial infections turn into Sepsis over time?")
+                .define("Untreated Infections to Sepsis", true);
+
+        SEPSIS_TIME = BUILDER.comment("Amount of time it takes for an untreated infection to turn into Sepsis. Default is 72000, or 3 (vanilla) days.")
+                .define("Sepsis Infection Time", 72000);
+
+        RAW_MEAT_PARASITE_CHANCE = BUILDER.comment("Chance of getting a parasitic infection from eating raw meat. Default is 0.50 (50%).")
+                .define("Raw Meat Parasite Chance", 0.50);
+
+        LEG_BREAK_CHANCE = BUILDER.comment("Chance of breaking your leg when taking moderate/ high fall damage. Default is 0.50 (50%).")
+                .define("Leg Break Chance", 0.50);
 
         GAUZE_SUCCESS_CHANCE = BUILDER.comment("Chance that Gauze Wraps will lower or stop Bleeding. Default is 0.90 (90%).")
                 .define("Gauze Wraps Success Chance", 0.90);
 
+        BUG_CREAM_SUCCESS_CHANCE = BUILDER.comment("Chance that Bug Bite Cream will treat itchy bug bites. Default is 0.90 (90%).")
+                .define("Bug Bite Cream Success Chance", 0.90);
+
         ANTI_PARASITIC_SUCCESS_CHANCE = BUILDER.comment("Chance that Parasitic Antibiotics will treat parasitic infections. Default is 0.75 (75%).")
                 .define("Parasitic Antibiotics Success Chance", 0.75);
+
+        ANTI_BACTERIAL_SUCCESS_CHANCE = BUILDER.comment("Chance that Bacterial Antibiotics will treat bacterial infections. Default is 0.75 (75%).")
+                .define("Bacterial Antibiotics Success Chance", 0.75);
 
         BUILDER.pop();
 

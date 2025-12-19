@@ -627,11 +627,17 @@ public static final RegistryObject<Item> OLOROTITAN_TROPHY = ITEMS.register("olo
 //            ));
 
     //MEDICAL
+    public static final RegistryObject<Item> GAUZE_WRAP = ITEMS.register("gauze_wrap",
+            () -> new GauzeItem(new Item.Properties().stacksTo(16)));
+
+    public static final RegistryObject<Item> BUG_BITE_CREAM = ITEMS.register("bug_bite_cream",
+            () -> new BugBiteCreamItem(new Item.Properties().stacksTo(16)));
+
     public static final RegistryObject<Item> PARASITIC_ANTIBIOTIC = ITEMS.register("parasitic_antibiotic",
             () -> new ParasiticAntibioticItem(new Item.Properties().stacksTo(16)));
 
-    public static final RegistryObject<Item> GAUZE_WRAP = ITEMS.register("gauze_wrap",
-            () -> new GauzeItem(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> BACTERIAL_ANTIBIOTIC = ITEMS.register("bacterial_antibiotic",
+            () -> new BacterialAntibioticItem(new Item.Properties().stacksTo(16)));
 
 
     //EQUIPMENT
