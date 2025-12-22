@@ -642,6 +642,9 @@ public static final RegistryObject<Item> OLOROTITAN_TROPHY = ITEMS.register("olo
     public static final RegistryObject<Item> BUG_BITE_CREAM = ITEMS.register("bug_bite_cream",
             () -> new BugBiteCreamItem(new Item.Properties().stacksTo(16)));
 
+    public static final RegistryObject<Item> BIRD_FLU_SHOT = ITEMS.register("bird_flu_shot",
+            () -> new BirdFluShotItem(new Item.Properties().stacksTo(16)));
+
     public static final RegistryObject<Item> PARASITIC_ANTIBIOTIC = ITEMS.register("parasitic_antibiotic",
             () -> new ParasiticAntibioticItem(new Item.Properties().stacksTo(16)));
 

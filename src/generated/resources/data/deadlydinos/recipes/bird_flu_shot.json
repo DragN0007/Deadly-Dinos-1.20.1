@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:feather"
+    },
+    "B": {
+      "item": "minecraft:charcoal"
+    },
+    "C": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "A  ",
+    " B ",
+    "  C"
+  ],
+  "result": {
+    "item": "deadlydinos:bird_flu_shot"
+  },
+  "show_notification": true
+}

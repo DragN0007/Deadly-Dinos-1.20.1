@@ -14,14 +14,12 @@ public class BrokenLegEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
-            if (!entity.level().isClientSide) {
-                if (entity.hasEffect(DDDEffects.BROKEN_LEG.get())) {
-                    int amp = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getAmplifier();
-                    int duration = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getDuration();
-                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amp + 1, false, false));
-                    if (amp >= 1) {
-                        entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, amp, false, false));
-                    }
+            if (entity.hasEffect(DDDEffects.BROKEN_LEG.get())) {
+                int amp = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getAmplifier();
+                int duration = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getDuration();
+                entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amp + 1, false, false));
+                if (amp >= 1) {
+                    entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, amp, false, false));
                 }
             }
         }

@@ -14,14 +14,12 @@ public class BrokenArmEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
-            if (!entity.level().isClientSide) {
-                if (entity.hasEffect(DDDEffects.BROKEN_ARM.get())) {
-                    int amp = entity.getEffect(DDDEffects.BROKEN_ARM.get()).getAmplifier();
-                    int duration = entity.getEffect(DDDEffects.BROKEN_ARM.get()).getDuration();
-                    entity.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, duration, amp, false, false));
-                    if (amp >= 1) {
-                        entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, amp, false, false));
-                    }
+            if (entity.hasEffect(DDDEffects.BROKEN_ARM.get())) {
+                int amp = entity.getEffect(DDDEffects.BROKEN_ARM.get()).getAmplifier();
+                int duration = entity.getEffect(DDDEffects.BROKEN_ARM.get()).getDuration();
+                entity.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, duration, amp, false, false));
+                if (amp >= 1) {
+                    entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, amp, false, false));
                 }
             }
         }

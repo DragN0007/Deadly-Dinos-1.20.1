@@ -6,10 +6,13 @@ import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -46,16 +49,50 @@ public class ForgeEvent {
         Level level = event.getEntity().level();
         LivingEntity entity = event.getEntity();
         if (!level.isClientSide) {
-            if (event.getSource().is(DamageTypes.FALL) && event.getAmount() > 3) {
-                if (random.nextDouble() >= DeadlyDinosCommonConfig.LEG_BREAK_CHANCE.get() && DeadlyDinosCommonConfig.INJURY_EFFECTS.get()) {
-                    if (!entity.hasEffect(DDDEffects.BROKEN_LEG.get())) {
-                        entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 0, true, false, true));
-                    } else {
-                        int amp = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getAmplifier();
-                        if (amp < 3) {
-                            entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), amp + 1, true, false, true));
+            float damage = event.getAmount();
+            if (event.getSource().is(DamageTypes.FALL) && damage > 3) {
+                float heightCalc = (int) (damage - 3.0F);
+                float breakChance = heightCalc * 0.2F;
+                if (random.nextFloat() < breakChance) {
+                    if (random.nextDouble() >= DeadlyDinosCommonConfig.LEG_BREAK_CHANCE.get() && DeadlyDinosCommonConfig.INJURY_EFFECTS.get()) {
+                        if (!entity.hasEffect(DDDEffects.BROKEN_LEG.get())) {
+                            entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 0, true, false, true));
+                        } else {
+                            int amp = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getAmplifier();
+                            if (amp < 3) {
+                                entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), amp + 1, true, false, true));
+                            }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerWakeAfterInjury(PlayerWakeUpEvent event) {
+        Level level = event.getEntity().level();
+        LivingEntity entity = event.getEntity();
+        if (!level.isClientSide) {
+            if (entity instanceof Player player) {
+                int slept = player.getSleepTimer();
+                if (entity.hasEffect(DDDEffects.CONCUSSION.get()) && slept >= 80) {
+                    int amp = entity.getEffect(DDDEffects.CONCUSSION.get()).getAmplifier();
+                    int duration = entity.getEffect(DDDEffects.CONCUSSION.get()).getDuration();
+                    entity.removeEffect(DDDEffects.CONCUSSION.get());
+                    entity.addEffect(new MobEffectInstance(DDDEffects.CONCUSSION.get(), duration - (duration / 3), amp, true, false, true));
+                }
+                if (entity.hasEffect(DDDEffects.BROKEN_LEG.get()) && slept >= 80) {
+                    int amp = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getAmplifier();
+                    int duration = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getDuration();
+                    entity.removeEffect(DDDEffects.BROKEN_LEG.get());
+                    entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), duration - (duration / 4), amp, true, false, true));
+                }
+                if (entity.hasEffect(DDDEffects.BROKEN_ARM.get()) && slept >= 80) {
+                    int amp = entity.getEffect(DDDEffects.BROKEN_ARM.get()).getAmplifier();
+                    int duration = entity.getEffect(DDDEffects.BROKEN_ARM.get()).getDuration();
+                    entity.removeEffect(DDDEffects.BROKEN_ARM.get());
+                    entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_ARM.get(), duration - (duration / 4), amp, true, false, true));
                 }
             }
         }

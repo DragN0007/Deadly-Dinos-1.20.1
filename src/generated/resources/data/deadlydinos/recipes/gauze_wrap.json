@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:string"
+    },
+    "B": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "pattern": [
+    "BAB"
+  ],
+  "result": {
+    "count": 4,
+    "item": "deadlydinos:gauze_wrap"
+  },
+  "show_notification": true
+}

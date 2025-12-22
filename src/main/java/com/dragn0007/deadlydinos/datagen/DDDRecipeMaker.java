@@ -27,6 +27,57 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
     }
 
     public void buildCommonRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.GAUZE_WRAP.get(), 4)
+                .define('A', Items.STRING)
+                .define('B', ItemTags.WOOL)
+                .pattern("BAB")
+                .unlockedBy("has_string", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STRING)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BUG_BITE_CREAM.get())
+                .define('A', Items.SLIME_BALL)
+                .define('B', Items.IRON_NUGGET)
+                .pattern("BAB")
+                .pattern("BBB")
+                .unlockedBy("has_iron_nugget", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.IRON_NUGGET)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BIRD_FLU_SHOT.get())
+                .define('A', Items.FEATHER)
+                .define('B', Items.CHARCOAL)
+                .define('C', Items.GLASS)
+                .pattern("A  ")
+                .pattern(" B ")
+                .pattern("  C")
+                .unlockedBy("has_glass", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.GLASS)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BACTERIAL_ANTIBIOTIC.get())
+                .define('A', Items.COPPER_ORE)
+                .define('B', Items.CHARCOAL)
+                .define('C', Items.GLASS)
+                .pattern("A  ")
+                .pattern(" B ")
+                .pattern("  C")
+                .unlockedBy("has_glass", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.GLASS)
+                        .build())).save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.PARASITIC_ANTIBIOTIC.get())
+                .define('A', Items.SLIME_BALL)
+                .define('B', Items.CHARCOAL)
+                .define('C', Items.GLASS)
+                .pattern("A  ")
+                .pattern(" B ")
+                .pattern("  C")
+                .unlockedBy("has_glass", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.GLASS)
+                        .build())).save(pFinishedRecipeConsumer);
+
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.CHAIN_LINK_FENCE.get(), 16)
                 .define('A', Items.IRON_NUGGET)
                 .pattern("A A")

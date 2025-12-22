@@ -74,7 +74,9 @@ public class BugBiteCreamItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         String cureChanceText = "Unknown";
-        if (DeadlyDinosCommonConfig.BUG_CREAM_SUCCESS_CHANCE.get() <= 0.25) {
+        if (DeadlyDinosCommonConfig.BUG_CREAM_SUCCESS_CHANCE.get() <= 0.0) {
+            cureChanceText = "No";
+        } else if (DeadlyDinosCommonConfig.BUG_CREAM_SUCCESS_CHANCE.get() > 0.0 && DeadlyDinosCommonConfig.BUG_CREAM_SUCCESS_CHANCE.get() <= 0.25) {
             cureChanceText = "Low";
         } else if (DeadlyDinosCommonConfig.BUG_CREAM_SUCCESS_CHANCE.get() > 0.25 && DeadlyDinosCommonConfig.BUG_CREAM_SUCCESS_CHANCE.get() <= 0.75) {
             cureChanceText = "Average";

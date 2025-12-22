@@ -14,17 +14,15 @@ public class ConcussionEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
-            if (!entity.level().isClientSide) {
-                if (entity.hasEffect(DDDEffects.CONCUSSION.get())) {
-                    int amp = entity.getEffect(DDDEffects.CONCUSSION.get()).getAmplifier();
-                    int duration = entity.getEffect(DDDEffects.CONCUSSION.get()).getDuration();
-                    entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, amp, false, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, duration, amp, false, false));
-                    entity.addEffect(new MobEffectInstance(MobEffects.UNLUCK, duration, amp, false, false));
-                    if (amp >= 1) {
-                        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amp, false, false));
-                        entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, duration, amp, false, false));
-                    }
+            if (entity.hasEffect(DDDEffects.CONCUSSION.get())) {
+                int amp = entity.getEffect(DDDEffects.CONCUSSION.get()).getAmplifier();
+                int duration = entity.getEffect(DDDEffects.CONCUSSION.get()).getDuration();
+                entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, duration, amp, false, false));
+                entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, duration, amp, false, false));
+                entity.addEffect(new MobEffectInstance(MobEffects.UNLUCK, duration, amp, false, false));
+                if (amp >= 1) {
+                    entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, duration, amp, false, false));
+                    entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, duration, amp, false, false));
                 }
             }
         }

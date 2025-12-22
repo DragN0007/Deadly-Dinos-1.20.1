@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:slime_ball"
+    },
+    "B": {
+      "item": "minecraft:charcoal"
+    },
+    "C": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "A  ",
+    " B ",
+    "  C"
+  ],
+  "result": {
+    "item": "deadlydinos:parasitic_antibiotic"
+  },
+  "show_notification": true
+}

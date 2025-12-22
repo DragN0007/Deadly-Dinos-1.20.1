@@ -28,9 +28,14 @@ public class BacterialAntibioticItem extends Item {
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
         if (DeadlyDinosCommonConfig.MEDICAL_SUPPLIES.get()) {
-            if (!level.isClientSide && entity.hasEffect(DDDEffects.BIRD_FLU.get())) {
+            if (!level.isClientSide) {
                 if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get()) {
-                    entity.removeEffect(DDDEffects.BIRD_FLU.get());
+                    if (entity.hasEffect(DDDEffects.AEROMONAS.get())) {
+                        entity.removeEffect(DDDEffects.AEROMONAS.get());
+                    }
+                    if (random.nextDouble() <= 0.25 && entity.hasEffect(DDDEffects.SEPSIS.get())) {
+                        entity.removeEffect(DDDEffects.SEPSIS.get());
+                    }
                     if (entity instanceof Player player) {
                         player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
                     }
@@ -74,7 +79,9 @@ public class BacterialAntibioticItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         String cureChanceText = "Unknown";
-        if (DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() <= 0.25) {
+        if (DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() <= 0.0) {
+            cureChanceText = "No";
+        } else if (DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() > 0.0 && DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() <= 0.25) {
             cureChanceText = "Low";
         } else if (DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() > 0.25 && DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get() <= 0.75) {
             cureChanceText = "Average";

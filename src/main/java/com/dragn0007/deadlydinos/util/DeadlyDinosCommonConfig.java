@@ -35,6 +35,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Double> LEG_BREAK_CHANCE;
     public static final ForgeConfigSpec.ConfigValue<Double> GAUZE_SUCCESS_CHANCE;
     public static final ForgeConfigSpec.ConfigValue<Double> BUG_CREAM_SUCCESS_CHANCE;
+    public static final ForgeConfigSpec.ConfigValue<Double> ANTI_FLU_SUCCESS_CHANCE;
     public static final ForgeConfigSpec.ConfigValue<Double> ANTI_PARASITIC_SUCCESS_CHANCE;
     public static final ForgeConfigSpec.ConfigValue<Double> ANTI_BACTERIAL_SUCCESS_CHANCE;
 
@@ -132,6 +133,9 @@ public class DeadlyDinosCommonConfig {
 
         BUG_CREAM_SUCCESS_CHANCE = BUILDER.comment("Chance that Bug Bite Cream will treat itchy bug bites. Default is 0.90 (90%).")
                 .define("Bug Bite Cream Success Chance", 0.90);
+
+        ANTI_FLU_SUCCESS_CHANCE = BUILDER.comment("Chance that the Bird Flu Shot will treat Avian Influenza. Default is 0.90 (90%).")
+                .define("Bird Flu Shot Success Chance", 0.90);
 
         ANTI_PARASITIC_SUCCESS_CHANCE = BUILDER.comment("Chance that Parasitic Antibiotics will treat parasitic infections. Default is 0.75 (75%).")
                 .define("Parasitic Antibiotics Success Chance", 0.75);

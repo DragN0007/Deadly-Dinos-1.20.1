@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +15,6 @@ public class DDDTags {
 
     public static class Items {
 
-        public static final TagKey<Item> PREHISTORIC_PLANTS = tag("prehistoric_plants");
         public static final TagKey<Item> RAW_DINO_MEATS = tag("raw_dino_meats");
         public static final TagKey<Item> COOKED_DINO_MEATS = tag("cooked_dino_meats");
         public static final TagKey<Item> CARNIVORE_EATS = tag("carnivore_eats");
@@ -74,7 +74,6 @@ public class DDDTags {
     }
 
     public static class Blocks {
-        public static final TagKey<Block> PREHISTORIC_PLANTS = tag("prehistoric_plants");
         public static final TagKey<Block> TROODON_SEEKS = forgeTag("troodon_seeks");
         public static final TagKey<Block> LARGE_DINO_DESTROYS = forgeTag("large_dino_destroys");
         public static final TagKey<Block> MEDIUM_DINO_DESTROYS = forgeTag("medium_dino_destroys");

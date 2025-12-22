@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:slime_ball"
+    },
+    "B": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "pattern": [
+    "BAB",
+    "BBB"
+  ],
+  "result": {
+    "item": "deadlydinos:bug_bite_cream"
+  },
+  "show_notification": true
+}
