@@ -1,5 +1,6 @@
 package com.dragn0007.deadlydinos.entities.utahraptor;
 
+import com.dragn0007.deadlydinos.effects.DDDEffects;
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
@@ -148,13 +149,32 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 			if (entity instanceof LivingEntity) {
 				int i = 0;
 				if (this.level().getDifficulty() == Difficulty.NORMAL) {
-					i = 7;
+					i = 600;
 				} else if (this.level().getDifficulty() == Difficulty.HARD) {
-					i = 15;
+					i = 1200;
 				}
 
-				if (i > 0 && chance <= 50) {
-					((LivingEntity)entity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, i * 20, 0), this);
+				if (DeadlyDinosCommonConfig.INJURY_EFFECTS.get()) {
+					if (i > 0 && chance <= 25) {
+						if (!((LivingEntity) entity).hasEffect(DDDEffects.BLEEDING.get())) {
+							((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, 0, true, false, true));
+						} else {
+							int amp = ((LivingEntity) entity).getEffect(DDDEffects.BLEEDING.get()).getAmplifier();
+							if (amp < 3) {
+								((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, amp + 1, true, false, true));
+							}
+						}
+					}
+				}
+
+				if (DeadlyDinosCommonConfig.ILLNESS_EFFECTS.get()) {
+					if (i > 0 && chance <= 15) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BIRD_FLU.get(), i * 20, 0, true, false, true), this);
+					}
+
+					if (i > 0 && chance <= 2) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.AEROMONAS.get(), MobEffectInstance.INFINITE_DURATION, 0, true, false, true));
+					}
 				}
 			}
 

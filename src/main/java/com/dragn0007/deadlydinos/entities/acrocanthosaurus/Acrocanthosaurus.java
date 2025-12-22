@@ -1,5 +1,6 @@
 package com.dragn0007.deadlydinos.entities.acrocanthosaurus;
 
+import com.dragn0007.deadlydinos.effects.DDDEffects;
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
@@ -19,6 +20,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -111,6 +113,54 @@ public class Acrocanthosaurus extends AbstractDino implements GeoEntity {
 
 		this.goalSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 4, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby()));
+	}
+
+	public boolean doHurtTarget(Entity entity) {
+		Random random = new Random();
+		int chance = random.nextInt(100);
+		if (super.doHurtTarget(entity)) {
+			if (entity instanceof LivingEntity) {
+				int i = 0;
+				if (this.level().getDifficulty() == Difficulty.NORMAL) {
+					i = 60;
+				} else if (this.level().getDifficulty() == Difficulty.HARD) {
+					i = 120;
+				}
+
+				if (DeadlyDinosCommonConfig.INJURY_EFFECTS.get()) {
+					if (chance <= 10 && chance >= 5) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 2, true, false, true), this);
+					} else if (chance <= 5) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BROKEN_ARM.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 2, true, false, true), this);
+					}
+
+					if (chance <= 5) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.CONCUSSION.get(), DeadlyDinosCommonConfig.CONCUSSION_HEAL_TIME.get(), 1, true, false, true), this);
+					}
+
+					if (chance <= 25) {
+						if (!((LivingEntity) entity).hasEffect(DDDEffects.BLEEDING.get())) {
+							((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, 0, true, false, true));
+						} else {
+							int amp = ((LivingEntity) entity).getEffect(DDDEffects.BLEEDING.get()).getAmplifier();
+							if (amp < 3) {
+								((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, amp + 1, true, false, true));
+							}
+						}
+					}
+				}
+
+				if (DeadlyDinosCommonConfig.ILLNESS_EFFECTS.get()) {
+					if (chance <= 2) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.AEROMONAS.get(), MobEffectInstance.INFINITE_DURATION, 0, true, false, true));
+					}
+				}
+			}
+
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public int regenHealthCounter = 0;

@@ -132,16 +132,30 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 		int chance = random.nextInt(100);
 		if (super.doHurtTarget(entity)) {
 			if (entity instanceof LivingEntity) {
-				int i = 0;
-				if (this.level().getDifficulty() == Difficulty.NORMAL) {
-					i = 7;
-				} else if (this.level().getDifficulty() == Difficulty.HARD) {
-					i = 15;
+					int i = 0;
+					if (this.level().getDifficulty() == Difficulty.NORMAL) {
+						i = 60;
+					} else if (this.level().getDifficulty() == Difficulty.HARD) {
+						i = 120;
+					}
+
+				if (DeadlyDinosCommonConfig.INJURY_EFFECTS.get()) {
+					if (i > 0 && chance <= 50) {
+						if (!((LivingEntity) entity).hasEffect(DDDEffects.BLEEDING.get())) {
+							((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, 0, true, false, true));
+						} else {
+							int amp = ((LivingEntity) entity).getEffect(DDDEffects.BLEEDING.get()).getAmplifier();
+							if (amp < 3) {
+								((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, amp + 1, true, false, true));
+							}
+						}
+					}
 				}
 
-				if (i > 0 && chance <= 50) {
-					((LivingEntity)entity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, i * 20, 2, true, false), this);
-					((LivingEntity)entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, 2, true, false), this);
+				if (DeadlyDinosCommonConfig.ILLNESS_EFFECTS.get()) {
+					if (i > 0 && chance <= 2) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.AEROMONAS.get(), MobEffectInstance.INFINITE_DURATION, 0, true, false, true));
+					}
 				}
 			}
 

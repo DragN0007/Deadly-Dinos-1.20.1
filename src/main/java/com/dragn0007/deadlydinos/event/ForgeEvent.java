@@ -27,7 +27,7 @@ public class ForgeEvent {
         ItemStack stack = event.getItem();
 
         if (!level.isClientSide) {
-            if (stack.is(DDDTags.Items.RAW_MEATS) && random.nextDouble() >= DeadlyDinosCommonConfig.RAW_MEAT_PARASITE_CHANCE.get()) {
+            if (stack.is(DDDTags.Items.RAW_MEATS) && random.nextDouble() >= DeadlyDinosCommonConfig.RAW_MEAT_PARASITE_CHANCE.get() && DeadlyDinosCommonConfig.ILLNESS_EFFECTS.get()) {
                 if (!entity.hasEffect(DDDEffects.TAENIASIS.get())) {
                     entity.addEffect(new MobEffectInstance(DDDEffects.TAENIASIS.get(), MobEffectInstance.INFINITE_DURATION, 0, true, false, true));
                 } else {
@@ -47,13 +47,13 @@ public class ForgeEvent {
         LivingEntity entity = event.getEntity();
         if (!level.isClientSide) {
             if (event.getSource().is(DamageTypes.FALL) && event.getAmount() > 3) {
-                if (random.nextDouble() >= DeadlyDinosCommonConfig.LEG_BREAK_CHANCE.get()) {
+                if (random.nextDouble() >= DeadlyDinosCommonConfig.LEG_BREAK_CHANCE.get() && DeadlyDinosCommonConfig.INJURY_EFFECTS.get()) {
                     if (!entity.hasEffect(DDDEffects.BROKEN_LEG.get())) {
-                        entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), 72000, 0, true, false, true));
+                        entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 0, true, false, true));
                     } else {
                         int amp = entity.getEffect(DDDEffects.BROKEN_LEG.get()).getAmplifier();
                         if (amp < 3) {
-                            entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), 72000, amp + 1, true, false, true));
+                            entity.addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), amp + 1, true, false, true));
                         }
                     }
                 }

@@ -3,7 +3,6 @@ package com.dragn0007.deadlydinos.entities.giant_crop_snail;
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.items.DDDItems;
-import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.core.BlockPos;
@@ -20,8 +19,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -65,7 +62,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 				.add(Attributes.MAX_HEALTH, 8.0D)
 				.add(Attributes.ATTACK_DAMAGE, 0.5D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8F)
-				.add(Attributes.MOVEMENT_SPEED, 0.22F)
+				.add(Attributes.MOVEMENT_SPEED, 0.16F)
 				.add(Attributes.FOLLOW_RANGE, 48D);
 	}
 
@@ -109,16 +106,6 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 			this.level().addParticle(ParticleTypes.HEART, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 0.7D, 0.7D, 0.7D);
 		}
 
-		if (this.isInWater()) {
-			if (!this.hasSpeedEffect()) {
-				this.applySpeedEffect();
-			}
-		} else {
-			if (this.hasSpeedEffect()) {
-				this.removeSpeedEffect();
-			}
-		}
-
 	}
 
 	public int eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
@@ -128,7 +115,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 		super.aiStep();
 
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.PARASAUROLOPHUS_EGG.get());
+			this.spawnAtLocation(DDDItems.GIANT_CROP_SNAIL_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
@@ -145,19 +132,6 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 			}
 		}
 
-	}
-
-	public void applySpeedEffect() {
-		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false);
-		this.addEffect(effectInstance);
-	}
-
-	public boolean hasSpeedEffect() {
-		return this.hasEffect(MobEffects.MOVEMENT_SPEED);
-	}
-
-	public void removeSpeedEffect() {
-		this.removeEffect(MobEffects.MOVEMENT_SPEED);
 	}
 
 	public boolean hurt(DamageSource source, float v) {
@@ -178,7 +152,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 
 	public <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> tAnimationState) {
 		double currentSpeed = this.getDeltaMovement().lengthSqr();
-		double speedThreshold = 0.02;
+		double speedThreshold = 0.01;
 
 		AnimationController<T> controller = tAnimationState.getController();
 
@@ -224,21 +198,21 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 
 	public SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return DDDSoundEvents.LARGE_HERBIVORE_AMBIENT.get();
+		return SoundEvents.SLIME_SQUISH_SMALL;
 	}
 
 	public SoundEvent getDeathSound() {
 		super.getDeathSound();
-		return SoundEvents.RAVAGER_DEATH;
+		return SoundEvents.SLIME_DEATH_SMALL;
 	}
 
 	public SoundEvent getHurtSound(DamageSource p_30720_) {
 		super.getHurtSound(p_30720_);
-		return SoundEvents.POLAR_BEAR_WARNING;
+		return SoundEvents.SLIME_HURT;
 	}
 
 	public void playStepSound(BlockPos p_28254_, BlockState p_28255_) {
-		this.playSound(SoundEvents.POLAR_BEAR_STEP, 0.15F, 1.0F);
+		this.playSound(SoundEvents.SLIME_JUMP_SMALL, 0.15F, 1.0F);
 	}
 
 	// Generates the base texture
@@ -350,7 +324,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 		}
 
 		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
@@ -372,7 +346,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_PARASAUROLOPHUS_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG.get());
 		}
 	}
 

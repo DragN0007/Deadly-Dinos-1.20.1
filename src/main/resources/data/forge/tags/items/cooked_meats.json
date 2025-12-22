@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "#deadlydinos:cooked_dino_meats",
+    "deadlydinos:cooked_escargot",
+
+    "minecraft:cooked_beef",
+    "minecraft:cooked_chicken",
+    "minecraft:cooked_mutton",
+    "minecraft:cooked_porkchop",
+    "minecraft:cooked_rabbit"
+  ]
+}

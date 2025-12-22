@@ -114,6 +114,10 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.TRICERATOPS_EGG);
         simpleItem(DDDItems.TRICERATOPS_TROPHY);
 
+        advancedItem(DDDItems.GIANT_CROP_SNAIL_SPAWN_EGG, "giant_crop_snail_egg");
+        advancedItem(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG, "giant_crop_snail_egg");
+        simpleItem(DDDItems.GIANT_CROP_SNAIL_EGG);
+
         advancedItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG, "anomaly_acrocanthosaurus_egg");
 
         simpleItem(DDDItems.GAUZE_WRAP);

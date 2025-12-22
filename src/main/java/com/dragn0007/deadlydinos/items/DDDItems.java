@@ -84,6 +84,7 @@ public class DDDItems {
     public static final RegistryObject<Item> YUTYRANNUS_EGG = ITEMS.register("yutyrannus_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
+
     public static final RegistryObject<Item> GRYPOSAURUS_SPAWN_EGG = ITEMS.register("gryposaurus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.GRYPOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_GRYPOSAURUS_EGG = ITEMS.register("fertilized_gryposaurus_egg",
@@ -110,6 +111,14 @@ public class DDDItems {
     public static final RegistryObject<Item> FERTILIZED_TRICERATOPS_EGG = ITEMS.register("fertilized_triceratops_egg",
             () -> new FertilizedTriceratopsEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> TRICERATOPS_EGG = ITEMS.register("triceratops_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
+
+    public static final RegistryObject<Item> GIANT_CROP_SNAIL_SPAWN_EGG = ITEMS.register("giant_crop_snail_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.CROP_SNAIL, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_GIANT_CROP_SNAIL_EGG = ITEMS.register("fertilized_giant_crop_snail_egg",
+            () -> new FertilizedCropSnailEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> GIANT_CROP_SNAIL_EGG = ITEMS.register("giant_crop_snail_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
 

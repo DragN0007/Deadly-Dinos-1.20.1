@@ -22,6 +22,9 @@ public class DDDEffects {
     public static final RegistryObject<MobEffect> BROKEN_LEG = MOB_EFFECTS.register("broken_leg",
             () -> new BrokenLegEffect(MobEffectCategory.HARMFUL, 0x5c0d12));
 
+    public static final RegistryObject<MobEffect> CONCUSSION = MOB_EFFECTS.register("concussion",
+            () -> new ConcussionEffect(MobEffectCategory.HARMFUL, 0x5c0d12));
+
     //ILLNESSES
     public static final RegistryObject<MobEffect> BUG_BITE = MOB_EFFECTS.register("bug_bite",
             () -> new BugBiteEffect(MobEffectCategory.NEUTRAL, 0x5c0d12));

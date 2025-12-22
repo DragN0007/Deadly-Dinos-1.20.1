@@ -4,6 +4,7 @@ import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
+import com.dragn0007.deadlydinos.entities.giant_crop_snail.CropSnail;
 import com.dragn0007.deadlydinos.entities.gryposaurus.Gryposaurus;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
@@ -113,5 +114,13 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(3f,4.5f)
                     .build(new ResourceLocation(MODID,"triceratops").toString()));
+
+
+    //Insects
+    public static final RegistryObject<EntityType<CropSnail>> CROP_SNAIL = ENTITY_TYPES.register("giant_crop_snail",
+            () -> EntityType.Builder.of(CropSnail::new,
+                            MobCategory.CREATURE)
+                    .sized(0.6f,0.6f)
+                    .build(new ResourceLocation(MODID,"giant_crop_snail").toString()));
 }
 

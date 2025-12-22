@@ -46,6 +46,7 @@ public class DDDItemGroup {
                         output.accept(DDDItems.YUTYRANNUS_SPAWN_EGG.get());
                         output.accept(DDDItems.YUTYRANNUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_YUTYRANNUS_EGG.get());
+
                         output.accept(DDDItems.GRYPOSAURUS_SPAWN_EGG.get());
                         output.accept(DDDItems.GRYPOSAURUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_GRYPOSAURUS_EGG.get());
@@ -58,6 +59,10 @@ public class DDDItemGroup {
                         output.accept(DDDItems.TRICERATOPS_SPAWN_EGG.get());
                         output.accept(DDDItems.TRICERATOPS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_TRICERATOPS_EGG.get());
+
+                        output.accept(DDDItems.GIANT_CROP_SNAIL_SPAWN_EGG.get());
+                        output.accept(DDDItems.GIANT_CROP_SNAIL_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG.get());
 
                         output.accept(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG.get());
 

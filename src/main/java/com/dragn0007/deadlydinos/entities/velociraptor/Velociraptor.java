@@ -153,13 +153,20 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 			if (entity instanceof LivingEntity) {
 				int i = 0;
 				if (this.level().getDifficulty() == Difficulty.NORMAL) {
-					i = 7;
+					i = 600;
 				} else if (this.level().getDifficulty() == Difficulty.HARD) {
-					i = 15;
+					i = 1200;
 				}
 
-				if (i > 0 && chance <= 75) {
-					((LivingEntity)entity).addEffect(new MobEffectInstance(DDDEffects.BIRD_FLU.get(), i * 20, 0), this);
+
+				if (DeadlyDinosCommonConfig.ILLNESS_EFFECTS.get()) {
+					if (i > 0 && chance <= 75) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BIRD_FLU.get(), i * 20, 0, true, false, true), this);
+					}
+
+					if (i > 0 && chance <= 5) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.AEROMONAS.get(), MobEffectInstance.INFINITE_DURATION, 0, true, false, true));
+					}
 				}
 			}
 

@@ -1,5 +1,6 @@
 package com.dragn0007.deadlydinos.entities.parasaurolophus;
 
+import com.dragn0007.deadlydinos.effects.DDDEffects;
 import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtByTargetGoal;
@@ -112,6 +113,30 @@ public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isTamed()));
+	}
+
+	public boolean doHurtTarget(Entity entity) {
+		Random random = new Random();
+		int chance = random.nextInt(100);
+		if (super.doHurtTarget(entity)) {
+			if (entity instanceof LivingEntity) {
+				if (DeadlyDinosCommonConfig.INJURY_EFFECTS.get()) {
+					if (chance <= 4 && chance >= 2) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 2, true, false, true), this);
+					} else if (chance <= 2) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BROKEN_ARM.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 2, true, false, true), this);
+					}
+
+					if (chance <= 25) {
+						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.CONCUSSION.get(), DeadlyDinosCommonConfig.CONCUSSION_HEAL_TIME.get(), 1, true, false, true), this);
+					}
+				}
+			}
+
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public int regenHealthCounter = 0;

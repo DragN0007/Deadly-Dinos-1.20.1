@@ -89,6 +89,11 @@
   "item.deadlydinos.fertilized_triceratops_egg": "Fertilized Triceratops Egg",
   "entity.deadlydinos.triceratops": "Triceratops",
 
+  "item.deadlydinos.giant_crop_snail_spawn_egg": "Giant Crop Snail Spawn Egg",
+  "item.deadlydinos.giant_crop_snail_egg": "Giant Crop Snail Egg",
+  "item.deadlydinos.fertilized_giant_crop_snail_egg": "Fertilized Giant Crop Snail Egg",
+  "entity.deadlydinos.giant_crop_snail": "Giant Crop Snail",
+
 
   "block.deadlydinos.reinforced_cobblestone": "Reinforced Cobblestone",
   "block.deadlydinos.reinforced_glass": "Reinforced Glass",
@@ -246,6 +251,7 @@
   "effect.deadlydinos.bug_bite": "Bug Bite",
   "effect.deadlydinos.broken_arm": "Broken Arm",
   "effect.deadlydinos.broken_leg": "Broken Leg",
+  "effect.deadlydinos.concussion": "Concussion",
   "effect.deadlydinos.taeniasis": "Taeniasis Infection",
   "effect.deadlydinos.aeromonas": "Aeromonas Infection",
   "effect.deadlydinos.sepsis": "Sepsis",

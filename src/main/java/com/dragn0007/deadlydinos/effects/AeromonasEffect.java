@@ -16,7 +16,9 @@ public class AeromonasEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        turnIntoSepsisTick++;
+        if (DeadlyDinosCommonConfig.SEPSIS.get()) {
+            turnIntoSepsisTick++;
+        }
 
         if (!entity.level().isClientSide) {
             if (entity.hasEffect(DDDEffects.AEROMONAS.get())) {
@@ -31,7 +33,7 @@ public class AeromonasEffect extends MobEffect {
                     entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, duration, amp, false, false));
                 }
 
-                if (turnIntoSepsisTick >= DeadlyDinosCommonConfig.SEPSIS_TIME.get()) { //you are now fucked
+                if (turnIntoSepsisTick >= DeadlyDinosCommonConfig.SEPSIS_TIME.get() && DeadlyDinosCommonConfig.SEPSIS.get()) { //you are now fucked
                     entity.addEffect(new MobEffectInstance (DDDEffects.SEPSIS.get(), MobEffectInstance.INFINITE_DURATION, 1, true, false));
                     entity.removeEffect(DDDEffects.AEROMONAS.get());
                 }
