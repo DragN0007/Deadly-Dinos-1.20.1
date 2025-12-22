@@ -31,6 +31,7 @@ public class BiomeHitter {
     public static final ResourceKey<BiomeModifier> GRYPOSAURUS_WET = registerKey("gryposaurus_wet");
     public static final ResourceKey<BiomeModifier> OVIRAPTOR_HOT = registerKey("oviraptor_hot");
     public static final ResourceKey<BiomeModifier> CROP_SNAIL_WET = registerKey("crop_snail_wet");
+    public static final ResourceKey<BiomeModifier> TARBOSAURUS_HOT = registerKey("tarbosaurus_hot");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -80,6 +81,14 @@ public class BiomeHitter {
                 biomes.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.OVIRAPTOR.get(),
                         3,
+                        1,
+                        1
+                ))));
+
+        context.register(TARBOSAURUS_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_HOT_OVERWORLD),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.TARBOSAURUS.get(),
+                        2,
                         1,
                         1
                 ))));

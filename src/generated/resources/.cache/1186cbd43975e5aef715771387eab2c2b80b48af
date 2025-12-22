@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-21T18:24:33.09612	Item Models: deadlydinos
+// 1.20.1	2025-12-21T22:28:31.5554208	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -67,6 +67,7 @@ e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/fertiliz
 3428ce635d1b6a2655de63d4d03c1b0133a68cfd assets/deadlydinos/models/item/fertilized_olorotitan_egg.json
 674df92217b73d6835db6bb9f7ba115d6cb4c7c0 assets/deadlydinos/models/item/fertilized_oviraptor_egg.json
 c3527dae6115ea1fff8f54d2491a34ee04915461 assets/deadlydinos/models/item/fertilized_parasaurolophus_egg.json
+f470688d62b88b77da986a16a9c6e172733ce9e8 assets/deadlydinos/models/item/fertilized_tarbosaurus_egg.json
 e15775608220ef59b09ad63a16eb82ca369245bd assets/deadlydinos/models/item/fertilized_triceratops_egg.json
 970028fba43822df3345abcabd32576d489d2109 assets/deadlydinos/models/item/fertilized_utahraptor_egg.json
 4656ad765fd6eb927bede6e0bbc9203b0c2bd40b assets/deadlydinos/models/item/fertilized_velociraptor_egg.json
@@ -149,6 +150,9 @@ f1761d0742c991b7a3e73f697b8f12d9bbbbefca assets/deadlydinos/models/item/small_he
 f709ebb8887f44b40a715575a78e1eef81a7b50d assets/deadlydinos/models/item/small_herbivore_tooth.json
 cf7dfa7e4633da6e41a3edc8abac7687cdf33e58 assets/deadlydinos/models/item/small_raptor_claw.json
 5d9c45b2e6025af90eccfb9f3574df7514592c7f assets/deadlydinos/models/item/soda.json
+f470688d62b88b77da986a16a9c6e172733ce9e8 assets/deadlydinos/models/item/tarbosaurus_egg.json
+f470688d62b88b77da986a16a9c6e172733ce9e8 assets/deadlydinos/models/item/tarbosaurus_spawn_egg.json
+fb991dd5377d78bb254048643eb90a077674f460 assets/deadlydinos/models/item/tarbosaurus_trophy.json
 e15775608220ef59b09ad63a16eb82ca369245bd assets/deadlydinos/models/item/triceratops_egg.json
 e15775608220ef59b09ad63a16eb82ca369245bd assets/deadlydinos/models/item/triceratops_spawn_egg.json
 4f22ac1b4845755c3ec3d549538383d4497bf648 assets/deadlydinos/models/item/triceratops_trophy.json

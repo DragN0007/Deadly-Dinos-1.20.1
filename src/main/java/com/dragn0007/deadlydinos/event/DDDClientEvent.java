@@ -17,6 +17,7 @@ import com.dragn0007.deadlydinos.entities.mei_long.MeiLongRender;
 import com.dragn0007.deadlydinos.entities.olorotitan.OlorotitanRender;
 import com.dragn0007.deadlydinos.entities.oviraptor.OviraptorRender;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.ParasaurolophusRender;
+import com.dragn0007.deadlydinos.entities.tarbosaurus.TarbosaurusRender;
 import com.dragn0007.deadlydinos.entities.triceratops.TriceratopsRender;
 import com.dragn0007.deadlydinos.entities.utahraptor.UtahraptorRender;
 import com.dragn0007.deadlydinos.entities.velociraptor.VelociraptorRender;
@@ -52,6 +53,7 @@ public class DDDClientEvent {
         EntityRenderers.register(EntityTypes.GRYPOSAURUS.get(), GryposaurusRender::new);
         EntityRenderers.register(EntityTypes.OVIRAPTOR.get(), OviraptorRender::new);
         EntityRenderers.register(EntityTypes.CROP_SNAIL.get(), CropSnailRender::new);
+        EntityRenderers.register(EntityTypes.TARBOSAURUS.get(), TarbosaurusRender::new);
 
         MenuScreens.register(DDDMenuTypes.MOUNT_MENU.get(), MountScreen::new);
         MenuScreens.register(DDDMenuTypes.SMALL_INV_MENU.get(), SmallInvScreen::new);

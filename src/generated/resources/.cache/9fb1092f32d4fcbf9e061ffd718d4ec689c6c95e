@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-21T19:28:47.805715	Recipes
+// 1.20.1	2025-12-21T19:29:52.4694838	Recipes
 ee883b8a9e7979ac35a30c69e5e908458b817709 data/deadlydinos/advancements/recipes/misc/anomaly_bone_axe.json
 83194201fec7bed52311c1aaba7ba6d784e5e2e7 data/deadlydinos/advancements/recipes/misc/anomaly_bone_battleaxe.json
 e4e5eaebc1cd3c8e3f41846a29535ca50b8eaa25 data/deadlydinos/advancements/recipes/misc/anomaly_bone_dagger.json
@@ -92,7 +92,7 @@ dbceab9bc354f346d9086b19b20e7f61be663e01 data/deadlydinos/recipes/bone_hoe.json
 18582327c95c15197fe83eab81ce450cbc8cac6e data/deadlydinos/recipes/bone_sword.json
 b8db369b170e02ee3b4a9a301ca044e819da3afb data/deadlydinos/recipes/bone_warhammer.json
 c05cd60d818dc36ece6abae017b0184dd62a0b19 data/deadlydinos/recipes/broth.json
-c031aaa27fadb2af6f761e485d6289714bcba7ee data/deadlydinos/recipes/bug_bite_cream.json
+1505064873bbafe7e54ce0709cb45749432c4a45 data/deadlydinos/recipes/bug_bite_cream.json
 79024e38922be92cbcc00c06af08a992f6c166c9 data/deadlydinos/recipes/canned_meat.json
 6224ffa3de4aafdbc71a6472a0a1a4c3c11506d8 data/deadlydinos/recipes/canned_stew.json
 e5a83fbc6a42dea5a62d69044f0d285e0b5d7366 data/deadlydinos/recipes/canned_veggies.json

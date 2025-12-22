@@ -35,7 +35,7 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                         .of(Items.STRING)
                         .build())).save(pFinishedRecipeConsumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BUG_BITE_CREAM.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BUG_BITE_CREAM.get(), 4)
                 .define('A', Items.SLIME_BALL)
                 .define('B', Items.IRON_NUGGET)
                 .pattern("BAB")

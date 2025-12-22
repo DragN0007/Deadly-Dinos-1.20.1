@@ -47,6 +47,12 @@
   "item.deadlydinos.fertilized_oviraptor_egg": "Fertilized Oviraptor Egg",
   "entity.deadlydinos.oviraptor": "Oviraptor",
 
+  "item.deadlydinos.tarbosaurus_trophy": "Tarbosaurus Trophy",
+  "item.deadlydinos.tarbosaurus_spawn_egg": "Tarbosaurus Spawn Egg",
+  "item.deadlydinos.tarbosaurus_egg": "Tarbosaurus Egg",
+  "item.deadlydinos.fertilized_tarbosaurus_egg": "Fertilized Tarbosaurus Egg",
+  "entity.deadlydinos.tarbosaurus": "Tarbosaurus",
+
   "item.deadlydinos.utahraptor_trophy": "Utahraptor Trophy",
   "item.deadlydinos.utahraptor_spawn_egg": "Utahraptor Spawn Egg",
   "item.deadlydinos.utahraptor_egg": "Utahraptor Egg",
@@ -265,5 +271,6 @@
   "tooltip.deadlydinos.cured.tooltip": "Your treatment was successful and your ailment was cured.",
   "tooltip.deadlydinos.not_cured.tooltip": "Your treatment failed and the ailment wasn't cured.",
   "tooltip.deadlydinos.no_ailment.tooltip": "You don't have the ailment that this treats.",
-  "tooltip.deadlydinos.medicals_disabled.tooltip": "Medical supplies are disabled on this world/ server."
+  "tooltip.deadlydinos.medicals_disabled.tooltip": "Medical supplies are disabled on this world/ server.",
+  "tooltip.deadlydinos.semi_tamable.tooltip": "This baby is semi-tamable!"
 }

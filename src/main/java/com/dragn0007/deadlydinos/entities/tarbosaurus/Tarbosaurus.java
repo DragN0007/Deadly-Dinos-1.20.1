@@ -1,14 +1,10 @@
-package com.dragn0007.deadlydinos.entities.eocarcharia;
+package com.dragn0007.deadlydinos.entities.tarbosaurus;
 
-import com.dragn0007.deadlydinos.common.gui.SmallInvMenu;
 import com.dragn0007.deadlydinos.effects.DDDEffects;
-import com.dragn0007.deadlydinos.entities.AbstractDinoMount;
+import com.dragn0007.deadlydinos.entities.AbstractTamableDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
-import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtByTargetGoal;
-import com.dragn0007.deadlydinos.entities.ai.DinoOwnerHurtTargetGoal;
-import com.dragn0007.deadlydinos.entities.ai.GroundTieGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
@@ -21,14 +17,12 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -37,6 +31,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
@@ -48,7 +44,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -62,40 +57,21 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
+public class Tarbosaurus extends AbstractTamableDino implements GeoEntity {
 
-	public Eocarcharia(EntityType<? extends Eocarcharia> type, Level level) {
+	public Tarbosaurus(EntityType<? extends Tarbosaurus> type, Level level) {
 		super(type, level);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 80.0D)
-				.add(Attributes.ATTACK_DAMAGE, 8D)
+				.add(Attributes.MAX_HEALTH, 200.0D)
+				.add(Attributes.ATTACK_DAMAGE, 10D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1F)
-				.add(Attributes.ARMOR_TOUGHNESS, 4D)
-				.add(Attributes.ARMOR, 4D)
-				.add(Attributes.MOVEMENT_SPEED, 0.24F)
+				.add(Attributes.ARMOR_TOUGHNESS, 6D)
+				.add(Attributes.ARMOR, 6D)
+				.add(Attributes.MOVEMENT_SPEED, 0.22F)
 				.add(Attributes.FOLLOW_RANGE, 48D);
-	}
-
-	public float getRiddenSpeed(Player player) {
-		return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) / 1.5F;
-	}
-
-	@Override
-	public boolean canJump() {
-		return false;
-	}
-
-	@Override
-	public boolean canWearArmor() {
-		return true;
-	}
-
-	@Override
-	public int getInventorySize() {
-		return 27;
 	}
 
 	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.CARNIVORE_EATS);
@@ -104,7 +80,6 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 	}
 
 	public void registerGoals() {
-		this.goalSelector.addGoal(0, new GroundTieGoal(this));
 		this.goalSelector.addGoal(0, new FloatGoal(this));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -115,8 +90,8 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
 		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Monster.class, false));
 
-		this.goalSelector.addGoal(1, new DinoOwnerHurtByTargetGoal(this));
-		this.goalSelector.addGoal(2, new DinoOwnerHurtTargetGoal(this));
+		this.goalSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+		this.goalSelector.addGoal(2, new OwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
@@ -126,19 +101,19 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
-				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_DINOS_RUN_FROM) && !this.isTamed()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_DINOS_RUN_FROM) && !this.isTame()));
 
 		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Player.class, 3, true, false,
-				entity -> entity instanceof Player && !this.isBaby() && !this.isTamed()));
+				entity -> entity instanceof Player && !this.isBaby() && !this.isTame()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATOR_PREY) && !this.isBaby() && !this.isTamed()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATOR_PREY) && !this.isBaby() && !this.isTame()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.EOCARCHARIA.get())) && !this.isTamed()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS) && !entity.getType().is(DDDTags.Entity_Types.LARGE_PREDATORS) && !this.isBaby() && !(entity.getType() == (EntityTypes.TARBOSAURUS.get())) && !this.isTame()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 3, true, false,
-				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby() && !this.isTamed()));
+				entity -> entity.getType().is(DDDTags.Entity_Types.HERBIVORES) && !this.isBaby() && !this.isTame()));
 	}
 
 	public boolean doHurtTarget(Entity entity) {
@@ -154,13 +129,13 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 						i = 120;
 					}
 
-					if (chance <= 10 && chance >= 5) {
+					if (chance <= 30 && chance >= 15) {
 						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 2, true, false, true), this);
-					} else if (chance <= 5) {
+					} else if (chance <= 15) {
 						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BROKEN_ARM.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 2, true, false, true), this);
 					}
 
-					if (chance <= 5) {
+					if (chance <= 15) {
 						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.CONCUSSION.get(), DeadlyDinosCommonConfig.CONCUSSION_HEAL_TIME.get(), 1, true, false, true), this);
 					}
 
@@ -215,7 +190,7 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		super.aiStep();
 
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.EOCARCHARIA_EGG.get());
+			this.spawnAtLocation(DDDItems.TARBOSAURUS_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
@@ -260,22 +235,15 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		AnimationController<T> controller = tAnimationState.getController();
 
 		if (isMoving) {
-			if ((currentSpeed > speedThreshold) || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD))) {
+			if ((currentSpeed > speedThreshold)) {
 				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.8);
-			} else if (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
-				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.7);
+				controller.setAnimationSpeed(1.2);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.7);
+				controller.setAnimationSpeed(1.1);
 			}
 		} else {
-			if (this.isSaddled() && !this.isVehicle() && DeadlyDinosCommonConfig.GROUND_TIE.get()) {
-				controller.setAnimation(RawAnimation.begin().then("ground_tied_idle", Animation.LoopType.LOOP));
-			} else {
-				controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-			}
+			controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
 			controller.setAnimationSpeed(0.8);
 		}
 
@@ -308,7 +276,7 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 
 	public SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return DDDSoundEvents.MEDIUM_CARNIVORE_AMBIENT.get();
+		return DDDSoundEvents.LARGE_CARNIVORE_AMBIENT.get();
 	}
 
 	public SoundEvent getDeathSound() {
@@ -325,52 +293,16 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		this.playSound(SoundEvents.POLAR_BEAR_STEP, 0.15F, 1.0F);
 	}
 
-	@Override
-	public void positionRider(Entity entity, MoveFunction moveFunction) {
-		if (this.hasPassenger(entity)) {
-			double offsetX = 0.0;
-			double offsetY = 2.45;
-			double offsetZ = 0.5;
-
-			double radYaw = Math.toRadians(this.getYRot());
-
-			double offsetXRotated = offsetX * Math.cos(radYaw) - offsetZ * Math.sin(radYaw);
-			double offsetYRotated = offsetY;
-			double offsetZRotated = offsetX * Math.sin(radYaw) + offsetZ * Math.cos(radYaw);
-
-			double x = this.getX() + offsetXRotated;
-			double y = this.getY() + offsetYRotated;
-			double z = this.getZ() + offsetZRotated;
-
-			entity.setPos(x, y, z);
-		}
-	}
-
-	@Override
-	public boolean isArmor(ItemStack itemStack) {
-		return itemStack.is(DDDItems.EOCARCHARIA_ARMOR.get());
-	}
-
-	public void openInventory(Player player) {
-		if(player instanceof ServerPlayer serverPlayer && this.isTamed()) {
-			NetworkHooks.openScreen(serverPlayer, new SimpleMenuProvider((containerId, inventory, p)
-					-> new SmallInvMenu(containerId, inventory, this.inventory, this), this.getDisplayName()), (data) -> {
-				data.writeInt(this.getInventorySize());
-				data.writeInt(this.getId());
-			});
-		}
-	}
-
 	// Generates the base texture
 	public ResourceLocation getFemaleTextureLocation() {
-		return EocarchariaModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return TarbosaurusModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
 	public ResourceLocation getMaleTextureLocation() {
-		return EocarchariaModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return TarbosaurusModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
-	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Eocarcharia.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Tarbosaurus.class, EntityDataSerializers.INT);
 
 	public int getVariant() {
 		return this.entityData.get(VARIANT);
@@ -416,9 +348,9 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		setGender(random.nextInt(Gender.values().length));
 
 		if (this.isFemale()) {
-			setVariant(random.nextInt(EocarchariaModel.FemaleVariant.values().length));
+			setVariant(random.nextInt(TarbosaurusModel.FemaleVariant.values().length));
 		} else if (this.isMale()) {
-			setVariant(random.nextInt(EocarchariaModel.MaleVariant.values().length));
+			setVariant(random.nextInt(TarbosaurusModel.MaleVariant.values().length));
 		}
 
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
@@ -431,13 +363,13 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 	public boolean canMate(Animal animal) {
 		if (animal == this) {
 			return false;
-		} else if (!(animal instanceof Eocarcharia)) {
+		} else if (!(animal instanceof Tarbosaurus)) {
 			return false;
 		} else {
 			if (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-				return this.canParent() && ((Eocarcharia) animal).canParent();
+				return this.canParent() && ((Tarbosaurus) animal).canParent();
 			} else {
-				Eocarcharia partner = (Eocarcharia) animal;
+				Tarbosaurus partner = (Tarbosaurus) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
@@ -470,7 +402,7 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 		}
 
 		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_EOCARCHARIA_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_TARBOSAURUS_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
@@ -492,12 +424,12 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_EOCARCHARIA_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_TARBOSAURUS_EGG.get());
 		}
 
 		int trophyChance = random.nextInt(100);
 		if (trophyChance <= 8) {
-			this.spawnAtLocation(DDDItems.EOCARCHARIA_TROPHY.get());
+			this.spawnAtLocation(DDDItems.TARBOSAURUS_TROPHY.get());
 		}
 	}
 

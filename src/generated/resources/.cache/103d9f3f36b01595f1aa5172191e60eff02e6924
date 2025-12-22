@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-21T18:12:27.7496717	Registries
+// 1.20.1	2025-12-21T22:28:31.5573895	Registries
 f29499a518f16fdace508598a824b695d9ca59c5 data/deadlydinos/forge/biome_modifier/acrocanthosaurus_plains.json
 e3fde4ba6f2e08e49adf8d05ef9e4a9620c92ebe data/deadlydinos/forge/biome_modifier/ceratosaurus_forest.json
 348ab457114e416719ea3075d420a8ba526cedb2 data/deadlydinos/forge/biome_modifier/crop_snail_wet.json
@@ -9,6 +9,7 @@ bc185d5e6e08f35ca8ad964e2b16720ec381a6f7 data/deadlydinos/forge/biome_modifier/m
 c76d8bb0d78352f96362f478ada2ce50fc6e51dd data/deadlydinos/forge/biome_modifier/olorotitan_wet.json
 ba2a6835dedcb30ea80c4e4aa348a508d542c22f data/deadlydinos/forge/biome_modifier/oviraptor_hot.json
 bcd941c32ab496425aa99ecd8383363454388fee data/deadlydinos/forge/biome_modifier/parasaurolophus_wet.json
+9529f1e2125530ecb41ea0d9646c87ecb623ddba data/deadlydinos/forge/biome_modifier/tarbosaurus_hot.json
 fd2bb2d5edd293dff3f0800cab5853b9dc6c8f87 data/deadlydinos/forge/biome_modifier/triceratops_plains.json
 4cae37cf87bb7fbd641da60022aadd044c3bc58e data/deadlydinos/forge/biome_modifier/utahraptor_hot.json
 d14a2e2768086526f0e516346ad03846f3f0b99c data/deadlydinos/forge/biome_modifier/velociraptor_dense.json
