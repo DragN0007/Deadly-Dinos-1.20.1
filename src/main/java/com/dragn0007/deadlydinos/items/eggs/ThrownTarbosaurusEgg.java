@@ -3,7 +3,6 @@ package com.dragn0007.deadlydinos.items.eggs;
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.tarbosaurus.Tarbosaurus;
-import com.dragn0007.deadlydinos.entities.yutyrannus.Yutyrannus;
 import com.dragn0007.deadlydinos.entities.yutyrannus.YutyrannusModel;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.core.particles.ItemParticleOption;
