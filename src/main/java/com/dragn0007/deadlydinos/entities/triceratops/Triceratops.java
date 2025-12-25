@@ -132,8 +132,8 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 				entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATORS) && (entity instanceof TamableAnimal && !((TamableAnimal) entity).isTame()) && !this.isBaby()
 		));
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity instanceof Player && this.isBaby()));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.3F, 1.3F,
+				entity -> entity instanceof Player && this.isBaby() && !this.isTamed()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_DINOS_RUN_FROM) && this.isBaby()));
@@ -369,12 +369,15 @@ public class Triceratops extends AbstractDinoMount implements GeoEntity {
 	public final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
 	public <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> tAnimationState) {
+		double x = this.getX() - this.xo;
+		double z = this.getZ() - this.zo;
+		boolean isMoving = (x * x + z * z) > 0.0001;
 		double currentSpeed = this.getDeltaMovement().lengthSqr();
 		double speedThreshold = 0.02;
 
 		AnimationController<T> controller = tAnimationState.getController();
 
-		if (tAnimationState.isMoving()) {
+		if (isMoving) {
 			if (hasSpeedEffect()) {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(3.2);

@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -31,7 +32,18 @@ public class ParasiticAntibioticItem extends Item {
             if (!level.isClientSide) {
                 if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_PARASITIC_SUCCESS_CHANCE.get()) {
                     if (entity.hasEffect(DDDEffects.TAENIASIS.get())) {
+                        int duration = entity.getEffect(DDDEffects.TAENIASIS.get()).getDuration();
                         entity.removeEffect(DDDEffects.TAENIASIS.get());
+
+                        if (entity.hasEffect(MobEffects.WEAKNESS) && entity.getEffect(MobEffects.WEAKNESS).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.WEAKNESS);
+                        }
+                        if (entity.hasEffect(MobEffects.DIG_SLOWDOWN) && entity.getEffect(MobEffects.DIG_SLOWDOWN).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.DIG_SLOWDOWN);
+                        }
+                        if (entity.hasEffect(MobEffects.HUNGER) && entity.getEffect(MobEffects.HUNGER).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.HUNGER);
+                        }
                     }
                     if (entity instanceof Player player) {
                         player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);

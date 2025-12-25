@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -29,9 +30,23 @@ public class BirdFluShotItem extends Item {
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
         if (DeadlyDinosCommonConfig.MEDICAL_SUPPLIES.get()) {
             if (!level.isClientSide) {
-                if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get()) {
+                if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_FLU_SUCCESS_CHANCE.get()) {
                     if (entity.hasEffect(DDDEffects.BIRD_FLU.get())) {
+                        int duration = entity.getEffect(DDDEffects.BIRD_FLU.get()).getDuration();
                         entity.removeEffect(DDDEffects.BIRD_FLU.get());
+
+                        if (entity.hasEffect(MobEffects.WEAKNESS) && entity.getEffect(MobEffects.WEAKNESS).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.WEAKNESS);
+                        }
+                        if (entity.hasEffect(MobEffects.DIG_SLOWDOWN) && entity.getEffect(MobEffects.DIG_SLOWDOWN).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.DIG_SLOWDOWN);
+                        }
+                        if (entity.hasEffect(MobEffects.BLINDNESS) && entity.getEffect(MobEffects.BLINDNESS).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.BLINDNESS);
+                        }
+                        if (entity.hasEffect(MobEffects.CONFUSION) && entity.getEffect(MobEffects.CONFUSION).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.CONFUSION);
+                        }
                     }
                     if (entity instanceof Player player) {
                         player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);

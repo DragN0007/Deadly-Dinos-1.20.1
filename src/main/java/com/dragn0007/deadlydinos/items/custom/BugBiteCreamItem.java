@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -28,9 +29,14 @@ public class BugBiteCreamItem extends Item {
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
         if (DeadlyDinosCommonConfig.MEDICAL_SUPPLIES.get()) {
-            if (!level.isClientSide && entity.hasEffect(DDDEffects.BIRD_FLU.get())) {
+            if (!level.isClientSide && entity.hasEffect(DDDEffects.BUG_BITE.get())) {
                 if (random.nextDouble() <= DeadlyDinosCommonConfig.BUG_CREAM_SUCCESS_CHANCE.get()) {
-                    entity.removeEffect(DDDEffects.BIRD_FLU.get());
+                    int duration = entity.getEffect(DDDEffects.BUG_BITE.get()).getDuration();
+                    entity.removeEffect(DDDEffects.BUG_BITE.get());
+
+                    if (entity.hasEffect(MobEffects.UNLUCK) && entity.getEffect(MobEffects.UNLUCK).getDuration() == duration) {
+                        entity.removeEffect(MobEffects.UNLUCK);
+                    }
                     if (entity instanceof Player player) {
                         player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
                     }

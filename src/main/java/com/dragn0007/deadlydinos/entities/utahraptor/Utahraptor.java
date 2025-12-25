@@ -111,7 +111,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
 		this.goalSelector.addGoal(3, new DinoPanicGoal(2.0D));
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.3F, 1.3F,
 				entity -> entity instanceof Player && this.isBaby()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,

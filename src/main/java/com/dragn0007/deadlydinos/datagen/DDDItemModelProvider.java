@@ -129,6 +129,7 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.BUG_BITE_CREAM);
         simpleItem(DDDItems.BACTERIAL_ANTIBIOTIC);
         simpleItem(DDDItems.PARASITIC_ANTIBIOTIC);
+        simpleItem(DDDItems.BIRD_FLU_SHOT);
 
         simpleItem(DDDItems.RAW_SMALL_MEAT);
         simpleItem(DDDItems.COOKED_SMALL_MEAT);

@@ -105,8 +105,8 @@ public class Parasaurolophus extends AbstractDinoMount implements GeoEntity {
 		this.goalSelector.addGoal(3, new RaidGardenGoal(this));
 		this.goalSelector.addGoal(4, new AbstractMountFollowHerdLeaderGoal(this));
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity instanceof Player && this.isBaby()));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.3F, 1.3F,
+				entity -> entity instanceof Player && this.isBaby() && !this.isTamed()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.MEDIUM_DINOS_RUN_FROM) && this.isBaby()));

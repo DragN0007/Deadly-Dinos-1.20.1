@@ -126,7 +126,7 @@ public class MeiLong extends AbstractTamableDino implements InventoryCarrier, Ge
 		this.goalSelector.addGoal(3, new TamableStalkMeleeAttackGoal(this, 2.0D, true));
 		this.goalSelector.addGoal(3, new DinoSitOnOwnersShoulderGoal(this));
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.3F, 1.3F,
 				entity -> entity instanceof Player && this.isBaby() && !this.isTame()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,

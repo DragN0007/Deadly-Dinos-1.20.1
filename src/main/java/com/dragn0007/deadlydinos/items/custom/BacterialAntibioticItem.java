@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -31,14 +32,61 @@ public class BacterialAntibioticItem extends Item {
             if (!level.isClientSide) {
                 if (random.nextDouble() <= DeadlyDinosCommonConfig.ANTI_BACTERIAL_SUCCESS_CHANCE.get()) {
                     if (entity.hasEffect(DDDEffects.AEROMONAS.get())) {
+                        int duration = entity.getEffect(DDDEffects.AEROMONAS.get()).getDuration();
                         entity.removeEffect(DDDEffects.AEROMONAS.get());
+
+                        if (entity.hasEffect(MobEffects.WEAKNESS) && entity.getEffect(MobEffects.WEAKNESS).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.WEAKNESS);
+                        }
+                        if (entity.hasEffect(MobEffects.BLINDNESS) && entity.getEffect(MobEffects.BLINDNESS).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.BLINDNESS);
+                        }
+                        if (entity.hasEffect(MobEffects.CONFUSION) && entity.getEffect(MobEffects.CONFUSION).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.CONFUSION);
+                        }
+                        if (entity.hasEffect(MobEffects.DIG_SLOWDOWN) && entity.getEffect(MobEffects.DIG_SLOWDOWN).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.DIG_SLOWDOWN);
+                        }
+                        if (entity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) && entity.getEffect(MobEffects.MOVEMENT_SLOWDOWN).getDuration() == duration) {
+                            entity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                        }
+
+                        if (entity instanceof Player player) {
+                            player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
+                        }
                     }
-                    if (random.nextDouble() <= 0.25 && entity.hasEffect(DDDEffects.SEPSIS.get())) {
-                        entity.removeEffect(DDDEffects.SEPSIS.get());
+
+                    if (random.nextDouble() <= 0.25) {
+                        if (entity.hasEffect(DDDEffects.SEPSIS.get())) {
+                            int duration = entity.getEffect(DDDEffects.SEPSIS.get()).getDuration();
+                            entity.removeEffect(DDDEffects.SEPSIS.get());
+
+                            if (entity.hasEffect(MobEffects.WEAKNESS) && entity.getEffect(MobEffects.WEAKNESS).getDuration() == duration) {
+                                entity.removeEffect(MobEffects.WEAKNESS);
+                            }
+                            if (entity.hasEffect(MobEffects.BLINDNESS) && entity.getEffect(MobEffects.BLINDNESS).getDuration() == duration) {
+                                entity.removeEffect(MobEffects.BLINDNESS);
+                            }
+                            if (entity.hasEffect(MobEffects.CONFUSION) && entity.getEffect(MobEffects.CONFUSION).getDuration() == duration) {
+                                entity.removeEffect(MobEffects.CONFUSION);
+                            }
+                            if (entity.hasEffect(MobEffects.DIG_SLOWDOWN) && entity.getEffect(MobEffects.DIG_SLOWDOWN).getDuration() == duration) {
+                                entity.removeEffect(MobEffects.DIG_SLOWDOWN);
+                            }
+                            if (entity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) && entity.getEffect(MobEffects.MOVEMENT_SLOWDOWN).getDuration() == duration) {
+                                entity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                            }
+
+                            if (entity instanceof Player player) {
+                                player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
+                            }
+                        }
+                    } else {
+                        if (entity instanceof Player player) {
+                            player.displayClientMessage(Component.translatable("tooltip.deadlydinos.not_cured.tooltip").withStyle(ChatFormatting.DARK_RED), true);
+                        }
                     }
-                    if (entity instanceof Player player) {
-                        player.displayClientMessage(Component.translatable("tooltip.deadlydinos.cured.tooltip").withStyle(ChatFormatting.GOLD), true);
-                    }
+
                 } else {
                     if (entity instanceof Player player) {
                         player.displayClientMessage(Component.translatable("tooltip.deadlydinos.not_cured.tooltip").withStyle(ChatFormatting.DARK_RED), true);

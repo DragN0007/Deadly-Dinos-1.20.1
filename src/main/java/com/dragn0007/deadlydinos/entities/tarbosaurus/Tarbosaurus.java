@@ -94,8 +94,8 @@ public class Tarbosaurus extends AbstractTamableDino implements GeoEntity {
 		this.goalSelector.addGoal(2, new OwnerHurtTargetGoal(this));
 		this.goalSelector.addGoal(3, new SearchForCarnivoreFoodGoal());
 
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.8F, 1.8F,
-				entity -> entity instanceof Player && this.isBaby()));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.3F, 1.3F,
+				entity -> entity instanceof Player && this.isBaby() && !this.isTame()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby()));
