@@ -96,7 +96,6 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 	public int getInventorySize() {
 		return 27;
 	}
-
 	public static final Ingredient FOOD_ITEMS = Ingredient.of(DDDTags.Items.HERBIVORE_EATS);
 	public boolean isFood(ItemStack itemStack) {
 		return FOOD_ITEMS.test(itemStack);
