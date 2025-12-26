@@ -55,6 +55,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 
 	public CropSnail(EntityType<? extends CropSnail> type, Level level) {
 		super(type, level);
+		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

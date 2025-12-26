@@ -12,7 +12,7 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class DiplodocusModel extends DefaultedEntityGeoModel<Diplodocus> {
 
     public DiplodocusModel() {
-        super(new ResourceLocation(DeadlyDinos.MODID, "olorotitan"), true);
+        super(new ResourceLocation(DeadlyDinos.MODID, "diplodocus"), true);
     }
 
     @Override
@@ -68,10 +68,10 @@ public class DiplodocusModel extends DefaultedEntityGeoModel<Diplodocus> {
 
 
     public enum FemaleVariant {
-        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/female_brown.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/female_blue.png")),
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/female_red.png")),
-        TAN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/female_tan.png"));
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/female_brown.png")),
+        CHOCOLATE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/female_chocolate.png")),
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/female_red.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/female_mahogany.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -83,10 +83,10 @@ public class DiplodocusModel extends DefaultedEntityGeoModel<Diplodocus> {
     }
 
     public enum MaleVariant {
-        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/male_brown.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/male_blue.png")),
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/male_red.png")),
-        TAN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/male_tan.png"));
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/male_brown.png")),
+        CHOCOLATE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/male_chocolate.png")),
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/male_red.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/male_mahogany.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {
@@ -97,8 +97,8 @@ public class DiplodocusModel extends DefaultedEntityGeoModel<Diplodocus> {
         }
     }
 
-    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/olorotitan.geo.json");
-    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/olorotitan.animation.json");
+    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/diplodocus.geo.json");
+    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/diplodocus.animation.json");
 
     @Override
     public ResourceLocation getModelResource(Diplodocus object) {

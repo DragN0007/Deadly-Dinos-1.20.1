@@ -248,6 +248,9 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		Vec3 upperleft = this.calcOffset(-1, 3.2, 3);
 		Vec3 uppermid = this.calcOffset(0, 3.2, 3);
 		Vec3 upperright = this.calcOffset(1, 3.2, 3);
+		Vec3 upper2left = this.calcOffset(-1, 3.2, 3);
+		Vec3 upper2mid = this.calcOffset(0, 3.2, 3);
+		Vec3 upper2right = this.calcOffset(1, 3.2, 3);
 
 		BlockPos leftPos = new BlockPos((int)Math.floor(left.x), (int)Math.floor(left.y), (int)Math.floor(left.z));
 		BlockPos midPos = new BlockPos((int)Math.floor(mid.x), (int)Math.floor(mid.y), (int)Math.floor(mid.z));
@@ -261,6 +264,9 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		BlockPos upperleftPos = new BlockPos((int)Math.floor(upperleft.x), (int)Math.floor(upperleft.y), (int)Math.floor(upperleft.z));
 		BlockPos uppermidPos = new BlockPos((int)Math.floor(uppermid.x), (int)Math.floor(uppermid.y), (int)Math.floor(uppermid.z));
 		BlockPos upperrightPos = new BlockPos((int)Math.floor(upperright.x), (int)Math.floor(upperright.y), (int)Math.floor(upperright.z));
+		BlockPos upper2leftPos = new BlockPos((int)Math.floor(upper2left.x), (int)Math.floor(upper2left.y), (int)Math.floor(upper2left.z));
+		BlockPos upper2midPos = new BlockPos((int)Math.floor(upper2mid.x), (int)Math.floor(upper2mid.y), (int)Math.floor(upper2mid.z));
+		BlockPos upper2rightPos = new BlockPos((int)Math.floor(upper2right.x), (int)Math.floor(upper2right.y), (int)Math.floor(upper2right.z));
 
 		this.harvestCrop(leftPos);
 		this.harvestCrop(midPos);
@@ -274,14 +280,19 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		this.harvestCrop(upperleftPos);
 		this.harvestCrop(uppermidPos);
 		this.harvestCrop(upperrightPos);
+		this.harvestCrop(upper2leftPos);
+		this.harvestCrop(upper2midPos);
+		this.harvestCrop(upper2rightPos);
 	}
 
 	public int tillerCooldown = 0;
 
 	public void handleInput(Input input) {
 		this.tillerCooldown = Math.max(this.tillerCooldown - 1, 0);
-		DDDNetwork.INSTANCE.sendToServer(new DDDNetwork.ToggleTillerPowerRequest(this.getId()));
-		this.tillerCooldown = 10;
+		if(input.jumping && this.tillerCooldown == 0) {
+			DDDNetwork.INSTANCE.sendToServer(new DDDNetwork.ToggleTillerPowerRequest(this.getId()));
+			this.tillerCooldown = 10;
+		}
 	}
 
 	public void tick() {
@@ -375,7 +386,7 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 
 	@Override
 	public float getStepHeight() {
-		return 1.0F;
+		return 1.6F;
 	}
 
 	public final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -391,14 +402,14 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 
 		if (isMoving) {
 			if (hasSpeedEffect()) {
-				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.6);
+				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(2.3);
 			} else if ((!hasSpeedEffect() && currentSpeed > speedThreshold) || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD))) {
-				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.9);
+				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(2.0);
 			} else if (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(2.1);
+				controller.setAnimationSpeed(1.5);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(1.5);
@@ -458,24 +469,37 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		this.playSound(SoundEvents.POLAR_BEAR_STEP, 0.15F, 1.0F);
 	}
 
+	@org.jetbrains.annotations.Nullable
+	@Override
+	public LivingEntity getControllingPassenger() {
+		LivingEntity firstPassenger = (LivingEntity) this.getFirstPassenger();
+		if (firstPassenger != null && this.isSaddled()) {
+			return firstPassenger;
+		}
+		return null;
+	}
+
+	@Override
+	public boolean canAddPassenger(Entity entity) {
+		return this.getPassengers().size() < 3;
+	}
+
 	@Override
 	public void positionRider(Entity entity, MoveFunction moveFunction) {
 		if (this.hasPassenger(entity)) {
-			double offsetX = 0.0;
-			double offsetY = 2.2;
-			double offsetZ = -0.1;
+			int i = this.getPassengers().indexOf(entity);
 
-			double radYaw = Math.toRadians(this.getYRot());
-
-			double offsetXRotated = offsetX * Math.cos(radYaw) - offsetZ * Math.sin(radYaw);
-			double offsetYRotated = offsetY;
-			double offsetZRotated = offsetX * Math.sin(radYaw) + offsetZ * Math.cos(radYaw);
-
-			double rotX = this.getX() + offsetXRotated;
-			double rotY = this.getY() + offsetYRotated;
-			double rotZ = this.getZ() + offsetZRotated;
-
-			entity.setPos(rotX, rotY, rotZ);
+			switch (i) {
+				case 0:
+					entity.setPos(this.calcOffset(0, 4.8, 0));
+					break;
+				case 1:
+					entity.setPos(this.calcOffset(0.6, 4.8, -1.5));
+					break;
+				case 2:
+					entity.setPos(this.calcOffset(-0.6, 4.8, -1.5));
+					break;
+			}
 		}
 	}
 

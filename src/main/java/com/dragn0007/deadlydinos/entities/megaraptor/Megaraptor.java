@@ -63,6 +63,7 @@ public class Megaraptor extends AbstractDino implements GeoEntity {
 
 	public Megaraptor(EntityType<? extends Megaraptor> type, Level level) {
 		super(type, level);
+		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

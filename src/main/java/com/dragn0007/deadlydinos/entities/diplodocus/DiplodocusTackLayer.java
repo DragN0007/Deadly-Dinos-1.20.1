@@ -25,7 +25,7 @@ public class DiplodocusTackLayer extends GeoRenderLayer<Diplodocus> {
         ResourceLocation resourceLocation = null;
 
         if (animatable.isSaddled() || animatable.hasChest()) {
-            resourceLocation = new ResourceLocation(DeadlyDinos.MODID, "textures/entity/olorotitan/tack/saddle.png");
+            resourceLocation = new ResourceLocation(DeadlyDinos.MODID, "textures/entity/diplodocus/tack/saddle.png");
         } else {
             return;
         }

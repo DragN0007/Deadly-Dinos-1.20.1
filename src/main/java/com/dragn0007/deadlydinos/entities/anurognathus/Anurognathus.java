@@ -73,6 +73,7 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 		super(type, level);
 		this.updateInventory();
 		this.setCanPickUpLoot(true);
+		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

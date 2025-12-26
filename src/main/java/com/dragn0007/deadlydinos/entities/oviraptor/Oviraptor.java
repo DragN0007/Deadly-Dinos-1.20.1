@@ -75,6 +75,7 @@ public class Oviraptor extends AbstractTamableDino implements InventoryCarrier, 
 		super(type, level);
 		this.updateInventory();
 		this.setCanPickUpLoot(true);
+		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

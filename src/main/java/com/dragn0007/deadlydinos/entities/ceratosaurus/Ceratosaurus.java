@@ -65,6 +65,7 @@ public class Ceratosaurus extends AbstractDinoMount implements GeoEntity {
 
 	public Ceratosaurus(EntityType<? extends Ceratosaurus> type, Level level) {
 		super(type, level);
+		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

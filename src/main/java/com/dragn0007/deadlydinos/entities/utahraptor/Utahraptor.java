@@ -72,6 +72,7 @@ public class Utahraptor extends AbstractDino implements GeoEntity {
 
 	public Utahraptor(EntityType<? extends Utahraptor> type, Level level) {
 		super(type, level);
+		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

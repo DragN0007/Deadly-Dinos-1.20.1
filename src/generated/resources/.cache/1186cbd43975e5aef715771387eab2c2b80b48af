@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-25T02:21:46.2838602	Item Models: deadlydinos
+// 1.20.1	2025-12-26T16:24:43.7208867	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -52,6 +52,9 @@ f365549f568fefc45dbd0590cbf60709d7d2a553 assets/deadlydinos/models/item/dino_nug
 82f3380a13a88d9bd2fd2b36c4b6dc817454db3a assets/deadlydinos/models/item/dino_nugget_3.json
 46fe5b638ca046e32f7b815d79addd6a31806498 assets/deadlydinos/models/item/dino_roast.json
 78d39e6319ecb8800d18a3a899a3e2a8fc63bc51 assets/deadlydinos/models/item/dino_sandwich.json
+4e0bb96834ca287f73453f77631a46e86aea90ae assets/deadlydinos/models/item/diplodocus_egg.json
+4e0bb96834ca287f73453f77631a46e86aea90ae assets/deadlydinos/models/item/diplodocus_spawn_egg.json
+1952ee96669f6aa302a9415791d24de4703969aa assets/deadlydinos/models/item/diplodocus_trophy.json
 ce829d776d63e8ae74172b4c2eaeccc2618df678 assets/deadlydinos/models/item/dough.json
 37917beab6178550d897263830ad9ce059e851c3 assets/deadlydinos/models/item/electric_wire_fence.json
 4dfff56ae3c96c8b5dec658e236b554f9859e948 assets/deadlydinos/models/item/eocarcharia_armor.json
@@ -60,6 +63,7 @@ f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/eocarcha
 5a10932e7df64aa43df288233b4c4a9bef7e8ce5 assets/deadlydinos/models/item/eocarcharia_trophy.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/fertilized_acrocanthosaurus_egg.json
 97887567987aa0a18073fa1ef1f23b01533875f5 assets/deadlydinos/models/item/fertilized_ceratosaurus_egg.json
+4e0bb96834ca287f73453f77631a46e86aea90ae assets/deadlydinos/models/item/fertilized_diplodocus_egg.json
 f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/fertilized_eocarcharia_egg.json
 0bc7d020bcaea43502aabf3d6f0d5c51c48f4185 assets/deadlydinos/models/item/fertilized_giant_crop_snail_egg.json
 f2c098046ff2b1abeb44f22008a7d0d97341b946 assets/deadlydinos/models/item/fertilized_gryposaurus_egg.json

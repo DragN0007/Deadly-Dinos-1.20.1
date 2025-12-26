@@ -61,6 +61,7 @@ public class Tarbosaurus extends AbstractTamableDino implements GeoEntity {
 
 	public Tarbosaurus(EntityType<? extends Tarbosaurus> type, Level level) {
 		super(type, level);
+		noCulling = true;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

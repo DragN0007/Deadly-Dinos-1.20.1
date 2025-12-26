@@ -66,6 +66,7 @@ public class Eocarcharia extends AbstractDinoMount implements GeoEntity {
 
 	public Eocarcharia(EntityType<? extends Eocarcharia> type, Level level) {
 		super(type, level);
+		noCulling = true;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

@@ -66,6 +66,7 @@ public class Yutyrannus extends AbstractDinoMount implements GeoEntity {
 
 	public Yutyrannus(EntityType<? extends Yutyrannus> type, Level level) {
 		super(type, level);
+		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

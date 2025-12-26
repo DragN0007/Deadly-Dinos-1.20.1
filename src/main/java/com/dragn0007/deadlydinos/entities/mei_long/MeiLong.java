@@ -87,6 +87,7 @@ public class MeiLong extends AbstractTamableDino implements InventoryCarrier, Ge
 		super(type, level);
 		this.updateInventory();
 		this.setCanPickUpLoot(true);
+		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

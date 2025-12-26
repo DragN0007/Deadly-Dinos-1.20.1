@@ -538,6 +538,11 @@ public static final RegistryObject<Item> OVIRAPTOR_TROPHY = ITEMS.register("ovir
 //                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2,true, false),
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 3, true, false)
 //            ));
+public static final RegistryObject<Item> DIPLODOCUS_TROPHY = ITEMS.register("diplodocus_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2,true, false),
+                    new MobEffectInstance(MobEffects.SATURATION, 2880, 3, true, false)
+            ));
 //    public static final RegistryObject<Item> EDMONTOTROPHY = ITEMS.register("edmontotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.WATER_BREATHING, 2880, 2,true, false),
@@ -720,7 +725,7 @@ public static final RegistryObject<Item> OLOROTITAN_TROPHY = ITEMS.register("olo
     public static final RegistryObject<Item> ANOMALY_BONE_WARHAMMER = ITEMS.register("anomaly_bone_warhammer",
             () -> new SwordItem(DDDToolTiers.ANOMALY_BONE, 9, -3.5F, new Item.Properties()));
 
-//    public static final RegistryObject<Item> BOWIE_KNIFE = ITEMS.register("bowie_knife",
+//    public static final RegistryObject<Item> HUNTING_KNIFE = ITEMS.register("hunting_knife",
 //            () -> new SwordItem(Tiers.IRON, 2, -1.4F,
 //                    new Item.Properties()));
 //    public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
