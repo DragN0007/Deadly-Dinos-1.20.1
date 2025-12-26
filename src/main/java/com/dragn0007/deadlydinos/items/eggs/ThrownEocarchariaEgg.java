@@ -83,6 +83,6 @@ public class ThrownEocarchariaEgg extends ThrowableItemProjectile {
    }
 
    public Item getDefaultItem() {
-      return DDDItems.FERTILIZED_YUTYRANNUS_EGG.get();
+      return DDDItems.FERTILIZED_EOCARCHARIA_EGG.get();
    }
 }

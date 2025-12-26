@@ -71,6 +71,12 @@
   "item.deadlydinos.fertilized_yutyrannus_egg": "Fertilized Yutyrannus Egg",
   "entity.deadlydinos.yutyrannus": "Yutyrannus",
 
+  "item.deadlydinos.diplodocus_trophy": "Diplodocus Trophy",
+  "item.deadlydinos.diplodocus_spawn_egg": "Diplodocus Spawn Egg",
+  "item.deadlydinos.diplodocus_egg": "Diplodocus Egg",
+  "item.deadlydinos.fertilized_diplodocus_egg": "Fertilized Diplodocus Egg",
+  "entity.deadlydinos.diplodocus": "Diplodocus",
+
   "item.deadlydinos.gryposaurus_trophy": "Gryposaurus Trophy",
   "item.deadlydinos.gryposaurus_spawn_egg": "Gryposaurus Spawn Egg",
   "item.deadlydinos.gryposaurus_egg": "Gryposaurus Egg",

@@ -3,6 +3,7 @@ package com.dragn0007.deadlydinos.entities;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
+import com.dragn0007.deadlydinos.entities.diplodocus.Diplodocus;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
 import com.dragn0007.deadlydinos.entities.giant_crop_snail.CropSnail;
 import com.dragn0007.deadlydinos.entities.gryposaurus.Gryposaurus;
@@ -98,6 +99,12 @@ public class EntityTypes {
 
 
     //Herbivores
+    public static final RegistryObject<EntityType<Diplodocus>> DIPLODOCUS = ENTITY_TYPES.register("diplodocus",
+            () -> EntityType.Builder.of(Diplodocus::new,
+                            MobCategory.CREATURE)
+                    .sized(3F,4.5f)
+                    .build(new ResourceLocation(MODID,"diplodocus").toString()));
+
     public static final RegistryObject<EntityType<Gryposaurus>> GRYPOSAURUS = ENTITY_TYPES.register("gryposaurus",
             () -> EntityType.Builder.of(Gryposaurus::new,
                             MobCategory.CREATURE)

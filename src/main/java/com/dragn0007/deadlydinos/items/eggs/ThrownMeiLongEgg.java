@@ -83,6 +83,6 @@ public class ThrownMeiLongEgg extends ThrowableItemProjectile {
    }
 
    public Item getDefaultItem() {
-      return DDDItems.FERTILIZED_UTAHRAPTOR_EGG.get();
+      return DDDItems.FERTILIZED_MEI_LONG_EGG.get();
    }
 }

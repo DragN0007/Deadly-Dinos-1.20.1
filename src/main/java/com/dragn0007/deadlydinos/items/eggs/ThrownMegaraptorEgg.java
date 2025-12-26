@@ -83,6 +83,6 @@ public class ThrownMegaraptorEgg extends ThrowableItemProjectile {
    }
 
    public Item getDefaultItem() {
-      return DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get();
+      return DDDItems.FERTILIZED_MEGARAPTOR_EGG.get();
    }
 }

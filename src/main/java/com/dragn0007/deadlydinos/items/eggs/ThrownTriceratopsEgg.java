@@ -83,6 +83,6 @@ public class ThrownTriceratopsEgg extends ThrowableItemProjectile {
    }
 
    public Item getDefaultItem() {
-      return DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG.get();
+      return DDDItems.FERTILIZED_TRICERATOPS_EGG.get();
    }
 }

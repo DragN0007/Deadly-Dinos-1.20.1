@@ -83,6 +83,6 @@ public class ThrownCeratosaurusEgg extends ThrowableItemProjectile {
    }
 
    public Item getDefaultItem() {
-      return DDDItems.FERTILIZED_YUTYRANNUS_EGG.get();
+      return DDDItems.FERTILIZED_CERATOSAURUS_EGG.get();
    }
 }

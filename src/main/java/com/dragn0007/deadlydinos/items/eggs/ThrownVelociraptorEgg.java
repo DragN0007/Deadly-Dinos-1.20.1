@@ -83,6 +83,6 @@ public class ThrownVelociraptorEgg extends ThrowableItemProjectile {
    }
 
    public Item getDefaultItem() {
-      return DDDItems.FERTILIZED_UTAHRAPTOR_EGG.get();
+      return DDDItems.FERTILIZED_VELOCIRAPTOR_EGG.get();
    }
 }

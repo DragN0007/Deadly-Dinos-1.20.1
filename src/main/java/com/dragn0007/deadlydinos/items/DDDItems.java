@@ -92,6 +92,13 @@ public class DDDItems {
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
 
+    public static final RegistryObject<Item> DIPLODOCUS_SPAWN_EGG = ITEMS.register("diplodocus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.DIPLODOCUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_DIPLODOCUS_EGG = ITEMS.register("fertilized_diplodocus_egg",
+            () -> new FertilizedDiplodocusEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> DIPLODOCUS_EGG = ITEMS.register("diplodocus_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
     public static final RegistryObject<Item> GRYPOSAURUS_SPAWN_EGG = ITEMS.register("gryposaurus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.GRYPOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_GRYPOSAURUS_EGG = ITEMS.register("fertilized_gryposaurus_egg",
