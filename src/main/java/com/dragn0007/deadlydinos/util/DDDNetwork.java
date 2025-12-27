@@ -71,6 +71,31 @@ public class DDDNetwork {
         }
     }
 
+    public static class ToggleBattlePowerRequest {
+        private final int id;
+
+        public ToggleBattlePowerRequest(int id) {
+            this.id = id;
+        }
+
+        public static void encode(ToggleBattlePowerRequest msg, FriendlyByteBuf buffer) {
+            buffer.writeInt(msg.id);
+        }
+
+        public static ToggleBattlePowerRequest decode(FriendlyByteBuf buffer) {
+            return new ToggleBattlePowerRequest(buffer.readInt());
+        }
+
+        public static void handle(ToggleBattlePowerRequest msg, Supplier<NetworkEvent.Context> context) {
+            ServerPlayer player = context.get().getSender();
+            if(player != null) {
+                if(player.level().getEntity(msg.id) instanceof AbstractDinoMount dinoMount) {
+                    dinoMount.cycleBattleMode();
+                }
+            }
+        }
+    }
+
     public static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(DeadlyDinos.MODID, "ddd_network"),
@@ -84,6 +109,7 @@ public class DDDNetwork {
         event.enqueueWork(() -> {
             INSTANCE.registerMessage(0, HandleSpeedRequest.class, HandleSpeedRequest::encode, HandleSpeedRequest::decode, HandleSpeedRequest::handle);
             INSTANCE.registerMessage(1, ToggleTillerPowerRequest.class, ToggleTillerPowerRequest::encode, ToggleTillerPowerRequest::decode, ToggleTillerPowerRequest::handle);
+            INSTANCE.registerMessage(2, ToggleBattlePowerRequest.class, ToggleBattlePowerRequest::encode, ToggleBattlePowerRequest::decode, ToggleBattlePowerRequest::handle);
         });
     }
 }

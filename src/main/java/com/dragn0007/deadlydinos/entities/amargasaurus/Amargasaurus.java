@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.entities.diplodocus;
+package com.dragn0007.deadlydinos.entities.amargasaurus;
 
 import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.effects.DDDEffects;
@@ -26,8 +26,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -46,7 +46,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -61,25 +60,24 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
-public class Diplodocus extends AbstractDinoMount implements GeoEntity {
+public class Amargasaurus extends AbstractDinoMount implements GeoEntity {
 
-	public Diplodocus(EntityType<? extends Diplodocus> type, Level level) {
+	public Amargasaurus(EntityType<? extends Amargasaurus> type, Level level) {
 		super(type, level);
 		noCulling = true;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 250.0D)
-				.add(Attributes.ATTACK_DAMAGE, 6D)
+				.add(Attributes.MAX_HEALTH, 300.0D)
+				.add(Attributes.ATTACK_DAMAGE, 8D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 1F)
-				.add(Attributes.ATTACK_KNOCKBACK, 0.3F)
-				.add(Attributes.ARMOR_TOUGHNESS, 2D)
-				.add(Attributes.ARMOR, 4D)
-				.add(Attributes.MOVEMENT_SPEED, 0.24F)
+				.add(Attributes.ATTACK_KNOCKBACK, 0.6F)
+				.add(Attributes.ARMOR_TOUGHNESS, 4D)
+				.add(Attributes.ARMOR, 8D)
+				.add(Attributes.MOVEMENT_SPEED, 0.22F)
 				.add(Attributes.FOLLOW_RANGE, 48D);
 	}
 
@@ -137,11 +135,29 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		int chance = random.nextInt(100);
 		if (super.doHurtTarget(entity)) {
 			if (entity instanceof LivingEntity) {
+				int i = 0;
+				if (this.level().getDifficulty() == Difficulty.NORMAL) {
+					i = 60;
+				} else if (this.level().getDifficulty() == Difficulty.HARD) {
+					i = 120;
+				}
+
 				if (DeadlyDinosCommonConfig.INJURY_EFFECTS.get()) {
 					if (chance <= 20 && chance >= 10) {
 						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BROKEN_LEG.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 2, true, false, true), this);
 					} else if (chance <= 10) {
 						((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BROKEN_ARM.get(), DeadlyDinosCommonConfig.BROKEN_BONE_HEAL_TIME.get(), 2, true, false, true), this);
+					}
+
+					if (i > 0 && chance <= 15 && this.entityData.get(MODE) == 1) {
+						if (!((LivingEntity) entity).hasEffect(DDDEffects.BLEEDING.get())) {
+							((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, 0, true, false, true));
+						} else {
+							int amp = ((LivingEntity) entity).getEffect(DDDEffects.BLEEDING.get()).getAmplifier();
+							if (amp < 3) {
+								((LivingEntity) entity).addEffect(new MobEffectInstance(DDDEffects.BLEEDING.get(), i * 20, amp + 1, true, false, true));
+							}
+						}
 					}
 
 					if (chance <= 10) {
@@ -158,13 +174,14 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 
 	public int regenHealthCounter = 0;
 
-	public static final EntityDataAccessor<Integer> MODE = SynchedEntityData.defineId(Diplodocus.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> MODE = SynchedEntityData.defineId(Amargasaurus.class, EntityDataSerializers.INT);
 
 	public Vec3 lastServerPos = Vec3.ZERO;
 
 	public enum Mode {
 		NO(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/nomode.png")),
-		HARVEST(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/harvestmode.png"));
+		OFFENSE(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/offense.png")),
+		DEFENSE(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/defense.png"));
 
 		public final ResourceLocation texture;
 
@@ -181,8 +198,8 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		return this.entityData.get(MODE);
 	}
 
-	public void cycleMode() {
-		this.entityData.set(MODE, (this.entityData.get(MODE) +1) % 2);
+	public void cycleBattleMode() {
+		this.entityData.set(MODE, (this.entityData.get(MODE) +1) % 3);
 	}
 
 	protected Vec3 calcOffset(double x, double y, double z) {
@@ -195,104 +212,35 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		return new Vec3(xOffset, yOffset, zOffset);
 	}
 
-	private boolean addCropsToInventory(ItemStack stack) {
-		for (int slot = 2; slot < this.inventory.getContainerSize(); slot++) {
-
-			ItemStack previousStack = this.inventory.getItem(slot);
-
-			if (!previousStack.isEmpty() && ItemStack.isSameItem(previousStack, stack)) {
-				int transferable = Math.min(previousStack.getMaxStackSize() - previousStack.getCount(), stack.getCount());
-				if (transferable > 0) {
-					previousStack.grow(transferable);
-					stack.shrink(transferable);
-					if (stack.isEmpty()) return true;
-				}
-			}
-
-			if (previousStack.isEmpty()) {
-				this.inventory.setItem(slot, stack.copy());
-				stack.setCount(0);
-				return true;
-			}
-		}
-		return stack.isEmpty();
-	}
-
-	public void harvestCrop(BlockPos pos) {
-		BlockState state = this.level().getBlockState(pos);
-
-		if (state.is(BlockTags.LEAVES)) {
-			List<ItemStack> drops = Block.getDrops(state, (ServerLevel) this.level(), pos, null);
-			drops.removeIf(itemStack -> itemStack.getItem() != state.getBlock().asItem());
-			drops.add(new ItemStack(state.getBlock().asItem()));
-			drops.forEach(itemStack -> {
-				if (!addCropsToInventory(itemStack)) {
-					this.spawnAtLocation(itemStack);
-				}
-			});
-			this.level().removeBlock(pos, false);
-		}
-	}
-
-
-	public void harvest() {
-		Vec3 left = this.calcOffset(-1, 0.2, 3);
-		Vec3 mid = this.calcOffset(0, 0.2, 3);
-		Vec3 right = this.calcOffset(1, 0.2, 3);
-		Vec3 midleft = this.calcOffset(-1, 1.2, 3);
-		Vec3 midmid = this.calcOffset(0, 1.2, 3);
-		Vec3 midright = this.calcOffset(1, 1.2, 3);
-		Vec3 mid2left = this.calcOffset(-1, 2.2, 3);
-		Vec3 mid2mid = this.calcOffset(0, 2.2, 3);
-		Vec3 mid2right = this.calcOffset(1, 2.2, 3);
-		Vec3 upperleft = this.calcOffset(-1, 3.2, 3);
-		Vec3 uppermid = this.calcOffset(0, 3.2, 3);
-		Vec3 upperright = this.calcOffset(1, 3.2, 3);
-		Vec3 upper2left = this.calcOffset(-1, 3.2, 3);
-		Vec3 upper2mid = this.calcOffset(0, 3.2, 3);
-		Vec3 upper2right = this.calcOffset(1, 3.2, 3);
-
-		BlockPos leftPos = new BlockPos((int)Math.floor(left.x), (int)Math.floor(left.y), (int)Math.floor(left.z));
-		BlockPos midPos = new BlockPos((int)Math.floor(mid.x), (int)Math.floor(mid.y), (int)Math.floor(mid.z));
-		BlockPos rightPos = new BlockPos((int)Math.floor(right.x), (int)Math.floor(right.y), (int)Math.floor(right.z));
-		BlockPos midleftPos = new BlockPos((int)Math.floor(midleft.x), (int)Math.floor(midleft.y), (int)Math.floor(midleft.z));
-		BlockPos midmidPos = new BlockPos((int)Math.floor(midmid.x), (int)Math.floor(midmid.y), (int)Math.floor(midmid.z));
-		BlockPos midrightPos = new BlockPos((int)Math.floor(midright.x), (int)Math.floor(midright.y), (int)Math.floor(midright.z));
-		BlockPos mid2leftPos = new BlockPos((int)Math.floor(mid2left.x), (int)Math.floor(mid2left.y), (int)Math.floor(mid2left.z));
-		BlockPos mid2midPos = new BlockPos((int)Math.floor(mid2mid.x), (int)Math.floor(mid2mid.y), (int)Math.floor(mid2mid.z));
-		BlockPos mid2rightPos = new BlockPos((int)Math.floor(mid2right.x), (int)Math.floor(mid2right.y), (int)Math.floor(mid2right.z));
-		BlockPos upperleftPos = new BlockPos((int)Math.floor(upperleft.x), (int)Math.floor(upperleft.y), (int)Math.floor(upperleft.z));
-		BlockPos uppermidPos = new BlockPos((int)Math.floor(uppermid.x), (int)Math.floor(uppermid.y), (int)Math.floor(uppermid.z));
-		BlockPos upperrightPos = new BlockPos((int)Math.floor(upperright.x), (int)Math.floor(upperright.y), (int)Math.floor(upperright.z));
-		BlockPos upper2leftPos = new BlockPos((int)Math.floor(upper2left.x), (int)Math.floor(upper2left.y), (int)Math.floor(upper2left.z));
-		BlockPos upper2midPos = new BlockPos((int)Math.floor(upper2mid.x), (int)Math.floor(upper2mid.y), (int)Math.floor(upper2mid.z));
-		BlockPos upper2rightPos = new BlockPos((int)Math.floor(upper2right.x), (int)Math.floor(upper2right.y), (int)Math.floor(upper2right.z));
-
-		this.harvestCrop(leftPos);
-		this.harvestCrop(midPos);
-		this.harvestCrop(rightPos);
-		this.harvestCrop(midleftPos);
-		this.harvestCrop(midmidPos);
-		this.harvestCrop(midrightPos);
-		this.harvestCrop(mid2leftPos);
-		this.harvestCrop(mid2midPos);
-		this.harvestCrop(mid2rightPos);
-		this.harvestCrop(upperleftPos);
-		this.harvestCrop(uppermidPos);
-		this.harvestCrop(upperrightPos);
-		this.harvestCrop(upper2leftPos);
-		this.harvestCrop(upper2midPos);
-		this.harvestCrop(upper2rightPos);
-	}
-
 	public int tillerCooldown = 0;
 
 	public void handleInput(Input input) {
 		this.tillerCooldown = Math.max(this.tillerCooldown - 1, 0);
 		if(input.jumping && this.tillerCooldown == 0) {
-			DDDNetwork.INSTANCE.sendToServer(new DDDNetwork.ToggleTillerPowerRequest(this.getId()));
-			this.tillerCooldown = 10;
+			DDDNetwork.INSTANCE.sendToServer(new DDDNetwork.ToggleBattlePowerRequest(this.getId()));
+			this.tillerCooldown = 200;
+			this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC);
 		}
+	}
+
+	public boolean hurt(DamageSource source, float v) {
+		super.hurt(source, v);
+		Entity entity = source.getDirectEntity();
+		if (entity instanceof AbstractArrow) {
+			return false;
+		}
+		if (entity instanceof LivingEntity && this.isInOffensive()) {
+			entity.hurt(entity.damageSources().thorns(this), 2F);
+		}
+		return true;
+	}
+
+	public boolean isInOffensive() {
+		return this.entityData.get(MODE) == 1;
+	}
+
+	public boolean isInDefensive() {
+		return this.entityData.get(MODE) == 2;
 	}
 
 	public void tick() {
@@ -300,13 +248,20 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 
 		if(!this.level().isClientSide) {
 			this.lastServerPos = this.position();
-			if(this.isVehicle()) {
-				if(this.entityData.get(MODE) == 1) {
-					this.harvest();
+				if (this.isInOffensive()) {
+					this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1, false, false));
+					this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20, 1, false, false));
+					this.getAttribute(Attributes.ARMOR).setBaseValue(4);
+				} else if (this.isInDefensive()) {
+					this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, 1, false, false));
+					this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, 1, false, false));
+					this.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 20, 0, false, false));
+					this.getAttribute(Attributes.ARMOR).setBaseValue(10);
+				} else {
+					this.getAttribute(Attributes.ARMOR).setBaseValue(8);
 				}
-			}
-		} else {
-			if(this.getControllingPassenger() instanceof LocalPlayer player) {
+			} else {
+			if (this.getControllingPassenger() instanceof LocalPlayer player) {
 				this.handleInput(player.input);
 			}
 		}
@@ -333,7 +288,7 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		super.aiStep();
 
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.DIPLODOCUS_EGG.get());
+			this.spawnAtLocation(DDDItems.AMARGASAURUS_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
@@ -350,28 +305,6 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 			}
 		}
 
-	}
-
-	public void applySpeedEffect() {
-		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false);
-		this.addEffect(effectInstance);
-	}
-
-	public boolean hasSpeedEffect() {
-		return this.hasEffect(MobEffects.MOVEMENT_SPEED);
-	}
-
-	public void removeSpeedEffect() {
-		this.removeEffect(MobEffects.MOVEMENT_SPEED);
-	}
-
-	public boolean hurt(DamageSource source, float v) {
-		super.hurt(source, v);
-		Entity entity = source.getDirectEntity();
-		if (entity instanceof AbstractArrow) {
-			return false;
-		}
-		return true;
 	}
 
 	@Override
@@ -391,15 +324,15 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		AnimationController<T> controller = tAnimationState.getController();
 
 		if (isMoving) {
-			if (hasSpeedEffect()) {
+			if (this.hasEffect(MobEffects.MOVEMENT_SPEED) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(2.3);
-			} else if ((!hasSpeedEffect() && currentSpeed > speedThreshold) || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD))) {
+				controller.setAnimationSpeed(3.2);
+			} else if (this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(2.0);
+				controller.setAnimationSpeed(2.6);
 			} else if (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.5);
+				controller.setAnimationSpeed(1.1);
 			} else {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
 				controller.setAnimationSpeed(1.5);
@@ -477,32 +410,20 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 	@Override
 	public void positionRider(Entity entity, MoveFunction moveFunction) {
 		if (this.hasPassenger(entity)) {
-			int i = this.getPassengers().indexOf(entity);
-
-			switch (i) {
-				case 0:
-					entity.setPos(this.calcOffset(0, 4.8, 0));
-					break;
-				case 1:
-					entity.setPos(this.calcOffset(0.6, 4.8, -1.5));
-					break;
-				case 2:
-					entity.setPos(this.calcOffset(-0.6, 4.8, -1.5));
-					break;
-			}
+			entity.setPos(this.calcOffset(0, 3.8, 0));
 		}
 	}
 
 	// Generates the base texture
 	public ResourceLocation getFemaleTextureLocation() {
-		return DiplodocusModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return AmargasaurusModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
 	public ResourceLocation getMaleTextureLocation() {
-		return DiplodocusModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return AmargasaurusModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
-	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Diplodocus.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Amargasaurus.class, EntityDataSerializers.INT);
 
 	public int getVariant() {
 		return this.entityData.get(VARIANT);
@@ -551,9 +472,9 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		setGender(random.nextInt(Gender.values().length));
 
 		if (this.isFemale()) {
-			setVariant(random.nextInt(DiplodocusModel.FemaleVariant.values().length));
+			setVariant(random.nextInt(AmargasaurusModel.FemaleVariant.values().length));
 		} else if (this.isMale()) {
-			setVariant(random.nextInt(DiplodocusModel.MaleVariant.values().length));
+			setVariant(random.nextInt(AmargasaurusModel.MaleVariant.values().length));
 		}
 
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
@@ -566,13 +487,13 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 	public boolean canMate(Animal animal) {
 		if (animal == this) {
 			return false;
-		} else if (!(animal instanceof Diplodocus)) {
+		} else if (!(animal instanceof Amargasaurus)) {
 			return false;
 		} else {
 			if (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-				return this.canParent() && ((Diplodocus) animal).canParent();
+				return this.canParent() && ((Amargasaurus) animal).canParent();
 			} else {
-				Diplodocus partner = (Diplodocus) animal;
+				Amargasaurus partner = (Amargasaurus) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
@@ -605,7 +526,7 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 		}
 
 		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_DIPLODOCUS_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_AMARGASAURUS_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
@@ -628,12 +549,12 @@ public class Diplodocus extends AbstractDinoMount implements GeoEntity {
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_DIPLODOCUS_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_AMARGASAURUS_EGG.get());
 		}
 
 		int trophyChance = random.nextInt(100);
 		if (trophyChance <= 8) {
-			this.spawnAtLocation(DDDItems.DIPLODOCUS_TROPHY.get());
+			this.spawnAtLocation(DDDItems.AMARGASAURUS_TROPHY.get());
 		}
 	}
 

@@ -92,6 +92,13 @@ public class DDDItems {
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
 
+    public static final RegistryObject<Item> AMARGASAURUS_SPAWN_EGG = ITEMS.register("amargasaurus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.AMARGASAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_AMARGASAURUS_EGG = ITEMS.register("fertilized_amargasaurus_egg",
+            () -> new FertilizedAmargasaurusEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> AMARGASAURUS_EGG = ITEMS.register("amargasaurus_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
     public static final RegistryObject<Item> DIPLODOCUS_SPAWN_EGG = ITEMS.register("diplodocus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.DIPLODOCUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_DIPLODOCUS_EGG = ITEMS.register("fertilized_diplodocus_egg",
@@ -514,11 +521,11 @@ public static final RegistryObject<Item> OVIRAPTOR_TROPHY = ITEMS.register("ovir
                     new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
             ));
 
-//    public static final RegistryObject<Item> AMARGATROPHY = ITEMS.register("amargatrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
-//                    new MobEffectInstance(MobEffects.SATURATION, 2880, 3, true, false)
-//            ));
+    public static final RegistryObject<Item> AMARGASAURUS_TROPHY = ITEMS.register("amargasaurus_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
+                    new MobEffectInstance(MobEffects.SATURATION, 2880, 3, true, false)
+            ));
 //    public static final RegistryObject<Item> AMPELOTROPHY = ITEMS.register("ampelotrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.HEAL, 2880, 2,true, false),

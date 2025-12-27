@@ -1,8 +1,6 @@
 package com.dragn0007.deadlydinos.entities;
 
-import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.common.gui.MountMenu;
-import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
 import com.dragn0007.deadlydinos.items.custom.DinosaurArmorItem;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
@@ -13,7 +11,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvents;
@@ -165,19 +162,8 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
         this.entityData.set(MODE, (this.entityData.get(MODE) +1) % 2);
     }
 
-    public enum Mode {
-        NO(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/nomode.png")),
-        HARVEST(new ResourceLocation(DeadlyDinos.MODID, "textures/gui/harvestmode.png"));
-
-        public final ResourceLocation texture;
-
-        Mode(ResourceLocation texture) {
-            this.texture = texture;
-        }
-
-        public Triceratops.Mode next() {
-            return Triceratops.Mode.values()[(this.ordinal() + 1) % Triceratops.Mode.values().length];
-        }
+    public void cycleBattleMode() {
+        this.entityData.set(MODE, (this.entityData.get(MODE) +1) % 3);
     }
 
     @Override

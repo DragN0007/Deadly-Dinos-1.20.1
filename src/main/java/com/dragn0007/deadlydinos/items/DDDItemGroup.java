@@ -50,6 +50,9 @@ public class DDDItemGroup {
                         output.accept(DDDItems.YUTYRANNUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_YUTYRANNUS_EGG.get());
 
+                        output.accept(DDDItems.AMARGASAURUS_SPAWN_EGG.get());
+                        output.accept(DDDItems.AMARGASAURUS_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_AMARGASAURUS_EGG.get());
                         output.accept(DDDItems.DIPLODOCUS_SPAWN_EGG.get());
                         output.accept(DDDItems.DIPLODOCUS_EGG.get());
                         output.accept(DDDItems.FERTILIZED_DIPLODOCUS_EGG.get());

@@ -4,6 +4,7 @@ import com.dragn0007.deadlydinos.DeadlyDinos;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
+import com.dragn0007.deadlydinos.entities.amargasaurus.Amargasaurus;
 import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
 import com.dragn0007.deadlydinos.entities.diplodocus.Diplodocus;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
@@ -50,6 +51,7 @@ public class DDDEvent {
         event.put(EntityTypes.CROP_SNAIL.get(), CropSnail.createAttributes().build());
         event.put(EntityTypes.TARBOSAURUS.get(), Tarbosaurus.createAttributes().build());
         event.put(EntityTypes.DIPLODOCUS.get(), Diplodocus.createAttributes().build());
+        event.put(EntityTypes.AMARGASAURUS.get(), Amargasaurus.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -71,5 +73,6 @@ public class DDDEvent {
         event.register(EntityTypes.CROP_SNAIL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.TARBOSAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.DIPLODOCUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.AMARGASAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 }

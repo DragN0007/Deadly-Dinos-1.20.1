@@ -1,7 +1,10 @@
-// 1.20.1	2025-12-26T16:24:43.7208867	Item Models: deadlydinos
+// 1.20.1	2025-12-26T19:33:02.0859666	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
+d7668878d9d76a5c68c5cabe5ae030ebc5fcc235 assets/deadlydinos/models/item/amargasaurus_egg.json
+d7668878d9d76a5c68c5cabe5ae030ebc5fcc235 assets/deadlydinos/models/item/amargasaurus_spawn_egg.json
+ec00a63f46b2aa956e686081140321789f363a2d assets/deadlydinos/models/item/amargasaurus_trophy.json
 a256ac830b99dbad7846cbee30c0f312f739230b assets/deadlydinos/models/item/anomaly_acrocanthosaurus_claw.json
 7350919d3817a4a1a4644fec489d58380f5f8b31 assets/deadlydinos/models/item/anomaly_acrocanthosaurus_leg.json
 280271ca8bd9715364f5a4873bfa05f64f226f3f assets/deadlydinos/models/item/anomaly_acrocanthosaurus_ribs.json
@@ -62,6 +65,7 @@ f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/eocarcha
 f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/eocarcharia_spawn_egg.json
 5a10932e7df64aa43df288233b4c4a9bef7e8ce5 assets/deadlydinos/models/item/eocarcharia_trophy.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/fertilized_acrocanthosaurus_egg.json
+d7668878d9d76a5c68c5cabe5ae030ebc5fcc235 assets/deadlydinos/models/item/fertilized_amargasaurus_egg.json
 97887567987aa0a18073fa1ef1f23b01533875f5 assets/deadlydinos/models/item/fertilized_ceratosaurus_egg.json
 4e0bb96834ca287f73453f77631a46e86aea90ae assets/deadlydinos/models/item/fertilized_diplodocus_egg.json
 f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/fertilized_eocarcharia_egg.json
