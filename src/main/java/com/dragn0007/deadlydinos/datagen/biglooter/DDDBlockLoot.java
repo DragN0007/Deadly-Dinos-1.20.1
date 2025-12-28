@@ -38,7 +38,7 @@ public class DDDBlockLoot extends BlockLootSubProvider {
         this.add(DDDBlocks.FOOD_SUPPLY_STASH.get(), this.createMultiDrops(DDDBlocks.FOOD_SUPPLY_STASH.get(), DDDItems.CRACKER.get(), DDDItems.CRACKER.get(), DDDItems.SODA.get(), DDDItems.MRE.get(), supply_box));
 
         LootItemCondition.Builder med_supply_box = LootItemBlockStatePropertyCondition.hasBlockStateProperties(DDDBlocks.MEDICAL_SUPPLY_STASH.get());
-        this.add(DDDBlocks.MEDICAL_SUPPLY_STASH.get(), this.createMultiDrops(DDDBlocks.MEDICAL_SUPPLY_STASH.get(), DDDItems.CRACKER.get(), DDDItems.CRACKER.get(), DDDItems.SODA.get(), DDDItems.MRE.get(), med_supply_box));
+        this.add(DDDBlocks.MEDICAL_SUPPLY_STASH.get(), this.createMedicalDrops(DDDBlocks.MEDICAL_SUPPLY_STASH.get(), DDDItems.GAUZE_WRAP.get(), DDDItems.BUG_BITE_CREAM.get(), DDDItems.BIRD_FLU_SHOT.get(), DDDItems.PARASITIC_ANTIBIOTIC.get(), DDDItems.BACTERIAL_ANTIBIOTIC.get(), med_supply_box));
 
         LootItemCondition.Builder eq_supply_box = LootItemBlockStatePropertyCondition.hasBlockStateProperties(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get());
         this.add(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get(), this.createEquipmentDrops(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get(), DDDItems.RIOT_HELMET.get(), DDDItems.HUNTING_KNIFE.get(), DDDItems.TACTICAL_KNIFE.get(), DDDItems.CROWBAR.get(), eq_supply_box));
@@ -64,6 +64,16 @@ public class DDDBlockLoot extends BlockLootSubProvider {
                 .add(LootItem.lootTableItem(item1).when(builder).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 0)))
                 .add(LootItem.lootTableItem(item2).when(builder).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 0)))
                 .add(LootItem.lootTableItem(item3).when(builder).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 0)))
+        ));
+    }
+
+    protected LootTable.Builder createMedicalDrops(Block block, Item item, Item item1, Item item2, Item item3, Item item4, LootItemCondition.Builder builder) {
+        return this.applyExplosionDecay(block, LootTable.lootTable().withPool(LootPool.lootPool()
+                .add(LootItem.lootTableItem(item).when(builder).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 0)))
+                .add(LootItem.lootTableItem(item1).when(builder).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 0)))
+                .add(LootItem.lootTableItem(item2).when(builder).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 0)))
+                .add(LootItem.lootTableItem(item3).when(builder).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 0)))
+                .add(LootItem.lootTableItem(item4).when(builder).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 0)))
         ));
     }
 }
