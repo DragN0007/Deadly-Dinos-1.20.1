@@ -142,6 +142,13 @@ public class DDDItems {
     public static final RegistryObject<Item> GIANT_CROP_SNAIL_EGG = ITEMS.register("giant_crop_snail_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
+    public static final RegistryObject<Item> ANUROGNATHUS_SPAWN_EGG = ITEMS.register("anurognathus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.CROP_SNAIL, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_ANUROGNATHUS_EGG = ITEMS.register("fertilized_anurognathus_egg",
+            () -> new FertilizedAnurognathusEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> ANUROGNATHUS_EGG = ITEMS.register("anurognathus_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
 
     //FOOD ITEMS
     public static final RegistryObject<Item> RAW_SMALL_MEAT = ITEMS.register("raw_small_meat",
@@ -732,12 +739,15 @@ public static final RegistryObject<Item> OLOROTITAN_TROPHY = ITEMS.register("olo
     public static final RegistryObject<Item> ANOMALY_BONE_WARHAMMER = ITEMS.register("anomaly_bone_warhammer",
             () -> new SwordItem(DDDToolTiers.ANOMALY_BONE, 9, -3.5F, new Item.Properties()));
 
-//    public static final RegistryObject<Item> HUNTING_KNIFE = ITEMS.register("hunting_knife",
-//            () -> new SwordItem(Tiers.IRON, 2, -1.4F,
-//                    new Item.Properties()));
-//    public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
-//            () -> new SwordItem(Tiers.IRON, 2, -2.4F,
-//                    new Item.Properties()));
+    public static final RegistryObject<Item> HUNTING_KNIFE = ITEMS.register("hunting_knife",
+            () -> new SwordItem(Tiers.IRON, 3, 1.6F,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> TACTICAL_KNIFE = ITEMS.register("tactical_knife",
+            () -> new SwordItem(Tiers.IRON, 2, -1.2F,
+                    new Item.Properties()));
+    public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
+            () -> new SwordItem(Tiers.IRON, 2, -2.4F,
+                    new Item.Properties()));
 
 //    public static final RegistryObject<Item> BONE_NETHERITE_HELMET = ITEMS.register("bone_netherite_helmet",
 //            () -> new ArmorItem(DDDArmorMaterial.BONE_NETHERITE, EquipmentSlot.HEAD,

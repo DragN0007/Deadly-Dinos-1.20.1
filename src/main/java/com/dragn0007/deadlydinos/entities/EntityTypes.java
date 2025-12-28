@@ -3,6 +3,7 @@ package com.dragn0007.deadlydinos.entities;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.Acrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.acrocanthosaurus.anomaly.AnomalyAcrocanthosaurus;
 import com.dragn0007.deadlydinos.entities.amargasaurus.Amargasaurus;
+import com.dragn0007.deadlydinos.entities.anurognathus.Anurognathus;
 import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
 import com.dragn0007.deadlydinos.entities.diplodocus.Diplodocus;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
@@ -143,5 +144,13 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(0.6f,0.6f)
                     .build(new ResourceLocation(MODID,"giant_crop_snail").toString()));
+
+
+    //Other
+    public static final RegistryObject<EntityType<Anurognathus>> ANUROGNATHUS = ENTITY_TYPES.register("anurognathus",
+            () -> EntityType.Builder.of(Anurognathus::new,
+                            MobCategory.CREATURE)
+                    .sized(0.6f,0.6f)
+                    .build(new ResourceLocation(MODID,"anurognathus").toString()));
 }
 

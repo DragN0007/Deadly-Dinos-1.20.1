@@ -3,7 +3,7 @@ package com.dragn0007.deadlydinos.items.eggs;
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.tarbosaurus.Tarbosaurus;
-import com.dragn0007.deadlydinos.entities.yutyrannus.YutyrannusModel;
+import com.dragn0007.deadlydinos.entities.tarbosaurus.TarbosaurusModel;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -66,9 +66,9 @@ public class ThrownTarbosaurusEgg extends ThrowableItemProjectile {
                dino.setGender(random.nextInt(AbstractDino.Gender.values().length));
 
                if (dino.isFemale()) {
-                  dino.setVariant(random.nextInt(YutyrannusModel.FemaleVariant.values().length));
+                  dino.setVariant(random.nextInt(TarbosaurusModel.FemaleVariant.values().length));
                } else if (dino.isMale()) {
-                  dino.setVariant(random.nextInt(YutyrannusModel.MaleVariant.values().length));
+                  dino.setVariant(random.nextInt(TarbosaurusModel.MaleVariant.values().length));
                } else {
                   dino.setVariant(0);
                }

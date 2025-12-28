@@ -3,7 +3,7 @@ package com.dragn0007.deadlydinos.items.eggs;
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.gryposaurus.Gryposaurus;
-import com.dragn0007.deadlydinos.entities.megaraptor.MegaraptorModel;
+import com.dragn0007.deadlydinos.entities.gryposaurus.GryposaurusModel;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -66,9 +66,9 @@ public class ThrownGryposaurusEgg extends ThrowableItemProjectile {
                dino.setGender(random.nextInt(AbstractDino.Gender.values().length));
 
                if (dino.isFemale()) {
-                  dino.setVariant(random.nextInt(MegaraptorModel.FemaleVariant.values().length));
+                  dino.setVariant(random.nextInt(GryposaurusModel.FemaleVariant.values().length));
                } else if (dino.isMale()) {
-                  dino.setVariant(random.nextInt(MegaraptorModel.MaleVariant.values().length));
+                  dino.setVariant(random.nextInt(GryposaurusModel.MaleVariant.values().length));
                } else {
                   dino.setVariant(0);
                }

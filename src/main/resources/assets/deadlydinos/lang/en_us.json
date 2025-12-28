@@ -112,6 +112,11 @@
   "item.deadlydinos.fertilized_giant_crop_snail_egg": "Fertilized Giant Crop Snail Egg",
   "entity.deadlydinos.giant_crop_snail": "Giant Crop Snail",
 
+  "item.deadlydinos.anurognathus_spawn_egg": "Anurognathus Spawn Egg",
+  "item.deadlydinos.anurognathus_egg": "Anurognathus Egg",
+  "item.deadlydinos.fertilized_anurognathus_egg": "Fertilized Anurognathus Egg",
+  "entity.deadlydinos.anurognathus": "Anurognathus",
+
 
   "block.deadlydinos.reinforced_cobblestone": "Reinforced Cobblestone",
   "block.deadlydinos.reinforced_glass": "Reinforced Glass",
@@ -252,6 +257,9 @@
 
   "item.deadlydinos.eocarcharia_armor": "Eocarcharia Armor",
 
+  "item.deadlydinos.hunting_knife": "Hunting Knife",
+  "item.deadlydinos.tactical_knife": "Tactical Knife",
+  "item.deadlydinos.crowbar": "Crowbar",
 
   "sounds.deadlydinos.large_carnivore_ambient": "Large Carnivore Rumbles",
   "sounds.deadlydinos.medium_carnivore_ambient": "Medium Carnivore Rumbles",

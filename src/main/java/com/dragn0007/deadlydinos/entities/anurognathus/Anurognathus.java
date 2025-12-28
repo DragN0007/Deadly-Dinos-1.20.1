@@ -27,15 +27,16 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.entity.player.Player;
@@ -67,7 +68,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
-public class Anurognathus extends AbstractTamableDino implements InventoryCarrier, GeoEntity, ContainerListener {
+public class Anurognathus extends AbstractTamableDino implements InventoryCarrier, GeoEntity, ContainerListener, FlyingAnimal {
 
 	public Anurognathus(EntityType<? extends Anurognathus> type, Level level) {
 		super(type, level);
@@ -78,10 +79,11 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 10.0D)
-				.add(Attributes.ATTACK_DAMAGE, 2D)
-				.add(Attributes.KNOCKBACK_RESISTANCE, 0.2F)
-				.add(Attributes.MOVEMENT_SPEED, 0.27F)
+				.add(Attributes.MAX_HEALTH, 6.0D)
+				.add(Attributes.ATTACK_DAMAGE, 1D)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 0.0F)
+				.add(Attributes.MOVEMENT_SPEED, 0.22F)
+				.add(Attributes.FLYING_SPEED, 0.27F)
 				.add(Attributes.FOLLOW_RANGE, 32D);
 	}
 
@@ -99,6 +101,7 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
 
@@ -113,6 +116,18 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 2.0F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && !this.isTame()));
+	}
+
+	protected PathNavigation createNavigation(Level p_29417_) {
+		FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, p_29417_);
+		flyingpathnavigation.setCanOpenDoors(false);
+		flyingpathnavigation.setCanFloat(true);
+		flyingpathnavigation.setCanPassDoors(true);
+		return flyingpathnavigation;
+	}
+
+	public boolean isFlying() {
+		return !this.onGround();
 	}
 
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
@@ -191,48 +206,6 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 			this.level().addParticle(ParticleTypes.HEART, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 0.7D, 0.7D, 0.7D);
 		}
 
-		if (this.isDoneStalking()) {
-			if (!this.hasStrengthEffect()) {
-				this.applyStrengthEffect();
-			}
-			if (!this.hasSpeedEffect()) {
-				this.applySpeedEffect();
-			}
-		} else {
-			if (this.hasStrengthEffect()) {
-				this.removeStrengthEffect();
-			}
-			if (this.hasSpeedEffect()) {
-				this.removeSpeedEffect();
-			}
-		}
-
-	}
-
-	public void applyStrengthEffect() {
-		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 1, false, false);
-		this.addEffect(effectInstance);
-	}
-
-	public boolean hasStrengthEffect() {
-		return this.hasEffect(MobEffects.DAMAGE_BOOST);
-	}
-
-	public void removeStrengthEffect() {
-		this.removeEffect(MobEffects.DAMAGE_BOOST);
-	}
-
-	public void applySpeedEffect() {
-		MobEffectInstance effectInstance = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false);
-		this.addEffect(effectInstance);
-	}
-
-	public boolean hasSpeedEffect() {
-		return this.hasEffect(MobEffects.MOVEMENT_SPEED);
-	}
-
-	public void removeSpeedEffect() {
-		this.removeEffect(MobEffects.MOVEMENT_SPEED);
 	}
 
 	public int eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
@@ -271,26 +244,19 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 	public <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> tAnimationState) {
 		double currentSpeed = this.getDeltaMovement().lengthSqr();
 		double speedThreshold = 0.02;
-		double stalkSpeedThreshold = 0.01;
 		double x = this.getX() - this.xo;
 		double z = this.getZ() - this.zo;
 		boolean isMoving = (x * x + z * z) > 0.0001;
 
 		AnimationController<T> controller = tAnimationState.getController();
 
-		if (!this.onGround() && this.isAggressive()) {
-			controller.setAnimation(RawAnimation.begin().then("jump", Animation.LoopType.LOOP));
-			controller.setAnimationSpeed(1.5);
-		} else if (isMoving) {
-			if (currentSpeed > speedThreshold && this.onGround()) {
-				controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(3.7);
-			} else if (currentSpeed < stalkSpeedThreshold) {
-				controller.setAnimation(RawAnimation.begin().then("stalk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(2.0);
-			} else {
+		if (isMoving) {
+			if (this.isFlying()) {
+				controller.setAnimation(RawAnimation.begin().then("flap", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(1.5);
+			} else if (this.onGround()) {
 				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(3.5);
+				controller.setAnimationSpeed(1.0);
 			}
 		} else {
 			if (isInSittingPose()) {

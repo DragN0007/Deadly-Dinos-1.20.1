@@ -41,7 +41,7 @@ public class DDDBlockLoot extends BlockLootSubProvider {
         this.add(DDDBlocks.MEDICAL_SUPPLY_STASH.get(), this.createMultiDrops(DDDBlocks.MEDICAL_SUPPLY_STASH.get(), DDDItems.CRACKER.get(), DDDItems.CRACKER.get(), DDDItems.SODA.get(), DDDItems.MRE.get(), med_supply_box));
 
         LootItemCondition.Builder eq_supply_box = LootItemBlockStatePropertyCondition.hasBlockStateProperties(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get());
-        this.add(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get(), this.createEquipmentDrops(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get(), DDDItems.RIOT_HELMET.get(), DDDItems.CRACKER.get(), DDDItems.SODA.get(), DDDItems.MRE.get(), eq_supply_box));
+        this.add(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get(), this.createEquipmentDrops(DDDBlocks.EQUIPMENT_SUPPLY_STASH.get(), DDDItems.RIOT_HELMET.get(), DDDItems.HUNTING_KNIFE.get(), DDDItems.TACTICAL_KNIFE.get(), DDDItems.CROWBAR.get(), eq_supply_box));
     }
 
     @Override

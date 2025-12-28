@@ -49,7 +49,7 @@
               }
             }
           ],
-          "name": "deadlydinos:cracker"
+          "name": "deadlydinos:hunting_knife"
         },
         {
           "type": "minecraft:item",
@@ -70,7 +70,7 @@
               }
             }
           ],
-          "name": "deadlydinos:soda"
+          "name": "deadlydinos:tactical_knife"
         },
         {
           "type": "minecraft:item",
@@ -91,7 +91,7 @@
               }
             }
           ],
-          "name": "deadlydinos:mre"
+          "name": "deadlydinos:crowbar"
         }
       ],
       "rolls": 1.0

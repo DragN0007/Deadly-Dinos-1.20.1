@@ -12,7 +12,7 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class AnurognathusModel extends DefaultedEntityGeoModel<Anurognathus> {
 
     public AnurognathusModel() {
-        super(new ResourceLocation(DeadlyDinos.MODID, "oviraptor"), true);
+        super(new ResourceLocation(DeadlyDinos.MODID, "anurognathus"), true);
     }
 
     @Override
@@ -76,10 +76,10 @@ public class AnurognathusModel extends DefaultedEntityGeoModel<Anurognathus> {
     }
 
     public enum FemaleVariant {
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/oviraptor/female_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/oviraptor/female_blue.png")),
-        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/oviraptor/female_green.png")),
-        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/oviraptor/female_mahogany.png"));
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/anurognathus/female_red.png")),
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/anurognathus/female_brown.png")),
+        SILVER(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/anurognathus/female_silver.png")),
+        TAN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/anurognathus/female_tan.png"));
 
         public final ResourceLocation resourceLocation;
         FemaleVariant(ResourceLocation resourceLocation) {
@@ -91,10 +91,10 @@ public class AnurognathusModel extends DefaultedEntityGeoModel<Anurognathus> {
     }
 
     public enum MaleVariant {
-        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/oviraptor/male_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/oviraptor/male_blue.png")),
-        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/oviraptor/male_green.png")),
-        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/oviraptor/male_mahogany.png"));
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/anurognathus/male_red.png")),
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/anurognathus/male_brown.png")),
+        SILVER(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/anurognathus/male_silver.png")),
+        TAN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/anurognathus/male_tan.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {
@@ -105,8 +105,8 @@ public class AnurognathusModel extends DefaultedEntityGeoModel<Anurognathus> {
         }
     }
 
-    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/oviraptor.geo.json");
-    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/oviraptor.animation.json");
+    public static final ResourceLocation MODEL = new ResourceLocation(DeadlyDinos.MODID, "geo/anurognathus.geo.json");
+    public static final ResourceLocation ANIMATION = new ResourceLocation(DeadlyDinos.MODID, "animations/anurognathus.animation.json");
 
     @Override
     public ResourceLocation getModelResource(Anurognathus object) {

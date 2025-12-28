@@ -3,7 +3,7 @@ package com.dragn0007.deadlydinos.items.eggs;
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.diplodocus.Diplodocus;
-import com.dragn0007.deadlydinos.entities.yutyrannus.YutyrannusModel;
+import com.dragn0007.deadlydinos.entities.diplodocus.DiplodocusModel;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -66,9 +66,9 @@ public class ThrownDiplodocusEgg extends ThrowableItemProjectile {
                dino.setGender(random.nextInt(AbstractDino.Gender.values().length));
 
                if (dino.isFemale()) {
-                  dino.setVariant(random.nextInt(YutyrannusModel.FemaleVariant.values().length));
+                  dino.setVariant(random.nextInt(DiplodocusModel.FemaleVariant.values().length));
                } else if (dino.isMale()) {
-                  dino.setVariant(random.nextInt(YutyrannusModel.MaleVariant.values().length));
+                  dino.setVariant(random.nextInt(DiplodocusModel.MaleVariant.values().length));
                } else {
                   dino.setVariant(0);
                }

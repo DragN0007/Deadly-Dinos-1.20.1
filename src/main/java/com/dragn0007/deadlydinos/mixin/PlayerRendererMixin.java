@@ -1,5 +1,6 @@
 package com.dragn0007.deadlydinos.mixin;
 
+import com.dragn0007.deadlydinos.entities.anurognathus.AnurognathusOnShoulderLayer;
 import com.dragn0007.deadlydinos.entities.mei_long.MeiLongOnShoulderLayer;
 import com.dragn0007.deadlydinos.entities.velociraptor.VelociraptorOnShoulderLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,5 +18,6 @@ public abstract class PlayerRendererMixin {
         PlayerRenderer self = (PlayerRenderer) (Object) this;
         self.addLayer(new VelociraptorOnShoulderLayer<>(self, ctx));
         self.addLayer(new MeiLongOnShoulderLayer<>(self, ctx));
+        self.addLayer(new AnurognathusOnShoulderLayer<>(self, ctx));
     }
 }

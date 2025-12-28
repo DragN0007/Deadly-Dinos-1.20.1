@@ -73,6 +73,10 @@ public class DDDItemGroup {
                         output.accept(DDDItems.GIANT_CROP_SNAIL_EGG.get());
                         output.accept(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG.get());
 
+                        output.accept(DDDItems.ANUROGNATHUS_SPAWN_EGG.get());
+                        output.accept(DDDItems.ANUROGNATHUS_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_ANUROGNATHUS_EGG.get());
+
                         output.accept(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG.get());
 
                     }).build());
@@ -122,6 +126,10 @@ public class DDDItemGroup {
                         output.accept(DDDItems.RIOT_CHESTPLATE.get());
                         output.accept(DDDItems.RIOT_LEGGINGS.get());
                         output.accept(DDDItems.RIOT_BOOTS.get());
+
+                        output.accept(DDDItems.HUNTING_KNIFE.get());
+                        output.accept(DDDItems.TACTICAL_KNIFE.get());
+                        output.accept(DDDItems.CROWBAR.get());
 
                         output.accept(DDDBlocks.REINFORCED_COBBLESTONE.get());
                         output.accept(DDDBlocks.REINFORCED_GLASS.get());

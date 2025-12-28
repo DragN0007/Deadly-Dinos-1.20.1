@@ -133,6 +133,10 @@ public class DDDItemModelProvider extends ItemModelProvider {
         advancedItem(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG, "giant_crop_snail_egg");
         simpleItem(DDDItems.GIANT_CROP_SNAIL_EGG);
 
+        advancedItem(DDDItems.ANUROGNATHUS_SPAWN_EGG, "anurognathus_egg");
+        advancedItem(DDDItems.FERTILIZED_ANUROGNATHUS_EGG, "anurognathus_egg");
+        simpleItem(DDDItems.ANUROGNATHUS_EGG);
+
         advancedItem(DDDItems.ANOMALY_ACROCANTHOSAURUS_SPAWN_EGG, "anomaly_acrocanthosaurus_egg");
 
         simpleItem(DDDItems.GAUZE_WRAP);
@@ -140,6 +144,10 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.BACTERIAL_ANTIBIOTIC);
         simpleItem(DDDItems.PARASITIC_ANTIBIOTIC);
         simpleItem(DDDItems.BIRD_FLU_SHOT);
+
+        simpleItem(DDDItems.HUNTING_KNIFE);
+        simpleItem(DDDItems.TACTICAL_KNIFE);
+        simpleItem(DDDItems.CROWBAR);
 
         simpleItem(DDDItems.RAW_SMALL_MEAT);
         simpleItem(DDDItems.COOKED_SMALL_MEAT);

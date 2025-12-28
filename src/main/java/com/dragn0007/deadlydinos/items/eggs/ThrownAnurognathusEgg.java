@@ -2,8 +2,8 @@ package com.dragn0007.deadlydinos.items.eggs;
 
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
-import com.dragn0007.deadlydinos.entities.oviraptor.Oviraptor;
-import com.dragn0007.deadlydinos.entities.oviraptor.OviraptorModel;
+import com.dragn0007.deadlydinos.entities.anurognathus.Anurognathus;
+import com.dragn0007.deadlydinos.entities.anurognathus.AnurognathusModel;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -17,16 +17,16 @@ import net.minecraft.world.phys.HitResult;
 
 import java.util.Random;
 
-public class ThrownOviraptorEgg extends ThrowableItemProjectile {
-   public ThrownOviraptorEgg(EntityType<? extends ThrownOviraptorEgg> p_37473_, Level p_37474_) {
+public class ThrownAnurognathusEgg extends ThrowableItemProjectile {
+   public ThrownAnurognathusEgg(EntityType<? extends ThrownAnurognathusEgg> p_37473_, Level p_37474_) {
       super(p_37473_, p_37474_);
    }
 
-   public ThrownOviraptorEgg(Level p_37481_, LivingEntity p_37482_) {
+   public ThrownAnurognathusEgg(Level p_37481_, LivingEntity p_37482_) {
       super(EntityType.EGG, p_37482_, p_37481_);
    }
 
-   public ThrownOviraptorEgg(Level p_37476_, double p_37477_, double p_37478_, double p_37479_) {
+   public ThrownAnurognathusEgg(Level p_37476_, double p_37477_, double p_37478_, double p_37479_) {
       super(EntityType.EGG, p_37477_, p_37478_, p_37479_, p_37476_);
    }
 
@@ -56,8 +56,8 @@ public class ThrownOviraptorEgg extends ThrowableItemProjectile {
          }
 
          for (int j = 0; j < i; ++j) {
-            if (getItem().is(DDDItems.FERTILIZED_OVIRAPTOR_EGG.get())) {
-               Oviraptor dino = EntityTypes.OVIRAPTOR.get().create(this.level());
+            if (getItem().is(DDDItems.FERTILIZED_ANUROGNATHUS_EGG.get())) {
+               Anurognathus dino = EntityTypes.ANUROGNATHUS.get().create(this.level());
                dino.setAge(-24000);
                dino.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
 
@@ -66,9 +66,9 @@ public class ThrownOviraptorEgg extends ThrowableItemProjectile {
                dino.setGender(random.nextInt(AbstractDino.Gender.values().length));
 
                if (dino.isFemale()) {
-                  dino.setVariant(random.nextInt(OviraptorModel.FemaleVariant.values().length));
+                  dino.setVariant(random.nextInt(AnurognathusModel.FemaleVariant.values().length));
                } else if (dino.isMale()) {
-                  dino.setVariant(random.nextInt(OviraptorModel.MaleVariant.values().length));
+                  dino.setVariant(random.nextInt(AnurognathusModel.MaleVariant.values().length));
                } else {
                   dino.setVariant(0);
                }
@@ -83,6 +83,6 @@ public class ThrownOviraptorEgg extends ThrowableItemProjectile {
    }
 
    public Item getDefaultItem() {
-      return DDDItems.FERTILIZED_OVIRAPTOR_EGG.get();
+      return DDDItems.FERTILIZED_ANUROGNATHUS_EGG.get();
    }
 }
