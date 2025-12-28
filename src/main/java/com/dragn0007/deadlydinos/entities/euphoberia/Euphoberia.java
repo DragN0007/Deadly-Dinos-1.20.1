@@ -1,4 +1,4 @@
-package com.dragn0007.deadlydinos.entities.giant_crop_snail;
+package com.dragn0007.deadlydinos.entities.euphoberia;
 
 import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
@@ -27,15 +27,10 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -51,18 +46,18 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class CropSnail extends AbstractDino implements GeoEntity {
+public class Euphoberia extends AbstractDino implements GeoEntity {
 
-	public CropSnail(EntityType<? extends CropSnail> type, Level level) {
+	public Euphoberia(EntityType<? extends Euphoberia> type, Level level) {
 		super(type, level);
 		noCulling = false;
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.MAX_HEALTH, 8.0D)
+				.add(Attributes.MAX_HEALTH, 6.0D)
 				.add(Attributes.ATTACK_DAMAGE, 0.5D)
-				.add(Attributes.KNOCKBACK_RESISTANCE, 0.8F)
+				.add(Attributes.KNOCKBACK_RESISTANCE, 0.6F)
 				.add(Attributes.MOVEMENT_SPEED, 0.16F)
 				.add(Attributes.FOLLOW_RANGE, 48D);
 	}
@@ -81,9 +76,6 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.0D, true));
-
-		this.goalSelector.addGoal(3, new SearchForHerbivoreFoodGoal());
-		this.goalSelector.addGoal(3, new RaidGardenGoal(this));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS)));
@@ -116,7 +108,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 		super.aiStep();
 
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.GIANT_CROP_SNAIL_EGG.get());
+			this.spawnAtLocation(DDDItems.EUPHOBERIA_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
 		}
@@ -133,15 +125,6 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 			}
 		}
 
-	}
-
-	public boolean hurt(DamageSource source, float v) {
-		super.hurt(source, v);
-		Entity entity = source.getDirectEntity();
-		if (entity instanceof AbstractArrow) {
-			return false;
-		}
-		return true;
 	}
 
 	@Override
@@ -186,33 +169,33 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 
 	public SoundEvent getAmbientSound() {
 		super.getAmbientSound();
-		return SoundEvents.SLIME_SQUISH_SMALL;
+		return SoundEvents.SPIDER_AMBIENT;
 	}
 
 	public SoundEvent getDeathSound() {
 		super.getDeathSound();
-		return SoundEvents.SLIME_DEATH_SMALL;
+		return SoundEvents.GENERIC_DEATH;
 	}
 
 	public SoundEvent getHurtSound(DamageSource p_30720_) {
 		super.getHurtSound(p_30720_);
-		return SoundEvents.SLIME_HURT;
+		return SoundEvents.GENERIC_HURT;
 	}
 
 	public void playStepSound(BlockPos p_28254_, BlockState p_28255_) {
-		this.playSound(SoundEvents.SLIME_JUMP_SMALL, 0.15F, 1.0F);
+		this.playSound(SoundEvents.SPIDER_STEP, 0.15F, 1.0F);
 	}
 
 	// Generates the base texture
 	public ResourceLocation getFemaleTextureLocation() {
-		return CropSnailModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return EuphoberiaModel.FemaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
 	public ResourceLocation getMaleTextureLocation() {
-		return CropSnailModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
+		return EuphoberiaModel.MaleVariant.variantFromOrdinal(getVariant()).resourceLocation;
 	}
 
-	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(CropSnail.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Euphoberia.class, EntityDataSerializers.INT);
 
 	public int getVariant() {
 		return this.entityData.get(VARIANT);
@@ -258,9 +241,9 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 		setGender(random.nextInt(Gender.values().length));
 
 		if (this.isFemale()) {
-			setVariant(random.nextInt(CropSnailModel.FemaleVariant.values().length));
+			setVariant(random.nextInt(EuphoberiaModel.FemaleVariant.values().length));
 		} else if (this.isMale()) {
-			setVariant(random.nextInt(CropSnailModel.MaleVariant.values().length));
+			setVariant(random.nextInt(EuphoberiaModel.MaleVariant.values().length));
 		}
 
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
@@ -273,13 +256,13 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 	public boolean canMate(Animal animal) {
 		if (animal == this) {
 			return false;
-		} else if (!(animal instanceof CropSnail)) {
+		} else if (!(animal instanceof Euphoberia)) {
 			return false;
 		} else {
 			if (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-				return this.canParent() && ((CropSnail) animal).canParent();
+				return this.canParent() && ((Euphoberia) animal).canParent();
 			} else {
-				CropSnail partner = (CropSnail) animal;
+				Euphoberia partner = (Euphoberia) animal;
 				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
 					return isFemale();
 				}
@@ -312,7 +295,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 		}
 
 		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_EUPHOBERIA_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
@@ -334,57 +317,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_EUPHOBERIA_EGG.get());
 		}
 	}
-
-	public static class RaidGardenGoal extends MoveToBlockGoal {
-		private final CropSnail entity;
-
-		public RaidGardenGoal(CropSnail entity) {
-			super(entity, 1F, 64);
-			this.entity = entity;
-		}
-
-		public boolean canUse() {
-			if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.entity.level(), this.entity)) {
-				return false;
-			}
-
-			return super.canUse();
-		}
-
-		public boolean canContinueToUse() {
-			return super.canContinueToUse();
-		}
-
-		public void tick() {
-			super.tick();
-			this.entity.getLookControl().setLookAt((double)this.blockPos.getX() + 0.5D, (double)(this.blockPos.getY() + 1), (double)this.blockPos.getZ() + 0.5D, 10.0F, (float)this.entity.getMaxHeadXRot());
-			BlockPos cropPos = this.blockPos.above();
-			double distanceSq = this.entity.position().distanceToSqr(cropPos.getX() + 0.5D, cropPos.getY() + 0.5D, cropPos.getZ() + 0.5D);
-			if (distanceSq <= 4.0D) {
-				Level level = this.entity.level();
-				BlockState blockstate = level.getBlockState(cropPos);
-				Block block = blockstate.getBlock();
-
-				if (block instanceof CropBlock) {
-					level.removeBlock(cropPos, false);
-				}
-			}
-		}
-
-		public boolean isValidTarget(LevelReader levelReader, BlockPos blockPos) {
-			BlockState blockstate = levelReader.getBlockState(blockPos);
-			if (blockstate.is(Blocks.FARMLAND)) {
-				blockstate = levelReader.getBlockState(blockPos.above());
-				if (blockstate.getBlock() instanceof CropBlock) {
-					return true;
-				}
-			}
-
-			return false;
-		}
-	}
-
 }

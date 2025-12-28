@@ -72,6 +72,9 @@ public class DDDItemGroup {
                         output.accept(DDDItems.GIANT_CROP_SNAIL_SPAWN_EGG.get());
                         output.accept(DDDItems.GIANT_CROP_SNAIL_EGG.get());
                         output.accept(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG.get());
+                        output.accept(DDDItems.EUPHOBERIA_SPAWN_EGG.get());
+                        output.accept(DDDItems.EUPHOBERIA_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_EUPHOBERIA_EGG.get());
 
                         output.accept(DDDItems.ANUROGNATHUS_SPAWN_EGG.get());
                         output.accept(DDDItems.ANUROGNATHUS_EGG.get());

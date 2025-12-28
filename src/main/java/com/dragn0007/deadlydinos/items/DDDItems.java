@@ -142,8 +142,16 @@ public class DDDItems {
     public static final RegistryObject<Item> GIANT_CROP_SNAIL_EGG = ITEMS.register("giant_crop_snail_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
-    public static final RegistryObject<Item> ANUROGNATHUS_SPAWN_EGG = ITEMS.register("anurognathus_spawn_egg",
+    public static final RegistryObject<Item> EUPHOBERIA_SPAWN_EGG = ITEMS.register("euphoberia_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.CROP_SNAIL, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_EUPHOBERIA_EGG = ITEMS.register("fertilized_euphoberia_egg",
+            () -> new FertilizedCropSnailEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> EUPHOBERIA_EGG = ITEMS.register("euphoberia_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
+
+    public static final RegistryObject<Item> ANUROGNATHUS_SPAWN_EGG = ITEMS.register("anurognathus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.ANUROGNATHUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_ANUROGNATHUS_EGG = ITEMS.register("fertilized_anurognathus_egg",
             () -> new FertilizedAnurognathusEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> ANUROGNATHUS_EGG = ITEMS.register("anurognathus_egg",

@@ -9,6 +9,7 @@ import com.dragn0007.deadlydinos.entities.anurognathus.Anurognathus;
 import com.dragn0007.deadlydinos.entities.ceratosaurus.Ceratosaurus;
 import com.dragn0007.deadlydinos.entities.diplodocus.Diplodocus;
 import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
+import com.dragn0007.deadlydinos.entities.euphoberia.Euphoberia;
 import com.dragn0007.deadlydinos.entities.giant_crop_snail.CropSnail;
 import com.dragn0007.deadlydinos.entities.gryposaurus.Gryposaurus;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
@@ -54,6 +55,7 @@ public class DDDEvent {
         event.put(EntityTypes.DIPLODOCUS.get(), Diplodocus.createAttributes().build());
         event.put(EntityTypes.AMARGASAURUS.get(), Amargasaurus.createAttributes().build());
         event.put(EntityTypes.ANUROGNATHUS.get(), Anurognathus.createAttributes().build());
+        event.put(EntityTypes.EUPHOBERIA.get(), Euphoberia.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -77,5 +79,6 @@ public class DDDEvent {
         event.register(EntityTypes.DIPLODOCUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.AMARGASAURUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.ANUROGNATHUS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.EUPHOBERIA.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 }

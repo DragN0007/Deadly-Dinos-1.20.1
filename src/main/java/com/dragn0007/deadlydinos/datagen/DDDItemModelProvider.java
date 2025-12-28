@@ -133,6 +133,11 @@ public class DDDItemModelProvider extends ItemModelProvider {
         advancedItem(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG, "giant_crop_snail_egg");
         simpleItem(DDDItems.GIANT_CROP_SNAIL_EGG);
 
+        advancedItem(DDDItems.EUPHOBERIA_SPAWN_EGG, "euphoberia_egg");
+        advancedItem(DDDItems.FERTILIZED_EUPHOBERIA_EGG, "euphoberia_egg");
+        simpleItem(DDDItems.EUPHOBERIA_EGG);
+
+
         advancedItem(DDDItems.ANUROGNATHUS_SPAWN_EGG, "anurognathus_egg");
         advancedItem(DDDItems.FERTILIZED_ANUROGNATHUS_EGG, "anurognathus_egg");
         simpleItem(DDDItems.ANUROGNATHUS_EGG);
