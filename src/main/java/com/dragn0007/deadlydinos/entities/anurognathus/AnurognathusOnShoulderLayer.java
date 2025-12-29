@@ -55,12 +55,12 @@ public class AnurognathusOnShoulderLayer<T extends Player>
             if (player.isCrouching()) {
                 poseStack.translate(0.0F, -0.2F, 0.0F);
             }
-            poseStack.translate(0.4F, 0.0F, 0.0F);
+            poseStack.translate(0.3F, 0.0F, 0.0F);
         } else {
             if (player.isCrouching()) {
                 poseStack.translate(0.0F, -0.2F, 0.0F);
             }
-            poseStack.translate(-0.4F, 0.0F, 0.0F);
+            poseStack.translate(-0.3F, 0.0F, 0.0F);
         }
         poseStack.scale(1F, 1F, 1F);
         geckoRenderer.render(dummy, 0f, partialTicks, poseStack, buffer, packedLight);

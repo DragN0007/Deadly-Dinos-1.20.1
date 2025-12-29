@@ -23,6 +23,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> MEGARAPTOR_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> MEI_LONG_MAX_PACK_COUNT;
     public static final ForgeConfigSpec.ConfigValue<Integer> VELOCIRAPTOR_MAX_PACK_COUNT;
+    public static final ForgeConfigSpec.ConfigValue<Integer> MEGANEURA_MAX_SWARM_COUNT;
     public static final ForgeConfigSpec.BooleanValue MILK_CURE;
     public static final ForgeConfigSpec.BooleanValue INJURY_EFFECTS;
     public static final ForgeConfigSpec.BooleanValue ILLNESS_EFFECTS;
@@ -95,6 +96,9 @@ public class DeadlyDinosCommonConfig {
 
         VELOCIRAPTOR_MAX_PACK_COUNT = BUILDER.comment("Maximum amount of Velociraptors that can pack up at once. Default is 8.")
                 .define("Max Velociraptor Pack Count", 8);
+
+        MEGANEURA_MAX_SWARM_COUNT = BUILDER.comment("Maximum amount of Meganeura that can swarm at once. Default is 8.")
+                .define("Max Meganeura Swarm Count", 8);
         BUILDER.pop();
 
         BUILDER.push("Injuries, Illnesses and Medical");

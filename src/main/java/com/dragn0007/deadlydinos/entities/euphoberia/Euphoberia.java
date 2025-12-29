@@ -14,7 +14,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -30,7 +29,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -77,41 +75,6 @@ public class Euphoberia extends AbstractDino implements GeoEntity {
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS)));
-	}
-
-	public void tick() {
-		super.tick();
-
-		if (eggsLaid >= DeadlyDinosCommonConfig.DINO_EGG_LAY_AMOUNT.get() && eggLayCooldown >= 100) {
-			eggsLaid = 0;
-			eggLayCooldown = 0;
-		}
-	}
-
-	public int eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
-
-	@Override
-	public void aiStep() {
-		super.aiStep();
-
-		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.EUPHOBERIA_EGG.get());
-			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
-		}
-
-		if (this.horizontalCollision && net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level(), this) && this.isAggressive()) {
-			boolean griefEvent = false;
-			AABB aabb = this.getBoundingBox().inflate(0.3D);
-
-			for (BlockPos blockpos : BlockPos.betweenClosed(Mth.floor(aabb.minX), Mth.floor(aabb.minY), Mth.floor(aabb.minZ), Mth.floor(aabb.maxX), Mth.floor(aabb.maxY), Mth.floor(aabb.maxZ))) {
-				BlockState blockstate = this.level().getBlockState(blockpos);
-				if (blockstate.is(DDDTags.Blocks.MEDIUM_DINO_DESTROYS) && DeadlyDinosCommonConfig.MEDIUM_DINOS_DESTROY_BLOCKS.get()) {
-					griefEvent = this.level().destroyBlock(blockpos, true, this) || griefEvent;
-				}
-			}
-		}
-
 	}
 
 	@Override
@@ -202,10 +165,6 @@ public class Euphoberia extends AbstractDino implements GeoEntity {
 		if (tag.contains("Gender")) {
 			setGender(tag.getInt("Gender"));
 		}
-
-		if (tag.contains("EggLayTime")) {
-			this.eggTime = tag.getInt("EggLayTime");
-		}
 	}
 
 	@Override
@@ -213,7 +172,6 @@ public class Euphoberia extends AbstractDino implements GeoEntity {
 		super.addAdditionalSaveData(tag);
 		tag.putInt("Variant", getVariant());
 		tag.putInt("Gender", getGender());
-		tag.putInt("EggLayTime", this.eggTime);
 	}
 
 	@Override

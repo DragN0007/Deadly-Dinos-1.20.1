@@ -149,6 +149,13 @@ public class DDDItems {
     public static final RegistryObject<Item> EUPHOBERIA_EGG = ITEMS.register("euphoberia_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
+    public static final RegistryObject<Item> MEGANEURA_SPAWN_EGG = ITEMS.register("meganeura_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.MEGANEURA, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_MEGANEURA_EGG = ITEMS.register("fertilized_meganeura_egg",
+            () -> new FertilizedMeganeuraEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> MEGANEURA_EGG = ITEMS.register("meganeura_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
 
     public static final RegistryObject<Item> ANUROGNATHUS_SPAWN_EGG = ITEMS.register("anurognathus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.ANUROGNATHUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));

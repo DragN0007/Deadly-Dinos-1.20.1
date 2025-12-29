@@ -75,6 +75,9 @@ public class DDDItemGroup {
                         output.accept(DDDItems.EUPHOBERIA_SPAWN_EGG.get());
                         output.accept(DDDItems.EUPHOBERIA_EGG.get());
                         output.accept(DDDItems.FERTILIZED_EUPHOBERIA_EGG.get());
+                        output.accept(DDDItems.MEGANEURA_SPAWN_EGG.get());
+                        output.accept(DDDItems.MEGANEURA_EGG.get());
+                        output.accept(DDDItems.FERTILIZED_MEGANEURA_EGG.get());
 
                         output.accept(DDDItems.ANUROGNATHUS_SPAWN_EGG.get());
                         output.accept(DDDItems.ANUROGNATHUS_EGG.get());

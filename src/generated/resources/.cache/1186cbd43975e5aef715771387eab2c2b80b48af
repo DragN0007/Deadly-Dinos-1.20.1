@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-28T19:49:21.6369104	Item Models: deadlydinos
+// 1.20.1	2025-12-29T15:06:47.1174058	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -80,6 +80,7 @@ f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/fertiliz
 5033fac61baf12cf2ffebe4a12855256250c92eb assets/deadlydinos/models/item/fertilized_euphoberia_egg.json
 0bc7d020bcaea43502aabf3d6f0d5c51c48f4185 assets/deadlydinos/models/item/fertilized_giant_crop_snail_egg.json
 f2c098046ff2b1abeb44f22008a7d0d97341b946 assets/deadlydinos/models/item/fertilized_gryposaurus_egg.json
+139a60ad046fc0709e0f4283b7df3426aff4281e assets/deadlydinos/models/item/fertilized_meganeura_egg.json
 e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/fertilized_megaraptor_egg.json
 5cf84df9c595448541f711f5fd733a5433244091 assets/deadlydinos/models/item/fertilized_mei_long_egg.json
 3428ce635d1b6a2655de63d4d03c1b0133a68cfd assets/deadlydinos/models/item/fertilized_olorotitan_egg.json
@@ -130,6 +131,8 @@ efd3dc9fec0215a2a04c737cf16d04fe1eeb67fd assets/deadlydinos/models/item/medium_h
 42ca5a12a0b8a2824131c5507cbc168d702d0a39 assets/deadlydinos/models/item/medium_herbivore_tooth.json
 58148951add1b3082ce83f20577858bf0e384343 assets/deadlydinos/models/item/medium_raptor_claw.json
 00aab83a84dfe6d35ce37a941f44bc95921e8592 assets/deadlydinos/models/item/meganeura.json
+139a60ad046fc0709e0f4283b7df3426aff4281e assets/deadlydinos/models/item/meganeura_egg.json
+139a60ad046fc0709e0f4283b7df3426aff4281e assets/deadlydinos/models/item/meganeura_spawn_egg.json
 e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/megaraptor_egg.json
 e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/megaraptor_spawn_egg.json
 41db7e900865e21dde94b8210b67bb366d36ad64 assets/deadlydinos/models/item/megaraptor_trophy.json
