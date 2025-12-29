@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#forge:is_wet/overworld",
+  "spawners": {
+    "type": "deadlydinos:giant_crop_snail",
+    "maxCount": 2,
+    "minCount": 1,
+    "weight": 0
+  }
+}

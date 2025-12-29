@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#forge:is_hot/overworld",
+  "spawners": {
+    "type": "deadlydinos:tarbosaurus",
+    "maxCount": 1,
+    "minCount": 1,
+    "weight": 0
+  }
+}
