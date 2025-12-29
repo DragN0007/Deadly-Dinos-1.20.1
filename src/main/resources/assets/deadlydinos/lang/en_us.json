@@ -310,5 +310,6 @@
   "tooltip.deadlydinos.not_cured.tooltip": "Your treatment failed and the ailment wasn't cured.",
   "tooltip.deadlydinos.no_ailment.tooltip": "You don't have the ailment that this treats.",
   "tooltip.deadlydinos.medicals_disabled.tooltip": "Medical supplies are disabled on this world/ server.",
-  "tooltip.deadlydinos.semi_tamable.tooltip": "This baby is semi-tamable!"
+  "tooltip.deadlydinos.semi_tamable.tooltip": "This baby is semi-tamable!",
+  "tooltip.deadlydinos.unfertilized_egg.tooltip": "An unfertilized egg laid occasionally by female dinosaurs. While it cannot be hatched, it can be used in recipes similarly to chicken eggs."
 }

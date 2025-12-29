@@ -10,6 +10,7 @@ import com.dragn0007.deadlydinos.entities.eocarcharia.Eocarcharia;
 import com.dragn0007.deadlydinos.entities.euphoberia.Euphoberia;
 import com.dragn0007.deadlydinos.entities.giant_crop_snail.CropSnail;
 import com.dragn0007.deadlydinos.entities.gryposaurus.Gryposaurus;
+import com.dragn0007.deadlydinos.entities.libanoculex.Libanoculex;
 import com.dragn0007.deadlydinos.entities.meganeura.Meganeura;
 import com.dragn0007.deadlydinos.entities.megaraptor.Megaraptor;
 import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
@@ -158,6 +159,12 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(0.4f,0.4f)
                     .build(new ResourceLocation(MODID,"meganeura").toString()));
+
+    public static final RegistryObject<EntityType<Libanoculex>> LIBANOCULEX = ENTITY_TYPES.register("libanoculex",
+            () -> EntityType.Builder.of(Libanoculex::new,
+                            MobCategory.CREATURE)
+                    .sized(0.4f,0.4f)
+                    .build(new ResourceLocation(MODID,"libanoculex").toString()));
 
 
     //Other

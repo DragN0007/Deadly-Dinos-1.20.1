@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l)Category:$() Medium Carnivore $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Aggressive $(br)$(l)Type:$() Solo Hunter $(br)$(l)Found In:$() Cold Biomes"
+      "text": "$(l)Category:$() Medium Carnivore $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Aggressive $(br)$(l)Type:$() Solo Hunter $(br)$(l)Found In:$() Tundras"
     },
     {
       "type": "patchouli:spotlight",

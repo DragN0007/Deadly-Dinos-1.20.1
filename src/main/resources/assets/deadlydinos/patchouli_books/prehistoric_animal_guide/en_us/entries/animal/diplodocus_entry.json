@@ -5,14 +5,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l)Category:$() Large Sauropod $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Neutral $(br)$(l)Type:$() Herd $(br)$(l)Found In:$() Grasslands"
+      "text": "$(l)Category:$() Large Sauropod $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Neutral $(br)$(l)Type:$() Herd $(br)$(l)Found In:$() Taigas"
     },
     {
       "type": "patchouli:spotlight",
       "item": {
         "item": "deadlydinos:diplodocus_trophy"
       },
-      "text": "Journal Page by $(l)HannahPBnJ$() $(br2)The Diplodocus is a large-sized sauropod that can carry multiple players when tamed. It can be tamed as a baby with veggies."
+      "text": "Journal Page by $(l)HannahPBnJ$() $(br2)The Diplodocus is a large-sized sauropod that can carry up to 3 players when tamed. It can be tamed as a baby with veggies, and switched into Harvesting Mode with Space to harvest tree leaves while riding."
     },
     {
       "type": "patchouli:entity",

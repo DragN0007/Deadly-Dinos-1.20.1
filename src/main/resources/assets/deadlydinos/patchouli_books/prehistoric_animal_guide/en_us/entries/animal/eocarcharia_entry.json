@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l)Category:$() Large Carnivore $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Aggressive $(br)$(l)Type:$() Solo Hunter $(br)$(l)Found In:$() Hot Biomes $(br)$(l)Special Ability:$() Armorable"
+      "text": "$(l)Category:$() Large Carnivore $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Aggressive $(br)$(l)Type:$() Solo Hunter $(br)$(l)Found In:$() Deserts, Savannahs $(br)$(l)Special Ability:$() Armorable"
     },
     {
       "type": "patchouli:spotlight",

@@ -12,7 +12,7 @@
       "item": {
         "item": "deadlydinos:amargasaurus_trophy"
       },
-      "text": "Journal Page by $(l)HannahPBnJ$() $(br2)The Amargasaurus is a mid-sized sauropod. It can be tamed as a baby with veggies and ridden with a saddle. Adult Amargasauruses have a huge armor stat, making them great in battles against other travellers and dinosaurs alike."
+      "text": "Journal Page by $(l)HannahPBnJ$() $(br2)The Amargasaurus is a mid-sized sauropod. It can be tamed as a baby with veggies and ridden with a saddle. Adult Amargasauruses have a huge armor stat, making them great in battles against other travellers and dinosaurs alike. Amargasaurus can be switched into Offensive or Defensive mode with Space (10 second cooldown) while ridden."
     },
     {
       "type": "patchouli:entity",

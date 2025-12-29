@@ -144,6 +144,10 @@ public class DDDItemModelProvider extends ItemModelProvider {
         advancedItem(DDDItems.FERTILIZED_MEGANEURA_EGG, "meganeura_egg");
         simpleItem(DDDItems.MEGANEURA_EGG);
 
+        advancedItem(DDDItems.LIBANOCULEX_SPAWN_EGG, "libanoculex_egg");
+        advancedItem(DDDItems.FERTILIZED_LIBANOCULEX_EGG, "libanoculex_egg");
+        simpleItem(DDDItems.LIBANOCULEX_EGG);
+
 
         advancedItem(DDDItems.ANUROGNATHUS_SPAWN_EGG, "anurognathus_egg");
         advancedItem(DDDItems.FERTILIZED_ANUROGNATHUS_EGG, "anurognathus_egg");

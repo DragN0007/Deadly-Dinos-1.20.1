@@ -50,6 +50,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -196,6 +197,18 @@ public class Meganeura extends AbstractDino implements GeoEntity, FlyingAnimal {
 	@Override
 	public int calculateFallDamage(float v, float v1) {
 		return super.calculateFallDamage(v, v1) - 10;
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+
+		if (this.hasFollowers() && this.level().random.nextInt(200) == 1) {
+			List<? extends Meganeura> list = this.level().getEntitiesOfClass(this.getClass(), this.getBoundingBox().inflate(20.0D, 20.0D, 20.0D));
+			if (list.size() <= 1) {
+				this.packSize = 1;
+			}
+		}
 	}
 
 	@Override

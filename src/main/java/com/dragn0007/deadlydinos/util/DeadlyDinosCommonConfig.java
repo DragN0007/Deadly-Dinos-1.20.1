@@ -13,6 +13,7 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.BooleanValue SMALL_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue GROUND_TIE;
     public static final ForgeConfigSpec.BooleanValue ALLOW_TAMING;
+    public static final ForgeConfigSpec.BooleanValue ALLOW_EGG_LAY;
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_TIME;
     public static final ForgeConfigSpec.ConfigValue<Integer> DINO_EGG_LAY_AMOUNT;
     public static final ForgeConfigSpec.BooleanValue GENDERS_AFFECT_BIPRODUCTS;
@@ -64,6 +65,9 @@ public class DeadlyDinosCommonConfig {
         BUILDER.push("Husbandry");
         ALLOW_TAMING = BUILDER.comment("Should players be able to tame certain kinds of dinos?")
                 .define("Allow Taming", true);
+
+        ALLOW_EGG_LAY = BUILDER.comment("Should dinos lay unfertilized eggs once in a while? This may be better turned off on lower-end servers.")
+                .define("Allow Egg Laying", true);
 
         DINO_EGG_LAY_TIME = BUILDER.comment("Minimum amount of time, in ticks, that a dino can lay an unfertilized egg. Default is 24000 ticks, or 20 minutes.")
                 .define("Dino Egg Lay Cooldown", 24000);

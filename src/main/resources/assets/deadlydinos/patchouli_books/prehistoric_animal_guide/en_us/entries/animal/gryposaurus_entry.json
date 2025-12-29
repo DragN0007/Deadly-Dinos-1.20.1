@@ -5,14 +5,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l)Category:$() Large Herbivore $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Neutral $(br)$(l)Type:$() Herd Animal $(br)$(l)Found In:$() Plains"
+      "text": "$(l)Category:$() Large Herbivore $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Neutral $(br)$(l)Type:$() Herd Animal $(br)$(l)Found In:$() Wetlands"
     },
     {
       "type": "patchouli:spotlight",
       "item": {
         "item": "deadlydinos:gryposaurus_trophy"
       },
-      "text": "Journal Page by $(l)DragN0007() $(br2)The Gryposaurus is a herd herbivore. They're mostly-peaceful unless attacked, and their babies can be tamed with veggies. They can be ridden with a saddle, chested, and can wear carpets."
+      "text": "Journal Page by $(l)Unknown Survivor() $(br2)The Gryposaurus is a herd herbivore. They're mostly-peaceful unless attacked, and their babies can be tamed with veggies. They can be ridden with a saddle, chested, and can wear carpets."
     },
     {
       "type": "patchouli:entity",

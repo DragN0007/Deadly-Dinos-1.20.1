@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-29T15:06:47.1174058	Item Models: deadlydinos
+// 1.20.1	2025-12-29T15:32:46.1098123	Item Models: deadlydinos
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_egg.json
 5d8caaba64011a0e4c28eb90002bc6169900b49d assets/deadlydinos/models/item/acrocanthosaurus_spawn_egg.json
 23d13e044ddabf1cbab41d343edf496857ad29aa assets/deadlydinos/models/item/acrocanthosaurus_trophy.json
@@ -80,6 +80,7 @@ f9ede559a0b52e2a2854ab7aa44da656ec722455 assets/deadlydinos/models/item/fertiliz
 5033fac61baf12cf2ffebe4a12855256250c92eb assets/deadlydinos/models/item/fertilized_euphoberia_egg.json
 0bc7d020bcaea43502aabf3d6f0d5c51c48f4185 assets/deadlydinos/models/item/fertilized_giant_crop_snail_egg.json
 f2c098046ff2b1abeb44f22008a7d0d97341b946 assets/deadlydinos/models/item/fertilized_gryposaurus_egg.json
+63886f40e670847897bc3b1bb55bbdd7cd1d2f04 assets/deadlydinos/models/item/fertilized_libanoculex_egg.json
 139a60ad046fc0709e0f4283b7df3426aff4281e assets/deadlydinos/models/item/fertilized_meganeura_egg.json
 e477e9a4a7834ba851cbf54b419747c5bd1c1ca9 assets/deadlydinos/models/item/fertilized_megaraptor_egg.json
 5cf84df9c595448541f711f5fd733a5433244091 assets/deadlydinos/models/item/fertilized_mei_long_egg.json
@@ -115,6 +116,8 @@ eb9e9089a1c438a54686db7b9ae3d1fe97ce4aa1 assets/deadlydinos/models/item/large_he
 d87f15cd09673c0f5402ef80243af1840f60d8ac assets/deadlydinos/models/item/large_herbivore_tail.json
 d54ad909ef54331f593211e29997d2c8ffc9f222 assets/deadlydinos/models/item/large_herbivore_tooth.json
 8ebbeb87a913bbd7b04235c0c83ea58e76d5e5e0 assets/deadlydinos/models/item/libanoculex.json
+63886f40e670847897bc3b1bb55bbdd7cd1d2f04 assets/deadlydinos/models/item/libanoculex_egg.json
+63886f40e670847897bc3b1bb55bbdd7cd1d2f04 assets/deadlydinos/models/item/libanoculex_spawn_egg.json
 ca55655d2ce9d761f8ad77c5f95ca6433c2ef13a assets/deadlydinos/models/item/medium_carnivore_claw.json
 51fe7d73d18ff6eacc54f06988202bdddc27aa36 assets/deadlydinos/models/item/medium_carnivore_leg.json
 3dfaf3b28db53bd25e29e72e495c077f06b63a7c assets/deadlydinos/models/item/medium_carnivore_ribs.json

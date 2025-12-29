@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l)Category:$() Large Herbivore $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Neutral $(br)$(l)Type:$() Herd Animal $(br)$(l)Found In:$() Wet Biomes $(br)$(l)Special Ability:$() Tree Fruit Harvesting"
+      "text": "$(l)Category:$() Large Herbivore $(br)$(l)Tamable:$() True $(br)$(l)Aggression:$() Neutral $(br)$(l)Type:$() Herd Animal $(br)$(l)Found In:$() Wetlands $(br)$(l)Special Ability:$() Tree Fruit Harvesting"
     },
     {
       "type": "patchouli:spotlight",

@@ -247,10 +247,13 @@ public class Oviraptor extends AbstractTamableDino implements InventoryCarrier, 
 	public void aiStep() {
 		super.aiStep();
 
-		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
-			this.spawnAtLocation(DDDItems.OVIRAPTOR_EGG.get());
-			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
+
+		if (DeadlyDinosCommonConfig.ALLOW_EGG_LAY.get()) {
+			if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
+				this.spawnAtLocation(DDDItems.OVIRAPTOR_EGG.get());
+				this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+				this.eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
+			}
 		}
 
 		if (this.horizontalCollision && ForgeEventFactory.getMobGriefingEvent(this.level(), this) && this.isAggressive()) {
