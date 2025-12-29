@@ -18,15 +18,8 @@ public class AnurognathusModel extends DefaultedEntityGeoModel<Anurognathus> {
     @Override
     public void setCustomAnimations(Anurognathus animatable, long instanceId, AnimationState<Anurognathus> animationState) {
 
-        double x = animatable.getX() - animatable.xo;
-        double z = animatable.getZ() - animatable.zo;
-        boolean isMoving = (x * x + z * z) > 0.0001;
-
         CoreGeoBone neck = getAnimationProcessor().getBone("neck");
         CoreGeoBone head = getAnimationProcessor().getBone("head");
-        CoreGeoBone tail = getAnimationProcessor().getBone("tail");
-        CoreGeoBone tail2 = getAnimationProcessor().getBone("tail2");
-        CoreGeoBone tail3 = getAnimationProcessor().getBone("tail3");
 
         EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
 
@@ -41,36 +34,6 @@ public class AnurognathusModel extends DefaultedEntityGeoModel<Anurognathus> {
                 head.setRotX(head.getRotX() + (entityData.headPitch() * Mth.DEG_TO_RAD));
                 float maxYaw = Mth.clamp(entityData.netHeadYaw(), -25.0f, 25.0f);
                 head.setRotY(head.getRotY() + (maxYaw * Mth.DEG_TO_RAD));
-            }
-
-            if (tail != null) {
-                if (isMoving) {
-                    float maxYaw = Mth.clamp(entityData.netHeadYaw(), -25.0f, 25.0f);
-                    tail.setRotY(tail.getRotY() - (maxYaw * Mth.DEG_TO_RAD));
-                } else {
-                    float maxYaw = Mth.clamp(entityData.netHeadYaw(), -10.0f, 10.0f);
-                    tail.setRotY(tail.getRotY() - (maxYaw * Mth.DEG_TO_RAD));
-                }
-            }
-
-            if (tail2 != null) {
-                if (isMoving) {
-                    float maxYaw = Mth.clamp(entityData.netHeadYaw(), -25.0f, 25.0f);
-                    tail2.setRotY(tail2.getRotY() - (maxYaw * Mth.DEG_TO_RAD));
-                } else {
-                    float maxYaw = Mth.clamp(entityData.netHeadYaw(), -10.0f, 10.0f);
-                    tail2.setRotY(tail2.getRotY() - (maxYaw * Mth.DEG_TO_RAD));
-                }
-            }
-
-            if (tail3 != null) {
-                if (isMoving) {
-                    float maxYaw = Mth.clamp(entityData.netHeadYaw(), -25.0f, 25.0f);
-                    tail3.setRotY(tail3.getRotY() - (maxYaw * Mth.DEG_TO_RAD));
-                } else {
-                    float maxYaw = Mth.clamp(entityData.netHeadYaw(), -10.0f, 10.0f);
-                    tail3.setRotY(tail3.getRotY() - (maxYaw * Mth.DEG_TO_RAD));
-                }
             }
         }
     }

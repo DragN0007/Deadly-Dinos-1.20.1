@@ -143,9 +143,9 @@ public class DDDItems {
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
     public static final RegistryObject<Item> EUPHOBERIA_SPAWN_EGG = ITEMS.register("euphoberia_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.CROP_SNAIL, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+            () -> new ForgeSpawnEggItem(EntityTypes.EUPHOBERIA, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_EUPHOBERIA_EGG = ITEMS.register("fertilized_euphoberia_egg",
-            () -> new FertilizedCropSnailEggItem((new Item.Properties()).stacksTo(1)));
+            () -> new FertilizedEuphoberiaEggItem((new Item.Properties()).stacksTo(1)));
     public static final RegistryObject<Item> EUPHOBERIA_EGG = ITEMS.register("euphoberia_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
@@ -188,10 +188,6 @@ public class DDDItems {
                 new MobEffectInstance(MobEffects.DIG_SPEED, 2880, 1, true, false),
                 new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 1, true, false)
         ));
-    public static final RegistryObject<Item> RAW_ESCARGOT = ITEMS.register("raw_escargot",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 250, 4) ,0.75F).build())));
-    public static final RegistryObject<Item> COOKED_ESCARGOT = ITEMS.register("cooked_escargot",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> DINO_NUGGET_1 = ITEMS.register("dino_nugget_1",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> DINO_NUGGET_2 = ITEMS.register("dino_nugget_2",
@@ -212,6 +208,17 @@ public class DDDItems {
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
     public static final RegistryObject<Item> DOUGH = ITEMS.register("dough",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(1).build())));
+
+    public static final RegistryObject<Item> ESCARGOT = ITEMS.register("escargot",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0).meat().effect(() -> new MobEffectInstance(MobEffects.HUNGER, 250, 4) ,0.75F).build())));
+    public static final RegistryObject<Item> COOKED_ESCARGOT = ITEMS.register("cooked_escargot",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationMod(1).meat().build())));
+    public static final RegistryObject<Item> LIBANOCULEX = ITEMS.register("libanoculex",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).build())));
+    public static final RegistryObject<Item> MEGANEURA = ITEMS.register("meganeura",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(0.3F).build())));
+    public static final RegistryObject<Item> EUPHOBERIA = ITEMS.register("euphoberia",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).build())));
 
 //    public static final RegistryObject<Item> GAR = ITEMS.register("gar",
 //            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(0).meat().build())));
@@ -748,10 +755,10 @@ public static final RegistryObject<Item> OLOROTITAN_TROPHY = ITEMS.register("olo
             () -> new SwordItem(DDDToolTiers.ANOMALY_BONE, 9, -3.5F, new Item.Properties()));
 
     public static final RegistryObject<Item> HUNTING_KNIFE = ITEMS.register("hunting_knife",
-            () -> new SwordItem(Tiers.IRON, 3, 1.6F,
+            () -> new SwordItem(Tiers.IRON, 1, -1.8F,
                     new Item.Properties()));
     public static final RegistryObject<Item> TACTICAL_KNIFE = ITEMS.register("tactical_knife",
-            () -> new SwordItem(Tiers.IRON, 2, -1.2F,
+            () -> new SwordItem(Tiers.IRON, 2, -1.8F,
                     new Item.Properties()));
     public static final RegistryObject<Item> CROWBAR = ITEMS.register("crowbar",
             () -> new SwordItem(Tiers.IRON, 2, -2.4F,

@@ -156,7 +156,7 @@
   "item.deadlydinos.tiger_nut_butter": "Tiger Nut Butter",
   "item.deadlydinos.yew_plum_jam": "Yew Plum Jam",
   "item.deadlydinos.glazed_ribs": "Plum Glazed Dino Ribs",
-  "item.deadlydinos.raw_escargot": "Giant Escargot",
+  "item.deadlydinos.escargot": "Giant Escargot",
   "item.deadlydinos.cooked_escargot": "Cooked Giant Escargot",
   "item.deadlydinos.dino_nugget_1": "Stegosaurus Dino Nugget",
   "item.deadlydinos.dino_nugget_2": "Sauroposeidon Dino Nugget",
@@ -169,6 +169,9 @@
   "item.deadlydinos.broth": "Bone Marrow Broth",
   "item.deadlydinos.chicken_noodle_soup": "Chicken Noodle Soup",
   "item.deadlydinos.hearty_salad": "Leafy Salad",
+  "item.deadlydinos.libanoculex": "Libanoculex",
+  "item.deadlydinos.meganeura": "Meganeura",
+  "item.deadlydinos.euphoberia": "Euphoberia",
   
   "item.deadlydinos.small_carnivore_tooth": "Small Carnivore Tooth",
   "item.deadlydinos.small_carnivore_skull": "Small Carnivore Skull",

@@ -23,12 +23,12 @@
               "formula": "minecraft:binomial_with_bonus_count",
               "function": "minecraft:apply_bonus",
               "parameters": {
-                "extra": 2,
+                "extra": 0,
                 "probability": 0.5714286
               }
             }
           ],
-          "name": "deadlydinos:cracker"
+          "name": "deadlydinos:gauze_wrap"
         },
         {
           "type": "minecraft:item",
@@ -44,12 +44,12 @@
               "formula": "minecraft:binomial_with_bonus_count",
               "function": "minecraft:apply_bonus",
               "parameters": {
-                "extra": 2,
+                "extra": 0,
                 "probability": 0.5714286
               }
             }
           ],
-          "name": "deadlydinos:cracker"
+          "name": "deadlydinos:bug_bite_cream"
         },
         {
           "type": "minecraft:item",
@@ -65,12 +65,12 @@
               "formula": "minecraft:binomial_with_bonus_count",
               "function": "minecraft:apply_bonus",
               "parameters": {
-                "extra": 2,
+                "extra": 0,
                 "probability": 0.5714286
               }
             }
           ],
-          "name": "deadlydinos:soda"
+          "name": "deadlydinos:bird_flu_shot"
         },
         {
           "type": "minecraft:item",
@@ -86,12 +86,33 @@
               "formula": "minecraft:binomial_with_bonus_count",
               "function": "minecraft:apply_bonus",
               "parameters": {
-                "extra": 2,
+                "extra": 0,
                 "probability": 0.5714286
               }
             }
           ],
-          "name": "deadlydinos:mre"
+          "name": "deadlydinos:parasitic_antibiotic"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "deadlydinos:medical_supply_stash",
+              "condition": "minecraft:block_state_property"
+            }
+          ],
+          "functions": [
+            {
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "function": "minecraft:apply_bonus",
+              "parameters": {
+                "extra": 0,
+                "probability": 0.5714286
+              }
+            }
+          ],
+          "name": "deadlydinos:bacterial_antibiotic"
         }
       ],
       "rolls": 1.0

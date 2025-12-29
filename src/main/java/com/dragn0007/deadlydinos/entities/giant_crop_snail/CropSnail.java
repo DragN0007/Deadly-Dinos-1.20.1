@@ -1,12 +1,10 @@
 package com.dragn0007.deadlydinos.entities.giant_crop_snail;
 
 import com.dragn0007.deadlydinos.entities.AbstractDino;
-import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -89,8 +87,6 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 				entity -> entity.getType().is(DDDTags.Entity_Types.PREDATORS)));
 	}
 
-	public int regenHealthCounter = 0;
-
 	public void tick() {
 		super.tick();
 
@@ -98,15 +94,6 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 			eggsLaid = 0;
 			eggLayCooldown = 0;
 		}
-
-		regenHealthCounter++;
-
-		if (this.getHealth() < this.getMaxHealth() && regenHealthCounter >= 800 && this.isAlive()) {
-			this.setHealth(this.getHealth() + 2);
-			regenHealthCounter = 0;
-			this.level().addParticle(ParticleTypes.HEART, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 0.7D, 0.7D, 0.7D);
-		}
-
 	}
 
 	public int eggTime = this.random.nextInt(DeadlyDinosCommonConfig.DINO_EGG_LAY_TIME.get()) + 6000;
@@ -176,7 +163,6 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, "controller", 2, this::predicate));
-		controllers.add(DDDAnimations.genericAttackAnimation(this, DDDAnimations.ATTACK));
 	}
 
 	@Override

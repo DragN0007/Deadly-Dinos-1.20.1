@@ -2,7 +2,6 @@ package com.dragn0007.deadlydinos.entities.anurognathus;
 
 import com.dragn0007.deadlydinos.common.gui.TinyInvMenu;
 import com.dragn0007.deadlydinos.entities.AbstractTamableDino;
-import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.ai.DinoFollowOwnerGoal;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
@@ -30,6 +29,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
@@ -48,6 +48,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -75,6 +76,7 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 		this.updateInventory();
 		this.setCanPickUpLoot(true);
 		noCulling = false;
+		this.moveControl = new FlyingMoveControl(this, 10, false);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -82,8 +84,8 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 				.add(Attributes.MAX_HEALTH, 6.0D)
 				.add(Attributes.ATTACK_DAMAGE, 1D)
 				.add(Attributes.KNOCKBACK_RESISTANCE, 0.0F)
-				.add(Attributes.MOVEMENT_SPEED, 0.22F)
-				.add(Attributes.FLYING_SPEED, 0.27F)
+				.add(Attributes.MOVEMENT_SPEED, 0.16F)
+				.add(Attributes.FLYING_SPEED, 0.35F)
 				.add(Attributes.FOLLOW_RANGE, 32D);
 	}
 
@@ -100,7 +102,7 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.7F));
-		this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+		this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -214,6 +216,11 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 	public void aiStep() {
 		super.aiStep();
 
+		Vec3 vec3 = this.getDeltaMovement();
+		if (!this.onGround() && vec3.y < 0.0D) {
+			this.setDeltaMovement(vec3.multiply(1.0D, 0.8D, 1.0D));
+		}
+
 		if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (DeadlyDinosCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
 			this.spawnAtLocation(DDDItems.OVIRAPTOR_EGG.get());
 			this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
@@ -234,6 +241,22 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 
 	}
 
+	protected void checkFallDamage(double p_29370_, boolean p_29371_, BlockState p_29372_, BlockPos p_29373_) {
+	}
+
+	public boolean hurt(DamageSource p_29378_, float p_29379_) {
+		if (this.isInvulnerableTo(p_29378_)) {
+			return false;
+		} else {
+			if (!this.level().isClientSide) {
+				this.setOrderedToSit(false);
+			}
+
+			return super.hurt(p_29378_, p_29379_);
+		}
+	}
+
+
 	@Override
 	public float getStepHeight() {
 		return 1.6F;
@@ -250,37 +273,24 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 
 		AnimationController<T> controller = tAnimationState.getController();
 
-		if (isMoving) {
-			if (this.isFlying()) {
-				controller.setAnimation(RawAnimation.begin().then("flap", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.5);
-			} else if (this.onGround()) {
-				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.0);
-			}
-		} else {
-			if (isInSittingPose()) {
-				controller.setAnimation(RawAnimation.begin().then("sit", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.0);
-			} else if (isRidingShoulder()) {
-				controller.setAnimation(RawAnimation.begin().then("shoulder_sit", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(1.0);
-			} else {
-				controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-				controller.setAnimationSpeed(0.9);
-			}
+		if (this.isFlying()) {
+			controller.setAnimation(RawAnimation.begin().then("fly", Animation.LoopType.LOOP));
+			controller.setAnimationSpeed(2.6);
 		}
 
-		return PlayState.CONTINUE;
-	}
-
-	public <T extends GeoAnimatable> PlayState eatingPredicate(software.bernie.geckolib.core.animation.AnimationState<T> tAnimationState) {
-
-		AnimationController<T> controller = tAnimationState.getController();
-
-		if (this.isEating()) {
-			controller.setAnimation(RawAnimation.begin().then("attack", Animation.LoopType.PLAY_ONCE));
-			controller.setAnimationSpeed(0.8);
+		if (isMoving) {
+			if (this.onGround()) {
+				controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(0.9);
+			}
+		} else {
+			if (isInSittingPose() || isRidingShoulder()) {
+				controller.setAnimation(RawAnimation.begin().then("sit", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(0.9);
+			} else {
+				controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+				controller.setAnimationSpeed(1.0);
+			}
 		}
 
 		return PlayState.CONTINUE;
@@ -289,8 +299,6 @@ public class Anurognathus extends AbstractTamableDino implements InventoryCarrie
 	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
 		controllers.add(new AnimationController<>(this, "controller", 2, this::predicate));
-		controllers.add(new AnimationController<>(this, "eatingController", 2, this::eatingPredicate));
-		controllers.add(DDDAnimations.genericAttackAnimation(this, DDDAnimations.ATTACK));
 	}
 
 	@Override

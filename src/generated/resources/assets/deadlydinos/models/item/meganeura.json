@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "deadlydinos:item/raw_escargot"
+    "layer0": "deadlydinos:item/meganeura"
   }
 }

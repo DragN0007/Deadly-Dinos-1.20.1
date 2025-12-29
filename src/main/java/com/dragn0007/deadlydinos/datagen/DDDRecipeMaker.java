@@ -437,12 +437,12 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(DDDItems.RAW_LARGE_MEAT.get()), RecipeCategory.MISC, DDDItems.COOKED_LARGE_MEAT.get(), 0.35F, 600)
                 .unlockedBy("has_large_meat", has(DDDItems.RAW_LARGE_MEAT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_large_meat_campfire_cooking"));
 
-        SimpleCookingRecipeBuilder.smoking(Ingredient.of(DDDItems.RAW_ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 100)
-                .unlockedBy("has_escargot", has(DDDItems.RAW_ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_smoking"));
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(DDDItems.RAW_ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 200)
-                .unlockedBy("has_escargot", has(DDDItems.RAW_ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_smelting"));
-        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(DDDItems.RAW_ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 600)
-                .unlockedBy("has_escargot", has(DDDItems.RAW_ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_campfire_cooking"));
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(DDDItems.ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 100)
+                .unlockedBy("has_escargot", has(DDDItems.ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_smoking"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(DDDItems.ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 200)
+                .unlockedBy("has_escargot", has(DDDItems.ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_smelting"));
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(DDDItems.ESCARGOT.get()), RecipeCategory.MISC, DDDItems.COOKED_ESCARGOT.get(), 0.35F, 600)
+                .unlockedBy("has_escargot", has(DDDItems.ESCARGOT.get())).save(pFinishedRecipeConsumer, new ResourceLocation(DeadlyDinos.MODID, "cooked_escargot_campfire_cooking"));
 
 
 //        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDBlocks.WIRE_FENCE_1.get())

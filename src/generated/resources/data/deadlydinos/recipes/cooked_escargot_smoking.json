@@ -4,7 +4,7 @@
   "cookingtime": 100,
   "experience": 0.35,
   "ingredient": {
-    "item": "deadlydinos:raw_escargot"
+    "item": "deadlydinos:escargot"
   },
   "result": "deadlydinos:cooked_escargot"
 }

@@ -48,6 +48,9 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.RIOT_CHESTPLATE);
         simpleItem(DDDItems.RIOT_LEGGINGS);
         simpleItem(DDDItems.RIOT_BOOTS);
+        handheldItem(DDDItems.HUNTING_KNIFE);
+        handheldItem(DDDItems.TACTICAL_KNIFE);
+        handheldItem(DDDItems.CROWBAR);
 
         advancedItem(DDDItems.ACROCANTHOSAURUS_SPAWN_EGG, "acrocanthosaurus_egg");
         advancedItem(DDDItems.FERTILIZED_ACROCANTHOSAURUS_EGG, "acrocanthosaurus_egg");
@@ -150,16 +153,16 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.PARASITIC_ANTIBIOTIC);
         simpleItem(DDDItems.BIRD_FLU_SHOT);
 
-        simpleItem(DDDItems.HUNTING_KNIFE);
-        simpleItem(DDDItems.TACTICAL_KNIFE);
-        simpleItem(DDDItems.CROWBAR);
-
         simpleItem(DDDItems.RAW_SMALL_MEAT);
         simpleItem(DDDItems.COOKED_SMALL_MEAT);
         simpleItem(DDDItems.RAW_MEDIUM_MEAT);
         simpleItem(DDDItems.COOKED_MEDIUM_MEAT);
         simpleItem(DDDItems.RAW_LARGE_MEAT);
         simpleItem(DDDItems.COOKED_LARGE_MEAT);
+
+        simpleItem(DDDItems.LIBANOCULEX);
+        simpleItem(DDDItems.MEGANEURA);
+        simpleItem(DDDItems.EUPHOBERIA);
 
         simpleItem(DDDItems.LARGE_CARNIVORE_CLAW);
         simpleItem(DDDItems.LARGE_CARNIVORE_LEG);
@@ -228,7 +231,7 @@ public class DDDItemModelProvider extends ItemModelProvider {
         simpleItem(DDDItems.CANNED_STEW);
         simpleItem(DDDItems.MRE);
         simpleItem(DDDItems.SODA);
-        simpleItem(DDDItems.RAW_ESCARGOT);
+        simpleItem(DDDItems.ESCARGOT);
         simpleItem(DDDItems.COOKED_ESCARGOT );
         simpleItem(DDDItems.DINO_NUGGET_1);
         simpleItem(DDDItems.DINO_NUGGET_2);

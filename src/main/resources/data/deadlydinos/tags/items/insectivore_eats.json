@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "deadlydinos:mosquito",
-
     {
       "id": "#forge:insects",
       "required": false

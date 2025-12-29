@@ -214,6 +214,11 @@ public class DDDItemGroup {
                         output.accept(DDDItems.COOKED_MEDIUM_MEAT.get());
                         output.accept(DDDItems.RAW_LARGE_MEAT.get());
                         output.accept(DDDItems.COOKED_LARGE_MEAT.get());
+                        output.accept(DDDItems.ESCARGOT.get());
+                        output.accept(DDDItems.COOKED_ESCARGOT .get());
+                        output.accept(DDDItems.LIBANOCULEX.get());
+                        output.accept(DDDItems.MEGANEURA.get());
+                        output.accept(DDDItems.EUPHOBERIA.get());
                         output.accept(DDDItems.CRACKER.get());
                         output.accept(DDDItems.DINO_SANDWICH.get());
                         output.accept(DDDItems.CANNED_VEGGIES.get());
@@ -221,8 +226,6 @@ public class DDDItemGroup {
                         output.accept(DDDItems.CANNED_STEW.get());
                         output.accept(DDDItems.MRE.get());
                         output.accept(DDDItems.SODA.get());
-                        output.accept(DDDItems.RAW_ESCARGOT.get());
-                        output.accept(DDDItems.COOKED_ESCARGOT .get());
 //                        output.accept(DDDItems.DINO_NUGGET_1.get());
 //                        output.accept(DDDItems.DINO_NUGGET_2.get());
 //                        output.accept(DDDItems.DINO_NUGGET_3.get());
