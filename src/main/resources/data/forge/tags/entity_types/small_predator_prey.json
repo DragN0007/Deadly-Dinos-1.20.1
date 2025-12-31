@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#forge:insects",
     "minecraft:pig",
     "minecraft:chicken",
     "minecraft:rabbit",

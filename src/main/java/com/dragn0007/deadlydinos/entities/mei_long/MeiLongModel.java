@@ -77,7 +77,7 @@ public class MeiLongModel extends DefaultedEntityGeoModel<MeiLong> {
 
     public enum FemaleVariant {
         RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_blue.png")),
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_brown.png")),
         BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_black.png")),
         MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/female_mahogany.png"));
 
@@ -92,7 +92,7 @@ public class MeiLongModel extends DefaultedEntityGeoModel<MeiLong> {
 
     public enum MaleVariant {
         RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_red.png")),
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_blue.png")),
+        BROWN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_brown.png")),
         BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_black.png")),
         MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/mei_long/male_mahogany.png"));
 

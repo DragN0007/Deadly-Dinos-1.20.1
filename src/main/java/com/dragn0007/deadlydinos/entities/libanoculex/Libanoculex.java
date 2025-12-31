@@ -324,7 +324,7 @@ public class Libanoculex extends AbstractDino implements GeoEntity, FlyingAnimal
 		}
 
 		if ((this.isFemale() && DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) || !DeadlyDinosCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_MEGANEURA_EGG.get());
+			ItemStack fertilizedEgg = new ItemStack(DDDItems.FERTILIZED_LIBANOCULEX_EGG.get());
 			ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
 			serverLevel.addFreshEntity(eggEntity);
 		}
@@ -349,7 +349,7 @@ public class Libanoculex extends AbstractDino implements GeoEntity, FlyingAnimal
 
 		int eggChance = random.nextInt(100);
 		if (this.isFemale() && eggChance <= 5) {
-			this.spawnAtLocation(DDDItems.FERTILIZED_MEGANEURA_EGG.get());
+			this.spawnAtLocation(DDDItems.FERTILIZED_LIBANOCULEX_EGG.get());
 		}
 	}
 

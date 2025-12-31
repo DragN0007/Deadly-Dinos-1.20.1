@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "fossil"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "pattern": [],
+        "key": {},
+        "category": "misc",
+        "ingredients": [
+          {
+            "item": "fossil:egg_item_dimorphodon"
+          }
+        ],
+        "result": {
+          "item": "deadlydinos:fertilized_anurognathus_egg"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

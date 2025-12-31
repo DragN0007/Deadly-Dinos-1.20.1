@@ -26,10 +26,10 @@ public class LibanoculexModel extends DefaultedEntityGeoModel<Libanoculex> {
     }
 
     public enum MaleVariant {
-        BLUE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/libanoculex/blue.png")),
-        GREEN(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/libanoculex/green.png")),
-        ORANGE(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/libanoculex/orange.png")),
-        YELLOW(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/libanoculex/yellow.png"));
+        BLACK(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/libanoculex/black.png")),
+        MAHOGANY(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/libanoculex/mahogany.png")),
+        RED(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/libanoculex/red.png")),
+        SEAL(new ResourceLocation(DeadlyDinos.MODID, "textures/entity/libanoculex/seal.png"));
 
         public final ResourceLocation resourceLocation;
         MaleVariant(ResourceLocation resourceLocation) {

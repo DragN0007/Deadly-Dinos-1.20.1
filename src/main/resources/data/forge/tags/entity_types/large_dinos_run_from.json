@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "#forge:anomalies"
+    {
+      "id": "#forge:anomalies",
+      "required": false
+    }
   ]
 }

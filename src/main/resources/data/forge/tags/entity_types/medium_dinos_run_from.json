@@ -1,7 +1,10 @@
 {
   "replace": false,
   "values": [
-    "#forge:large_dinos_run_from",
+    {
+      "id": "#forge:large_dinos_run_from",
+      "required": false
+    },
     "#forge:large_predators"
   ]
 }

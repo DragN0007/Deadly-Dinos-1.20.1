@@ -12,7 +12,7 @@
       "item": {
         "item": "deadlydinos:gryposaurus_trophy"
       },
-      "text": "Journal Page by $(l)Unknown Survivor() $(br2)The Gryposaurus is a herd herbivore. They're mostly-peaceful unless attacked, and their babies can be tamed with veggies. They can be ridden with a saddle, chested, and can wear carpets."
+      "text": "Journal Page by $(l)Unknown Survivor$() $(br2)The Gryposaurus is a herd herbivore. They're mostly-peaceful unless attacked, and their babies can be tamed with veggies. They can be ridden with a saddle, chested, and can wear carpets."
     },
     {
       "type": "patchouli:entity",

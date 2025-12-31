@@ -20,7 +20,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Tamable Dinos: $(br)-Yutyrannus (Rideable) $(br)-Parasaurolophus (Rideable)"
+      "text": "$(l)Tamable Dinos:$() $(br)-Anurognathus $(br)-Ceratosaurus $(br)-Eocarcharia $(br)-Mei Long $(br)-Oviraptor $(br)-Tarbosaurus (Semi) $(br)-Velociraptor $(br)-Yutyrannus $(br)-Amargasaurus $(br)-Diplodocus $(br)-Gryposaurus $(br)-Olorotitan $(br)-Parasaurolophus $(br)-Triceratops"
     }
   ]
 }

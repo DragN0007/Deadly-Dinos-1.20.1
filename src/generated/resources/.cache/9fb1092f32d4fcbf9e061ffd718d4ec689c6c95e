@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-28T19:49:21.6390038	Recipes
+// 1.20.1	2025-12-30T19:55:28.8223974	Recipes
 ee883b8a9e7979ac35a30c69e5e908458b817709 data/deadlydinos/advancements/recipes/misc/anomaly_bone_axe.json
 83194201fec7bed52311c1aaba7ba6d784e5e2e7 data/deadlydinos/advancements/recipes/misc/anomaly_bone_battleaxe.json
 e4e5eaebc1cd3c8e3f41846a29535ca50b8eaa25 data/deadlydinos/advancements/recipes/misc/anomaly_bone_dagger.json
@@ -75,7 +75,7 @@ c850f5917e69b7c8b0a4a49a32e85a946c27659d data/deadlydinos/recipes/anomaly_bone_p
 4f16f1ff61c87c2c643e8ae61577d371ea1abdee data/deadlydinos/recipes/anomaly_bone_shovel.json
 c8cb320210983397d29f0505965170909816207b data/deadlydinos/recipes/anomaly_bone_sword.json
 0084abebf8291a25c213f4e38bfdabe8f6c21cce data/deadlydinos/recipes/anomaly_bone_warhammer.json
-9aab6379c73adf37f4bf079ee1d8d93be1b4755d data/deadlydinos/recipes/bacterial_antibiotic.json
+5033f6f1f0cb6d3d75f61644e033550a3537b087 data/deadlydinos/recipes/bacterial_antibiotic.json
 7d4551837a3559066854030dedd3981cddbee55c data/deadlydinos/recipes/bird_flu_shot.json
 b058fcbff2184161370257aa9f5bbfaf95b6a2dc data/deadlydinos/recipes/bonemeal_anomalous_bones.json
 bc21a28b9129c4051e3762396e548eafb7eef0fe data/deadlydinos/recipes/bonemeal_large_bones.json

@@ -287,7 +287,7 @@ public class Anurognathus extends AbstractTamableDino implements GeoEntity, Flyi
 	}
 
 	public static float getPitch(RandomSource source) {
-		return (source.nextFloat() - source.nextFloat()) * 0.2F + 1.6F;
+		return (source.nextFloat() - source.nextFloat()) * 0.2F + 2.5F;
 	}
 
 	@Nullable

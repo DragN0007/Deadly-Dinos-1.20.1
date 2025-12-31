@@ -1,8 +1,10 @@
 package com.dragn0007.deadlydinos.event;
 
 import com.dragn0007.deadlydinos.effects.DDDEffects;
+import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -12,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -40,6 +43,146 @@ public class ForgeEvent {
                     }
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onTryCureEntity(PlayerInteractEvent.EntityInteract event) {
+        if (event.getLevel().isClientSide()) return;
+        LivingEntity entity = (LivingEntity) event.getTarget();
+        Player player = event.getEntity();
+        ItemStack stack = event.getItemStack();
+
+        if (stack.is(DDDItems.GAUZE_WRAP.get())) {
+            if (entity.hasEffect(DDDEffects.BLEEDING.get())) {
+                entity.removeEffect(DDDEffects.BLEEDING.get());
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+            }
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
+        }
+
+        if (stack.is(DDDItems.BACTERIAL_ANTIBIOTIC.get())) {
+            if (entity.hasEffect(DDDEffects.AEROMONAS.get())) {
+                int duration = entity.getEffect(DDDEffects.AEROMONAS.get()).getDuration();
+                entity.removeEffect(DDDEffects.AEROMONAS.get());
+
+                if (entity.hasEffect(MobEffects.WEAKNESS) && entity.getEffect(MobEffects.WEAKNESS).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.WEAKNESS);
+                }
+                if (entity.hasEffect(MobEffects.BLINDNESS) && entity.getEffect(MobEffects.BLINDNESS).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.BLINDNESS);
+                }
+                if (entity.hasEffect(MobEffects.CONFUSION) && entity.getEffect(MobEffects.CONFUSION).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.CONFUSION);
+                }
+                if (entity.hasEffect(MobEffects.DIG_SLOWDOWN) && entity.getEffect(MobEffects.DIG_SLOWDOWN).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.DIG_SLOWDOWN);
+                }
+                if (entity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) && entity.getEffect(MobEffects.MOVEMENT_SLOWDOWN).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                }
+
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+            }
+
+            if (entity.hasEffect(DDDEffects.SEPSIS.get())) {
+                int duration = entity.getEffect(DDDEffects.SEPSIS.get()).getDuration();
+                entity.removeEffect(DDDEffects.SEPSIS.get());
+
+                if (entity.hasEffect(MobEffects.WEAKNESS) && entity.getEffect(MobEffects.WEAKNESS).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.WEAKNESS);
+                }
+                if (entity.hasEffect(MobEffects.BLINDNESS) && entity.getEffect(MobEffects.BLINDNESS).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.BLINDNESS);
+                }
+                if (entity.hasEffect(MobEffects.CONFUSION) && entity.getEffect(MobEffects.CONFUSION).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.CONFUSION);
+                }
+                if (entity.hasEffect(MobEffects.DIG_SLOWDOWN) && entity.getEffect(MobEffects.DIG_SLOWDOWN).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.DIG_SLOWDOWN);
+                }
+                if (entity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) && entity.getEffect(MobEffects.MOVEMENT_SLOWDOWN).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                }
+
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+            }
+
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
+        }
+
+        if (stack.is(DDDItems.BIRD_FLU_SHOT.get())) {
+            if (entity.hasEffect(DDDEffects.BIRD_FLU.get())) {
+                int duration = entity.getEffect(DDDEffects.BIRD_FLU.get()).getDuration();
+                entity.removeEffect(DDDEffects.BIRD_FLU.get());
+
+                if (entity.hasEffect(MobEffects.WEAKNESS) && entity.getEffect(MobEffects.WEAKNESS).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.WEAKNESS);
+                }
+                if (entity.hasEffect(MobEffects.DIG_SLOWDOWN) && entity.getEffect(MobEffects.DIG_SLOWDOWN).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.DIG_SLOWDOWN);
+                }
+                if (entity.hasEffect(MobEffects.BLINDNESS) && entity.getEffect(MobEffects.BLINDNESS).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.BLINDNESS);
+                }
+                if (entity.hasEffect(MobEffects.CONFUSION) && entity.getEffect(MobEffects.CONFUSION).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.CONFUSION);
+                }
+
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+            }
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
+        }
+
+        if (stack.is(DDDItems.BUG_BITE_CREAM.get())) {
+            if (entity.hasEffect(DDDEffects.BUG_BITE.get())) {
+                int duration = entity.getEffect(DDDEffects.BUG_BITE.get()).getDuration();
+                entity.removeEffect(DDDEffects.BUG_BITE.get());
+
+                if (entity.hasEffect(MobEffects.UNLUCK) && entity.getEffect(MobEffects.UNLUCK).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.UNLUCK);
+                }
+
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+            }
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
+        }
+
+        if (stack.is(DDDItems.PARASITIC_ANTIBIOTIC.get())) {
+            if (entity.hasEffect(DDDEffects.TAENIASIS.get())) {
+                int duration = entity.getEffect(DDDEffects.TAENIASIS.get()).getDuration();
+                entity.removeEffect(DDDEffects.TAENIASIS.get());
+
+                if (entity.hasEffect(MobEffects.WEAKNESS) && entity.getEffect(MobEffects.WEAKNESS).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.WEAKNESS);
+                }
+                if (entity.hasEffect(MobEffects.DIG_SLOWDOWN) && entity.getEffect(MobEffects.DIG_SLOWDOWN).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.DIG_SLOWDOWN);
+                }
+                if (entity.hasEffect(MobEffects.HUNGER) && entity.getEffect(MobEffects.HUNGER).getDuration() == duration) {
+                    entity.removeEffect(MobEffects.HUNGER);
+                }
+
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+            }
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
         }
     }
 

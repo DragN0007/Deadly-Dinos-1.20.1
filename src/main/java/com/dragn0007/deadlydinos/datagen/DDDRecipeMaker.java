@@ -56,7 +56,7 @@ public class DDDRecipeMaker extends RecipeProvider implements IConditionBuilder 
                         .build())).save(pFinishedRecipeConsumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DDDItems.BACTERIAL_ANTIBIOTIC.get())
-                .define('A', Items.COPPER_ORE)
+                .define('A', Items.RAW_COPPER)
                 .define('B', Items.CHARCOAL)
                 .define('C', Items.GLASS)
                 .pattern("A  ")
