@@ -11,6 +11,8 @@ public class DeadlyDinosCommonConfig {
     public static final ForgeConfigSpec.BooleanValue LARGE_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue MEDIUM_DINOS_DESTROY_BLOCKS;
     public static final ForgeConfigSpec.BooleanValue SMALL_DINOS_DESTROY_BLOCKS;
+    public static final ForgeConfigSpec.ConfigValue<Integer> TROPHY_CHANCE;
+    public static final ForgeConfigSpec.ConfigValue<Integer> EGG_CHANCE;
     public static final ForgeConfigSpec.BooleanValue GROUND_TIE;
     public static final ForgeConfigSpec.BooleanValue ALLOW_TAMING;
     public static final ForgeConfigSpec.BooleanValue ALLOW_EGG_LAY;
@@ -57,6 +59,12 @@ public class DeadlyDinosCommonConfig {
 
         SMALL_DINOS_DESTROY_BLOCKS = BUILDER.comment("Should small dinos be able to destroy blocks like glass?")
                 .define("Small Dinos Break Blocks", true);
+
+        TROPHY_CHANCE = BUILDER.comment("The chance at which a dino will drop a special trophy as loot. Default is 8%.")
+                .define("Trophy Drop Chance", 8);
+
+        EGG_CHANCE = BUILDER.comment("The chance at which a dino will drop a fertilized egg as loot (NOT breeding). Default is 5%.")
+                .define("Fertilized Egg Drop Chance", 5);
 
         GROUND_TIE = BUILDER.comment("Should Ridable Dinos \"ground tie\", or stop moving around, when saddled & dismounted?")
                 .define("Ground Tie When Dismounted", true);
@@ -128,7 +136,7 @@ public class DeadlyDinosCommonConfig {
                 .define("Broken Bone Heal Time", 72000);
 
         CONCUSSION_HEAL_TIME = BUILDER.comment("Amount of time it takes for a concussion to heal. Default is 48000, or 2 (vanilla) days.")
-                .define("Concussion Heal Time", 72000);
+                .define("Concussion Heal Time", 48000);
 
         RAW_MEAT_PARASITE_CHANCE = BUILDER.comment("Chance of getting a parasitic infection from eating raw meat. Default is 0.50 (50%).")
                 .define("Raw Meat Parasite Chance", 0.50);

@@ -4,7 +4,6 @@ import com.dragn0007.deadlydinos.effects.DDDEffects;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDTags;
 import com.dragn0007.deadlydinos.util.DeadlyDinosCommonConfig;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -48,8 +47,8 @@ public class ForgeEvent {
 
     @SubscribeEvent
     public static void onTryCureEntity(PlayerInteractEvent.EntityInteract event) {
-        if (event.getLevel().isClientSide()) return;
-        LivingEntity entity = (LivingEntity) event.getTarget();
+
+        if (event.getTarget() instanceof LivingEntity entity) {
         Player player = event.getEntity();
         ItemStack stack = event.getItemStack();
 
@@ -60,8 +59,6 @@ public class ForgeEvent {
                     stack.shrink(1);
                 }
             }
-            event.setCanceled(true);
-            event.setCancellationResult(InteractionResult.SUCCESS);
         }
 
         if (stack.is(DDDItems.BACTERIAL_ANTIBIOTIC.get())) {
@@ -114,9 +111,6 @@ public class ForgeEvent {
                     stack.shrink(1);
                 }
             }
-
-            event.setCanceled(true);
-            event.setCancellationResult(InteractionResult.SUCCESS);
         }
 
         if (stack.is(DDDItems.BIRD_FLU_SHOT.get())) {
@@ -141,8 +135,6 @@ public class ForgeEvent {
                     stack.shrink(1);
                 }
             }
-            event.setCanceled(true);
-            event.setCancellationResult(InteractionResult.SUCCESS);
         }
 
         if (stack.is(DDDItems.BUG_BITE_CREAM.get())) {
@@ -158,8 +150,6 @@ public class ForgeEvent {
                     stack.shrink(1);
                 }
             }
-            event.setCanceled(true);
-            event.setCancellationResult(InteractionResult.SUCCESS);
         }
 
         if (stack.is(DDDItems.PARASITIC_ANTIBIOTIC.get())) {
@@ -181,8 +171,7 @@ public class ForgeEvent {
                     stack.shrink(1);
                 }
             }
-            event.setCanceled(true);
-            event.setCancellationResult(InteractionResult.SUCCESS);
+            }
         }
     }
 

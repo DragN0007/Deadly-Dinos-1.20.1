@@ -759,12 +759,12 @@ public class MeiLong extends AbstractTamableDino implements InventoryCarrier, Ge
 		Random random = new Random();
 
 		int eggChance = random.nextInt(100);
-		if (this.isFemale() && eggChance <= 5) {
+		if (this.isFemale() && this.isFemale() && eggChance <= DeadlyDinosCommonConfig.EGG_CHANCE.get()) {
 			this.spawnAtLocation(DDDItems.FERTILIZED_MEI_LONG_EGG.get());
 		}
 
 		int trophyChance = random.nextInt(100);
-		if (trophyChance <= 8) {
+		if (trophyChance <= DeadlyDinosCommonConfig.TROPHY_CHANCE.get()) {
 			this.spawnAtLocation(DDDItems.MEI_LONG_TROPHY.get());
 		}
 	}

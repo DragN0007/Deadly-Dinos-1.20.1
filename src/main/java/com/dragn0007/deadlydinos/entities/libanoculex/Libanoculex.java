@@ -348,7 +348,7 @@ public class Libanoculex extends AbstractDino implements GeoEntity, FlyingAnimal
 		Random random = new Random();
 
 		int eggChance = random.nextInt(100);
-		if (this.isFemale() && eggChance <= 5) {
+		if (this.isFemale() && this.isFemale() && eggChance <= DeadlyDinosCommonConfig.EGG_CHANCE.get()) {
 			this.spawnAtLocation(DDDItems.FERTILIZED_LIBANOCULEX_EGG.get());
 		}
 	}

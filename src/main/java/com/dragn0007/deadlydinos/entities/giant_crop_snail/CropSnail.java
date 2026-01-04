@@ -277,7 +277,7 @@ public class CropSnail extends AbstractDino implements GeoEntity {
 		Random random = new Random();
 
 		int eggChance = random.nextInt(100);
-		if (this.isFemale() && eggChance <= 5) {
+		if (this.isFemale() && this.isFemale() && eggChance <= DeadlyDinosCommonConfig.EGG_CHANCE.get()) {
 			this.spawnAtLocation(DDDItems.FERTILIZED_GIANT_CROP_SNAIL_EGG.get());
 		}
 	}

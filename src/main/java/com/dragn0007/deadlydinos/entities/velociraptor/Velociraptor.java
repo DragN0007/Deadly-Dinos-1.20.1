@@ -128,14 +128,14 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 15.0F, 1.3F, 1.3F,
 				entity -> entity instanceof Player && this.isBaby() && !this.isTame()));
 
+		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
+				entity -> entity instanceof Player && !this.isBaby() && !this.isTame() && (this.isFollower() || this.hasFollowers())));
+
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && this.isBaby() && !this.isTame()));
 
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 2.0F, 1.8F,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_DINOS_RUN_FROM) && !this.hasFollowers() && !this.isFollower() && (entity instanceof AbstractTamableDino && !((AbstractTamableDino) entity).isTame() && !this.isTame())));
-
-		this.goalSelector.addGoal(1, new DinoNearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
-				entity -> entity instanceof Player && !this.isBaby() && (this.isFollower() || this.hasFollowers()) && !this.isTame()));
 
 		this.goalSelector.addGoal(2, new DinoNearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
 				entity -> entity.getType().is(DDDTags.Entity_Types.SMALL_PREDATOR_PREY) && !this.isBaby() && !this.isTame()));
@@ -766,12 +766,12 @@ public class Velociraptor extends AbstractTamableDino implements InventoryCarrie
 		Random random = new Random();
 
 		int eggChance = random.nextInt(100);
-		if (this.isFemale() && eggChance <= 5) {
+		if (this.isFemale() && this.isFemale() && eggChance <= DeadlyDinosCommonConfig.EGG_CHANCE.get()) {
 			this.spawnAtLocation(DDDItems.FERTILIZED_VELOCIRAPTOR_EGG.get());
 		}
 
 		int trophyChance = random.nextInt(100);
-		if (trophyChance <= 8) {
+		if (trophyChance <= DeadlyDinosCommonConfig.TROPHY_CHANCE.get()) {
 			this.spawnAtLocation(DDDItems.VELOCIRAPTOR_TROPHY.get());
 		}
 	}
