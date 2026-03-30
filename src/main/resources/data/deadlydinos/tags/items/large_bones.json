@@ -7,6 +7,14 @@
     "deadlydinos:large_carnivore_skull",
     "deadlydinos:large_carnivore_spine",
     "deadlydinos:large_carnivore_tail",
-    "deadlydinos:large_carnivore_tooth"
+    "deadlydinos:large_carnivore_tooth",
+
+    "deadlydinos:large_herbivore_claw",
+    "deadlydinos:large_herbivore_leg",
+    "deadlydinos:large_herbivore_ribs",
+    "deadlydinos:large_herbivore_skull",
+    "deadlydinos:large_herbivore_spine",
+    "deadlydinos:large_herbivore_tail",
+    "deadlydinos:large_herbivore_tooth"
   ]
 }

@@ -46,61 +46,18 @@ import java.util.function.IntUnaryOperator;
 import java.util.function.Predicate;
 
 public abstract class AbstractBaseDino extends Animal implements ContainerListener, HasCustomInventoryScreen, OwnableEntity, PlayerRideableJumping, Saddleable {
-   public static final int EQUIPMENT_SLOT_OFFSET = 400;
-   public static final int CHEST_SLOT_OFFSET = 499;
-   public static final int INVENTORY_SLOT_OFFSET = 500;
-   public static final double BREEDING_CROSS_FACTOR = 0.15D;
-   private static final float MIN_MOVEMENT_SPEED = (float)generateSpeed(() -> {
-      return 0.0D;
-   });
-   private static final float MAX_MOVEMENT_SPEED = (float)generateSpeed(() -> {
-      return 1.0D;
-   });
-   private static final float MIN_JUMP_STRENGTH = (float)generateJumpStrength(() -> {
-      return 0.0D;
-   });
-   private static final float MAX_JUMP_STRENGTH = (float)generateJumpStrength(() -> {
-      return 1.0D;
-   });
-   private static final float MIN_HEALTH = generateMaxHealth((p_272505_) -> {
-      return 0;
-   });
-   private static final float MAX_HEALTH = generateMaxHealth((p_272504_) -> {
-      return p_272504_ - 1;
-   });
-   private static final float BACKWARDS_MOVE_SPEED_FACTOR = 0.25F;
-   private static final float SIDEWAYS_MOVE_SPEED_FACTOR = 0.5F;
    private static final Predicate<LivingEntity> PARENT_HORSE_SELECTOR = (p_30636_) -> {
       return p_30636_ instanceof AbstractBaseDino && ((AbstractBaseDino)p_30636_).isBred();
    };
    private static final TargetingConditions MOMMY_TARGETING = TargetingConditions.forNonCombat().range(16.0D).ignoreLineOfSight().selector(PARENT_HORSE_SELECTOR);
    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.WHEAT, Items.SUGAR, Blocks.HAY_BLOCK.asItem(), Items.APPLE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE);
    private static final EntityDataAccessor<Byte> DATA_ID_FLAGS = SynchedEntityData.defineId(AbstractBaseDino.class, EntityDataSerializers.BYTE);
-   private static final int FLAG_TAME = 2;
-   private static final int FLAG_SADDLE = 4;
-   private static final int FLAG_BRED = 8;
-   private static final int FLAG_EATING = 16;
-   private static final int FLAG_STANDING = 32;
-   private static final int FLAG_OPEN_MOUTH = 64;
-   public static final int INV_SLOT_SADDLE = 0;
-   public static final int INV_SLOT_ARMOR = 1;
-   public static final int INV_BASE_COUNT = 2;
-   private int eatingCounter;
-   private int mouthCounter;
-   private int standCounter;
-   public int tailCounter;
    public int sprintCounter;
    protected boolean isJumping;
    protected SimpleContainer inventory;
    protected int temper;
    protected float playerJumpPendingScale;
    protected boolean allowStandSliding;
-   private float eatAnim;
-   private float eatAnimO;
-   private float standAnim;
-   private float standAnimO;
-   private float mouthAnim;
-   private float mouthAnimO;
    protected boolean canGallop = true;
    protected int gallopSoundCounter;
    @Nullable
@@ -316,15 +273,7 @@ public abstract class AbstractBaseDino extends Animal implements ContainerListen
 
    public boolean hurt(DamageSource p_252258_, float p_250984_) {
       boolean flag = super.hurt(p_252258_, p_250984_);
-      if (flag && this.random.nextInt(3) == 0) {
-         this.standIfPossible();
-      }
-
       return flag;
-   }
-
-   protected boolean canPerformRearing() {
-      return true;
    }
 
    @Nullable
@@ -553,7 +502,6 @@ public abstract class AbstractBaseDino extends Animal implements ContainerListen
 
    private void openMouth() {
       if (!this.level().isClientSide) {
-         this.mouthCounter = 1;
          this.setFlag(64, true);
       }
 
@@ -576,17 +524,8 @@ public abstract class AbstractBaseDino extends Animal implements ContainerListen
       return this.getAmbientSound();
    }
 
-   public void standIfPossible() {
-      if (this.canPerformRearing() && this.isEffectiveAi()) {
-         this.standCounter = 1;
-         this.setStanding(true);
-      }
-
-   }
-
    public void makeMad() {
       if (!this.isStanding()) {
-         this.standIfPossible();
          SoundEvent soundevent = this.getAngrySound();
          if (soundevent != null) {
             this.playSound(soundevent, this.getSoundVolume(), this.getVoicePitch());
@@ -733,7 +672,6 @@ public abstract class AbstractBaseDino extends Animal implements ContainerListen
             p_30591_ = 0;
          } else {
             this.allowStandSliding = true;
-            this.standIfPossible();
          }
 
          if (p_30591_ >= 90) {
@@ -751,7 +689,6 @@ public abstract class AbstractBaseDino extends Animal implements ContainerListen
 
    public void handleStartJump(int p_30574_) {
       this.allowStandSliding = true;
-      this.standIfPossible();
       this.playJumpSound();
    }
 
@@ -777,21 +714,6 @@ public abstract class AbstractBaseDino extends Animal implements ContainerListen
          this.spawnTamingParticles(false);
       } else {
          super.handleEntityEvent(p_30541_);
-      }
-
-   }
-
-   protected void positionRider(Entity p_289569_, Entity.MoveFunction p_289558_) {
-      super.positionRider(p_289569_, p_289558_);
-      if (this.standAnimO > 0.0F) {
-         float f = Mth.sin(this.yBodyRot * ((float)Math.PI / 180F));
-         float f1 = Mth.cos(this.yBodyRot * ((float)Math.PI / 180F));
-         float f2 = 0.7F * this.standAnimO;
-         float f3 = 0.15F * this.standAnimO;
-         p_289558_.accept(p_289569_, this.getX() + (double)(f2 * f), this.getY() + this.getPassengersRidingOffset() + p_289569_.getMyRidingOffset() + (double)f3, this.getZ() - (double)(f2 * f1));
-         if (p_289569_ instanceof LivingEntity) {
-            ((LivingEntity)p_289569_).yBodyRot = this.yBodyRot;
-         }
       }
 
    }

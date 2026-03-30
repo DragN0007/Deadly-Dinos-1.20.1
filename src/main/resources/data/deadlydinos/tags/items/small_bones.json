@@ -8,6 +8,14 @@
     "deadlydinos:small_carnivore_spine",
     "deadlydinos:small_carnivore_tail",
     "deadlydinos:small_carnivore_tooth",
-    "deadlydinos:small_raptor_claw"
+    "deadlydinos:small_raptor_claw",
+
+    "deadlydinos:small_herbivore_claw",
+    "deadlydinos:small_herbivore_leg",
+    "deadlydinos:small_herbivore_ribs",
+    "deadlydinos:small_herbivore_skull",
+    "deadlydinos:small_herbivore_spine",
+    "deadlydinos:small_herbivore_tail",
+    "deadlydinos:small_herbivore_tooth"
   ]
 }
