@@ -63,6 +63,13 @@ public class DDDItems {
     public static final RegistryObject<Item> OVIRAPTOR_EGG = ITEMS.register("oviraptor_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));
 
+    public static final RegistryObject<Item> SPINOSAURUS_SPAWN_EGG = ITEMS.register("spinosaurus_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.SPINOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_SPINOSAURUS_EGG = ITEMS.register("fertilized_spinosaurus_egg",
+            () -> new FertilizedSpinosaurusEggItem((new Item.Properties()).stacksTo(1)));
+    public static final RegistryObject<Item> SPINOSAURUS_EGG = ITEMS.register("spinosaurus_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+
     public static final RegistryObject<Item> TARBOSAURUS_SPAWN_EGG = ITEMS.register("tarbosaurus_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.TARBOSAURUS, 0x00FFFFFF, 0x00FFFFFF, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> FERTILIZED_TARBOSAURUS_EGG = ITEMS.register("fertilized_tarbosaurus_egg",
@@ -514,49 +521,39 @@ public class DDDItems {
 //                    new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 5, true, false),
 //                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
 //            ));
-//    public static final RegistryObject<Item> SPINOTROPHY = ITEMS.register("spinotrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 1,true, false),
-//                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
-//            ));
-//    public static final RegistryObject<Item> TARBOTROPHY = ITEMS.register("tarbotrophy",
-//            () -> new TrophyItem(
-//                    new MobEffectInstance(MobEffects.REGENERATION, 2880, 1,true, false),
-//                    new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false)
-//            ));
 //    public static final RegistryObject<Item> TROODONTROPHY = ITEMS.register("troodontrophy",
 //            () -> new TrophyItem(
 //                    new MobEffectInstance(MobEffects.LUCK, 2880, 5,true, false),
 //                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 2, true, false)
 //            ));
-public static final RegistryObject<Item> OVIRAPTOR_TROPHY = ITEMS.register("oviraptor_trophy",
-        () -> new TrophyItem(
-                new MobEffectInstance(MobEffects.LUCK, 2880, 2,true, false)
-        ));
-
+    public static final RegistryObject<Item> OVIRAPTOR_TROPHY = ITEMS.register("oviraptor_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.LUCK, 2880, 2,true, false)
+            ));
+    public static final RegistryObject<Item> SPINOSAURUS_TROPHY = ITEMS.register("spinosaurus_trophy",
+            () -> new TrophyItem(
+                    new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 2880, 1,true, false),
+                    new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
+            ));
     public static final RegistryObject<Item> TARBOSAURUS_TROPHY = ITEMS.register("tarbosaurus_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),
                     new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 3, true, false)
             ));
-
     public static final RegistryObject<Item> UTAHRAPTOR_TROPHY = ITEMS.register("utahraptor_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.JUMP, 2880, 2,true, false),
                     new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
             ));
-
     public static final RegistryObject<Item> VELOCIRAPTOR_TROPHY = ITEMS.register("velociraptor_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2880, 3, true, false)
             ));
-
     public static final RegistryObject<Item> YUTYRANNUS_TROPHY = ITEMS.register("yutyrannus_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 2880, 2,true, false),
                     new MobEffectInstance(MobEffects.ABSORPTION, 2880, 3, true, false)
             ));
-
     public static final RegistryObject<Item> AMARGASAURUS_TROPHY = ITEMS.register("amargasaurus_trophy",
             () -> new TrophyItem(
                     new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2880, 2,true, false),

@@ -441,10 +441,10 @@ public abstract class AbstractDinoMount extends AbstractChestedAnimal {
         return false;
     }
 
-    @Override
-    public boolean canPerformRearing() {
-        return false;
-    }
+//    @Override
+//    public boolean canPerformRearing() {
+//        return false;
+//    }
 
     public static final EntityDataAccessor<Boolean> DATA_ID_CHEST = SynchedEntityData.defineId(AbstractDinoMount.class, EntityDataSerializers.BOOLEAN);
     public ItemStack getDecorItem() {

@@ -17,6 +17,7 @@ import com.dragn0007.deadlydinos.entities.mei_long.MeiLong;
 import com.dragn0007.deadlydinos.entities.olorotitan.Olorotitan;
 import com.dragn0007.deadlydinos.entities.oviraptor.Oviraptor;
 import com.dragn0007.deadlydinos.entities.parasaurolophus.Parasaurolophus;
+import com.dragn0007.deadlydinos.entities.spinosaurus.Spinosaurus;
 import com.dragn0007.deadlydinos.entities.tarbosaurus.Tarbosaurus;
 import com.dragn0007.deadlydinos.entities.triceratops.Triceratops;
 import com.dragn0007.deadlydinos.entities.utahraptor.Utahraptor;
@@ -77,6 +78,18 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(0.6f,0.6f)
                     .build(new ResourceLocation(MODID,"oviraptor").toString()));
+
+//    public static final RegistryObject<EntityType<Purussaurus>> PURUSSAURUS = ENTITY_TYPES.register("purussaurus",
+//            () -> EntityType.Builder.of(Purussaurus::new,
+//                            MobCategory.CREATURE)
+//                    .sized(2f,2f)
+//                    .build(new ResourceLocation(MODID,"purussaurus").toString()));
+
+    public static final RegistryObject<EntityType<Spinosaurus>> SPINOSAURUS = ENTITY_TYPES.register("spinosaurus",
+            () -> EntityType.Builder.of(Spinosaurus::new,
+                            MobCategory.CREATURE)
+                    .sized(3f,4f)
+                    .build(new ResourceLocation(MODID,"spinosaurus").toString()));
 
     public static final RegistryObject<EntityType<Tarbosaurus>> TARBOSAURUS = ENTITY_TYPES.register("tarbosaurus",
             () -> EntityType.Builder.of(Tarbosaurus::new,
