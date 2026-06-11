@@ -11,6 +11,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -320,5 +321,23 @@ public abstract class AbstractDino extends Animal {
         }
     }
 
+    public static class SwimGoal extends RandomSwimmingGoal {
+        private final AbstractDino entity;
+
+        public SwimGoal(AbstractDino entity) {
+            super(entity, 1.0D, 40);
+            this.entity = entity;
+        }
+
+        @Override
+        public boolean canUse() {
+            return this.entity.isInWater() && super.canUse();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return this.entity.isInWater() && super.canContinueToUse();
+        }
+    }
 
 }

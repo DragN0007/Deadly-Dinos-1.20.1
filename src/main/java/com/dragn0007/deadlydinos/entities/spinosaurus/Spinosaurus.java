@@ -5,6 +5,7 @@ import com.dragn0007.deadlydinos.entities.AbstractDino;
 import com.dragn0007.deadlydinos.entities.DDDAnimations;
 import com.dragn0007.deadlydinos.entities.EntityTypes;
 import com.dragn0007.deadlydinos.entities.ai.DinoNearestAttackableTargetGoal;
+import com.dragn0007.deadlydinos.entities.ai.DinoSwimmingMoveControl;
 import com.dragn0007.deadlydinos.items.DDDItems;
 import com.dragn0007.deadlydinos.util.DDDSoundEvents;
 import com.dragn0007.deadlydinos.util.DDDTags;
@@ -31,10 +32,9 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
-import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.animal.Animal;
@@ -67,8 +67,9 @@ public class Spinosaurus extends AbstractDino implements GeoEntity {
 	public Spinosaurus(EntityType<? extends Spinosaurus> type, Level level) {
 		super(type, level);
 		noCulling = true;
-		this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
-		this.lookControl = new SmoothSwimmingLookControl(this, 10);
+		this.getNavigation().setCanFloat(true);
+		this.moveControl = new DinoSwimmingMoveControl(this);
+		this.navigation = new AmphibiousPathNavigation(this, this.level());
 	}
 
 	public boolean canBreatheUnderwater() {
@@ -97,7 +98,7 @@ public class Spinosaurus extends AbstractDino implements GeoEntity {
 		this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
 		this.goalSelector.addGoal(0, new BreathAirGoal(this));
 		this.goalSelector.addGoal(6, new TryFindWaterGoal(this));
-		this.goalSelector.addGoal(5, new RandomSwimmingGoal(this, 1.5D, 1));
+		this.goalSelector.addGoal(5, new SwimGoal(this));
 		this.goalSelector.addGoal(6, new RandomStrollGoal(this, 1.0D));
 		this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
 		this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -141,17 +142,14 @@ public class Spinosaurus extends AbstractDino implements GeoEntity {
 		return this.getMaxAirSupply();
 	}
 
-	public void travel(Vec3 p_28383_) {
-		if (this.isEffectiveAi() && this.isInWater()) {
-			this.moveRelative(this.getSpeed(), p_28383_);
-			this.move(MoverType.SELF, this.getDeltaMovement());
-			this.setDeltaMovement(this.getDeltaMovement().scale(0.9D));
-			if (this.getTarget() == null) {
-				this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
-			}
-		} else {
-			super.travel(p_28383_);
-		}
+	@Override
+	public boolean isPushedByFluid() {
+		return false;
+	}
+
+	@Override
+	public boolean isSensitiveToWater() {
+		return false;
 	}
 
 	public boolean doHurtTarget(Entity entity) {
@@ -522,6 +520,22 @@ public class Spinosaurus extends AbstractDino implements GeoEntity {
 			} else {
 				this.fish.setSpeed(0.0F);
 			}
+		}
+	}
+
+	@Override
+	public void travel(Vec3 travelVector) {
+		if (this.isControlledByLocalInstance() && this.isInWater()) {
+			this.moveRelative(this.getSpeed(), travelVector);
+			this.move(MoverType.SELF, this.getDeltaMovement());
+
+			this.setDeltaMovement(this.getDeltaMovement().scale(0.8D));
+
+			if (this.getTarget() == null) {
+				this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.005D, 0.0D));
+			}
+		} else {
+			super.travel(travelVector);
 		}
 	}
 

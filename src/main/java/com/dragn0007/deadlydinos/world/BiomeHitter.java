@@ -44,6 +44,7 @@ public class BiomeHitter {
     public static final ResourceKey<BiomeModifier> LIBANOCULEX_WET = registerKey("libanoculex_wet");
     public static final ResourceKey<BiomeModifier> MEGANEURA_FOREST = registerKey("meganeura_forest");
     public static final ResourceKey<BiomeModifier> EUPHOBERIA_HILLS = registerKey("euphoberia_hills");
+    public static final ResourceKey<BiomeModifier> SPINOSAURUS_WET = registerKey("spinosaurus_wet");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -230,6 +231,14 @@ public class BiomeHitter {
         context.register(EUPHOBERIA_HILLS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_HILL),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.EUPHOBERIA.get(),
+                        5,
+                        1,
+                        1
+                ))));
+
+        context.register(SPINOSAURUS_WET, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_WET_OVERWORLD),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.SPINOSAURUS.get(),
                         5,
                         1,
                         1
